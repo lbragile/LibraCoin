@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": ["dom", "dom.iterable", "es2016"],
+    "types": ["node"],
+    "allowJs": true,
+    "watch": false,
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "noEmit": false,
+    "noEmitOnError": true,
+    "outDir": "../dist"
+  },
+  "include": ["../src"],
+  "exclude": ["../node_modules", "../build"]
+}
