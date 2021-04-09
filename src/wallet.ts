@@ -1,4 +1,5 @@
 import * as crypto from "crypto";
+import { Chain } from "./chain";
 import { Transaction } from "./transaction";
 
 export class Wallet {
@@ -14,15 +15,15 @@ export class Wallet {
 
     this.#privateKey = keyPair.privateKey;
     this.publicKey = keyPair.publicKey;
-    // console.log(this.publicKey, this.#privateKey);
   }
 
-  sendMoney(amount: number, to: string): void {
-    const transaction = new Transaction(amount, this.publicKey, to);
+  sendMoney(amount: number, to: string, message?: string): void {
+    const transaction = new Transaction(amount, this.publicKey, to, message);
 
     const sign = crypto.createSign("SHA256");
     sign.update(JSON.stringify(transaction)).end();
-    const signature = sign.sign(this.#privateKey, "hex"); // 512 character hex signature
-    // console.log(signature);
+    const signature = sign.sign(this.#privateKey);
+
+    Chain.instance.verifyTransaction(transaction, signature);
   }
 }
