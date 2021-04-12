@@ -1,5 +1,5 @@
-import { Wallet } from "./wallet";
-import { Chain } from "./chain";
+import { Wallet } from "./wallet.js";
+import { Chain } from "./chain.js";
 
 const lior = new Wallet();
 const bamba = new Wallet();

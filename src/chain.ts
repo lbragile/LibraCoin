@@ -1,6 +1,6 @@
 import * as crypto from "crypto";
-import { Block } from "./block";
-import { Transaction } from "./transaction";
+import { Block } from "./block.js";
+import { Transaction } from "./transaction.js";
 
 export class Chain {
   static instance = new Chain();
@@ -28,20 +28,19 @@ export class Chain {
   mine(nonce: number, leadingZeros: number): string {
     console.log("⚒ mining...");
 
-    let counter = 0;
     let candidateSolution = "";
-    while (counter <= Number.MAX_SAFE_INTEGER) {
+    while (nonce <= Number.MAX_SAFE_INTEGER) {
       const hash = crypto.createHash("SHA256");
-      hash.update((nonce + counter).toString()).end();
+      hash.update(nonce.toString()).end();
       candidateSolution = hash.digest("hex");
 
       const leadingBits = candidateSolution.substr(0, leadingZeros).split("");
       if (leadingBits.every((bit) => bit === "0")) {
-        console.log(`Solved: ${counter}`);
+        console.log(`Solved: ${nonce}`);
         break;
       }
 
-      counter += 1;
+      nonce++;
     }
 
     return candidateSolution;

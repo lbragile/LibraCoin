@@ -1,6 +1,6 @@
 import * as crypto from "crypto";
-import { Chain } from "./chain";
-import { Transaction } from "./transaction";
+import { Chain } from "./chain.js";
+import { Transaction } from "./transaction.js";
 
 export class Wallet {
   publicKey: string;

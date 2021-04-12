@@ -1,16 +1,15 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
-    "lib": ["dom", "dom.iterable", "es2016"],
-    "types": ["node"],
+    "target": "ES6",
+    "module": "CommonJS",
+    "lib": ["DOM", "DOM.Iterable", "ES2016"],
     "allowJs": true,
     "watch": false,
     "strict": true,
     "esModuleInterop": true,
+    "isolatedModules": false,
     "moduleResolution": "node",
     "noEmit": false,
-    "noEmitOnError": true,
     "outDir": "../dist"
   },
   "include": ["../src"],
