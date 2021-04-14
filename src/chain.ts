@@ -1,5 +1,5 @@
-import { Block } from "./block.js";
-import { Transaction } from "./transaction.js";
+import { Block } from "./block";
+import { Transaction } from "./transaction";
 
 export class Chain {
   #chain: Block[];

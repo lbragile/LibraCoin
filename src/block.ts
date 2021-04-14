@@ -1,4 +1,4 @@
-import { Transaction } from "./transaction.js";
+import { Transaction } from "./transaction";
 
 export class Block {
   index: number;

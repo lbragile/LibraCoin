@@ -1,22 +1,13 @@
-import { Chain } from "./chain.js";
-import { Transaction } from "./transaction.js";
+import { Chain } from "./chain";
+import { Transaction } from "./transaction";
 
 export class Wallet {
-  publicKey: CryptoKey = {
-    type: "public",
-    extractable: true,
-    algorithm: { name: "ECDSA" },
-    usages: ["verify"],
-  };
-  #privateKey: CryptoKey = {
-    type: "private",
-    extractable: true,
-    algorithm: { name: "ECDSA" },
-    usages: ["sign"],
-  };
+  publicKey: CryptoKey;
+  #privateKey: CryptoKey;
 
   constructor() {
-    // intentionally blank
+    this.publicKey = { type: "public", extractable: true, algorithm: { name: "ECDSA" }, usages: ["verify"] };
+    this.#privateKey = { type: "private", extractable: true, algorithm: { name: "ECDSA" }, usages: ["sign"] };
   }
 
   async initialize(): Promise<void> {
@@ -37,6 +28,3 @@ export class Wallet {
     await Chain.instance.verifyTransaction(transaction, signature);
   }
 }
-
-// this.publicKey = Chain.bufferToHex(await window.crypto.subtle.exportKey("spki", keyPair.publicKey));
-// this.#privateKey = Chain.bufferToHex(await window.crypto.subtle.exportKey("pkcs8", keyPair.privateKey));

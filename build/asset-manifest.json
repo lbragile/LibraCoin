@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/lbragile/LibraCoinstatic/js/main.bf0ea262.chunk.js",
+    "main.js.map": "/lbragile/LibraCoinstatic/js/main.bf0ea262.chunk.js.map",
+    "runtime-main.js": "/lbragile/LibraCoinstatic/js/runtime-main.6a162ca7.js",
+    "runtime-main.js.map": "/lbragile/LibraCoinstatic/js/runtime-main.6a162ca7.js.map",
+    "static/js/2.96cf7870.chunk.js": "/lbragile/LibraCoinstatic/js/2.96cf7870.chunk.js",
+    "static/js/2.96cf7870.chunk.js.map": "/lbragile/LibraCoinstatic/js/2.96cf7870.chunk.js.map",
+    "index.html": "/lbragile/LibraCoinindex.html",
+    "static/js/2.96cf7870.chunk.js.LICENSE.txt": "/lbragile/LibraCoinstatic/js/2.96cf7870.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6a162ca7.js",
+    "static/js/2.96cf7870.chunk.js",
+    "static/js/main.bf0ea262.chunk.js"
+  ]
+}
