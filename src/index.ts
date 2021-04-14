@@ -1,20 +1,27 @@
 import { Wallet } from "./wallet.js";
 import { Chain } from "./chain.js";
 
-const lior = new Wallet();
-const bamba = new Wallet();
-const anon = new Wallet();
+(async (): Promise<void> => {
+  const lior = new Wallet();
+  await lior.initialize();
 
-// first 2 transactions
-lior.sendMoney(1e3, bamba.publicKey, "Good dog gets money");
-anon.sendMoney(1e6, bamba.publicKey, "Be rich Bamba");
+  const bamba = new Wallet();
+  await bamba.initialize();
 
-// next 2 transactions
-anon.sendMoney(10, lior.publicKey, "You deserve this much");
-lior.sendMoney(1, anon.publicKey, "Thank you");
+  const anon = new Wallet();
+  await anon.initialize();
 
-// last transaction
-bamba.sendMoney(1, lior.publicKey, "I am rich 😀🐶");
-lior.sendMoney(1, bamba.publicKey);
+  // first 2 transactions
+  await lior.sendMoney(1e3, bamba.publicKey, "Good dog gets money");
+  await anon.sendMoney(1e6, bamba.publicKey, "Be rich Bamba");
 
-console.log(Chain.instance.blockChain);
+  // next 2 transactions
+  await anon.sendMoney(10, lior.publicKey, "You deserve this much");
+  await lior.sendMoney(1, anon.publicKey, "Thank you");
+
+  // last transaction
+  await bamba.sendMoney(1, lior.publicKey, "I am rich 😀🐶");
+  await lior.sendMoney(1, bamba.publicKey);
+
+  console.log(JSON.stringify(Chain.instance.blockChain, null, 2));
+})();

@@ -1,29 +1,42 @@
-import * as crypto from "crypto";
 import { Chain } from "./chain.js";
 import { Transaction } from "./transaction.js";
 
 export class Wallet {
-  publicKey: string;
-  #privateKey: string;
+  publicKey: CryptoKey = {
+    type: "public",
+    extractable: true,
+    algorithm: { name: "ECDSA" },
+    usages: ["verify"],
+  };
+  #privateKey: CryptoKey = {
+    type: "private",
+    extractable: true,
+    algorithm: { name: "ECDSA" },
+    usages: ["sign"],
+  };
 
   constructor() {
-    const keyPair = crypto.generateKeyPairSync("rsa", {
-      modulusLength: 2048,
-      publicKeyEncoding: { type: "spki", format: "pem" },
-      privateKeyEncoding: { type: "pkcs8", format: "pem" },
-    });
-
-    this.#privateKey = keyPair.privateKey;
-    this.publicKey = keyPair.publicKey;
+    // intentionally blank
   }
 
-  sendMoney(amount: number, to: string, message?: string): void {
+  async initialize(): Promise<void> {
+    const keyPair = await window.crypto.subtle.generateKey({ name: "ECDSA", namedCurve: "P-256" }, true, ["sign", "verify"]); // prettier-ignore
+    this.publicKey = keyPair.publicKey;
+    this.#privateKey = keyPair.privateKey;
+  }
+
+  getMessageEncoding(message: string): Uint8Array {
+    return new TextEncoder().encode(message);
+  }
+
+  async sendMoney(amount: number, to: CryptoKey, message?: string): Promise<void> {
     const transaction = new Transaction(amount, this.publicKey, to, message);
+    const data = Chain.stringToArrayBuffer(JSON.stringify(transaction));
+    const signature = await window.crypto.subtle.sign({ name: "ECDSA", hash: "SHA-256" }, this.#privateKey, data);
 
-    const sign = crypto.createSign("SHA256");
-    sign.update(JSON.stringify(transaction)).end();
-    const signature = sign.sign(this.#privateKey);
-
-    Chain.instance.verifyTransaction(transaction, signature);
+    await Chain.instance.verifyTransaction(transaction, signature);
   }
 }
+
+// this.publicKey = Chain.bufferToHex(await window.crypto.subtle.exportKey("spki", keyPair.publicKey));
+// this.#privateKey = Chain.bufferToHex(await window.crypto.subtle.exportKey("pkcs8", keyPair.privateKey));
