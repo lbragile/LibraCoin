@@ -1,4 +1,4 @@
-import { Block } from "./block";
+import { Block } from "./components/Block/block_class";
 import { Transaction } from "./transaction";
 
 export class Chain {
@@ -53,9 +53,7 @@ export class Chain {
   async digestMessage(message: string): Promise<string> {
     const msgUint8 = new TextEncoder().encode(message); // encode as (utf-8) Uint8Array
     const hashBuffer = await window.crypto.subtle.digest("SHA-256", msgUint8); // hash the message
-    const hashArray = Array.from(new Uint8Array(hashBuffer)); // convert buffer to byte array
-    const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join(""); // convert bytes to hex string
-    return hashHex;
+    return Chain.bufferToHex(hashBuffer);
   }
 
   async mine(nonce: number, leadingZeros: number): Promise<string> {
@@ -104,8 +102,8 @@ export class Chain {
     const targetStr = targetHash.replace(re, zerosStr);
 
     // only add a block of transactions to the chain if it was mined successfully and the new hash is <= target
-    let acceptableHashFound = false;
-    while (!acceptableHashFound) {
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
       const nonce = Math.round(Math.random() * 999999999);
       const newHash = await this.mine(nonce, numZeros);
 
@@ -113,7 +111,7 @@ export class Chain {
         const newBlock = new Block(this.lastBlock.index + 1, this.lastBlock.currHash, newHash, transactions);
         this.#chain.push(newBlock);
         console.log("✨ Added Block To Chain");
-        acceptableHashFound = true;
+        break;
       } else {
         console.log("❌ Failed Mining Below Target");
       }

@@ -1,0 +1,5 @@
+.userKey {
+  width: clamp(45ch, 50%, 75ch);
+  margin: 0 2em;
+  word-wrap: break-word;
+}

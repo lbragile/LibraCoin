@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-import { Wallet } from "./wallet";
-import { Chain } from "./chain";
-import { Block } from "./block";
+import { Wallet } from "../../wallet";
+import { Chain } from "../../chain";
+import { Block } from "../Block/block_class";
+import BlockUI from "../Block/BlockUI";
+import UserUI from "../User/UserUI";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 export default function App(): JSX.Element {
-  const [blockChain, setBlockChain] = useState<Block[]>();
+  const [blockChain, setBlockChain] = useState<Block[]>(Chain.instance.blockChain);
 
   useEffect(() => {
     async function main(): Promise<void> {
@@ -37,8 +42,9 @@ export default function App(): JSX.Element {
   }, []);
 
   return (
-    <div>
-      <pre>{JSON.stringify(blockChain, null, 2)}</pre>
+    <div className="container-fluid m-3">
+      <UserUI />
+      <BlockUI details={blockChain} />
     </div>
   );
 }
