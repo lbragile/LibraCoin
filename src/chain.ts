@@ -1,10 +1,12 @@
 import { Block } from "./components/Block/block_class";
 import { Transaction } from "./transaction";
+import { Wallet } from "./components/Wallet/Wallet_class";
 
 export class Chain {
   #chain: Block[];
   #verifiedTransactions: Transaction[];
   #BLOCK_LIMIT = 2;
+  #users: Wallet[];
 
   static instance = new Chain();
 
@@ -36,6 +38,7 @@ export class Chain {
     const genesisCurrHash = this.randomHash(32).replace(/^.{0,3}/, "000");
     this.#chain = [new Block(0, genesisPrevHash, genesisCurrHash, genesisTransaction)];
     this.#verifiedTransactions = [];
+    this.#users = [];
   }
 
   get blockChain(): Block[] {
@@ -44,6 +47,10 @@ export class Chain {
 
   get lastBlock(): Block {
     return this.#chain[this.#chain.length - 1];
+  }
+
+  addUser(user: Wallet): void {
+    this.#users.push(user);
   }
 
   randomHash(len: number): string {
@@ -75,7 +82,7 @@ export class Chain {
     return candidateSolution;
   }
 
-  async verifyTransaction(transaction: Transaction, signature: ArrayBuffer): Promise<void> {
+  async verifyTransaction(transaction: Transaction, signature: ArrayBuffer): Promise<boolean> {
     const data = Chain.stringToArrayBuffer(JSON.stringify(transaction));
     const isValid = await crypto.subtle.verify({ name: "ECDSA", hash: "SHA-256" }, transaction.from, signature, data);
 
@@ -89,6 +96,8 @@ export class Chain {
       await this.addBlock(this.#verifiedTransactions);
       this.#verifiedTransactions = []; // empty the verified transaction pool
     }
+
+    return isValid;
   }
 
   async addBlock(transactions: Transaction[]): Promise<void> {

@@ -1,39 +1,28 @@
-import React, { useRef } from "react";
-import { Chain } from "../../chain";
-import { Wallet } from "../../wallet";
+import React from "react";
 
 import "./User.css";
 
-export default function UserUI(): JSX.Element {
-  const publicKey = useRef<HTMLSpanElement>(null);
-  const privateKey = useRef<HTMLSpanElement>(null);
-
-  const addUser = async () => {
-    const user = new Wallet();
-    await user.initialize();
-
-    const publicKeyStr = Chain.bufferToHex(await window.crypto.subtle.exportKey("spki", user.publicKey));
-    const privateKeyStr = Chain.bufferToHex(await window.crypto.subtle.exportKey("pkcs8", user.privateKey));
-    if (publicKey.current && privateKey.current) {
-      publicKey.current.innerText = publicKeyStr;
-      privateKey.current.innerText = privateKeyStr;
-    }
-  };
-
+interface IUser {
+  users: { publicKey: string; balance: number }[];
+}
+export default function UserUI({ users }: IUser): JSX.Element {
   return (
     <div>
-      <button className="btn btn-primary" onClick={addUser}>
-        Add User
-      </button>
-      <div className="row">
-        <p className="userKey">
-          <b>Public:</b>
-          <span className="userKey" ref={publicKey}></span>
-        </p>
-        <p className="userKey">
-          <b>Private:</b>
-          <span className="userKey" ref={privateKey}></span>
-        </p>
+      <div>
+        <h3>
+          <b>Users:</b>
+        </h3>
+        <div id="user-list-background">
+          {users.map((_, i) => {
+            return (
+              <div className="user-item ml-3" key={Math.random()}>
+                <p className="user-item-index-text">
+                  <b>{i}</b>
+                </p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

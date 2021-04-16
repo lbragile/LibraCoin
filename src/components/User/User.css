@@ -1,5 +1,31 @@
-.userKey {
+.user-key {
   width: clamp(45ch, 50%, 75ch);
-  margin: 0 2em;
+  margin: 0.25em 0;
   word-wrap: break-word;
+}
+
+#private-reveal-eyes:hover {
+  cursor: pointer;
+}
+
+#user-list-background {
+  display: flex;
+  align-items: center;
+  background: #c4c4c4;
+  height: 240px;
+  border-radius: 10px;
+}
+
+.user-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  border-radius: 25px;
+}
+
+.user-item-index-text {
+  font-size: 50px;
 }
