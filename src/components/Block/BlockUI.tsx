@@ -1,5 +1,5 @@
 import React from "react";
-import { Transaction } from "../../transaction";
+import { Transaction } from "../Transaction/transaction_class";
 
 interface IBlock {
   index: number;

@@ -1,5 +1,5 @@
 import { Block } from "./components/Block/block_class";
-import { Transaction } from "./transaction";
+import { Transaction } from "./components/Transaction/transaction_class";
 import { Wallet } from "./components/Wallet/Wallet_class";
 
 export class Chain {

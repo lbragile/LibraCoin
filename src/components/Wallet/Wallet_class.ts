@@ -1,5 +1,5 @@
 import { Chain } from "../../chain";
-import { Transaction } from "../../transaction";
+import { Transaction } from "../Transaction/transaction_class";
 
 export class Wallet {
   publicKey: CryptoKey;

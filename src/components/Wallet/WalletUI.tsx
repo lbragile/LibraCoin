@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Chain } from "../../chain";
+import TransactionUI from "../Transaction/TransactionUI";
 import UserUI from "../User/UserUI";
 import { Wallet } from "../Wallet/Wallet_class";
 
@@ -76,6 +77,7 @@ export default function WalletUI(): JSX.Element {
         </div>
       </div>
 
+      <TransactionUI />
       <UserUI users={users} />
     </div>
   );
