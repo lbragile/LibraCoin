@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
-import { Chain } from "../../chain";
+
+import { Button, Form } from "react-bootstrap";
+
 import NavbarUI from "../Navbar/NavbarUI";
 import TransactionUI from "../Transaction/TransactionUI";
 import UserUI from "../User/UserUI";
 import { Wallet } from "../Wallet/Wallet_class";
-
-import { Button, Form } from "react-bootstrap";
 
 import "./Wallet.css";
 
@@ -29,7 +29,6 @@ export default function WalletUI(): JSX.Element {
       privateKey.current.innerText = new Array(privateKeyStr.length).fill("◦").join("");
     }
 
-    Chain.instance.addUser(user);
     const newUsers = [...users, { publicKey: publicKeyStr, balance: user.balance }];
     localStorage.setItem("user", JSON.stringify({ publicKey: publicKeyStr, privateKey: privateKeyStr, balance: user.balance })); // prettier-ignore
     localStorage.setItem("users", JSON.stringify(newUsers));
@@ -60,16 +59,15 @@ export default function WalletUI(): JSX.Element {
       <NavbarUI />
 
       <div className="row">
-        <div className="col-2">
-          <Button
-            variant="primary"
-            className="p-3 font-weight-bold"
-            disabled={JSON.parse(localStorage.getItem("user") as string)?.publicKey}
-            onClick={addUser}
-          >
-            Create Wallet
-          </Button>
-        </div>
+        {!JSON.parse(localStorage.getItem("user") as string)?.publicKey ? (
+          <div className="col-2">
+            <Button variant="primary" className="p-3 font-weight-bold" onClick={addUser}>
+              Create Wallet
+            </Button>
+          </div>
+        ) : (
+          <div className="col-1"></div>
+        )}
         <div className="col-5">
           <div className="user-key">
             <h3 className="mb-3">Public Key:</h3>
@@ -77,7 +75,9 @@ export default function WalletUI(): JSX.Element {
               as="textarea"
               rows={7}
               className="userKey"
-              value={localStorage.getItem("user") && JSON.parse(localStorage.getItem("user") as string).publicKey}
+              defaultValue={
+                localStorage.getItem("user") && JSON.parse(localStorage.getItem("user") as string).publicKey
+              }
               isValid={copied[0]}
               onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyPublicKey(e, "public")}
               ref={publicKey}
@@ -99,7 +99,7 @@ export default function WalletUI(): JSX.Element {
               as="textarea"
               rows={7}
               className="userKey"
-              value={
+              defaultValue={
                 localStorage.getItem("user")
                   ? new Array(JSON.parse(localStorage.getItem("user") as string).privateKey.length).fill("◦").join("")
                   : ""

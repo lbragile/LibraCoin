@@ -6,6 +6,7 @@ import WalletUI from "../Wallet/WalletUI";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import NavbarUI from "../Navbar/NavbarUI";
+import ChainUI from "../Chain/ChainUI";
 
 export default function App(): JSX.Element {
   return (
@@ -13,7 +14,7 @@ export default function App(): JSX.Element {
       <Route path="/" component={WalletUI} exact />
       <Route path="/wallet" component={WalletUI} />
       <Route path="/mine" component={NavbarUI} />
-      <Route path="/blockchain" component={NavbarUI} />
+      <Route path="/blockchain" component={ChainUI} />
     </Router>
   );
 }

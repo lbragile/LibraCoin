@@ -1,6 +1,6 @@
-import { Block } from "./components/Block/block_class";
-import { Transaction } from "./components/Transaction/transaction_class";
-import { Wallet } from "./components/Wallet/Wallet_class";
+import { Block } from "../Block/block_class";
+import { Transaction } from "../Transaction/transaction_class";
+import { Wallet } from "../Wallet/Wallet_class";
 
 export class Chain {
   #chain: Block[];

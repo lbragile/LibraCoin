@@ -1,4 +1,4 @@
-import { Chain } from "../../chain";
+import { Chain } from "../Chain/chain_class";
 import { Transaction } from "../Transaction/transaction_class";
 
 export class Wallet {
