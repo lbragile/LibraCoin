@@ -1,0 +1,12 @@
+.nav-link {
+  font-size: larger;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  font-weight: bolder;
+}
+
+.nav-link:hover {
+  border-bottom: #8ac0ff 1px solid;
+}

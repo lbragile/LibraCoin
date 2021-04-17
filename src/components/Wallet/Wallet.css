@@ -1,0 +1,9 @@
+.user-key {
+  width: clamp(45ch, 50%, 75ch);
+  margin: 0.25em 0;
+  word-wrap: break-word;
+}
+
+#private-reveal-eyes:hover {
+  cursor: pointer;
+}
