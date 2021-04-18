@@ -1,0 +1,29 @@
+.block-background {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block-background:hover {
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.block-counter {
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.block-and-chain {
+  display: flex;
+  align-items: center;
+}
+
+.chain-link {
+  position: relative;
+  transform: translateX(-30%);
+  font-size: 40px;
+}

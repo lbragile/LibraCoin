@@ -3,3 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.valid-block {
+  background-color: #b4ff9a;
+}
+
+.invalid-block {
+  background-color: #ff9a9a;
+}

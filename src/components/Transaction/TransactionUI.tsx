@@ -17,7 +17,7 @@ export default function TransactionUI(): JSX.Element {
   };
 
   function checkAmount(e: React.ChangeEvent<HTMLInputElement>): void {
-    const userBalance = JSON.parse(localStorage.getItem("user") as string).balance;
+    const userBalance = JSON.parse(localStorage.getItem("user") as string)?.balance || 1000;
     e.target.value = Math.min(Math.max(0.1, +e.target.value), userBalance)
       .toFixed(2)
       .toString();
@@ -38,7 +38,10 @@ export default function TransactionUI(): JSX.Element {
               <Form.Label>
                 <b>From:</b>
               </Form.Label>
-              <Form.Control type="text" defaultValue={JSON.parse(localStorage.getItem("user") as string).publicKey} />
+              <Form.Control
+                type="text"
+                defaultValue={JSON.parse(localStorage.getItem("user") as string)?.publicKey || ""}
+              />
               <Form.Text className="text-muted">
                 Your public key → used to verify transaction was signed using your private key
               </Form.Text>
@@ -77,7 +80,7 @@ export default function TransactionUI(): JSX.Element {
               </Form.Label>
               <Form.Control
                 type="text"
-                defaultValue={JSON.parse(localStorage.getItem("user") as string).privateKey}
+                defaultValue={JSON.parse(localStorage.getItem("user") as string)?.privateKey || ""}
                 required
               />
               <Form.Text className="text-muted">This is not shared with anyone, keep this secret!</Form.Text>
