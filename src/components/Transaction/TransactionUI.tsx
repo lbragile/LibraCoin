@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { Modal, Form, Button, InputGroup } from "react-bootstrap";
 
 export default function TransactionUI(): JSX.Element {
   const [show, setShow] = useState<boolean>(false);
   const [validated, setValidated] = useState<boolean>(false);
+  const [signed, setSigned] = useState<boolean>(false);
+
+  const signature = useRef<string>("");
+  // const verifiedTransactions = useRef<>(JSON.parse(localStorage.getItem("transactions")) || null)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-
     setValidated(true);
+
+    if (form.checkValidity()) {
+      signature.current = "hfd8wer8234u98fdh3485f8......";
+      setSigned(true);
+    }
   };
 
   function checkAmount(e: React.ChangeEvent<HTMLInputElement>): void {
@@ -34,18 +39,20 @@ export default function TransactionUI(): JSX.Element {
         </Modal.Header>
         <Modal.Body>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
-            <Form.Group controlId="TransFrom">
-              <Form.Label>
-                <b>From:</b>
-              </Form.Label>
-              <Form.Control
-                type="text"
-                defaultValue={JSON.parse(localStorage.getItem("user") as string)?.publicKey || ""}
-              />
-              <Form.Text className="text-muted">
-                Your public key → used to verify transaction was signed using your private key
-              </Form.Text>
-            </Form.Group>
+            {!signed && (
+              <Form.Group controlId="TransFrom">
+                <Form.Label>
+                  <b>From:</b>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  defaultValue={JSON.parse(localStorage.getItem("user") as string)?.publicKey || ""}
+                />
+                <Form.Text className="text-muted">
+                  Your public key → used to verify transaction was signed using your private key
+                </Form.Text>
+              </Form.Group>
+            )}
 
             <Form.Group controlId="TransTo">
               <Form.Label>
@@ -74,20 +81,34 @@ export default function TransactionUI(): JSX.Element {
               </InputGroup>
             </Form.Group>
 
-            <Form.Group controlId="TransPrivate">
-              <Form.Label>
-                <b>Private Key:</b>
-              </Form.Label>
-              <Form.Control
-                type="text"
-                defaultValue={JSON.parse(localStorage.getItem("user") as string)?.privateKey || ""}
-                required
-              />
-              <Form.Text className="text-muted">This is not shared with anyone, keep this secret!</Form.Text>
-            </Form.Group>
+            {!signed && (
+              <Form.Group controlId="TransPrivate">
+                <Form.Label>
+                  <b>Private Key:</b>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  defaultValue={JSON.parse(localStorage.getItem("user") as string)?.privateKey || ""}
+                  required
+                />
+                <Form.Text className="text-muted">This is not shared with anyone, keep this secret!</Form.Text>
+              </Form.Group>
+            )}
+
+            {signed && (
+              <Form.Group controlId="TransPrivate">
+                <Form.Label>
+                  <b>Signature:</b>
+                </Form.Label>
+                <Form.Control type="text" defaultValue={signature.current} />
+                <Form.Text className="text-muted">
+                  Receiver uses this along with your public key to verify transaction.
+                </Form.Text>
+              </Form.Group>
+            )}
 
             <Button variant="primary" type="submit" block>
-              Sign
+              <b>{signed ? "Send" : "Sign"}</b>
             </Button>
           </Form>
         </Modal.Body>

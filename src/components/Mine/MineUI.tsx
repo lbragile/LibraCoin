@@ -28,6 +28,7 @@ export default function MineUI(): JSX.Element {
 
       <div id="verified-transaction">
         <h3>Verified Transactions:</h3>
+        {/* <BoxItemLineUI details={users} title="User" /> */}
       </div>
 
       <div className="row">

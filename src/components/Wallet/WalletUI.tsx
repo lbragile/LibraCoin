@@ -4,7 +4,7 @@ import { Button, Form } from "react-bootstrap";
 
 import NavbarUI from "../Navbar/NavbarUI";
 import TransactionUI from "../Transaction/TransactionUI";
-import UserUI from "../User/UserUI";
+import BoxItemLineUI from "../BoxItemLineUI/BoxItemLineUI";
 import { Wallet } from "../Wallet/Wallet_class";
 
 import "./Wallet.css";
@@ -114,7 +114,7 @@ export default function WalletUI(): JSX.Element {
       </div>
 
       <TransactionUI />
-      <UserUI users={users} />
+      <BoxItemLineUI details={users} title="User" />
     </div>
   );
 }
