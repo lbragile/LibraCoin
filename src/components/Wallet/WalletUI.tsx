@@ -114,7 +114,7 @@ export default function WalletUI(): JSX.Element {
       </div>
 
       <TransactionUI />
-      <BoxItemLineUI details={users} title="User" />
+      <BoxItemLineUI details={users} title="Users" />
     </div>
   );
 }

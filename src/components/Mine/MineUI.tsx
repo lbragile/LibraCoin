@@ -4,6 +4,7 @@ import { IBlock } from "../Block/BlockUI";
 
 import "./Mine.css";
 import { Button } from "react-bootstrap";
+import BoxItemLineUI from "../BoxItemLineUI/BoxItemLineUI";
 
 interface IStats {
   nonce: number;
@@ -27,15 +28,20 @@ export default function MineUI(): JSX.Element {
       <NavbarUI />
 
       <div id="verified-transaction">
-        <h3>Verified Transactions:</h3>
-        {/* <BoxItemLineUI details={users} title="User" /> */}
+        <BoxItemLineUI
+          details={JSON.parse(localStorage.getItem("transactions") as string)}
+          title="Verified Transactions"
+        />
       </div>
 
-      <div className="row">
-        <div id="mine-interactive-area">
+      <div className="row d-flex justify-content-center my-5 container-fluid">
+        <div className="col-3" id="mine-interactive-area">
           <div id="statistics">
             <p>
               <b>Nonce:</b> {stats.current.nonce}
+            </p>
+            <p>
+              <b>Current:</b> {stats.current.nonce + 1}
             </p>
             <p>
               <b>Target:</b> {stats.current.target}
@@ -45,7 +51,7 @@ export default function MineUI(): JSX.Element {
             </p>
           </div>
 
-          <Button variant="primary" id="mine-add-block">
+          <Button variant="primary" className="btn-block d-block mt-3" id="mine-add-block">
             Mine
           </Button>
         </div>

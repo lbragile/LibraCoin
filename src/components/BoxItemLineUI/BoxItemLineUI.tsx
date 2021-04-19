@@ -10,10 +10,11 @@ interface IUser {
 }
 
 interface ITransaction {
-  fromKey: string;
-  toKey: string;
+  to: string;
+  from: string;
   amount: number;
-  signature: string;
+  message: string;
+  signature?: string;
   index?: number;
 }
 
@@ -26,7 +27,11 @@ export default function BoxItemLineUI({
 }): JSX.Element {
   const [show, setShow] = useState(false);
   const [copied, setCopied] = useState(false);
-  const modalText = useRef<IUser | ITransaction>({ index: 0, publicKey: "", balance: 0 });
+  const modalText = useRef<IUser | ITransaction>(
+    title.toLowerCase().includes("user")
+      ? { index: 0, publicKey: "", balance: 0 }
+      : { index: 0, to: "", from: "", amount: 0, message: "" }
+  );
 
   function showUserDetails(boxDetail: IUser | ITransaction, index: number): void {
     modalText.current = { ...boxDetail, index };
@@ -47,7 +52,7 @@ export default function BoxItemLineUI({
           <b>{title}:</b>
         </h3>
         <div id="user-list-background">
-          {details.map((boxDetail: IUser | ITransaction, i: number) => {
+          {details?.map((boxDetail: IUser | ITransaction, i: number) => {
             return (
               <div className="user-item ml-3 col-1" onClick={() => showUserDetails(boxDetail, i)} key={Math.random()}>
                 <p className="user-item-index-text">
@@ -59,10 +64,10 @@ export default function BoxItemLineUI({
         </div>
       </div>
 
-      <Modal show={show} centered onHide={() => setShow(false)}>
+      <Modal show={show} centered onHide={() => setShow(false)} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>
-            {title.toLowerCase().includes("user") ? "User" : "Verified Transaction"} #{modalText.current.index} Details
+            {title} #{modalText.current.index} Details
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -98,7 +103,7 @@ export default function BoxItemLineUI({
                 <Form.Control
                   type="text"
                   className="text-truncate"
-                  defaultValue={(modalText.current as ITransaction).fromKey}
+                  defaultValue={(modalText.current as ITransaction).from}
                 />
               </Form.Group>
 
@@ -109,7 +114,18 @@ export default function BoxItemLineUI({
                 <Form.Control
                   type="text"
                   className="text-truncate"
-                  defaultValue={(modalText.current as ITransaction).toKey}
+                  defaultValue={(modalText.current as ITransaction).to}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label>
+                  <h5>Message:</h5>
+                </Form.Label>
+                <Form.Control
+                  as="textarea"
+                  className="text-truncate"
+                  defaultValue={(modalText.current as ITransaction).message}
                 />
               </Form.Group>
 

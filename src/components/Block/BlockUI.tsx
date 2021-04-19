@@ -33,7 +33,7 @@ export default function BlockUI({ details }: { details: IBlock[] }): JSX.Element
         </div>
       ))}
 
-      <Modal show={show} centered onHide={() => setShow(false)}>
+      <Modal show={show} centered onHide={() => setShow(false)} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Block Details</Modal.Title>
         </Modal.Header>
