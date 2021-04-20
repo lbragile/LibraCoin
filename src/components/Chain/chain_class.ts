@@ -63,12 +63,19 @@ export class Chain {
     return Chain.bufferToHex(hashBuffer);
   }
 
-  async mine(nonce: number, leadingZeros: number): Promise<string> {
+  async mine(
+    nonce: number,
+    leadingZeros: number,
+    setNonce: (arg: number) => void,
+    setSolution: (arg: string) => void,
+    speed = 0
+  ): Promise<void> {
     console.log("⚒ mining...");
 
     let candidateSolution = "";
     while (nonce <= Number.MAX_SAFE_INTEGER) {
       candidateSolution = await this.digestMessage(nonce.toString());
+      setSolution(candidateSolution);
 
       const leadingBits = candidateSolution.substr(0, leadingZeros).split("");
       if (leadingBits.every((bit) => bit === "0")) {
@@ -76,10 +83,9 @@ export class Chain {
         break;
       }
 
-      nonce++;
+      setNonce(nonce++);
+      setTimeout(() => undefined, speed); // add some delay
     }
-
-    return candidateSolution;
   }
 
   async verifyTransaction(transaction: Transaction, signature: ArrayBuffer): Promise<boolean> {
@@ -113,17 +119,16 @@ export class Chain {
     // only add a block of transactions to the chain if it was mined successfully and the new hash is <= target
     // eslint-disable-next-line no-constant-condition
     while (true) {
-      const nonce = Math.round(Math.random() * 999999999);
-      const newHash = await this.mine(nonce, numZeros);
-
-      if (newHash <= targetStr) {
-        const newBlock = new Block(this.lastBlock.index + 1, this.lastBlock.currHash, newHash, transactions);
-        this.#chain.push(newBlock);
-        console.log("✨ Added Block To Chain");
-        break;
-      } else {
-        console.log("❌ Failed Mining Below Target");
-      }
+      // const nonce = Math.round(Math.random() * 999999999);
+      // const newHash = await this.mine(nonce, numZeros);
+      // if (newHash <= targetStr) {
+      //   const newBlock = new Block(this.lastBlock.index + 1, this.lastBlock.currHash, newHash, transactions);
+      //   this.#chain.push(newBlock);
+      //   console.log("✨ Added Block To Chain");
+      //   break;
+      // } else {
+      //   console.log("❌ Failed Mining Below Target");
+      // }
     }
   }
 }
