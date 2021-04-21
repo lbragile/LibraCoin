@@ -1,29 +1,24 @@
-.block-background {
-  width: 200px;
-  height: 200px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.block-background:hover {
-  cursor: pointer;
-  border: 1px solid black;
-}
-
-.block-counter {
-  font-weight: bold;
-  font-size: 50px;
-}
-
 .block-and-chain {
   display: flex;
   align-items: center;
+  min-width: 20rem;
 }
 
+.block-background {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+/* .block-background:hover {
+  cursor: pointer;
+  border: 1px solid black;
+} */
+
 .chain-link {
-  position: relative;
-  transform: translateX(-30%);
-  font-size: 40px;
+  font-size: 3rem;
+  transform: translateX(-15px) rotate(45deg);
 }

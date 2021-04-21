@@ -30,7 +30,7 @@ export default function MineUI(): JSX.Element {
     origNonce.current = Math.round(Math.random() * 1e6);
     const numZeros = Math.round(Math.random()) + 2;
     const targetHash = await createTarget(numZeros);
-    const solutionHash = await Chain.instance.mine(origNonce.current, numZeros, setNonce, setSolution, 0);
+    const solutionHash = await Chain.instance.mine(origNonce.current, numZeros, setNonce, setSolution);
 
     if (solutionHash <= targetHash) {
       setIsValid(true);
@@ -81,7 +81,7 @@ export default function MineUI(): JSX.Element {
 
         <div id="mined-block" className={"col-6 " + (isValid ? "valid-block" : "invalid-block")}>
           {isValid && (
-            <Button variant="success" id="mine-add-block">
+            <Button variant="success" id="mine-add-block" onClick={() => Chain.instance.addBlock(solution, [])}>
               +
             </Button>
           )}
@@ -113,7 +113,7 @@ export default function MineUI(): JSX.Element {
             <Form.Label>
               <h5>Merkle Root:</h5>
             </Form.Label>
-            <Form.Control type="text" defaultValue={"4h354kdnf380sdf234..."} disabled={true} />
+            <Form.Control type="text" defaultValue={"abc"} disabled={true} />
           </Form.Group>
         </div>
       </div>

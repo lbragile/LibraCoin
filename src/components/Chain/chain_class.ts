@@ -8,7 +8,7 @@ export class Chain {
   #BLOCK_LIMIT = 2;
   #users: Wallet[];
 
-  static instance = new Chain();
+  static instance = new Chain(JSON.parse(localStorage.getItem("chain") as string));
 
   static stringToArrayBuffer(str: string): ArrayBuffer {
     const buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
@@ -25,7 +25,7 @@ export class Chain {
     return hashHex;
   }
 
-  constructor() {
+  constructor(chain: Block[] | undefined) {
     const genericCryptoKey = {
       type: "public",
       extractable: true,
@@ -34,9 +34,8 @@ export class Chain {
     } as CryptoKey;
 
     const genesisTransaction = [new Transaction(0, genericCryptoKey, genericCryptoKey)];
-    const genesisPrevHash = Array(64).fill("0").join("");
-    const genesisCurrHash = this.randomHash(32).replace(/^.{0,3}/, "000");
-    this.#chain = [new Block(0, genesisPrevHash, genesisCurrHash, genesisTransaction)];
+    const genesisCurrHash = Array(64).fill("0").join("");
+    this.#chain = chain ?? [new Block(0, "", genesisCurrHash, genesisTransaction)];
     this.#verifiedTransactions = [];
     this.#users = [];
   }
@@ -67,8 +66,7 @@ export class Chain {
     nonce: number,
     leadingZeros: number,
     setNonce: (arg: number) => void,
-    setSolution: (arg: string) => void,
-    speed = 0
+    setSolution: (arg: string) => void
   ): Promise<string> {
     console.log("⚒ mining...");
 
@@ -84,7 +82,6 @@ export class Chain {
       }
 
       setNonce(nonce++);
-      setTimeout(() => undefined, speed); // add some delay
     }
 
     return candidateSolution;
@@ -101,36 +98,16 @@ export class Chain {
     }
 
     if (this.#verifiedTransactions.length === this.#BLOCK_LIMIT) {
-      await this.addBlock(this.#verifiedTransactions);
+      this.addBlock("", this.#verifiedTransactions);
       this.#verifiedTransactions = []; // empty the verified transaction pool
     }
 
     return isValid;
   }
 
-  async addBlock(transactions: Transaction[]): Promise<void> {
-    // new hash needs between 2 and 3 leading zeros
-    const numZeros = Math.round(Math.random() * 2) + 2;
-    const targetHash = await this.digestMessage(this.randomHash(20));
-
-    // replace leading bits with zeros
-    const re = new RegExp(`^.{0,${numZeros}}`, "g");
-    const zerosStr = Array(numZeros).fill("0").join("");
-    const targetStr = targetHash.replace(re, zerosStr);
-
-    // only add a block of transactions to the chain if it was mined successfully and the new hash is <= target
-    // eslint-disable-next-line no-constant-condition
-    while (true) {
-      // const nonce = Math.round(Math.random() * 999999999);
-      // const newHash = await this.mine(nonce, numZeros);
-      // if (newHash <= targetStr) {
-      //   const newBlock = new Block(this.lastBlock.index + 1, this.lastBlock.currHash, newHash, transactions);
-      //   this.#chain.push(newBlock);
-      //   console.log("✨ Added Block To Chain");
-      //   break;
-      // } else {
-      //   console.log("❌ Failed Mining Below Target");
-      // }
-    }
+  addBlock(newHash: string, transactions: Transaction[]): void {
+    const newBlock = new Block(this.lastBlock.index + 1, this.lastBlock.currHash, newHash, transactions);
+    this.#chain.push(newBlock);
+    localStorage.setItem("chain", JSON.stringify(this.blockChain));
   }
 }
