@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import NavbarUI from "../Navbar/NavbarUI";
-import { IBlock } from "../Block/BlockUI";
 
 import "./Mine.css";
 import { Button, Form } from "react-bootstrap";
@@ -8,21 +7,13 @@ import BoxItemLineUI from "../BoxItemLineUI/BoxItemLineUI";
 import { Chain } from "../Chain/chain_class";
 
 export default function MineUI(): JSX.Element {
-  const minedBlock = useRef<IBlock>({
-    index: 0,
-    timestamp: Date.now(),
-    prevHash: "00000000000000000...",
-    currHash: "000absd234hdsf84h5...",
-    transactions: [],
-  });
-
   const [nonce, setNonce] = useState<number>();
   const [solution, setSolution] = useState<string>("");
   const [target, setTarget] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(false);
   const origNonce = useRef<number>();
 
-  async function createTarget(numZeros: number) {
+  async function createTarget(numZeros: number): Promise<string> {
     let targetHash = await Chain.instance.digestMessage(Chain.instance.randomHash(20));
 
     // replace leading bits with zeros
@@ -30,20 +21,18 @@ export default function MineUI(): JSX.Element {
     const zerosStr = Array(numZeros).fill("0").join("");
     targetHash = targetHash.replace(re, zerosStr);
     setTarget(targetHash);
+
+    return targetHash;
   }
 
   async function handleMine() {
     setIsValid(false);
     origNonce.current = Math.round(Math.random() * 1e6);
     const numZeros = Math.round(Math.random()) + 2;
+    const targetHash = await createTarget(numZeros);
+    const solutionHash = await Chain.instance.mine(origNonce.current, numZeros, setNonce, setSolution, 0);
 
-    createTarget(numZeros);
-    await Chain.instance.mine(origNonce.current, numZeros, setNonce, setSolution, 0);
-
-    // update timestamp
-    minedBlock.current.timestamp = Date.now();
-
-    if (solution <= target) {
+    if (solutionHash <= targetHash) {
       setIsValid(true);
     }
   }
@@ -100,13 +89,13 @@ export default function MineUI(): JSX.Element {
             <Form.Label>
               <h5>Index:</h5>
             </Form.Label>{" "}
-            <Form.Control type="number" defaultValue={minedBlock.current.index} disabled={true} />
+            <Form.Control type="number" defaultValue={Chain.instance.lastBlock.index + 1} disabled={true} />
           </Form.Group>
           <Form.Group>
             <Form.Label>
               <h5>Timestamp:</h5>
             </Form.Label>
-            <Form.Control type="number" defaultValue={minedBlock.current.timestamp} disabled={true} />
+            <Form.Control type="number" defaultValue={solution ? Date.now() : ""} disabled={true} />
           </Form.Group>
           <Form.Group>
             <Form.Label>
@@ -118,7 +107,7 @@ export default function MineUI(): JSX.Element {
             <Form.Label>
               <h5>Current Hash:</h5>
             </Form.Label>
-            <Form.Control type="text" defaultValue={isValid ? solution : ""} disabled={true} />
+            <Form.Control type="text" defaultValue={solution} disabled={true} />
           </Form.Group>
           <Form.Group>
             <Form.Label>

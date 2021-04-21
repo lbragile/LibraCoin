@@ -4,7 +4,7 @@ import { Modal, Form, Button, InputGroup } from "react-bootstrap";
 import { ISign } from "./SignUI";
 
 interface ISend extends ISign {
-  details: { to: string; amount: number; message: string };
+  details: { to: string; amount: number; message: string; signature: string };
   setSigned: (arg: boolean) => void;
   setValidated: (arg: boolean) => void;
 }
@@ -59,7 +59,7 @@ export default function SendUI(props: ISend): JSX.Element {
               <Form.Label>
                 <b>Signature:</b>
               </Form.Label>
-              <Form.Control type="text" defaultValue={"axbcdhdsihfewimfdalrewiuf......"} disabled={true} />
+              <Form.Control type="text" defaultValue={props.details.signature} disabled={true} />
               <Form.Text className="text-muted">
                 Receiver uses this along with your public key to verify transaction.
               </Form.Text>

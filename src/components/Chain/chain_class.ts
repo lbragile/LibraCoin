@@ -69,7 +69,7 @@ export class Chain {
     setNonce: (arg: number) => void,
     setSolution: (arg: string) => void,
     speed = 0
-  ): Promise<void> {
+  ): Promise<string> {
     console.log("⚒ mining...");
 
     let candidateSolution = "";
@@ -86,6 +86,8 @@ export class Chain {
       setNonce(nonce++);
       setTimeout(() => undefined, speed); // add some delay
     }
+
+    return candidateSolution;
   }
 
   async verifyTransaction(transaction: Transaction, signature: ArrayBuffer): Promise<boolean> {

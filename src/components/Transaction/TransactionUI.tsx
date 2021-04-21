@@ -1,21 +1,31 @@
 import React, { useState, useRef } from "react";
+import { Chain } from "../Chain/chain_class";
 
 import SendUI from "./SendUI";
 import SignUI from "./SignUI";
+
+interface IFormTransaction {
+  to: string;
+  from: string;
+  amount: number;
+  message: string;
+  signature: string;
+}
 
 export default function TransactionUI(): JSX.Element {
   const [show, setShow] = useState<boolean>(false);
   const [validated, setValidated] = useState<boolean>(false);
   const [signed, setSigned] = useState<boolean>(false);
 
-  const formDetails = useRef<{ to: string; from: string; amount: number; message: string }>({
+  const formDetails = useRef<IFormTransaction>({
     to: "",
     from: JSON.parse(localStorage.getItem("user") as string)?.publicKey ?? "",
     amount: 0,
     message: "",
+    signature: "",
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     setValidated(true);
@@ -30,6 +40,7 @@ export default function TransactionUI(): JSX.Element {
       formDetails.current.to = formValues[0];
       formDetails.current.amount = +formValues[1];
       formDetails.current.message = formValues[2];
+      formDetails.current.signature = await Chain.instance.digestMessage(JSON.stringify(formDetails.current));
 
       setSigned(true);
     } else if (form.checkValidity()) {
@@ -37,6 +48,8 @@ export default function TransactionUI(): JSX.Element {
       const prevTrans = JSON.parse(localStorage.getItem("transactions") as string) || [];
       localStorage.setItem("transactions", JSON.stringify([...prevTrans, formDetails.current]));
       setShow(false);
+      setSigned(false);
+      setValidated(false);
     }
   };
 
