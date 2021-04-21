@@ -11,6 +11,7 @@ export default function MineUI(): JSX.Element {
   const [solution, setSolution] = useState<string>("");
   const [target, setTarget] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(false);
+  const [showBtn, setShowBtn] = useState<boolean>(true);
   const origNonce = useRef<number>();
 
   async function createTarget(numZeros: number): Promise<string> {
@@ -26,6 +27,7 @@ export default function MineUI(): JSX.Element {
   }
 
   async function handleMine() {
+    setShowBtn(true);
     setIsValid(false);
     origNonce.current = Math.round(Math.random() * 1e6);
     const numZeros = Math.round(Math.random()) + 2;
@@ -80,8 +82,15 @@ export default function MineUI(): JSX.Element {
         </div>
 
         <div id="mined-block" className={"col-6 " + (isValid ? "valid-block" : "invalid-block")}>
-          {isValid && (
-            <Button variant="success" id="mine-add-block" onClick={() => Chain.instance.addBlock(solution, [])}>
+          {isValid && showBtn && (
+            <Button
+              variant="success"
+              id="mine-add-block"
+              onClick={() => {
+                Chain.instance.addBlock(solution, []);
+                setShowBtn(false);
+              }}
+            >
               +
             </Button>
           )}
@@ -89,7 +98,7 @@ export default function MineUI(): JSX.Element {
             <Form.Label>
               <h5>Index:</h5>
             </Form.Label>{" "}
-            <Form.Control type="number" defaultValue={Chain.instance.lastBlock.index + 1} disabled={true} />
+            <Form.Control type="number" defaultValue={solution && Chain.instance.lastBlock.index + 1} disabled={true} />
           </Form.Group>
           <Form.Group>
             <Form.Label>
@@ -101,7 +110,7 @@ export default function MineUI(): JSX.Element {
             <Form.Label>
               <h5>Previous Hash:</h5>
             </Form.Label>
-            <Form.Control type="text" defaultValue={Chain.instance.lastBlock.currHash} disabled={true} />
+            <Form.Control type="text" defaultValue={solution && Chain.instance.lastBlock.currHash} disabled={true} />
           </Form.Group>
           <Form.Group>
             <Form.Label>

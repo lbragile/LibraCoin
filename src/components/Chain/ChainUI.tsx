@@ -1,19 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import BlockUI from "../Block/BlockUI";
 import { Block } from "../Block/block_class";
 import NavbarUI from "../Navbar/NavbarUI";
 import { Chain } from "./chain_class";
 
-export default function ChainUI(): JSX.Element {
-  useEffect(() => {
-    console.log(Chain.instance.blockChain);
-  }, []);
+import "./Chain.css";
 
+export default function ChainUI(): JSX.Element {
   return (
     <div>
       <NavbarUI />
 
-      <div className="container-fluid mx-3 row">
+      <div className="my-5" id="blockchain">
         {Chain.instance.blockChain.map((block: Block) => {
           return <BlockUI block={block} useChain={true} key={Math.random()} />;
         })}

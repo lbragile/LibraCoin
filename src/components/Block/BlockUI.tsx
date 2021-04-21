@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 import "./Block.css";
 import { Block } from "./block_class";
@@ -43,6 +43,12 @@ export default function BlockUI({ block, useChain }: { block: Block; useChain: b
           </Form.Label>
           <Form.Control type="text" defaultValue={JSON.stringify(block.transactions)} />
         </Form.Group>
+
+        {useChain && (
+          <Button variant="primary" block>
+            Mine
+          </Button>
+        )}
       </Form>
 
       {useChain && <div className="chain-link">🔗</div>}

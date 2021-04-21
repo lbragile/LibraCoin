@@ -1,0 +1,8 @@
+#blockchain {
+  overflow: auto;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  margin-left: 2rem;
+  width: 95%;
+}
