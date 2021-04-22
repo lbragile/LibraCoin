@@ -11,7 +11,7 @@ export default function ChainUI(): JSX.Element {
     <div>
       <NavbarUI />
 
-      <div className="my-5" id="blockchain">
+      <div id="blockchain">
         {Chain.instance.blockChain.map((block: Block) => {
           return <BlockUI block={block} useChain={true} key={Math.random()} />;
         })}

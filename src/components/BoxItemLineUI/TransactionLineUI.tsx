@@ -16,8 +16,10 @@ interface ITransactionLineProps {
   details: ITransaction[];
   title: string;
   show: boolean;
+  copied: boolean;
   setShow: (arg: boolean) => void;
   showUserDetails: (boxDetail: ITransaction, index: number, modalText: React.MutableRefObject<ITransaction>) => void;
+  copyPublicKey: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 export default function BoxItemLineUI({
@@ -26,6 +28,8 @@ export default function BoxItemLineUI({
   show,
   setShow,
   showUserDetails,
+  copied,
+  copyPublicKey,
 }: ITransactionLineProps): JSX.Element {
   const modalText = useRef<ITransaction>({ index: 0, to: "", from: "", amount: 0, message: "", signature: "" });
 
@@ -35,15 +39,15 @@ export default function BoxItemLineUI({
         <h3>
           <b>{title}:</b>
         </h3>
-        <div id="user-list-background">
+        <div id="list-background">
           {details?.map((boxDetail: ITransaction, i: number) => {
             return (
               <div
-                className="user-item ml-3 col-1"
+                className="item item-trans ml-3 col-1"
                 onClick={() => showUserDetails(boxDetail, i, modalText)}
                 key={Math.random()}
               >
-                <p className="user-item-index-text">
+                <p className="item-index-text">
                   <b>{i}</b>
                 </p>
               </div>
@@ -92,7 +96,14 @@ export default function BoxItemLineUI({
               <Form.Label>
                 <h5>Signature:</h5>
               </Form.Label>
-              <Form.Control type="text" className="text-truncate" defaultValue={modalText.current.signature} />
+              <Form.Control
+                type="text"
+                className="text-truncate"
+                defaultValue={modalText.current.signature}
+                onFocus={(e: React.FocusEvent<HTMLInputElement>) => copyPublicKey(e)}
+                isValid={copied}
+              />
+              <Form.Control.Feedback type="valid">Copied to clipboard</Form.Control.Feedback>
             </Form.Group>
           </div>
         </Modal.Body>

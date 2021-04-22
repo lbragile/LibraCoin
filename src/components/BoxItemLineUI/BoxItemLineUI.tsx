@@ -49,15 +49,7 @@ export default function BoxItemLineUI({
     <div>
       <div>
         {title.toLowerCase().includes("user") ? (
-          <UserLineUI
-            details={details as IUser[]}
-            title={title}
-            show={show}
-            setShow={setShow}
-            copied={copied}
-            showUserDetails={showUserDetails}
-            copyPublicKey={copyPublicKey}
-          />
+          <UserLineUI details={details as IUser[]} title={title} copied={copied} copyPublicKey={copyPublicKey} />
         ) : (
           <TransactionLineUI
             details={details as ITransaction[]}
@@ -65,6 +57,8 @@ export default function BoxItemLineUI({
             show={show}
             setShow={setShow}
             showUserDetails={showUserDetails}
+            copied={copied}
+            copyPublicKey={copyPublicKey}
           />
         )}
       </div>

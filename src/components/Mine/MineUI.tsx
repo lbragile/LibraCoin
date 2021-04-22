@@ -13,26 +13,26 @@ export default function MineUI(): JSX.Element {
   const [isValid, setIsValid] = useState<boolean>(false);
   const [showBtn, setShowBtn] = useState<boolean>(true);
   const origNonce = useRef<number>();
-
-  async function createTarget(numZeros: number): Promise<string> {
-    let targetHash = await Chain.instance.digestMessage(Chain.instance.randomHash(20));
-
-    // replace leading bits with zeros
-    const re = new RegExp(`^.{0,${numZeros}}`, "g");
-    const zerosStr = Array(numZeros).fill("0").join("");
-    targetHash = targetHash.replace(re, zerosStr);
-    setTarget(targetHash);
-
-    return targetHash;
-  }
+  const mineBtn = useRef<HTMLButtonElement>(null);
 
   async function handleMine() {
     setShowBtn(true);
     setIsValid(false);
+
+    let solutionHash = "";
+
+    // make target
     origNonce.current = Math.round(Math.random() * 1e6);
     const numZeros = Math.round(Math.random()) + 2;
-    const targetHash = await createTarget(numZeros);
-    const solutionHash = await Chain.instance.mine(origNonce.current, numZeros, setNonce, setSolution);
+    const targetHash = await Chain.instance.createTarget(numZeros);
+    setTarget(targetHash);
+
+    // mine
+    if (mineBtn.current) {
+      mineBtn.current.disabled = true;
+      solutionHash = await Chain.instance.mine(origNonce.current, numZeros, setNonce, setSolution);
+      mineBtn.current.disabled = false;
+    }
 
     if (solutionHash <= targetHash) {
       setIsValid(true);
@@ -76,8 +76,8 @@ export default function MineUI(): JSX.Element {
             </Form.Group>
           </div>
 
-          <Button variant="primary" className="btn-block d-block mt-3" onClick={() => handleMine()}>
-            <h4>Mine</h4>
+          <Button variant="primary" className="btn-block d-block mt-3" onClick={() => handleMine()} ref={mineBtn}>
+            <h4 className="m-0">Mine</h4>
           </Button>
         </div>
 

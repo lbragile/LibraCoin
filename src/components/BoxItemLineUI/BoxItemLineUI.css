@@ -1,4 +1,4 @@
-#user-list-background {
+#list-background {
   background: #c4c4c4;
   height: 12rem;
   border-radius: 10px;
@@ -7,20 +7,25 @@
   align-items: center;
 }
 
-.user-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10rem;
+.item {
+  height: 11rem;
   background-color: white;
   border-radius: 25px;
+  margin: 0 1em;
+  padding: 0.5em 1em;
 }
 
-.user-item:hover {
+.item-trans {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-trans:hover {
   border: 1px solid green;
   cursor: pointer;
 }
 
-.user-item-index-text {
+.item-index-text {
   font-size: 50px;
 }

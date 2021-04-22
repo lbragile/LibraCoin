@@ -62,14 +62,22 @@ export class Chain {
     return Chain.bufferToHex(hashBuffer);
   }
 
+  async createTarget(numZeros: number): Promise<string> {
+    const targetHash = await Chain.instance.digestMessage(Chain.instance.randomHash(20));
+
+    // replace leading bits with zeros
+    const re = new RegExp(`^.{0,${numZeros}}`, "g");
+    const zerosStr = Array(numZeros).fill("0").join("");
+
+    return targetHash.replace(re, zerosStr);
+  }
+
   async mine(
     nonce: number,
     leadingZeros: number,
     setNonce: (arg: number) => void,
     setSolution: (arg: string) => void
   ): Promise<string> {
-    console.log("⚒ mining...");
-
     let candidateSolution = "";
     while (nonce <= Number.MAX_SAFE_INTEGER) {
       candidateSolution = await this.digestMessage(nonce.toString());
@@ -77,7 +85,6 @@ export class Chain {
 
       const leadingBits = candidateSolution.substr(0, leadingZeros).split("");
       if (leadingBits.every((bit) => bit === "0")) {
-        console.log(`Solved: ${nonce}`);
         break;
       }
 
