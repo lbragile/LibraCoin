@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 import { Form, Modal } from "react-bootstrap";
 
-import "./BoxItemLineUI.css";
-
 interface ITransaction {
   to: string;
   from: string;

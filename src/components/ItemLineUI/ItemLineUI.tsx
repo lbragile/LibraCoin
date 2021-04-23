@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-import "./BoxItemLineUI.css";
 import TransactionLineUI from "./TransactionLineUI";
 import UserLineUI from "./UserLineUI";
+
+import "./ItemLineUI.css";
 
 interface IUser {
   publicKey: string;
@@ -19,7 +20,7 @@ interface ITransaction {
   index?: number;
 }
 
-export default function BoxItemLineUI({
+export default function ItemLineUI({
   details,
   title,
 }: {

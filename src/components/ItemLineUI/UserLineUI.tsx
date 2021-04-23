@@ -1,8 +1,6 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-import "./BoxItemLineUI.css";
-
 interface IUser {
   publicKey: string;
   balance: number;
