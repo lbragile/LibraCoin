@@ -1,28 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import BlockUI from "../Block/BlockUI";
-import StatisticsUI from "../Mine/StatisticsUI";
 import NavbarUI from "../Navbar/NavbarUI";
 
 import "./Chain.css";
+import { Chain } from "./chain_class";
 
 export default function ChainUI(): JSX.Element {
-  const [solution, setSolution] = useState<string>("");
-  const [isValid, setIsValid] = useState<boolean>(false);
-  const [showBtn, setShowBtn] = useState<boolean>(true);
-
   return (
     <div>
       <NavbarUI />
-      <BlockUI chain={true} isValid={isValid} showBtn={showBtn} solution={solution} setShowBtn={setShowBtn}>
-        <StatisticsUI
-          chain={true}
-          setShowBtn={setShowBtn}
-          solution={solution}
-          setSolution={setSolution}
-          isValid={isValid}
-          setIsValid={setIsValid}
-        />
-      </BlockUI>
+      <div id="blockchain">
+        {Chain.instance.blockChain.map((block) => {
+          return (
+            <div className="block-and-chain" key={Math.random()}>
+              <BlockUI details={block} />
+              <div className="chain">🔗</div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
