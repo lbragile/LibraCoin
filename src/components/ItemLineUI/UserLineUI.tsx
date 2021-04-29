@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
+import { AppContext } from "../../context/AppContext";
+import { IAction, IState } from "../../typings/AppTypes";
 
 interface IUser {
   publicKey: string;
@@ -8,13 +10,14 @@ interface IUser {
 }
 
 interface IUserLineProps {
-  details: IUser[];
   title: string;
   copied: boolean;
   copyPublicKey: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-export default function UserLineUI({ details, title, copied, copyPublicKey }: IUserLineProps): JSX.Element {
+export default function UserLineUI({ title, copied, copyPublicKey }: IUserLineProps): JSX.Element {
+  const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+
   return (
     <div>
       <div>
@@ -22,7 +25,7 @@ export default function UserLineUI({ details, title, copied, copyPublicKey }: IU
           <b>{title}:</b>
         </h3>
         <div id="list-background">
-          {details?.map((boxDetail: IUser) => {
+          {state.users?.map((boxDetail: IUser) => {
             return (
               <Form className="item" key={Math.random()}>
                 <Form.Group>

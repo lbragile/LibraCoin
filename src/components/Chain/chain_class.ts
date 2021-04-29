@@ -94,6 +94,34 @@ export class Chain {
     return candidateSolution;
   }
 
+  async updateBlocksInChain(blockchain: Block[]): Promise<{ validStates: boolean[]; blockchain: Block[] }> {
+    // find index where the chain breaks due to improper prev/curr hash combination
+    let failureIndex = 1;
+    for (let i = failureIndex; i < blockchain.length; i++) {
+      if (blockchain[i - 1].currHash.slice(0, 2) !== "00") {
+        failureIndex = i - 1;
+        break;
+      }
+    }
+
+    const validStates = [];
+    for (let i = 0; i < blockchain.length; i++) {
+      if (i > failureIndex) {
+        // update prev hash of next block
+        blockchain[i].prevHash = blockchain[i - 1].currHash;
+        blockchain[i].currHash = await Chain.instance.digestMessage(blockchain[i].prevHash);
+
+        // persist new blockchain
+        localStorage.setItem("chain", JSON.stringify(blockchain));
+      }
+
+      // block is valid if it is below the failure index
+      validStates.push(i < failureIndex);
+    }
+
+    return { validStates, blockchain };
+  }
+
   async verifyTransaction(transaction: Transaction, signature: ArrayBuffer): Promise<boolean> {
     const data = Chain.stringToArrayBuffer(JSON.stringify(transaction));
     const isValid = await crypto.subtle.verify({ name: "ECDSA", hash: "SHA-256" }, transaction.from, signature, data);

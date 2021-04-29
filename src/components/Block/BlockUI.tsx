@@ -2,14 +2,22 @@ import React, { useState, useEffect } from "react";
 
 import { Button, Form } from "react-bootstrap";
 import { Chain } from "../Chain/chain_class";
-import StatisticsUI from "../Mine/StatisticsUI";
+import StatisticsUI from "./StatisticsUI";
 
 import "./Block.css";
 import { Block } from "./block_class";
 
-export default function BlockUI({ details }: { details?: Block }): JSX.Element {
+export default function BlockUI({
+  details,
+  startValid,
+  setBlockchain,
+}: {
+  startValid: boolean;
+  details?: Block;
+  setBlockchain?: (arg: Block[]) => void;
+}): JSX.Element {
   const [solution, setSolution] = useState<string>("");
-  const [isValid, setIsValid] = useState<boolean>(!!details);
+  const [isValid, setIsValid] = useState<boolean>(startValid);
   const [showBtn, setShowBtn] = useState<boolean>(true);
   const [timestamp, setTimestamp] = useState<number>(details ? details.timestamp : Chain.instance.lastBlock.timestamp);
 
@@ -20,6 +28,28 @@ export default function BlockUI({ details }: { details?: Block }): JSX.Element {
   function handleAddBlock() {
     Chain.instance.addBlock(solution, []);
     setShowBtn(false);
+  }
+
+  async function handleTransactionInfoChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (details) {
+      const og_hash = Chain.instance.blockChain[details.index].currHash;
+
+      const hash = await Chain.instance.digestMessage(
+        Chain.instance.blockChain[details.index].prevHash + e.target.value
+      );
+      Chain.instance.blockChain[details.index].currHash = hash;
+
+      // !TODO will need to update the transactions field once it is complete (merkle root string)
+      // Chain.instance.blockChain[details.index].transactions = [e.target.value];
+
+      // persist new blockchain
+      localStorage.setItem("chain", JSON.stringify(Chain.instance.blockChain));
+
+      // re-render the new calculated hash
+      setSolution(hash);
+      setIsValid(hash === og_hash && hash.slice(0, 2) === "00");
+      setBlockchain && setBlockchain(Chain.instance.blockChain);
+    }
   }
 
   return (
@@ -72,7 +102,12 @@ export default function BlockUI({ details }: { details?: Block }): JSX.Element {
           <Form.Label>
             <h5>Merkle Root:</h5>
           </Form.Label>
-          <Form.Control type="text" defaultValue={"abc"} disabled={true} />
+          <Form.Control
+            type="text"
+            value={details?.index === 0 ? "" : "abc"}
+            disabled={details && details.index === 0}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleTransactionInfoChange(e)}
+          />
         </Form.Group>
 
         {!details && isValid && showBtn && (
@@ -84,6 +119,7 @@ export default function BlockUI({ details }: { details?: Block }): JSX.Element {
         {details && (
           <StatisticsUI
             chain={true}
+            index={details.index}
             setShowBtn={setShowBtn}
             solution={solution}
             setSolution={setSolution}

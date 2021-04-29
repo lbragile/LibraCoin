@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 
 import { Button, Form } from "react-bootstrap";
 
@@ -8,15 +8,17 @@ import ItemLineUI from "../ItemLineUI/ItemLineUI";
 import { Wallet } from "../Wallet/Wallet_class";
 
 import "./Wallet.css";
+import { AppContext } from "../../context/AppContext";
+import { IAction, IState } from "../../typings/AppTypes";
+import { ACTIONS } from "../../enums/AppDispatchActions";
 
 export default function WalletUI(): JSX.Element {
+  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+
   const publicKey = useRef<HTMLTextAreaElement>(null);
   const privateKey = useRef<HTMLTextAreaElement>(null);
 
   const [copied, setCopied] = useState<boolean[]>([false, false]);
-  const [users, setUsers] = useState<{ publicKey: string; balance: number }[]>(
-    localStorage.getItem("users") ? JSON.parse(localStorage.getItem("users") as string) : []
-  );
 
   const addUser = async () => {
     const user = new Wallet();
@@ -29,10 +31,10 @@ export default function WalletUI(): JSX.Element {
       privateKey.current.innerText = new Array(privateKeyStr.length).fill("◦").join("");
     }
 
-    const newUsers = [...users, { publicKey: publicKeyStr, balance: user.balance }];
+    const newUsers = [...state.users, { publicKey: publicKeyStr, balance: user.balance }];
     localStorage.setItem("user", JSON.stringify({ publicKey: publicKeyStr, privateKey: privateKeyStr, balance: user.balance })); // prettier-ignore
     localStorage.setItem("users", JSON.stringify(newUsers));
-    setUsers(newUsers);
+    dispatch({ type: ACTIONS.UPDATE_USERS, payload: { users: newUsers } });
   };
 
   function copyPublicKey(e: React.FocusEvent<HTMLTextAreaElement>, type: "public" | "private"): void {
@@ -114,7 +116,7 @@ export default function WalletUI(): JSX.Element {
       </div>
 
       <TransactionUI />
-      <ItemLineUI details={users} title="Users" />
+      <ItemLineUI title="Users" />
     </div>
   );
 }

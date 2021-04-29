@@ -1,5 +1,8 @@
-import React, { useRef } from "react";
-import { Form, Modal } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Form } from "react-bootstrap";
+import { AppContext } from "../../context/AppContext";
+import { ACTIONS } from "../../enums/AppDispatchActions";
+import { IAction, IState } from "../../typings/AppTypes";
 
 interface ITransaction {
   to: string;
@@ -11,101 +14,93 @@ interface ITransaction {
 }
 
 interface ITransactionLineProps {
-  details: ITransaction[];
   title: string;
-  show: boolean;
   copied: boolean;
-  setShow: (arg: boolean) => void;
-  showUserDetails: (boxDetail: ITransaction, index: number, modalText: React.MutableRefObject<ITransaction>) => void;
   copyPublicKey: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-export default function BoxItemLineUI({
-  details,
-  title,
-  show,
-  setShow,
-  showUserDetails,
-  copied,
-  copyPublicKey,
-}: ITransactionLineProps): JSX.Element {
-  const modalText = useRef<ITransaction>({ index: 0, to: "", from: "", amount: 0, message: "", signature: "" });
+export default function TransactionLineUI({ title, copied, copyPublicKey }: ITransactionLineProps): JSX.Element {
+  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+
+  function selectTransaction(e: React.MouseEvent<HTMLDivElement>, transaction: ITransaction): void {
+    let selectedTrans = (JSON.parse(localStorage.getItem("selectedTransactions") as string) as ITransaction[]) || [];
+    const signatures = selectedTrans.map((x) => x.signature);
+
+    // if just selected - push onto stack, else remove it
+    // adjust backgrounds according to selection/deselection
+    if (!signatures.includes(transaction.signature)) {
+      selectedTrans.push(transaction);
+    } else {
+      selectedTrans = selectedTrans.filter((x) => x.signature !== transaction.signature);
+    }
+
+    dispatch({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans } });
+    localStorage.setItem("selectedTransactions", JSON.stringify(selectedTrans));
+  }
 
   return (
     <div>
-      <div>
-        <h3>
-          <b>{title}:</b>
-        </h3>
-        <div id="list-background">
-          {details?.map((boxDetail: ITransaction, i: number) => {
-            return (
-              <div
-                className="item item-trans ml-3 col-1"
-                onClick={() => showUserDetails(boxDetail, i, modalText)}
-                key={Math.random()}
-              >
-                <p className="item-index-text">
-                  <b>{i}</b>
-                </p>
-              </div>
-            );
-          })}
-        </div>
+      <h3>
+        <b>{title}:</b>
+      </h3>
+      <div id="list-background">
+        {state.verifiedTrans.map((transaction: ITransaction) => {
+          return (
+            <div
+              className="item"
+              onClick={(e: React.MouseEvent<HTMLDivElement>) => selectTransaction(e, transaction)}
+              style={{
+                background: state.selectedTrans.map((x) => x.signature).includes(transaction.signature)
+                  ? "#DDFFDD"
+                  : "white",
+              }}
+              key={Math.random()}
+            >
+              <Form.Group className="mb-1">
+                <Form.Label>
+                  <h5 className="my-0">From:</h5>
+                </Form.Label>
+                <Form.Control type="text" className="text-truncate" defaultValue={transaction.from} />
+              </Form.Group>
+
+              <Form.Group className="mb-1">
+                <Form.Label>
+                  <h5 className="my-0">To:</h5>
+                </Form.Label>
+                <Form.Control type="text" className="text-truncate" defaultValue={transaction.to} />
+              </Form.Group>
+
+              <Form.Group className="mb-1">
+                <Form.Label>
+                  <h5 className="my-0">Message:</h5>
+                </Form.Label>
+                <Form.Control as="textarea" className="text-truncate" defaultValue={transaction.message} />
+              </Form.Group>
+
+              <Form.Group className="mb-1">
+                <Form.Label>
+                  <h5 className="my-0">Amount:</h5>
+                </Form.Label>
+                <Form.Control type="number" className="text-truncate" defaultValue={transaction.amount} />
+              </Form.Group>
+
+              <Form.Group className="mb-1">
+                <Form.Label>
+                  <h5 className="my-0">Signature:</h5>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  className="text-truncate"
+                  defaultValue={transaction.signature}
+                  onFocus={(e: React.FocusEvent<HTMLInputElement>) => copyPublicKey(e)}
+                  isValid={copied}
+                />
+                <Form.Control.Feedback type="valid">Copied to clipboard</Form.Control.Feedback>
+              </Form.Group>
+            </div>
+          );
+        })}
       </div>
-
-      <Modal show={show} centered onHide={() => setShow(false)} animation={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>
-            {title} #{modalText.current.index} Details
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div>
-            <Form.Group>
-              <Form.Label>
-                <h5>From:</h5>
-              </Form.Label>
-              <Form.Control type="text" className="text-truncate" defaultValue={modalText.current.from} />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>
-                <h5>To:</h5>
-              </Form.Label>
-              <Form.Control type="text" className="text-truncate" defaultValue={modalText.current.to} />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>
-                <h5>Message:</h5>
-              </Form.Label>
-              <Form.Control as="textarea" className="text-truncate" defaultValue={modalText.current.message} />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>
-                <h5>Amount:</h5>
-              </Form.Label>
-              <Form.Control type="number" className="text-truncate" defaultValue={modalText.current.amount} />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>
-                <h5>Signature:</h5>
-              </Form.Label>
-              <Form.Control
-                type="text"
-                className="text-truncate"
-                defaultValue={modalText.current.signature}
-                onFocus={(e: React.FocusEvent<HTMLInputElement>) => copyPublicKey(e)}
-                isValid={copied}
-              />
-              <Form.Control.Feedback type="valid">Copied to clipboard</Form.Control.Feedback>
-            </Form.Group>
-          </div>
-        </Modal.Body>
-      </Modal>
     </div>
   );
 }

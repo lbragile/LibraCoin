@@ -4,14 +4,7 @@ import TransactionLineUI from "./TransactionLineUI";
 import UserLineUI from "./UserLineUI";
 
 import "./ItemLineUI.css";
-
-interface IUser {
-  publicKey: string;
-  balance: number;
-  index?: number;
-}
-
-interface ITransaction {
+export interface ITransaction {
   to: string;
   from: string;
   amount: number;
@@ -20,24 +13,8 @@ interface ITransaction {
   index?: number;
 }
 
-export default function ItemLineUI({
-  details,
-  title,
-}: {
-  details: IUser[] | ITransaction[];
-  title: string;
-}): JSX.Element {
-  const [show, setShow] = useState(false);
+export default function ItemLineUI({ title }: { title: string }): JSX.Element {
   const [copied, setCopied] = useState(false);
-
-  function showUserDetails(
-    boxDetail: IUser | ITransaction,
-    index: number,
-    modalText: React.MutableRefObject<IUser | ITransaction>
-  ): void {
-    modalText.current = { ...boxDetail, index };
-    setShow(true);
-  }
 
   function copyPublicKey(e: React.FocusEvent<HTMLInputElement>): void {
     e.target.select();
@@ -50,17 +27,9 @@ export default function ItemLineUI({
     <div>
       <div>
         {title.toLowerCase().includes("user") ? (
-          <UserLineUI details={details as IUser[]} title={title} copied={copied} copyPublicKey={copyPublicKey} />
+          <UserLineUI title={title} copied={copied} copyPublicKey={copyPublicKey} />
         ) : (
-          <TransactionLineUI
-            details={details as ITransaction[]}
-            title={title}
-            show={show}
-            setShow={setShow}
-            showUserDetails={showUserDetails}
-            copied={copied}
-            copyPublicKey={copyPublicKey}
-          />
+          <TransactionLineUI title={title} copied={copied} copyPublicKey={copyPublicKey} />
         )}
       </div>
     </div>
