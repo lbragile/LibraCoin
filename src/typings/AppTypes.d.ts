@@ -1,4 +1,3 @@
-import { ITransaction } from "../components/ItemLineUI/ItemLineUI";
 import { ACTIONS } from "../enums/AppDispatchActions";
 
 export interface IUser {
@@ -6,6 +5,13 @@ export interface IUser {
   balance: number;
 }
 
+export interface ITransaction {
+  to: string;
+  from: string;
+  amount: number;
+  message: string;
+  signature: string;
+}
 export interface IState {
   verifiedTrans: ITransaction[];
   selectedTrans: ITransaction[];

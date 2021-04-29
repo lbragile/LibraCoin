@@ -1,10 +1,11 @@
 import React from "react";
 
 import { Modal, Form, Button, InputGroup } from "react-bootstrap";
+import { ITransaction } from "../../typings/AppTypes";
 import { ISign } from "./SignUI";
 
 interface ISend extends ISign {
-  details: { to: string; amount: number; message: string; signature: string };
+  details: ITransaction;
   setSigned: (arg: boolean) => void;
   setValidated: (arg: boolean) => void;
 }

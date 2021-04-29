@@ -1,0 +1,21 @@
+.trans-item {
+  background-color: white;
+  margin: 1em;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  border: transparent 1px solid;
+  z-index: 1;
+}
+
+.trans-item:hover {
+  cursor: pointer;
+  border: green 1px solid;
+}
+
+.selected {
+  background-color: #dfd;
+}
+
+.not-selected {
+  background-color: white;
+}

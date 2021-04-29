@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
 
-import WalletUI from "../Wallet/WalletUI";
+import Wallet from "../../pages/Wallet";
 import ChainUI from "../Chain/ChainUI";
 import Mine from "../../pages/Mine";
 
@@ -23,7 +23,7 @@ export default function App(): JSX.Element {
         <Route exact path="/">
           <Redirect to="/wallet" />
         </Route>
-        <Route path="/wallet" component={WalletUI} />
+        <Route path="/wallet" component={Wallet} />
         <Route path="/mine" component={Mine} />
         <Route path="/blockchain" component={ChainUI} />
       </AppContext.Provider>

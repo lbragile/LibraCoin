@@ -1,23 +1,16 @@
 import React, { useState, useRef } from "react";
+import { ITransaction } from "../../typings/AppTypes";
 import { Chain } from "../Chain/chain_class";
 
 import SendUI from "./SendUI";
 import SignUI from "./SignUI";
-
-interface IFormTransaction {
-  to: string;
-  from: string;
-  amount: number;
-  message: string;
-  signature: string;
-}
 
 export default function TransactionUI(): JSX.Element {
   const [show, setShow] = useState<boolean>(false);
   const [validated, setValidated] = useState<boolean>(false);
   const [signed, setSigned] = useState<boolean>(false);
 
-  const formDetails = useRef<IFormTransaction>({
+  const formDetails = useRef<ITransaction>({
     to: "",
     from: JSON.parse(localStorage.getItem("user") as string)?.publicKey ?? "",
     amount: 0,

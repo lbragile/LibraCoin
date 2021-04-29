@@ -1,6 +1,5 @@
-import { ITransaction } from "../components/ItemLineUI/ItemLineUI";
 import { ACTIONS } from "../enums/AppDispatchActions";
-import { IAction, IState, IUser } from "../typings/AppTypes";
+import { IAction, IState, IUser, ITransaction } from "../typings/AppTypes";
 
 export const AppReducer = (state: IState, action: IAction): IState => {
   switch (action.type) {

@@ -1,31 +1,23 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Form } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
-import { IAction, IState } from "../../typings/AppTypes";
+import { IAction, IState, IUser } from "../../typings/AppTypes";
+import { copyKey } from "../../utils/copyInput";
 
-interface IUser {
-  publicKey: string;
-  balance: number;
-  index?: number;
-}
+import "./User.css";
 
-interface IUserLineProps {
-  title: string;
-  copied: boolean;
-  copyPublicKey: (e: React.FocusEvent<HTMLInputElement>) => void;
-}
-
-export default function UserLineUI({ title, copied, copyPublicKey }: IUserLineProps): JSX.Element {
+export default function UserItems(): JSX.Element {
   const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const [copied, setCopied] = useState<boolean[]>([false]);
 
   return (
     <div>
       <div>
         <h3>
-          <b>{title}:</b>
+          <b>Users:</b>
         </h3>
         <div id="list-background">
-          {state.users?.map((boxDetail: IUser) => {
+          {state.users?.map((user: IUser) => {
             return (
               <Form className="item" key={Math.random()}>
                 <Form.Group>
@@ -35,9 +27,9 @@ export default function UserLineUI({ title, copied, copyPublicKey }: IUserLinePr
                   <Form.Control
                     type="text"
                     className="text-truncate"
-                    onFocus={(e: React.FocusEvent<HTMLInputElement>) => copyPublicKey(e)}
-                    defaultValue={boxDetail.publicKey}
-                    isValid={copied}
+                    onFocus={(e: React.FocusEvent<HTMLInputElement>) => copyKey(e, setCopied)}
+                    defaultValue={user.publicKey}
+                    isValid={copied[0]}
                   />
                   <Form.Control.Feedback type="valid">Copied to clipboard</Form.Control.Feedback>
                 </Form.Group>
@@ -46,7 +38,7 @@ export default function UserLineUI({ title, copied, copyPublicKey }: IUserLinePr
                   <Form.Label>
                     <h5 className="my-0">Balance:</h5>
                   </Form.Label>
-                  <p>{boxDetail.balance.toFixed(2)} LC</p>
+                  <p>{user.balance.toFixed(2)} LC</p>
                 </Form.Group>
               </Form>
             );

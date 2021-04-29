@@ -1,8 +1,8 @@
 import React from "react";
 
 import NavbarUI from "../components/Navbar/NavbarUI";
-import ItemLineUI from "../components/ItemLineUI/ItemLineUI";
 import BlockUI from "../components/Block/BlockUI";
+import TransactionItems from "../components/Transaction/TransactionItems";
 
 export default function Mine(): JSX.Element {
   return (
@@ -10,7 +10,7 @@ export default function Mine(): JSX.Element {
       <NavbarUI />
 
       <div id="verified-transaction">
-        <ItemLineUI title="Verified Transactions" />
+        <TransactionItems />
       </div>
 
       <div className="row d-flex justify-content-center align-items-center my-2 container-fluid">
