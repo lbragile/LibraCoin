@@ -1,9 +1,9 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 
-import "./Navbar.css";
+import "./NavMenu.css";
 
-export default function NavbarUI(): JSX.Element {
+export default function NavMenu(): JSX.Element {
   return (
     <Navbar bg="none" expand="lg" className="mb-3">
       <Navbar.Brand href="https://github.com/lbragile/LibraCoin">

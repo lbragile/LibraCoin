@@ -1,16 +1,16 @@
 import React from "react";
 
-import NavbarUI from "../components/Navbar/NavbarUI";
-import KeyGeneration from "../components/Wallet/KeyGeneration";
-import TransactionUI from "../components/Transaction/TransactionUI";
+import NavMenu from "../components/NavMenu/NavMenu";
+import KeyGeneration from "../components/User/KeyGeneration";
+import Transaction from "../components/Transaction/Transaction";
 import UserItems from "../components/User/UserItems";
 
-export default function WalletUI(): JSX.Element {
+export default function Wallet(): JSX.Element {
   return (
     <div className="container-fluid my-3">
-      <NavbarUI />
+      <NavMenu />
       <KeyGeneration />
-      <TransactionUI />
+      <Transaction />
       <UserItems />
     </div>
   );

@@ -4,3 +4,16 @@
   padding: 0.5em 1em;
   border-radius: 5px;
 }
+
+.item .form-group {
+  margin-top: 1em;
+}
+
+.user-key {
+  margin: 0.25em 0.5em;
+  word-wrap: break-word;
+}
+
+#private-reveal-eyes:hover {
+  cursor: pointer;
+}

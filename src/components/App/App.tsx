@@ -1,8 +1,8 @@
-import React, { useReducer } from "react";
+import React, { useMemo, useReducer } from "react";
 import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
 
 import Wallet from "../../pages/Wallet";
-import ChainUI from "../Chain/ChainUI";
+import Chain from "../Chain/Chain";
 import Mine from "../../pages/Mine";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,15 +17,18 @@ export default function App(): JSX.Element {
     users: JSON.parse(localStorage.getItem("users") as string) ?? [],
   });
 
+  // prevent re-rendering children when App re-renders
+  const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
+
   return (
     <Router basename={"/LibraCoin"}>
-      <AppContext.Provider value={{ state, dispatch }}>
+      <AppContext.Provider value={value}>
         <Route exact path="/">
           <Redirect to="/wallet" />
         </Route>
         <Route path="/wallet" component={Wallet} />
         <Route path="/mine" component={Mine} />
-        <Route path="/blockchain" component={ChainUI} />
+        <Route path="/blockchain" component={Chain} />
       </AppContext.Provider>
     </Router>
   );
