@@ -25,3 +25,23 @@
 .block .form-group {
   margin-bottom: 0.5em;
 }
+
+#blockchain {
+  margin-left: 2rem;
+  width: 95%;
+  overflow: auto;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+}
+
+.block-and-chain {
+  display: flex;
+  align-items: center;
+  min-width: 20rem;
+  margin: 0.5rem 2.75rem;
+}
+
+.chain {
+  font-size: 4rem;
+}

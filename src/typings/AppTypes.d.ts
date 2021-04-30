@@ -1,10 +1,5 @@
 import { ACTIONS } from "../enums/AppDispatchActions";
 
-export interface IUser {
-  publicKey: string;
-  balance: number;
-}
-
 export interface ITransaction {
   to: string;
   from: string;
@@ -12,15 +7,10 @@ export interface ITransaction {
   message: string;
   signature: string;
 }
-export interface IState {
-  verifiedTrans: ITransaction[];
-  selectedTrans: ITransaction[];
-  users: IUser[];
-}
 
-export interface IAction {
-  type: ACTIONS;
-  payload?: unknown;
+export interface IUser {
+  publicKey: string;
+  balance: number;
 }
 
 export interface IBlock {
@@ -29,4 +19,15 @@ export interface IBlock {
   currHash: string;
   transactions: ITransaction[];
   timestamp: number;
+}
+export interface IState {
+  verifiedTrans: ITransaction[];
+  selectedTrans: ITransaction[];
+  users: IUser[];
+  chain: IBlock[];
+}
+
+export interface IAction {
+  type: ACTIONS;
+  payload?: unknown;
 }

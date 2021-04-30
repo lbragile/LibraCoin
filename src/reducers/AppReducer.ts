@@ -1,5 +1,5 @@
 import { ACTIONS } from "../enums/AppDispatchActions";
-import { IAction, IState, IUser, ITransaction } from "../typings/AppTypes";
+import { IAction, IState, IUser, ITransaction, IBlock } from "../typings/AppTypes";
 
 export const AppReducer = (state: IState, action: IAction): IState => {
   switch (action.type) {
@@ -15,6 +15,10 @@ export const AppReducer = (state: IState, action: IAction): IState => {
 
     case ACTIONS.UPDATE_USERS: {
       return { ...state, users: (action.payload as { users: IUser[] }).users };
+    }
+
+    case ACTIONS.ADD_BLOCK: {
+      return { ...state, chain: [...state.chain, (action.payload as { block: IBlock }).block] };
     }
 
     default:

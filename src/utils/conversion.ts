@@ -9,3 +9,7 @@ export async function digestMessage(message: string): Promise<string> {
   const hashBuffer = await window.crypto.subtle.digest("SHA-256", msgUint8); // hash the message
   return bufferToHex(hashBuffer);
 }
+
+export function randomHash(len: number): string {
+  return bufferToHex(window.crypto.getRandomValues(new Uint32Array(len)));
+}

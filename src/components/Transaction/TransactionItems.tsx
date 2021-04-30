@@ -1,15 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { IAction, IState, ITransaction } from "../../typings/AppTypes";
-import { copyKey } from "../../utils/copyInput";
 
 import "./Transaction.css";
 
 export default function TransactionLineUI(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
-  const [copied, setCopied] = useState<boolean[]>([false]);
 
   function selectTransaction(transaction: ITransaction): void {
     let selectedTrans = (JSON.parse(localStorage.getItem("selectedTransactions") as string) as ITransaction[]) || [];
@@ -44,37 +42,30 @@ export default function TransactionLineUI(): JSX.Element {
               key={Math.random()}
             >
               <Form.Group className="mb-1 text-center">
-                <Form.Control type="text" className="text-truncate" defaultValue={transaction.from} />
+                <Form.Control type="text" defaultValue={transaction.from} disabled={true} />
                 <h3 className="my-0">↓</h3>
-                <Form.Control type="text" className="text-truncate" defaultValue={transaction.to} />
+                <Form.Control type="text" defaultValue={transaction.to} disabled={true} />
               </Form.Group>
 
               <Form.Group className="mb-1">
                 <Form.Label>
                   <h5 className="my-0">Message:</h5>
                 </Form.Label>
-                <Form.Control as="textarea" className="text-truncate" defaultValue={transaction.message} />
+                <Form.Control as="textarea" defaultValue={transaction.message} disabled={true} />
               </Form.Group>
 
               <Form.Group className="mb-1">
                 <Form.Label>
                   <h5 className="my-0">Amount:</h5>
                 </Form.Label>
-                <Form.Control type="number" className="text-truncate" defaultValue={transaction.amount} />
+                <Form.Control type="number" defaultValue={transaction.amount} disabled={true} />
               </Form.Group>
 
               <Form.Group className="mb-1">
                 <Form.Label>
                   <h5 className="my-0">Signature:</h5>
                 </Form.Label>
-                <Form.Control
-                  type="text"
-                  className="text-truncate"
-                  defaultValue={transaction.signature}
-                  onFocus={(e: React.FocusEvent<HTMLInputElement>) => copyKey(e, setCopied)}
-                  isValid={copied[0]}
-                />
-                <Form.Control.Feedback type="valid">Copied to clipboard</Form.Control.Feedback>
+                <Form.Control type="text" defaultValue={transaction.signature} disabled={true} />
               </Form.Group>
             </div>
           );

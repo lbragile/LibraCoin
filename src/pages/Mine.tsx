@@ -1,7 +1,7 @@
 import React from "react";
 
 import NavMenu from "../components/NavMenu/NavMenu";
-import Block from "../components/Block/Block";
+import PreviewBlock from "../components/Block/PreviewBlock";
 import TransactionItems from "../components/Transaction/TransactionItems";
 
 export default function Mine(): JSX.Element {
@@ -9,10 +9,7 @@ export default function Mine(): JSX.Element {
     <div className="container-fluid">
       <NavMenu />
       <TransactionItems />
-
-      <div className="row d-flex justify-content-center align-items-center my-2 container-fluid">
-        <Block startValid={false} />
-      </div>
+      <PreviewBlock />
     </div>
   );
 }
