@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/LibraCoin/static/css/main.93c814f1.chunk.css",
-    "main.js": "/LibraCoin/static/js/main.7198b541.chunk.js",
-    "main.js.map": "/LibraCoin/static/js/main.7198b541.chunk.js.map",
+    "main.css": "/LibraCoin/static/css/main.65822d1a.chunk.css",
+    "main.js": "/LibraCoin/static/js/main.e75d3a8d.chunk.js",
+    "main.js.map": "/LibraCoin/static/js/main.e75d3a8d.chunk.js.map",
     "runtime-main.js": "/LibraCoin/static/js/runtime-main.caf26be7.js",
     "runtime-main.js.map": "/LibraCoin/static/js/runtime-main.caf26be7.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/LibraCoin/static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.29790e01.chunk.js": "/LibraCoin/static/js/2.29790e01.chunk.js",
-    "static/js/2.29790e01.chunk.js.map": "/LibraCoin/static/js/2.29790e01.chunk.js.map",
+    "static/js/2.3505c689.chunk.js": "/LibraCoin/static/js/2.3505c689.chunk.js",
+    "static/js/2.3505c689.chunk.js.map": "/LibraCoin/static/js/2.3505c689.chunk.js.map",
     "index.html": "/LibraCoin/index.html",
     "static/css/2.4c97ca4f.chunk.css.map": "/LibraCoin/static/css/2.4c97ca4f.chunk.css.map",
-    "static/css/main.93c814f1.chunk.css.map": "/LibraCoin/static/css/main.93c814f1.chunk.css.map",
-    "static/js/2.29790e01.chunk.js.LICENSE.txt": "/LibraCoin/static/js/2.29790e01.chunk.js.LICENSE.txt"
+    "static/css/main.65822d1a.chunk.css.map": "/LibraCoin/static/css/main.65822d1a.chunk.css.map",
+    "static/js/2.3505c689.chunk.js.LICENSE.txt": "/LibraCoin/static/js/2.3505c689.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.caf26be7.js",
     "static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.29790e01.chunk.js",
-    "static/css/main.93c814f1.chunk.css",
-    "static/js/main.7198b541.chunk.js"
+    "static/js/2.3505c689.chunk.js",
+    "static/css/main.65822d1a.chunk.css",
+    "static/js/main.e75d3a8d.chunk.js"
   ]
 }
