@@ -12,9 +12,7 @@ export default function UserItems(): JSX.Element {
 
   return (
     <div className="container-fluid mb-2">
-      <h3>
-        <b>Users:</b>
-      </h3>
+      <h3 className="font-weight-bold"> Users</h3>
       <div id="list-background">
         {state.users?.map((user: IUser) => {
           return (

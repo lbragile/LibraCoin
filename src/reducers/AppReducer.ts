@@ -4,8 +4,7 @@ import { IAction, IState, IUser, ITransaction, IBlock } from "../typings/AppType
 export const AppReducer = (state: IState, action: IAction): IState => {
   switch (action.type) {
     case ACTIONS.UPDATE_VERIFIED_TRANS: {
-      const selectedTransSignatures = state.selectedTrans.map((x) => x.signature);
-      const verifiedTrans = state.verifiedTrans.filter((x) => !selectedTransSignatures.includes(x.signature));
+      const verifiedTrans = filterVerifiedTrans(state.selectedTrans, state.verifiedTrans);
       return { ...state, verifiedTrans };
     }
 
@@ -25,3 +24,8 @@ export const AppReducer = (state: IState, action: IAction): IState => {
       return state;
   }
 };
+
+export function filterVerifiedTrans(selectedTrans: ITransaction[], verifiedTrans: ITransaction[]): ITransaction[] {
+  const selectedTransSignatures = selectedTrans.map((x) => x.signature);
+  return verifiedTrans.filter((x) => !selectedTransSignatures.includes(x.signature));
+}

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
-// import { ACTIONS } from "../../enums/AppDispatchActions";
 import { IAction, IState } from "../../typings/AppTypes";
 import { mine } from "../../utils/mine";
 

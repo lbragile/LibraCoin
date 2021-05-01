@@ -8,6 +8,7 @@ import { ACTIONS } from "../../enums/AppDispatchActions";
 import { calculateMerkleTreeFormation, drawTreeDiagramOnCanvas, getMerkleRoot } from "../../utils/merkleTree";
 
 import "./Block.css";
+import { filterVerifiedTrans } from "../../reducers/AppReducer";
 
 export default function PreviewBlock(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
@@ -24,6 +25,7 @@ export default function PreviewBlock(): JSX.Element {
 
   useEffect(() => {
     calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans, setMerkleTree);
+    setIsValid(false);
   }, [state.selectedTrans]);
 
   // draw tree in canvas
@@ -39,21 +41,34 @@ export default function PreviewBlock(): JSX.Element {
       index: nextIndex.current,
       prevHash: prevBlockHash.current,
       currHash: solution,
-      transactions: [],
+      transactions: state.selectedTrans,
       timestamp,
     };
 
+    // add the block, update verified transactions, clear selected transactions, persist in LS
     dispatch({ type: ACTIONS.ADD_BLOCK, payload: { block } });
     localStorage.setItem("chain", JSON.stringify([...state.chain, block]));
+
+    dispatch({ type: ACTIONS.UPDATE_VERIFIED_TRANS });
+    localStorage.setItem("transactions", JSON.stringify(filterVerifiedTrans(state.selectedTrans, state.verifiedTrans)));
+
+    dispatch({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans: [] } });
+    localStorage.setItem("selectedTransactions", "[]");
+
+    // update preview details
+    nextIndex.current += 1;
+    prevBlockHash.current = solution;
     setShowBtn(false);
     setIsValid(false);
+    setSolution("");
+    setTimestamp(Date.now());
   }
 
   return (
     <div className="container-fluid row d-flex justify-content-center mx-auto my-3">
-      <div className="text-center overflow-auto w-90 h-20 mb-2">
+      <div className="text-center overflow-auto mb-2">
         <h4 className="font-weight-bold">Merkle Tree Visualization</h4>
-        <canvas ref={treeCanvas} className="border border-dark" width={1650} />
+        <canvas ref={treeCanvas} className="border border-dark" width={1500} />
       </div>
 
       <Statistics

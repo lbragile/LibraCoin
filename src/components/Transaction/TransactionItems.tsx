@@ -32,9 +32,7 @@ export default function TransactionLineUI(): JSX.Element {
 
   return (
     <div className="container-fluid">
-      <h3>
-        <b>Verified Transactions:</b>
-      </h3>
+      <h3 className="font-weight-bold">Verified Transactions</h3>
       <div id="list-background">
         {state.verifiedTrans.map((transaction: ITransaction) => {
           return (
