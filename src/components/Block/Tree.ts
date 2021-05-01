@@ -48,12 +48,12 @@ export class Tree {
   #root: Node | null;
   #startPosition: ICoordinate;
   #dim: { width: number; height: number };
-  #canvas: CanvasRenderingContext2D | null;
+  #ctx: CanvasRenderingContext2D | null;
 
   constructor(canvas: HTMLCanvasElement) {
     this.#root = null;
-    this.#startPosition = { x: window.innerWidth / 2 - 150, y: 0 };
-    this.#canvas = canvas.getContext("2d");
+    this.#startPosition = { x: window.innerWidth / 2 - 150, y: 5 };
+    this.#ctx = canvas.getContext("2d");
     this.#dim = { width: canvas.width, height: canvas.height };
   }
 
@@ -63,8 +63,8 @@ export class Tree {
   }
 
   clear(): void {
-    if (this.#canvas) {
-      this.#canvas.clearRect(0, 0, this.#dim.width, this.#dim.height);
+    if (this.#ctx) {
+      this.#ctx.clearRect(0, 0, this.#dim.width, this.#dim.height);
     }
   }
 
@@ -74,6 +74,8 @@ export class Tree {
       newNode.position = this.#startPosition;
       this.#root = newNode;
     } else {
+      // start at root, if no node on left add and break, likewise for right
+      // only move in direction that does not have both children
       let node = this.#root;
       while (node) {
         if (!node.left) {
@@ -97,29 +99,33 @@ export class Tree {
     const queue = [] as Node[];
     queue.push(this.#root as Node);
 
+    // level order traversal
     while (queue.length !== 0) {
       const node = queue.shift();
       const rectWidth = node && node.value.length * 9;
 
-      if (this.#canvas && rectWidth && node) {
+      if (this.#ctx && rectWidth && node) {
+        // draw the root node
         const { x, y } = node.position;
-        this.#canvas.beginPath();
-        this.#canvas.rect(x - rectWidth / 2, y + 5, rectWidth, 30);
-        this.#canvas.strokeStyle = "#000";
-        this.#canvas.fillStyle = node.value === this.#root?.value ? "#dfd" : "#ddf";
-        this.#canvas.font = "1rem Arial";
-        this.#canvas.fill();
-        this.#canvas.stroke();
-        this.#canvas.strokeStyle = "#000";
-        this.#canvas.strokeText(node.value, x + 10 - rectWidth / 2, y + 25);
+        this.#ctx.beginPath();
 
-        node.children.forEach((child) => {
-          if (this.#canvas) {
-            this.#canvas.beginPath();
-            this.#canvas.moveTo(x, y + 35);
-            this.#canvas.lineTo(child.position.x, child.position.y + 35);
-            this.#canvas.stroke();
-            queue.push(child);
+        this.#ctx.font = "1rem Arial";
+        this.#ctx.strokeStyle = "#000";
+        this.#ctx.fillStyle = node.value === this.#root?.value ? "#dfd" : "#ddf";
+
+        this.#ctx.fillRect(x - rectWidth / 2, y + 5, rectWidth, 30);
+        this.#ctx.fillStyle = "#000";
+        this.#ctx.fillText(node.value, x + 10 - rectWidth / 2, y + 25);
+
+        // draw it's children
+        node.children.forEach((child, i) => {
+          child.position.x = i === 1 ? child.position.x - 150 : child.position.x + 150; // avoid overlap
+          queue.push(child);
+          if (this.#ctx) {
+            this.#ctx.beginPath();
+            this.#ctx.moveTo(x, y + 35);
+            this.#ctx.lineTo(child.position.x, child.position.y + 5);
+            this.#ctx.stroke();
           }
         });
       }

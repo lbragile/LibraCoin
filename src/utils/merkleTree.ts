@@ -1,13 +1,17 @@
-import { Tree } from "../components/Block/tree";
+import { Tree } from "../components/Block/Tree";
 import { ITransaction } from "../typings/AppTypes";
 import { digestMessage } from "./conversion";
 
 export async function calculateMerkleTreeFormation(
+  verifiedTrans: ITransaction[],
   selectedTrans: ITransaction[],
   setMerkleTree: (arg: string[][]) => void
 ): Promise<void> {
   if (selectedTrans.length > 0) {
-    let signatures = selectedTrans.map((trans) => trans.signature);
+    // need to make sure node's in tree appear in same order as in the verified transaction pane, regardless of selection order
+    const verifiedSignatures = verifiedTrans.map((trans) => trans.signature);
+    const selectedSignatures = selectedTrans.map((trans) => trans.signature);
+    let signatures = verifiedSignatures.filter((sig) => selectedSignatures.includes(sig));
     const tree = [signatures];
 
     while (signatures.length !== 1) {
@@ -17,8 +21,8 @@ export async function calculateMerkleTreeFormation(
         hashArr.push(hash);
       }
 
-      tree.push(hashArr);
       signatures = hashArr;
+      tree.push(hashArr);
     }
 
     setMerkleTree(tree);
@@ -33,11 +37,12 @@ export function getMerkleRoot(tree: string[][]): string {
 
 export function flattenTree(tree: string[][]): string[] {
   let flatTree = [] as string[];
+  // need to reverse each tree row so that printing produces the right order!
   for (let i = 0; i < tree.length; i++) {
-    flatTree = flatTree.concat(tree[i]);
+    flatTree = flatTree.concat(tree[i].reverse());
   }
 
-  return flatTree.reverse();
+  return flatTree;
 }
 
 export function drawTreeDiagramOnCanvas(merkleTree: string[][], canvas: HTMLCanvasElement | null): void {
@@ -45,7 +50,9 @@ export function drawTreeDiagramOnCanvas(merkleTree: string[][], canvas: HTMLCanv
     const canvasTree = new Tree(canvas);
     canvasTree.clear();
     const flatTree = flattenTree(merkleTree);
-    flatTree.forEach((merkleHash) => canvasTree.addNode(merkleHash));
+    for (let i = flatTree.length - 1; i >= 0; i--) {
+      canvasTree.addNode(flatTree[i]);
+    }
     canvasTree.drawTree();
   }
 }

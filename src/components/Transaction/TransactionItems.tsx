@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { IAction, IState, ITransaction } from "../../typings/AppTypes";
@@ -12,17 +12,22 @@ export default function TransactionLineUI(): JSX.Element {
   function selectTransaction(transaction: ITransaction): void {
     let selectedTrans = (JSON.parse(localStorage.getItem("selectedTransactions") as string) as ITransaction[]) || [];
     const signatures = selectedTrans.map((x) => x.signature);
+    const included = signatures.includes(transaction.signature);
 
-    // if just selected - push onto stack, else remove it
-    // adjust backgrounds according to selection/deselection
-    if (!signatures.includes(transaction.signature)) {
-      selectedTrans.push(transaction);
+    if (selectedTrans.length < 4 || included) {
+      // if just selected - push onto stack, else remove it
+      // adjust backgrounds according to selection/deselection
+      if (!included) {
+        selectedTrans.push(transaction);
+      } else {
+        selectedTrans = selectedTrans.filter((x) => x.signature !== transaction.signature);
+      }
+
+      dispatch({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans } });
+      localStorage.setItem("selectedTransactions", JSON.stringify(selectedTrans));
     } else {
-      selectedTrans = selectedTrans.filter((x) => x.signature !== transaction.signature);
+      alert("You can mine at most 4 transactions at a time!");
     }
-
-    dispatch({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans } });
-    localStorage.setItem("selectedTransactions", JSON.stringify(selectedTrans));
   }
 
   return (
@@ -41,32 +46,32 @@ export default function TransactionLineUI(): JSX.Element {
               onClick={() => selectTransaction(transaction)}
               key={Math.random()}
             >
-              <Form.Group className="mb-1 text-center">
+              <Form.Group className="mb-2 text-center">
                 <Form.Control type="text" defaultValue={transaction.from} disabled={true} />
                 <h3 className="my-0">↓</h3>
                 <Form.Control type="text" defaultValue={transaction.to} disabled={true} />
               </Form.Group>
 
-              <Form.Group className="mb-1">
-                <Form.Label>
-                  <h5 className="my-0">Message:</h5>
-                </Form.Label>
+              <InputGroup className="mb-2">
+                <InputGroup.Prepend>
+                  <InputGroup.Text>Msg</InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control as="textarea" defaultValue={transaction.message} disabled={true} />
-              </Form.Group>
+              </InputGroup>
 
-              <Form.Group className="mb-1">
-                <Form.Label>
-                  <h5 className="my-0">Amount:</h5>
-                </Form.Label>
+              <InputGroup className="mb-2">
                 <Form.Control type="number" defaultValue={transaction.amount} disabled={true} />
-              </Form.Group>
+                <InputGroup.Append>
+                  <InputGroup.Text>LC</InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
 
-              <Form.Group className="mb-1">
-                <Form.Label>
-                  <h5 className="my-0">Signature:</h5>
-                </Form.Label>
+              <InputGroup className="mb-2">
+                <InputGroup.Prepend>
+                  <InputGroup.Text>Sig</InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control type="text" defaultValue={transaction.signature} disabled={true} />
-              </Form.Group>
+              </InputGroup>
             </div>
           );
         })}

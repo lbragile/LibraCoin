@@ -23,7 +23,7 @@ export default function PreviewBlock(): JSX.Element {
   const [merkleTree, setMerkleTree] = useState<string[][]>([[""]]);
 
   useEffect(() => {
-    calculateMerkleTreeFormation(state.selectedTrans, setMerkleTree);
+    calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans, setMerkleTree);
   }, [state.selectedTrans]);
 
   // draw tree in canvas
@@ -50,8 +50,11 @@ export default function PreviewBlock(): JSX.Element {
   }
 
   return (
-    <div className="row d-flex justify-content-center my-3">
-      <canvas ref={treeCanvas} className="border border-dark mb-2" width="1600" height="140" />
+    <div className="container-fluid row d-flex justify-content-center mx-auto my-3">
+      <div className="text-center overflow-auto w-90 h-20 mb-2">
+        <h4 className="font-weight-bold">Merkle Tree Visualization</h4>
+        <canvas ref={treeCanvas} className="border border-dark" width={1650} />
+      </div>
 
       <Statistics
         chain={false}
