@@ -6,7 +6,7 @@ import TransactionItems from "../components/Transaction/TransactionItems";
 
 export default function Mine(): JSX.Element {
   return (
-    <div className="container-fluid">
+    <div>
       <NavMenu />
       <TransactionItems />
       <PreviewBlock />

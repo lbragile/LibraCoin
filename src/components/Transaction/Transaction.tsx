@@ -48,7 +48,7 @@ export default function Transaction(): JSX.Element {
   };
 
   return (
-    <div className="container-fluid d-flex justify-content-center row mb-2">
+    <div className="container-fluid d-flex justify-content-center mx-auto row mb-2">
       <SignUI validated={validated} handleSubmit={handleSubmit} />
       <SendUI
         validated={validated}

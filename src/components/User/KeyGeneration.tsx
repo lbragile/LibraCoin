@@ -55,7 +55,7 @@ export default function KeyGeneration(): JSX.Element {
   };
 
   return (
-    <div className="row d-flex align-items-center justify-content-center">
+    <div className="container-fluid row d-flex align-items-center justify-content-center mx-auto">
       {!JSON.parse(localStorage.getItem("user") as string)?.publicKey && (
         <Button variant="primary" className="p-3 mx-2 font-weight-bold" onClick={addUser}>
           Create Wallet
@@ -63,7 +63,7 @@ export default function KeyGeneration(): JSX.Element {
       )}
       <Form.Group className="user-key col-5 px-0">
         <Form.Label className="mb-3">
-          <h3 className="mb-0">Public Key:</h3>
+          <h4 className="mb-0">Public:</h4>
         </Form.Label>
         <Form.Control
           as="textarea"
@@ -76,16 +76,16 @@ export default function KeyGeneration(): JSX.Element {
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group className="user-key col-5 px-0">
+      <Form.Group className="user-key col-5 px-0 ml-4">
         <Form.Label className="mb-3">
-          <h3 className="mb-0">
-            Private Key:{" "}
+          <h4 className="mb-0">
+            Private:{" "}
             {JSON.parse(localStorage.getItem("user") as string)?.publicKey && (
               <span id="private-reveal-eyes" onClick={togglePrivateKey}>
                 👀
               </span>
             )}
-          </h3>
+          </h4>
         </Form.Label>
         <Form.Control
           as="textarea"

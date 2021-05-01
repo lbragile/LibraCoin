@@ -16,7 +16,7 @@ export default function SignUI({ validated, handleSubmit }: ISign): JSX.Element 
   }
 
   return (
-    <Form noValidate validated={validated} className="col-5 trans-form" onSubmit={handleSubmit}>
+    <Form noValidate validated={validated} className="col-12 col-lg-5 trans-form" onSubmit={handleSubmit}>
       <Form.Group>
         <Form.Control
           type="text"

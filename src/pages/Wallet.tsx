@@ -7,7 +7,7 @@ import UserItems from "../components/User/UserItems";
 
 export default function Wallet(): JSX.Element {
   return (
-    <div className="container-fluid my-3">
+    <div>
       <NavMenu />
       <KeyGeneration />
       <Transaction />

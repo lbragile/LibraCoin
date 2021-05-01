@@ -22,7 +22,7 @@ export default function Statistics(props: IStats): JSX.Element {
   const [target, setTarget] = useState<string>();
 
   return (
-    <div className={props.chain ? "bordered-background" : "col-6 mx-3"}>
+    <div className={props.chain ? "bordered-background" : "col-11 col-lg-5 mx-3"}>
       <InputGroup className="my-2">
         <InputGroup.Prepend>
           <InputGroup.Text>Nonce</InputGroup.Text>

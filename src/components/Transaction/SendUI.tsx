@@ -12,7 +12,7 @@ interface ISend extends ISign {
 
 export default function SendUI(props: ISend): JSX.Element {
   return (
-    <Form noValidate className="col-5 trans-form" onSubmit={(e) => props.handleSubmit(e)}>
+    <Form noValidate className="col-12 col-lg-5 my-2 my-lg-0 trans-form" onSubmit={(e) => props.handleSubmit(e)}>
       <Form.Group>
         <Form.Control type="text" defaultValue={props.details.to} disabled={true} />
         <Form.Text className="text-muted">The receiver&apos;s public key</Form.Text>

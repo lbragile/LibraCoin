@@ -1,5 +1,12 @@
+nav {
+  background-color: #eee;
+}
+
 .nav-link {
   font-size: larger;
+  text-align: right;
+  color: black;
+  font-weight: bolder;
 }
 
 .nav-link:hover,
@@ -9,4 +16,10 @@
 
 .nav-link:hover {
   border-bottom: #8ac0ff 1px solid;
+}
+
+@media only screen and (max-width: 1200px) {
+  .nav-link:hover {
+    border-bottom: none;
+  }
 }

@@ -26,7 +26,7 @@ export default function TransactionLineUI(): JSX.Element {
   }
 
   return (
-    <div>
+    <div className="container-fluid">
       <h3>
         <b>Verified Transactions:</b>
       </h3>

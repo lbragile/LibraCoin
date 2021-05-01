@@ -8,12 +8,14 @@ import { IAction, IState } from "../../typings/AppTypes";
 import "./Block.css";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { digestMessage } from "../../utils/conversion";
+import { Tree } from "./tree";
 
 export default function PreviewBlock(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-  const nextIndex = useRef(state.chain[state.chain.length - 1].index + 1);
-  const prevBlockHash = useRef(state.chain[state.chain.length - 1].currHash);
+  const nextIndex = useRef<number>(state.chain[state.chain.length - 1].index + 1);
+  const prevBlockHash = useRef<string>(state.chain[state.chain.length - 1].currHash);
+  const treeCanvas = useRef<HTMLCanvasElement | null>(null);
 
   const [solution, setSolution] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(false);
@@ -27,6 +29,17 @@ export default function PreviewBlock(): JSX.Element {
 
   // update timestamp & currentHash when solution is mined
   useEffect(() => setTimestamp(Date.now()), [solution]);
+
+  // draw tree in canvas
+  useEffect(() => {
+    if (treeCanvas.current) {
+      const canvasTree = new Tree(treeCanvas.current);
+      canvasTree.clear();
+      const flatTree = flattenTree(merkleTree);
+      flatTree.forEach((merkleHash) => canvasTree.addNode(merkleHash));
+      canvasTree.drawTree();
+    }
+  }, [merkleTree]);
 
   async function calculateMerkleRoot(): Promise<void> {
     if (state.selectedTrans.length > 0) {
@@ -45,7 +58,7 @@ export default function PreviewBlock(): JSX.Element {
       }
 
       // reverse array so that it resembles a tree with a root at the top
-      tree.reverse();
+      console.log(tree);
       setMerkleTree(tree);
     } else {
       setMerkleTree([[""]]);
@@ -53,7 +66,16 @@ export default function PreviewBlock(): JSX.Element {
   }
 
   function getMerkleRoot(tree: string[][]): string {
-    return tree[0][0];
+    return tree[tree.length - 1][0];
+  }
+
+  function flattenTree(tree: string[][]): string[] {
+    let flatTree = [] as string[];
+    for (let i = 0; i < tree.length; i++) {
+      flatTree = flatTree.concat(tree[i]);
+    }
+
+    return flatTree.reverse();
   }
 
   function handleAddBlock() {
@@ -73,6 +95,8 @@ export default function PreviewBlock(): JSX.Element {
 
   return (
     <div className="row d-flex justify-content-center my-3">
+      <canvas ref={treeCanvas} className="border border-dark my-2" width="1800" height="140" />
+
       <Statistics
         chain={false}
         solution={solution}
@@ -81,7 +105,7 @@ export default function PreviewBlock(): JSX.Element {
         setIsValid={setIsValid}
       />
 
-      <Form className={"block col-xl-5 " + (isValid ? "valid-block" : "invalid-block")}>
+      <Form className={"block col-10 col-lg-5 my-4 my-lg-0 pb-2 " + (isValid ? "valid-block" : "invalid-block")}>
         <InputGroup className="my-2">
           <InputGroup.Prepend>
             <InputGroup.Text>Index</InputGroup.Text>

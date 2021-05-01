@@ -5,13 +5,13 @@ import "./NavMenu.css";
 
 export default function NavMenu(): JSX.Element {
   return (
-    <Navbar bg="none" expand="lg" className="mb-3">
+    <Navbar expand="lg" className="mb-3">
       <Navbar.Brand href="https://github.com/lbragile/LibraCoin">
         <img src="./assets/libracoin-logo-256.png" alt="LibraCoin Logo" width="64" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav className="ml-auto">
           <Nav.Link href="/LibraCoin/wallet" active={location.href.includes("/wallet")}>
             Wallet
           </Nav.Link>
