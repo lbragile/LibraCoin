@@ -4,16 +4,15 @@
 }
 
 .bordered-background {
-  filter: brightness(90%);
   border: 1px dashed black;
   border-radius: 10px;
   padding: 0.5em;
-  margin-top: 1em;
+  margin-top: 0.25em;
 }
 
 .block {
   width: 25%;
-  padding: 10px;
+  padding: 0 1em;
   border-radius: 10px;
   position: relative;
 }
@@ -39,7 +38,6 @@
   display: flex;
   align-items: center;
   min-width: 20rem;
-  margin: 0.5rem 2.75rem;
 }
 
 .chain {

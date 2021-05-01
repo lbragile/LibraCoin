@@ -7,7 +7,7 @@ import { IAction, IState } from "../../typings/AppTypes";
 import "./Block.css";
 
 export default function BlockChain(): JSX.Element {
-  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   return (
     <div id="blockchain">

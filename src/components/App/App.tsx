@@ -21,7 +21,7 @@ export default function App(): JSX.Element {
         prevHash: "",
         currHash: new Array(256).fill("0").join(""),
         transactions: [],
-        timestamp: new Date("04/30/2021"),
+        timestamp: Date.parse("04/31/2021"),
       },
     ],
   });

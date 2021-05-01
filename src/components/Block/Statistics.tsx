@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
 // import { ACTIONS } from "../../enums/AppDispatchActions";
 import { IAction, IState } from "../../typings/AppTypes";
@@ -23,38 +23,38 @@ export default function Statistics(props: IStats): JSX.Element {
 
   return (
     <div className={props.chain ? "bordered-background" : "col-6 mx-3"}>
-      <Form.Group>
-        <Form.Label>
-          <h5 className="my-0">Nonce:</h5>
-        </Form.Label>
-        <Form.Control type="number" defaultValue={nonce.current} disabled={true} />
-      </Form.Group>
+      <InputGroup className="my-2">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Nonce</InputGroup.Text>
+        </InputGroup.Prepend>
+        <Form.Control type="number" defaultValue={props.solution ? nonce.current : ""} disabled={true} />
+      </InputGroup>
 
-      <Form.Group>
-        <Form.Label>
-          <h5 className="my-0">Block Header (Current):</h5>
-        </Form.Label>
+      <InputGroup className="my-2">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Header</InputGroup.Text>
+        </InputGroup.Prepend>
         <Form.Control type="number" defaultValue={header} disabled={true} />
-      </Form.Group>
+      </InputGroup>
 
-      <Form.Group>
-        <Form.Label>
-          <h5 className="my-0">Target:</h5>
-        </Form.Label>
+      <InputGroup className="my-2">
+        <InputGroup.Prepend>
+          <InputGroup.Text className="font-weight-bold">Target</InputGroup.Text>
+        </InputGroup.Prepend>
         <Form.Control type="text" defaultValue={target} disabled={true} />
-      </Form.Group>
+      </InputGroup>
 
-      <Form.Group>
-        <Form.Label>
-          <h5 className="my-0">Solution:</h5>
-        </Form.Label>
+      <InputGroup className="my-2">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Sol&apos;n</InputGroup.Text>
+        </InputGroup.Prepend>
         <Form.Control
           type="text"
           style={props.isValid ? { color: "green" } : { color: "red" }}
           defaultValue={props.solution}
           disabled={true}
         />
-      </Form.Group>
+      </InputGroup>
 
       <Button
         variant="primary"

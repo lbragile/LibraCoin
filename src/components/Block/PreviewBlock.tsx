@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 
 import Statistics from "./Statistics";
 
@@ -7,6 +7,7 @@ import { AppContext } from "../../context/AppContext";
 import { IAction, IState } from "../../typings/AppTypes";
 import "./Block.css";
 import { ACTIONS } from "../../enums/AppDispatchActions";
+import { digestMessage } from "../../utils/conversion";
 
 export default function PreviewBlock(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
@@ -18,9 +19,42 @@ export default function PreviewBlock(): JSX.Element {
   const [isValid, setIsValid] = useState<boolean>(false);
   const [showBtn, setShowBtn] = useState<boolean>(true);
   const [timestamp, setTimestamp] = useState<number>(Date.now());
+  const [merkleTree, setMerkleTree] = useState<string[][]>([[""]]);
+
+  useEffect(() => {
+    calculateMerkleRoot();
+  }, [state.selectedTrans]);
 
   // update timestamp & currentHash when solution is mined
   useEffect(() => setTimestamp(Date.now()), [solution]);
+
+  async function calculateMerkleRoot(): Promise<void> {
+    if (state.selectedTrans.length > 0) {
+      let signatures = state.selectedTrans.map((trans) => trans.signature);
+      const tree = [signatures];
+
+      while (signatures.length !== 1) {
+        const hashArr = [] as string[];
+        for (let i = 0; i < signatures.length; i += 2) {
+          const hash = signatures[i + 1] ? await digestMessage(signatures[i] + signatures[i + 1]) : signatures[i];
+          hashArr.push(hash);
+        }
+
+        tree.push(hashArr);
+        signatures = hashArr;
+      }
+
+      // reverse array so that it resembles a tree with a root at the top
+      tree.reverse();
+      setMerkleTree(tree);
+    } else {
+      setMerkleTree([[""]]);
+    }
+  }
+
+  function getMerkleRoot(tree: string[][]): string {
+    return tree[0][0];
+  }
 
   function handleAddBlock() {
     const block = {
@@ -32,7 +66,9 @@ export default function PreviewBlock(): JSX.Element {
     };
 
     dispatch({ type: ACTIONS.ADD_BLOCK, payload: { block } });
+    localStorage.setItem("chain", JSON.stringify([...state.chain, block]));
     setShowBtn(false);
+    setIsValid(false);
   }
 
   return (
@@ -46,36 +82,40 @@ export default function PreviewBlock(): JSX.Element {
       />
 
       <Form className={"block col-xl-5 " + (isValid ? "valid-block" : "invalid-block")}>
-        <Form.Group>
-          <Form.Label>
-            <h5>Index:</h5>
-          </Form.Label>
+        <InputGroup className="my-2">
+          <InputGroup.Prepend>
+            <InputGroup.Text>Index</InputGroup.Text>
+          </InputGroup.Prepend>
           <Form.Control type="number" defaultValue={nextIndex.current} disabled={true} />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>
-            <h5>Timestamp:</h5>
-          </Form.Label>
-          <Form.Control type="number" value={timestamp} disabled={true} />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>
-            <h5>Previous Hash:</h5>
-          </Form.Label>
+        </InputGroup>
+
+        <InputGroup className="my-2">
+          <InputGroup.Prepend>
+            <InputGroup.Text>Timestamp</InputGroup.Text>
+          </InputGroup.Prepend>
+          <Form.Control type="number" defaultValue={timestamp} disabled={true} />
+        </InputGroup>
+
+        <InputGroup className="my-2">
+          <InputGroup.Prepend>
+            <InputGroup.Text>Previous #</InputGroup.Text>
+          </InputGroup.Prepend>
           <Form.Control type="text" defaultValue={prevBlockHash.current} disabled={true} />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>
-            <h5>Current Hash:</h5>
-          </Form.Label>
-          <Form.Control type="text" value={solution} disabled={true} />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>
-            <h5>Merkle Root:</h5>
-          </Form.Label>
-          <Form.Control type="text" value={"abc"} disabled={true} />
-        </Form.Group>
+        </InputGroup>
+
+        <InputGroup className="my-2">
+          <InputGroup.Prepend>
+            <InputGroup.Text>Current #</InputGroup.Text>
+          </InputGroup.Prepend>
+          <Form.Control type="text" defaultValue={solution} disabled={true} />
+        </InputGroup>
+
+        <InputGroup className="my-2">
+          <InputGroup.Prepend>
+            <InputGroup.Text>Merkle #</InputGroup.Text>
+          </InputGroup.Prepend>
+          <Form.Control type="text" defaultValue={getMerkleRoot(merkleTree)} disabled={true} />
+        </InputGroup>
 
         {isValid && showBtn && (
           <Button variant="success" block onClick={() => handleAddBlock()}>

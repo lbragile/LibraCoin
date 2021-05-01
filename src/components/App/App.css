@@ -20,3 +20,7 @@
   align-items: center;
   min-height: 12rem;
 }
+
+.input-group-text {
+  font-weight: bold;
+}
