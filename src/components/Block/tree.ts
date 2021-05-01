@@ -52,7 +52,7 @@ export class Tree {
 
   constructor(canvas: HTMLCanvasElement) {
     this.#root = null;
-    this.#startPosition = { x: window.innerWidth / 2, y: 0 };
+    this.#startPosition = { x: window.innerWidth / 2 - 150, y: 0 };
     this.#canvas = canvas.getContext("2d");
     this.#dim = { width: canvas.width, height: canvas.height };
   }
