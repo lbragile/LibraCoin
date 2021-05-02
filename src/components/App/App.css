@@ -12,15 +12,6 @@
   background-color: #ff9a9a;
 }
 
-#list-background {
-  background: #c4c4c4;
-  border-radius: 10px;
-  overflow: auto;
-  display: flex;
-  align-items: center;
-  min-height: 8rem;
-}
-
 .input-group-text {
   font-weight: bold;
 }

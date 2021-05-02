@@ -33,7 +33,7 @@ export default function TransactionLineUI(): JSX.Element {
   return (
     <div className="container-fluid">
       <h3 className="font-weight-bold">Verified Transactions</h3>
-      <div id="list-background">
+      <div className="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
         {state.verifiedTrans.map((transaction: ITransaction) => {
           return (
             <div

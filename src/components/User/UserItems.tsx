@@ -13,14 +13,12 @@ export default function UserItems(): JSX.Element {
   return (
     <div className="container-fluid mb-2">
       <h3 className="font-weight-bold"> Users</h3>
-      <div id="list-background" className="px-2">
+      <div className="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
         {state.users?.map((user: IUser) => {
           return (
-            <Form className="user-item" key={Math.random()}>
-              <InputGroup>
-                <InputGroup.Prepend>
-                  <InputGroup.Text>Public Key</InputGroup.Text>
-                </InputGroup.Prepend>
+            <Form className="user-item rounded" key={Math.random()}>
+              <Form.Group>
+                <Form.Text className="font-weight-bold mb-1 my-0">Public Key</Form.Text>
                 <Form.Control
                   type="text"
                   className="text-truncate"
@@ -29,7 +27,7 @@ export default function UserItems(): JSX.Element {
                   isValid={copied[0]}
                 />
                 <Form.Control.Feedback type="valid">Copied to clipboard</Form.Control.Feedback>
-              </InputGroup>
+              </Form.Group>
 
               <InputGroup className="mt-2">
                 <Form.Control type="number" defaultValue={user.balance.toFixed(2)} disabled={true} />
