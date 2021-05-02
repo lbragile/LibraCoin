@@ -51,8 +51,9 @@ export class Tree {
   #ctx: CanvasRenderingContext2D | null;
 
   constructor(canvas: HTMLCanvasElement) {
+    const xStart = window.innerWidth < 1200 ? window.innerWidth * 1.8 : (window.innerWidth / 2) * 0.8;
     this.#root = null;
-    this.#startPosition = { x: window.innerWidth / 2 - 210, y: 5 };
+    this.#startPosition = { x: xStart, y: 5 };
     this.#ctx = canvas.getContext("2d");
     this.#dim = { width: canvas.width, height: canvas.height };
   }

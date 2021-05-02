@@ -1,5 +1,5 @@
-import React, { useRef, useState, useContext } from "react";
-import { Button, Form } from "react-bootstrap";
+import React, { useRef, useState, useContext, useEffect } from "react";
+import { Form } from "react-bootstrap";
 
 import { AppContext } from "../../context/AppContext";
 import { IAction, IState } from "../../typings/AppTypes";
@@ -18,6 +18,13 @@ export default function KeyGeneration(): JSX.Element {
   const numRows = useRef(3);
 
   const [copied, setCopied] = useState<boolean[]>([false, false]);
+
+  // add a user if it's the first time visiting
+  useEffect(() => {
+    if (!JSON.parse(localStorage.getItem("user") as string)?.publicKey) {
+      addUser();
+    }
+  }, []);
 
   async function CryptoKeyToHex(format: string, key: CryptoKey): Promise<string> {
     const buf = (await window.crypto.subtle.exportKey(format, key)) as ArrayBuffer;
@@ -56,11 +63,6 @@ export default function KeyGeneration(): JSX.Element {
 
   return (
     <div className="container-fluid row d-flex align-items-center justify-content-center mx-auto">
-      {!JSON.parse(localStorage.getItem("user") as string)?.publicKey && (
-        <Button variant="primary" className="p-3 mx-2 font-weight-bold" onClick={addUser}>
-          Create Wallet
-        </Button>
-      )}
       <Form.Group className="user-key col-5 px-0">
         <Form.Label className="mb-3">
           <h4 className="mb-0">Public:</h4>

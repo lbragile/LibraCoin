@@ -6,40 +6,9 @@
 .bordered-background {
   border: 1px dashed black;
   border-radius: 10px;
-  padding: 0.5em;
-  margin-top: 0.25em;
+  padding: 0 0.5em 0.5em 0.5em;
 }
 
 .block {
-  width: 25%;
-  padding: 0 1em;
-  border-radius: 10px;
-  position: relative;
-}
-
-.block label {
-  margin-bottom: 0;
-}
-
-.block .form-group {
-  margin-bottom: 0.5em;
-}
-
-#blockchain {
-  margin-left: 2rem;
-  width: 95%;
-  overflow: auto;
-  white-space: nowrap;
-  display: flex;
-  flex-direction: row;
-}
-
-.block-and-chain {
-  display: flex;
-  align-items: center;
   min-width: 20rem;
-}
-
-.chain {
-  font-size: 4rem;
 }

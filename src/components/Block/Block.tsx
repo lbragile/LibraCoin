@@ -15,12 +15,8 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
   useEffect(() => setTimestamp(Date.now()), [solution]);
 
   return (
-    <div
-      className={
-        "d-flex flex-column justify-content-center my-3 p-2 rounded " + (isValid ? "valid-block" : "invalid-block")
-      }
-    >
-      <Form className="block col-12">
+    <div className={"block my-3 mx-1 p-2 rounded " + (isValid ? "valid-block" : "invalid-block")}>
+      <Form>
         <InputGroup className="my-2">
           <InputGroup.Prepend>
             <InputGroup.Text>Index</InputGroup.Text>

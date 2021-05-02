@@ -66,9 +66,9 @@ export default function PreviewBlock(): JSX.Element {
 
   return (
     <div className="container-fluid row d-flex justify-content-center mx-auto my-3">
-      <div className="text-center overflow-auto mb-2">
-        <h4 className="font-weight-bold">Merkle Tree Visualization</h4>
-        <canvas ref={treeCanvas} className="border border-dark" width={1500} />
+      <div className="overflow-auto mb-2">
+        <h4 className="font-weight-bold text-center">Merkle Tree Visualization</h4>
+        <canvas ref={treeCanvas} className="border border-dark rounded" width={1500} />
       </div>
 
       <Statistics
@@ -79,7 +79,7 @@ export default function PreviewBlock(): JSX.Element {
         setIsValid={setIsValid}
       />
 
-      <Form className={"block col-10 col-lg-5 my-4 my-lg-0 pb-2 " + (isValid ? "valid-block" : "invalid-block")}>
+      <Form className={"col-10 col-lg-5 my-4 my-lg-0 pb-2 rounded " + (isValid ? "valid-block" : "invalid-block")}>
         <InputGroup className="my-2">
           <InputGroup.Prepend>
             <InputGroup.Text>Index</InputGroup.Text>

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
 import { IAction, IState, IUser } from "../../typings/AppTypes";
 import { copyKey } from "../../utils/copyInput";
@@ -13,14 +13,14 @@ export default function UserItems(): JSX.Element {
   return (
     <div className="container-fluid mb-2">
       <h3 className="font-weight-bold"> Users</h3>
-      <div id="list-background">
+      <div id="list-background" className="px-2">
         {state.users?.map((user: IUser) => {
           return (
-            <Form className="item" key={Math.random()}>
-              <Form.Group>
-                <Form.Label>
-                  <h5 className={copied ? "my-0" : "mt-1"}>Public Key:</h5>
-                </Form.Label>
+            <Form className="user-item" key={Math.random()}>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>Public Key</InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control
                   type="text"
                   className="text-truncate"
@@ -29,14 +29,14 @@ export default function UserItems(): JSX.Element {
                   isValid={copied[0]}
                 />
                 <Form.Control.Feedback type="valid">Copied to clipboard</Form.Control.Feedback>
-              </Form.Group>
+              </InputGroup>
 
-              <Form.Group>
-                <Form.Label>
-                  <h5 className="my-0">Balance:</h5>
-                </Form.Label>
-                <p>{user.balance.toFixed(2)} LC</p>
-              </Form.Group>
+              <InputGroup className="mt-2">
+                <Form.Control type="number" defaultValue={user.balance.toFixed(2)} />
+                <InputGroup.Append>
+                  <InputGroup.Text>LC</InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
             </Form>
           );
         })}

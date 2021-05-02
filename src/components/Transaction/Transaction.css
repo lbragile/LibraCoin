@@ -5,6 +5,7 @@
   border-radius: 5px;
   border: transparent 1px solid;
   z-index: 1;
+  min-width: 10rem;
 }
 
 .trans-item:hover {

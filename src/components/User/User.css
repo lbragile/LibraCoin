@@ -1,12 +1,9 @@
-.item {
+.user-item {
   background-color: white;
-  margin: 1em;
-  padding: 0.5em 1em;
+  margin: 1em 0.5em;
+  padding: 1em;
   border-radius: 5px;
-}
-
-.item .form-group {
-  margin-top: 1em;
+  min-width: 20rem;
 }
 
 .user-key {
