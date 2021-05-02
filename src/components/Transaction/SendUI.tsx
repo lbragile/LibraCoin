@@ -44,7 +44,7 @@ export default function SendUI(props: ISend): JSX.Element {
         </Form.Text>
       </Form.Group>
 
-      <Button variant="primary" type="submit" disabled={!props.validated} block>
+      <Button variant="primary" type="submit" disabled={!props.signed} block>
         <b>Send</b>
       </Button>
     </Form>

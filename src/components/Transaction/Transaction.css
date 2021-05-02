@@ -1,3 +1,7 @@
+.trans-list {
+  min-height: 18rem;
+}
+
 .trans-item {
   background-color: white;
   margin: 0.5em;

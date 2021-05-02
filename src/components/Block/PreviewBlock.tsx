@@ -8,20 +8,18 @@ import { ACTIONS } from "../../enums/AppDispatchActions";
 import { calculateMerkleTreeFormation, drawTreeDiagramOnCanvas, getMerkleRoot } from "../../utils/merkleTree";
 
 import "./Block.css";
-import { filterVerifiedTrans } from "../../reducers/AppReducer";
 
 export default function PreviewBlock(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-  const nextIndex = useRef<number>(state.chain[state.chain.length - 1].index + 1);
-  const prevBlockHash = useRef<string>(state.chain[state.chain.length - 1].currHash);
   const treeCanvas = useRef<HTMLCanvasElement | null>(null);
 
   const [solution, setSolution] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(false);
-  const [showBtn, setShowBtn] = useState<boolean>(true);
   const [timestamp, setTimestamp] = useState<number>(Date.now());
   const [merkleTree, setMerkleTree] = useState<string[][]>([[""]]);
+  const [index, setIndex] = useState<number>(state.chain[state.chain.length - 1].index + 1);
+  const [prevHash, setPrevHash] = useState<string>(state.chain[state.chain.length - 1].currHash);
 
   useEffect(() => {
     calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans, setMerkleTree);
@@ -38,28 +36,22 @@ export default function PreviewBlock(): JSX.Element {
 
   function handleAddBlock() {
     const block = {
-      index: nextIndex.current,
-      prevHash: prevBlockHash.current,
+      index,
+      prevHash,
       currHash: solution,
       transactions: state.selectedTrans,
       timestamp,
     };
 
-    // add the block, update verified transactions, clear selected transactions, persist in LS
+    // add the block, update verified transactions, clear selected transactions
     dispatch({ type: ACTIONS.ADD_BLOCK, payload: { block } });
-    localStorage.setItem("chain", JSON.stringify([...state.chain, block]));
-
     dispatch({ type: ACTIONS.UPDATE_VERIFIED_TRANS });
-    localStorage.setItem("transactions", JSON.stringify(filterVerifiedTrans(state.selectedTrans, state.verifiedTrans)));
-
     dispatch({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans: [] } });
-    localStorage.setItem("selectedTransactions", "[]");
 
     // update preview details
-    nextIndex.current += 1;
-    prevBlockHash.current = solution;
-    setShowBtn(false);
     setIsValid(false);
+    setIndex(index + 1);
+    setPrevHash(solution);
     setSolution("");
     setTimestamp(Date.now());
   }
@@ -84,38 +76,38 @@ export default function PreviewBlock(): JSX.Element {
           <InputGroup.Prepend>
             <InputGroup.Text>Index</InputGroup.Text>
           </InputGroup.Prepend>
-          <Form.Control type="number" defaultValue={nextIndex.current} disabled={true} />
+          <Form.Control type="number" value={index} disabled />
         </InputGroup>
 
         <InputGroup className="my-2">
           <InputGroup.Prepend>
             <InputGroup.Text>Timestamp</InputGroup.Text>
           </InputGroup.Prepend>
-          <Form.Control type="number" defaultValue={timestamp} disabled={true} />
+          <Form.Control type="number" value={timestamp} disabled />
         </InputGroup>
 
         <InputGroup className="my-2">
           <InputGroup.Prepend>
             <InputGroup.Text>Previous #</InputGroup.Text>
           </InputGroup.Prepend>
-          <Form.Control type="text" defaultValue={prevBlockHash.current} disabled={true} />
+          <Form.Control type="text" value={prevHash} disabled />
         </InputGroup>
 
         <InputGroup className="my-2">
           <InputGroup.Prepend>
             <InputGroup.Text>Current #</InputGroup.Text>
           </InputGroup.Prepend>
-          <Form.Control type="text" defaultValue={solution} disabled={true} />
+          <Form.Control type="text" value={solution} disabled />
         </InputGroup>
 
         <InputGroup className="my-2">
           <InputGroup.Prepend>
             <InputGroup.Text>Merkle #</InputGroup.Text>
           </InputGroup.Prepend>
-          <Form.Control type="text" defaultValue={getMerkleRoot(merkleTree)} disabled={true} />
+          <Form.Control type="text" value={getMerkleRoot(merkleTree)} disabled />
         </InputGroup>
 
-        {isValid && showBtn && (
+        {isValid && (
           <Button variant="success" block onClick={() => handleAddBlock()}>
             <h3 className="my-0 font-weight-bold">+</h3>
           </Button>

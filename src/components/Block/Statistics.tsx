@@ -16,7 +16,7 @@ interface IStats {
 export default function Statistics(props: IStats): JSX.Element {
   const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-  const nonce = useRef<number>(Math.round(Math.random() * 1e6));
+  const nonce = useRef<number>();
   const [header, setHeader] = useState<number>();
   const [target, setTarget] = useState<string>();
 
@@ -59,7 +59,10 @@ export default function Statistics(props: IStats): JSX.Element {
         variant="primary"
         className="btn-block d-block mt-3"
         disabled={props.isValid || state.selectedTrans.length === 0}
-        onClick={() => mine(nonce.current, setHeader, setTarget, props.setSolution, props.setIsValid)}
+        onClick={() => {
+          nonce.current = Math.round(Math.random() * 1e6);
+          mine(nonce.current, setHeader, setTarget, props.setSolution, props.setIsValid);
+        }}
       >
         <h4 className="m-0">Mine</h4>
       </Button>

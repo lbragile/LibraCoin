@@ -24,7 +24,6 @@ export default function TransactionLineUI(): JSX.Element {
       }
 
       dispatch({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans } });
-      localStorage.setItem("selectedTransactions", JSON.stringify(selectedTrans));
     } else {
       alert("You can mine at most 4 transactions at a time!");
     }
@@ -33,7 +32,7 @@ export default function TransactionLineUI(): JSX.Element {
   return (
     <div className="container-fluid">
       <h3 className="font-weight-bold">Verified Transactions</h3>
-      <div className="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
+      <div className="trans-list row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
         {state.verifiedTrans.map((transaction: ITransaction) => {
           return (
             <div

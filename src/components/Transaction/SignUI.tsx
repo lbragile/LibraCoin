@@ -4,10 +4,11 @@ import { Form, Button, InputGroup } from "react-bootstrap";
 
 export interface ISign {
   validated: boolean;
+  signed: boolean;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-export default function SignUI({ validated, handleSubmit }: ISign): JSX.Element {
+export default function SignUI({ validated, signed, handleSubmit }: ISign): JSX.Element {
   function checkAmount(e: React.ChangeEvent<HTMLInputElement>): void {
     const userBalance = JSON.parse(localStorage.getItem("user") as string)?.balance || 1000;
     e.target.value = Math.min(Math.max(0.1, +e.target.value), userBalance)
@@ -58,12 +59,7 @@ export default function SignUI({ validated, handleSubmit }: ISign): JSX.Element 
         <Form.Text className="text-muted">Your private key → not shared with anyone, keep this secret!</Form.Text>
       </Form.Group>
 
-      <Button
-        variant="primary"
-        type="submit"
-        disabled={!JSON.parse(localStorage.getItem("user") as string)?.publicKey || validated}
-        block
-      >
+      <Button variant="primary" type="submit" disabled={signed} block>
         <b>Sign</b>
       </Button>
     </Form>

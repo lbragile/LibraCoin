@@ -47,7 +47,6 @@ export default function KeyGeneration(): JSX.Element {
     localStorage.setItem("user", JSON.stringify({ publicKey: publicKeyStr, privateKey: privateKeyStr, balance: 1000 })); // prettier-ignore
 
     const newUsers = [...state.users, { publicKey: publicKeyStr, balance: 1000 }];
-    localStorage.setItem("users", JSON.stringify(newUsers));
     dispatch({ type: ACTIONS.UPDATE_USERS, payload: { users: newUsers } });
   }
 

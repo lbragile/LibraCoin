@@ -7,6 +7,8 @@ import { IBlock } from "../../typings/AppTypes";
 import "./Block.css";
 
 export default function Block({ details }: { details: IBlock }): JSX.Element {
+  // const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+
   const [solution, setSolution] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(true);
   const [, setTimestamp] = useState<number>(Date.now());

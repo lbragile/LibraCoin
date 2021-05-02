@@ -1,5 +1,6 @@
 import React, { useState, useRef, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
+import { ACTIONS } from "../../enums/AppDispatchActions";
 import { IAction, IState, ITransaction } from "../../typings/AppTypes";
 import { digestMessage } from "../../utils/conversion";
 
@@ -8,7 +9,7 @@ import SignUI from "./SignUI";
 import "./Transaction.css";
 
 export default function Transaction(): JSX.Element {
-  const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   const [validated, setValidated] = useState<boolean>(false);
   const [signed, setSigned] = useState<boolean>(false);
@@ -41,7 +42,7 @@ export default function Transaction(): JSX.Element {
       setSigned(true);
     } else if (form.checkValidity()) {
       // signed the transaction and need to send now
-      localStorage.setItem("transactions", JSON.stringify([...state.verifiedTrans, formDetails.current]));
+      dispatch({ type: ACTIONS.ADD_VERIFIED_TRANS, payload: { trans: formDetails.current } });
       setSigned(false);
       setValidated(false);
     }
@@ -49,10 +50,11 @@ export default function Transaction(): JSX.Element {
 
   return (
     <div className="container-fluid d-flex justify-content-center mx-auto row my-4">
-      <SignUI validated={validated} handleSubmit={handleSubmit} />
+      <SignUI validated={validated} signed={signed} handleSubmit={handleSubmit} />
       <SendUI
         validated={validated}
         setValidated={setValidated}
+        signed={signed}
         setSigned={setSigned}
         handleSubmit={handleSubmit}
         details={formDetails.current}
