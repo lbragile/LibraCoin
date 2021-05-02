@@ -1,3 +1,5 @@
+import { ITransaction } from "../../typings/AppTypes";
+
 // modified from https://github.com/foqc/bfs-canvas-tree
 interface ICoordinate {
   x: number;
@@ -46,13 +48,15 @@ class Node {
 
 export class Tree {
   #root: Node | null;
+  #transactionSignatures: string[];
   #startPosition: ICoordinate;
   #dim: { width: number; height: number };
   #ctx: CanvasRenderingContext2D | null;
 
-  constructor(canvas: HTMLCanvasElement) {
+  constructor(canvas: HTMLCanvasElement, transactions: ITransaction[]) {
     const xStart = window.innerWidth < 1200 ? window.innerWidth * 1.8 : (window.innerWidth / 2) * 0.8;
     this.#root = null;
+    this.#transactionSignatures = transactions.map((transaction) => transaction.signature.slice(0, 25) + "...");
     this.#startPosition = { x: xStart, y: 5 };
     this.#ctx = canvas.getContext("2d");
     this.#dim = { width: canvas.width, height: canvas.height };
@@ -112,11 +116,13 @@ export class Tree {
 
         this.#ctx.font = "1rem Arial";
         this.#ctx.strokeStyle = "#000";
-        this.#ctx.fillStyle = node.value === this.#root?.value ? "#dfd" : "#ddf";
+
+        const leafOrBodyColor = this.#transactionSignatures.includes(node.value) ? "#ddf" : "#ff0a";
+        this.#ctx.fillStyle = node.value === this.#root?.value ? "#dfd" : leafOrBodyColor;
 
         this.#ctx.fillRect(x - rectWidth / 2, y + 5, rectWidth, 30);
         this.#ctx.fillStyle = "#000";
-        this.#ctx.fillText(node.value, x + 10 - rectWidth / 2, y + 25);
+        this.#ctx.fillText(node.value, x + 10 - rectWidth / 2, y + 27);
 
         // draw it's children
         node.children.forEach((child, i) => {
@@ -124,8 +130,8 @@ export class Tree {
           queue.push(child);
           if (this.#ctx) {
             this.#ctx.beginPath();
-            this.#ctx.moveTo(x, y + 35);
-            this.#ctx.lineTo(child.position.x, child.position.y + 5);
+            this.#ctx.moveTo(x + 0.5, y + 35);
+            this.#ctx.lineTo(child.position.x + 0.5, child.position.y + 5);
             this.#ctx.stroke();
           }
         });

@@ -30,7 +30,7 @@ export default function PreviewBlock(): JSX.Element {
 
   // draw tree in canvas
   useEffect(() => {
-    drawTreeDiagramOnCanvas(merkleTree, treeCanvas.current);
+    drawTreeDiagramOnCanvas(merkleTree, treeCanvas.current, state.selectedTrans);
   }, [merkleTree]);
 
   // update timestamp & currentHash when solution is mined

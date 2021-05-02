@@ -32,7 +32,7 @@ export default function UserItems(): JSX.Element {
               </InputGroup>
 
               <InputGroup className="mt-2">
-                <Form.Control type="number" defaultValue={user.balance.toFixed(2)} />
+                <Form.Control type="number" defaultValue={user.balance.toFixed(2)} disabled={true} />
                 <InputGroup.Append>
                   <InputGroup.Text>LC</InputGroup.Text>
                 </InputGroup.Append>
