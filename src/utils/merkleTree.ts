@@ -5,14 +5,15 @@ import { digestMessage } from "./conversion";
 export async function calculateMerkleTreeFormation(
   verifiedTrans: ITransaction[],
   selectedTrans: ITransaction[],
-  setMerkleTree: (arg: string[][]) => void
-): Promise<void> {
+  setMerkleTree?: (arg: string[][]) => void
+): Promise<string> {
+  let tree = [[""]];
   if (selectedTrans.length > 0) {
     // need to make sure node's in tree appear in same order as in the verified transaction pane, regardless of selection order
     const verifiedSignatures = verifiedTrans.map((trans) => trans.signature);
     const selectedSignatures = selectedTrans.map((trans) => trans.signature);
     let signatures = verifiedSignatures.filter((sig) => selectedSignatures.includes(sig));
-    const tree = [signatures];
+    tree = [signatures];
 
     while (signatures.length !== 1) {
       const hashArr = [] as string[];
@@ -24,11 +25,13 @@ export async function calculateMerkleTreeFormation(
       signatures = hashArr;
       tree.push(hashArr);
     }
-
-    setMerkleTree(tree);
-  } else {
-    setMerkleTree([[""]]);
   }
+
+  if (setMerkleTree) {
+    setMerkleTree(tree);
+  }
+
+  return getMerkleRoot(tree);
 }
 
 export function getMerkleRoot(tree: string[][]): string {

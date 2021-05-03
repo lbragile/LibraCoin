@@ -58,7 +58,7 @@ export default function Statistics(props: IStats): JSX.Element {
       <Button
         variant="primary"
         className="btn-block d-block mt-3"
-        disabled={props.isValid || state.selectedTrans.length === 0}
+        disabled={props.isValid || (!props.chain && state.selectedTrans.length === 0)}
         onClick={() => {
           nonce.current = Math.round(Math.random() * 1e6);
           mine(nonce.current, setHeader, setTarget, props.setSolution, props.setIsValid);
