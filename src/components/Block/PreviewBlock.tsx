@@ -42,6 +42,7 @@ export default function PreviewBlock(): JSX.Element {
       transactions: state.selectedTrans,
       timestamp,
       merkleRoot: getMerkleRoot(merkleTree),
+      valid: state.chain[index - 1].valid, // validity depends on previous block
     };
 
     // add the block, update verified transactions, clear selected transactions

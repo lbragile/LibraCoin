@@ -20,6 +20,7 @@ export interface IBlock {
   transactions: ITransaction[];
   timestamp: number;
   merkleRoot: string;
+  valid?: boolean;
 }
 export interface IState {
   verifiedTrans: ITransaction[];

@@ -15,10 +15,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
   const [solution, setSolution] = useState<string>("");
   const [timestamp, setTimestamp] = useState<number>(Date.now());
   const [merkleRoot, setMerkleRoot] = useState<string>(details.merkleRoot);
-  const [isValid, setIsValid] = useState<boolean>((): boolean => {
-    const startStates = JSON.parse(localStorage.getItem("startStates") as string);
-    return startStates ? startStates[details.index] : true;
-  });
+  const [isValid, setIsValid] = useState<boolean>(details.valid ?? true);
 
   // update timestamp when solution is mined
   useEffect(() => setTimestamp(Date.now()), [solution]);
@@ -43,7 +40,6 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
     timestamp = Date.now()
   ): Promise<void> {
     const index = details.index;
-    updateStartStates(skipFirstUpdate ? index + 1 : index);
 
     for (let i = index; i < state.chain.length; i++) {
       const merkleRoot = newRoot && i === index ? newRoot : state.chain[i].merkleRoot;
@@ -55,19 +51,13 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
         currHash,
         transactions: state.chain[i].transactions,
         merkleRoot,
+        valid: skipFirstUpdate ? i === index : false,
       };
 
       prevHash = currHash; // next block's prevHash is this block's currHash
 
       dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: newBlock } });
     }
-  }
-
-  function updateStartStates(threshold: number): void {
-    const validBlocks: boolean[] = new Array(threshold).fill(true);
-    const invalidBlocks: boolean[] = new Array(state.chain.length - threshold).fill(false);
-    const startStates = validBlocks.concat(invalidBlocks);
-    localStorage.setItem("startStates", JSON.stringify(startStates));
   }
 
   return (
