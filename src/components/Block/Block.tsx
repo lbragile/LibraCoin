@@ -22,10 +22,9 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
 
   async function updateBlockStatus(e: React.ChangeEvent<HTMLInputElement>): Promise<void> {
     const newRoot = e.target.value;
-    const newTime = Date.now();
-    const newHash = await digestMessage(details.index + newTime + details.prevHash + newRoot);
+    const newHash = await digestMessage(details.index + details.prevHash + newRoot);
     setIsValid(newRoot === merkleRoot);
-    setTimestamp(newTime);
+    setTimestamp(Date.now());
     setSolution(newHash);
     setMerkleRoot(newRoot);
 
@@ -43,7 +42,8 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
 
     for (let i = index; i < state.chain.length; i++) {
       const merkleRoot = newRoot && i === index ? newRoot : state.chain[i].merkleRoot;
-      const currHash = i === index ? prevHash : await digestMessage(i + timestamp + prevHash + merkleRoot);
+      const currHash = i === index ? prevHash : await digestMessage(i + prevHash + merkleRoot);
+
       const newBlock = {
         index: i,
         timestamp,
