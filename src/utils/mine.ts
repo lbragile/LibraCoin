@@ -16,7 +16,7 @@ export async function mine(
   setTarget: (arg: string) => void,
   setSolution: (arg: string) => void,
   setIsValid: (arg: boolean) => void
-): Promise<void> {
+): Promise<string> {
   // make target
   const numZeros = Math.round(Math.random()) + 2;
   const targetHash = await createTarget(numZeros);
@@ -37,4 +37,5 @@ export async function mine(
   }
 
   setIsValid(candidateSolution <= targetHash);
+  return candidateSolution;
 }

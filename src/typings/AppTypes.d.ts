@@ -19,6 +19,7 @@ export interface IBlock {
   currHash: string;
   transactions: ITransaction[];
   timestamp: number;
+  merkleRoot: string;
 }
 export interface IState {
   verifiedTrans: ITransaction[];

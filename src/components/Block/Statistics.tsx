@@ -10,7 +10,12 @@ interface IStats {
   solution: string;
   setIsValid: (arg: boolean) => void;
   setSolution: (arg: string) => void;
-  index?: number;
+  propagateBlockStatus?: (
+    prevHash: string,
+    skipFirstUpdate: boolean,
+    newRoot?: string,
+    timestamp?: number
+  ) => Promise<void>;
 }
 
 export default function Statistics(props: IStats): JSX.Element {
@@ -19,6 +24,14 @@ export default function Statistics(props: IStats): JSX.Element {
   const nonce = useRef<number>();
   const [header, setHeader] = useState<number>();
   const [target, setTarget] = useState<string>();
+
+  async function handleMine() {
+    nonce.current = Math.round(Math.random() * 1e6);
+    const hash = await mine(nonce.current, setHeader, setTarget, props.setSolution, props.setIsValid);
+    if (props.propagateBlockStatus) {
+      await props.propagateBlockStatus(hash, true);
+    }
+  }
 
   return (
     <div className={props.chain ? "bordered-background" : "col-11 col-lg-5 mx-3"}>
@@ -59,10 +72,7 @@ export default function Statistics(props: IStats): JSX.Element {
         variant="primary"
         className="btn-block d-block mt-3"
         disabled={props.isValid || (!props.chain && state.selectedTrans.length === 0)}
-        onClick={() => {
-          nonce.current = Math.round(Math.random() * 1e6);
-          mine(nonce.current, setHeader, setTarget, props.setSolution, props.setIsValid);
-        }}
+        onClick={() => handleMine()}
       >
         <h4 className="m-0">Mine</h4>
       </Button>

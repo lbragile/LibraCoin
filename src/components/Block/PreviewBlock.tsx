@@ -41,6 +41,7 @@ export default function PreviewBlock(): JSX.Element {
       currHash: solution,
       transactions: state.selectedTrans,
       timestamp,
+      merkleRoot: getMerkleRoot(merkleTree),
     };
 
     // add the block, update verified transactions, clear selected transactions

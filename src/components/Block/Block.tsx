@@ -1,36 +1,73 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 
 import Statistics from "./Statistics";
-import { IBlock } from "../../typings/AppTypes";
+import { IAction, IBlock, IState } from "../../typings/AppTypes";
 
 import "./Block.css";
-import { calculateMerkleTreeFormation } from "../../utils/merkleTree";
 import { digestMessage } from "../../utils/conversion";
+import { AppContext } from "../../context/AppContext";
+import { ACTIONS } from "../../enums/AppDispatchActions";
 
 export default function Block({ details }: { details: IBlock }): JSX.Element {
-  // const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   const [solution, setSolution] = useState<string>("");
-  const [isValid, setIsValid] = useState<boolean>(true);
   const [timestamp, setTimestamp] = useState<number>(Date.now());
-  const [merkleRoot, setMerkleRoot] = useState<string>("");
+  const [merkleRoot, setMerkleRoot] = useState<string>(details.merkleRoot);
+  const [isValid, setIsValid] = useState<boolean>((): boolean => {
+    const startStates = JSON.parse(localStorage.getItem("startStates") as string);
+    return startStates ? startStates[details.index] : true;
+  });
 
   // update timestamp when solution is mined
   useEffect(() => setTimestamp(Date.now()), [solution]);
 
-  useEffect(() => {
-    (async () => setMerkleRoot(await calculateMerkleTreeFormation(details.transactions, details.transactions)))();
-  }, []);
-
-  async function updateBlockStatus(e: React.ChangeEvent<HTMLInputElement>) {
-    const newTime = Date.now();
-    const message = details.index + newTime + details.prevHash + solution + e.target.value;
+  async function updateBlockStatus(e: React.ChangeEvent<HTMLInputElement>): Promise<void> {
     const newRoot = e.target.value;
+    const newTime = Date.now();
+    const newHash = await digestMessage(details.index + newTime + details.prevHash + newRoot);
     setIsValid(newRoot === merkleRoot);
     setTimestamp(newTime);
-    setSolution(await digestMessage(message));
+    setSolution(newHash);
     setMerkleRoot(newRoot);
+
+    // after updating the block, propagate the changes
+    await propagateBlockStatus(newHash, false, newRoot);
+  }
+
+  async function propagateBlockStatus(
+    prevHash: string,
+    skipFirstUpdate: boolean,
+    newRoot?: string,
+    timestamp = Date.now()
+  ): Promise<void> {
+    const index = details.index;
+    updateStartStates(skipFirstUpdate ? index + 1 : index);
+
+    for (let i = index; i < state.chain.length; i++) {
+      const merkleRoot = newRoot && i === index ? newRoot : state.chain[i].merkleRoot;
+      const currHash = i === index ? prevHash : await digestMessage(i + timestamp + prevHash + merkleRoot);
+      const newBlock = {
+        index: i,
+        timestamp,
+        prevHash: i === index ? details.prevHash : prevHash,
+        currHash,
+        transactions: state.chain[i].transactions,
+        merkleRoot,
+      };
+
+      prevHash = currHash; // next block's prevHash is this block's currHash
+
+      dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: newBlock } });
+    }
+  }
+
+  function updateStartStates(threshold: number): void {
+    const validBlocks: boolean[] = new Array(threshold).fill(true);
+    const invalidBlocks: boolean[] = new Array(state.chain.length - threshold).fill(false);
+    const startStates = validBlocks.concat(invalidBlocks);
+    localStorage.setItem("startStates", JSON.stringify(startStates));
   }
 
   return (
@@ -68,11 +105,15 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
           <InputGroup.Prepend>
             <InputGroup.Text>Merkle #</InputGroup.Text>
           </InputGroup.Prepend>
-          <Form.Control
-            type="text"
-            value={merkleRoot}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateBlockStatus(e)}
-          />
+          {details.index === 0 ? (
+            <Form.Control type="text" disabled={true} value={""} />
+          ) : (
+            <Form.Control
+              type="text"
+              value={merkleRoot}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateBlockStatus(e)}
+            />
+          )}
         </InputGroup>
       </Form>
 
@@ -82,6 +123,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
         setSolution={setSolution}
         isValid={isValid}
         setIsValid={setIsValid}
+        propagateBlockStatus={propagateBlockStatus}
       />
     </div>
   );

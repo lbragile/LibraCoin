@@ -31,7 +31,16 @@ export const AppReducer = (state: IState, action: IAction): IState => {
     }
 
     case ACTIONS.ADD_BLOCK: {
-      const chain = [...state.chain, (action.payload as { block: IBlock }).block];
+      const { block } = action.payload as { block: IBlock };
+      const chain = [...state.chain, block];
+      localStorage.setItem("chain", JSON.stringify(chain));
+      return { ...state, chain };
+    }
+
+    case ACTIONS.UPDATE_BLOCK: {
+      const { block } = action.payload as { block: IBlock };
+      const chain = JSON.parse(localStorage.getItem("chain") as string);
+      chain[block.index] = block;
       localStorage.setItem("chain", JSON.stringify(chain));
       return { ...state, chain };
     }
