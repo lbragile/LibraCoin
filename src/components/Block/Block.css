@@ -10,5 +10,9 @@
 }
 
 .block {
-  min-width: 20rem;
+  width: 20rem;
+}
+
+.show-trans-eye:hover {
+  cursor: pointer;
 }

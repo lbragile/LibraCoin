@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
-import { IAction, IState } from "../../typings/AppTypes";
+import { IState } from "../../typings/AppTypes";
 import { mine } from "../../utils/mine";
 
 interface IStats {
@@ -19,7 +19,7 @@ interface IStats {
 }
 
 export default function Statistics(props: IStats): JSX.Element {
-  const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { state } = useContext(AppContext) as { state: IState };
 
   const nonce = useRef<number>();
   const [header, setHeader] = useState<number>();

@@ -37,7 +37,8 @@ export default function Transaction(): JSX.Element {
       formDetails.current.to = formValues[0];
       formDetails.current.amount = formValues[1];
       formDetails.current.message = formValues[2];
-      formDetails.current.signature = await digestMessage(JSON.stringify(formDetails.current));
+      const message = formDetails.current.to + formDetails.current.from + formDetails.current.message + formDetails.current.amount; // prettier-ignore
+      formDetails.current.signature = await digestMessage(message);
 
       setSigned(true);
     } else if (form.checkValidity()) {
