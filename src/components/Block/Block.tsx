@@ -53,7 +53,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
         currHash,
         transactions: state.chain[i].transactions,
         merkleRoot,
-        valid: skipFirstUpdate ? i === index : false,
+        valid: skipFirstUpdate ? i === index : false
       };
 
       prevHash = currHash; // next block's prevHash is this block's currHash
@@ -63,7 +63,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
   }
 
   return (
-    <div className="col">
+    <div className="flex-column">
       <div className={"block my-3 mx-1 p-2 rounded " + (isValid ? "valid-block" : "invalid-block")}>
         <Form>
           <InputGroup className="my-2">

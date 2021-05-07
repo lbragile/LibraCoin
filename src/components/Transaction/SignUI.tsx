@@ -11,9 +11,7 @@ export interface ISign {
 export default function SignUI({ validated, signed, handleSubmit }: ISign): JSX.Element {
   function checkAmount(e: React.ChangeEvent<HTMLInputElement>): void {
     const userBalance = JSON.parse(localStorage.getItem("user") as string)?.balance || 1000;
-    e.target.value = Math.min(Math.max(0.1, +e.target.value), userBalance)
-      .toFixed(2)
-      .toString();
+    e.target.value = Math.min(Math.max(0.1, +e.target.value), userBalance).toFixed(2).toString(); // prettier-ignore
   }
 
   return (

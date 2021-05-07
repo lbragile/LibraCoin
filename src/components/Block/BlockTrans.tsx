@@ -7,14 +7,12 @@ import { calculateMerkleTreeFormation } from "../../utils/merkleTree";
 import "./Block.css";
 
 type TChange = "from" | "to" | "message" | "amount";
-
-export default function BlockTrans({
-  block,
-  setMerkleRoot,
-}: {
+interface IBlockTrans {
   block: IBlock;
   setMerkleRoot: (arg: string) => void;
-}): JSX.Element {
+}
+
+export default function BlockTrans({ block, setMerkleRoot }: IBlockTrans): JSX.Element {
   const [trans, setTrans] = useState<ITransaction[]>(block.transactions);
 
   async function calculateNewMerkleRoot(

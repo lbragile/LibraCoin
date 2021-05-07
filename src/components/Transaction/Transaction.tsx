@@ -19,7 +19,7 @@ export default function Transaction(): JSX.Element {
     from: JSON.parse(localStorage.getItem("user") as string)?.publicKey ?? "",
     amount: undefined,
     message: "",
-    signature: "",
+    signature: ""
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
