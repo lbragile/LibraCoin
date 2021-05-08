@@ -29,6 +29,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
     prevHash: string,
     skipFirstUpdate: boolean,
     newRoot?: string,
+    transactions?: ITransaction[],
     timestamp = Date.now()
   ): Promise<void> {
     const index = details.index;
@@ -42,7 +43,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
         timestamp,
         prevHash: i === index ? details.prevHash : prevHash,
         currHash,
-        transactions: state.chain[i].transactions,
+        transactions: i === index && transactions ? transactions : state.chain[i].transactions,
         merkleRoot,
         valid: skipFirstUpdate ? i === index : false
       };
@@ -73,7 +74,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
     setMerkleRoot(root);
     setSolution(newHash);
 
-    await propagateBlockStatus(newHash, false, root);
+    await propagateBlockStatus(newHash, false, root, newTrans);
   }
 
   return (

@@ -1,4 +1,4 @@
-import { Tree } from "../components/Block/Tree";
+import { Tree } from "./Tree";
 import { ITransaction } from "../typings/AppTypes";
 import { digestMessage } from "./conversion";
 

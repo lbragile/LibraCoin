@@ -1,4 +1,4 @@
-import { ITransaction } from "../../typings/AppTypes";
+import { ITransaction } from "../typings/AppTypes";
 
 // modified from https://github.com/foqc/bfs-canvas-tree
 interface ICoordinate {

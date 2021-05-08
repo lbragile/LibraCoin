@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
-import { IState } from "../../typings/AppTypes";
+import { IState, ITransaction } from "../../typings/AppTypes";
 import { mine } from "../../utils/mine";
 
 interface IStats {
@@ -14,6 +14,7 @@ interface IStats {
     prevHash: string,
     skipFirstUpdate: boolean,
     newRoot?: string,
+    transactions?: ITransaction[],
     timestamp?: number
   ) => Promise<void>;
 }
