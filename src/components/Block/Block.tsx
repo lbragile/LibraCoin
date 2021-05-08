@@ -2,13 +2,15 @@ import React, { useState, useEffect, useContext } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 
 import Statistics from "./Statistics";
-import { IAction, IBlock, IState } from "../../typings/AppTypes";
+import { IAction, IBlock, IState, ITransaction } from "../../typings/AppTypes";
 
 import "./Block.css";
 import { digestMessage } from "../../utils/conversion";
 import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import BlockTrans from "./BlockTrans";
+import { calculateMerkleTreeFormation } from "../../utils/merkleTree";
+
+type TChange = "from" | "to" | "message" | "amount";
 
 export default function Block({ details }: { details: IBlock }): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
@@ -18,21 +20,10 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
   const [merkleRoot, setMerkleRoot] = useState<string>(details.merkleRoot);
   const [isValid, setIsValid] = useState<boolean>(details.valid ?? true);
   const [showTrans, setShowTrans] = useState<boolean>(false);
+  const [trans, setTrans] = useState<ITransaction[]>(details.transactions);
 
   // update timestamp when solution is mined
   useEffect(() => setTimestamp(Date.now()), [solution]);
-
-  async function updateBlockStatus(e: React.ChangeEvent<HTMLInputElement>): Promise<void> {
-    const newRoot = e.target.value;
-    const newHash = await digestMessage(details.index + details.prevHash + newRoot);
-    setIsValid(newRoot === merkleRoot);
-    setTimestamp(Date.now());
-    setSolution(newHash);
-    setMerkleRoot(newRoot);
-
-    // after updating the block, propagate the changes
-    await propagateBlockStatus(newHash, false, newRoot);
-  }
 
   async function propagateBlockStatus(
     prevHash: string,
@@ -60,6 +51,29 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
 
       dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: newBlock } });
     }
+  }
+
+  async function calculateNewMerkleRoot(
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number,
+    type: TChange
+  ): Promise<void> {
+    const newVal = e.target.value;
+    const newTrans = JSON.parse(JSON.stringify(trans)); // deep copy
+
+    // update the changed value & signature
+    newTrans[index] = { ...newTrans[index], [type]: newVal };
+    newTrans[index].signature = await digestMessage(newTrans[index].to + newTrans[index].from + newTrans[index].amount + newTrans[index].message); // prettier-ignore
+
+    // calculate new merkle root and currHash
+    const root = await calculateMerkleTreeFormation(newTrans, newTrans);
+    const newHash = await digestMessage(details.index + details.prevHash + root);
+
+    setTrans(newTrans);
+    setMerkleRoot(root);
+    setSolution(newHash);
+
+    await propagateBlockStatus(newHash, false, root);
   }
 
   return (
@@ -102,11 +116,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
               <Form.Control type="text" defaultValue={""} disabled={true} />
             ) : (
               <React.Fragment>
-                <Form.Control
-                  type="text"
-                  value={merkleRoot}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateBlockStatus(e)}
-                />
+                <Form.Control type="text" defaultValue={merkleRoot} disabled={true} />
                 <InputGroup.Append>
                   <InputGroup.Text className="show-trans-eye" onClick={() => setShowTrans(!showTrans)}>
                     {showTrans ? "🙈" : "🙉"}
@@ -127,7 +137,58 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
         />
       </div>
 
-      {showTrans && <BlockTrans block={details} setMerkleRoot={setMerkleRoot} />}
+      {showTrans && (
+        <div>
+          {trans.map((transaction: ITransaction, i: number) => {
+            return (
+              <div className="col-11 mx-auto mb-2 bg-light border border-dark p-1 rounded" key={Math.random()}>
+                <Form.Group className="mb-2 text-center">
+                  <Form.Control
+                    type="text"
+                    value={transaction.from}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => calculateNewMerkleRoot(e, i, "from")}
+                  />
+                  <h3 className="my-0">↓</h3>
+                  <Form.Control
+                    type="text"
+                    value={transaction.to}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => calculateNewMerkleRoot(e, i, "to")}
+                  />
+                </Form.Group>
+
+                <InputGroup className="mb-2">
+                  <InputGroup.Prepend>
+                    <InputGroup.Text>Msg</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control
+                    as="textarea"
+                    value={transaction.message}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => calculateNewMerkleRoot(e, i, "message")}
+                  />
+                </InputGroup>
+
+                <InputGroup className="mb-2">
+                  <Form.Control
+                    type="number"
+                    value={transaction.amount && parseFloat(transaction.amount + "").toFixed(2)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => calculateNewMerkleRoot(e, i, "amount")}
+                  />
+                  <InputGroup.Append>
+                    <InputGroup.Text>LC</InputGroup.Text>
+                  </InputGroup.Append>
+                </InputGroup>
+
+                <InputGroup className="mb-2">
+                  <InputGroup.Prepend>
+                    <InputGroup.Text>Sig</InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <Form.Control type="text" defaultValue={transaction.signature} disabled={true} />
+                </InputGroup>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
