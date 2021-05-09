@@ -4,8 +4,8 @@ import { ACTIONS } from "../../enums/AppDispatchActions";
 import { IAction, IState, ITransaction } from "../../typings/AppTypes";
 import { digestMessage } from "../../utils/conversion";
 
-import SendUI from "./SendUI";
-import SignUI from "./SignUI";
+import Send from "./Send";
+import Sign from "./Sign";
 import "./Transaction.css";
 
 export default function Transaction(): JSX.Element {
@@ -30,9 +30,7 @@ export default function Transaction(): JSX.Element {
     if (form.checkValidity() && !signed) {
       // haven't signed the transaction yet
       const formInputs = { ...form };
-      const formValues = Object.values(formInputs)
-        .slice(1, 4)
-        .map((input) => input.value);
+      const formValues = Object.values(formInputs).slice(1, 4).map((input) => input.value); // prettier-ignore
 
       formDetails.current.to = formValues[0];
       formDetails.current.amount = formValues[1];
@@ -51,8 +49,8 @@ export default function Transaction(): JSX.Element {
 
   return (
     <div className="container-fluid d-flex justify-content-center mx-auto row my-4">
-      <SignUI validated={validated} signed={signed} handleSubmit={handleSubmit} />
-      <SendUI
+      <Sign validated={validated} signed={signed} handleSubmit={handleSubmit} />
+      <Send
         validated={validated}
         setValidated={setValidated}
         signed={signed}

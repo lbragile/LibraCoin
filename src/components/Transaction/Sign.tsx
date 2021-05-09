@@ -8,10 +8,10 @@ export interface ISign {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-export default function SignUI({ validated, signed, handleSubmit }: ISign): JSX.Element {
-  function checkAmount(e: React.ChangeEvent<HTMLInputElement>): void {
+export default function Sign({ validated, signed, handleSubmit }: ISign): JSX.Element {
+  function checkAmount(e: React.FocusEvent<HTMLInputElement>): void {
     const userBalance = JSON.parse(localStorage.getItem("user") as string)?.balance || 1000;
-    e.target.value = Math.min(Math.max(0.1, +e.target.value), userBalance).toFixed(2).toString(); // prettier-ignore
+    e.target.value = Math.min(Math.max(0.1, +e.target.value), userBalance).toFixed(2);
   }
 
   return (
@@ -27,15 +27,15 @@ export default function SignUI({ validated, signed, handleSubmit }: ISign): JSX.
         </Form.Text>
         <h3 className="my-0 text-center">↓</h3>
         <Form.Control type="text" placeholder="Receiver's public key" pattern="[A-Za-z0-9]{182,182}" required />
-        <Form.Control.Feedback type="invalid">Must be of the same format as your public key</Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group>
         <InputGroup className="mb-2">
           <Form.Control
             type="number"
-            placeholder="1.00"
-            onBlur={(e: React.ChangeEvent<HTMLInputElement>) => checkAmount(e)}
+            step="any"
+            placeholder={Number(1).toFixed(2)}
+            onBlur={(e: React.FocusEvent<HTMLInputElement>) => checkAmount(e)}
             required
           />
           <InputGroup.Prepend>
