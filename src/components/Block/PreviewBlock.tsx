@@ -43,6 +43,7 @@ export default function PreviewBlock(): JSX.Element {
       timestamp,
       merkleRoot: getMerkleRoot(merkleTree),
       valid: state.chain[index - 1].valid, // validity depends on previous block
+      showTrans: false
     };
 
     // add the block, update verified transactions, clear selected transactions
@@ -102,7 +103,7 @@ export default function PreviewBlock(): JSX.Element {
           <Form.Control type="text" value={solution} disabled />
         </InputGroup>
 
-        <InputGroup className="my-2">
+        <InputGroup className="mt-2">
           <InputGroup.Prepend>
             <InputGroup.Text>Merkle #</InputGroup.Text>
           </InputGroup.Prepend>
@@ -110,7 +111,7 @@ export default function PreviewBlock(): JSX.Element {
         </InputGroup>
 
         {isValid && (
-          <Button variant="success" block onClick={() => handleAddBlock()}>
+          <Button className="mt-2" variant="success" block onClick={() => handleAddBlock()}>
             <h3 className="my-0 font-weight-bold">+</h3>
           </Button>
         )}

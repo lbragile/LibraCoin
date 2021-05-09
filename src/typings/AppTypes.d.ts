@@ -21,6 +21,7 @@ export interface IBlock {
   timestamp: number;
   merkleRoot: string;
   valid?: boolean;
+  showTrans?: boolean;
 }
 export interface IState {
   verifiedTrans: ITransaction[];

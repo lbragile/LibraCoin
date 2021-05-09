@@ -25,7 +25,8 @@ export async function propagateBlockStatus(
       currHash,
       transactions: i === index && transactions ? transactions : state.chain[i].transactions,
       merkleRoot,
-      valid: skipFirstUpdate ? i === index : false
+      valid: skipFirstUpdate ? i === index : false,
+      showTrans: state.chain[i].showTrans ?? false
     };
 
     prevHash = currHash; // next block's prevHash is this block's currHash

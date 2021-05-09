@@ -9,8 +9,10 @@ import { digestMessage } from "../../utils/conversion";
 import { calculateMerkleTreeFormation } from "../../utils/merkleTree";
 import { propagateBlockStatus } from "../../utils/propagate";
 import "./Block.css";
+import { ACTIONS } from "../../enums/AppDispatchActions";
 
 type TChange = "from" | "to" | "message" | "amount";
+type TInputChange<T = HTMLInputElement> = React.ChangeEvent<T>;
 
 export default function Block({ details }: { details: IBlock }): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
@@ -19,18 +21,13 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
   const [timestamp, setTimestamp] = useState<number>(Date.now());
   const [merkleRoot, setMerkleRoot] = useState<string>(details.merkleRoot);
   const [isValid, setIsValid] = useState<boolean>(details.valid ?? true);
-  const [showTrans, setShowTrans] = useState<boolean>(false);
+  const [showTrans, setShowTrans] = useState<boolean>(details.showTrans ?? false);
   const [trans, setTrans] = useState<ITransaction[]>(details.transactions);
 
   // update timestamp when solution is mined
   useEffect(() => setTimestamp(Date.now()), [solution]);
 
-  async function calculateNewMerkleRoot(
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number,
-    type: TChange
-  ): Promise<void> {
-    const newVal = e.target.value;
+  async function calculateNewMerkleRoot(newVal: number | string, index: number, type: TChange): Promise<void> {
     const newTrans = JSON.parse(JSON.stringify(trans)); // deep copy
 
     // update the changed value & signature
@@ -46,6 +43,11 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
     setSolution(newHash);
 
     await propagateBlockStatus(state, dispatch, details, newHash, false, root, newTrans);
+  }
+
+  function handleViewTransactions(): void {
+    setShowTrans(!showTrans);
+    dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: { ...details, showTrans: !showTrans } } });
   }
 
   return (
@@ -90,7 +92,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
               <React.Fragment>
                 <Form.Control type="text" defaultValue={merkleRoot} disabled={true} />
                 <InputGroup.Append>
-                  <InputGroup.Text className="show-trans-eye" onClick={() => setShowTrans(!showTrans)}>
+                  <InputGroup.Text className="show-trans-eye" onClick={() => handleViewTransactions()}>
                     {showTrans ? "🙈" : "🙉"}
                   </InputGroup.Text>
                 </InputGroup.Append>
@@ -110,21 +112,21 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
       </div>
 
       {showTrans && (
-        <div>
+        <div className="row flex-nowrap overflow-auto mx-2">
           {trans.map((transaction: ITransaction, i: number) => {
             return (
-              <div className="col-11 mx-auto mb-2 bg-light border border-dark p-1 rounded" key={Math.random()}>
+              <div className="col-12 mr-2 bg-light border border-dark p-1 rounded" key={Math.random()}>
                 <Form.Group className="mb-2 text-center">
                   <Form.Control
                     type="text"
                     value={transaction.from}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => calculateNewMerkleRoot(e, i, "from")}
+                    onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "from")}
                   />
                   <h3 className="my-0">↓</h3>
                   <Form.Control
                     type="text"
                     value={transaction.to}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => calculateNewMerkleRoot(e, i, "to")}
+                    onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "to")}
                   />
                 </Form.Group>
 
@@ -135,7 +137,9 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
                   <Form.Control
                     as="textarea"
                     value={transaction.message}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => calculateNewMerkleRoot(e, i, "message")}
+                    onChange={(e: TInputChange<HTMLTextAreaElement>) =>
+                      calculateNewMerkleRoot(e.target.value, i, "message")
+                    }
                   />
                 </InputGroup>
 
@@ -143,14 +147,14 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
                   <Form.Control
                     type="number"
                     value={transaction.amount && parseFloat(transaction.amount + "").toFixed(2)}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => calculateNewMerkleRoot(e, i, "amount")}
+                    onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "amount")}
                   />
                   <InputGroup.Append>
                     <InputGroup.Text>LC</InputGroup.Text>
                   </InputGroup.Append>
                 </InputGroup>
 
-                <InputGroup className="mb-2">
+                <InputGroup>
                   <InputGroup.Prepend>
                     <InputGroup.Text>Sig</InputGroup.Text>
                   </InputGroup.Prepend>

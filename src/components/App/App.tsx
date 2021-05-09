@@ -12,18 +12,18 @@ import { AppContext } from "../../context/AppContext";
 
 export default function App(): JSX.Element {
   const [state, dispatch] = useReducer(AppReducer, {
-    verifiedTrans: JSON.parse(localStorage.getItem("transactions") as string) ?? [],
-    selectedTrans: JSON.parse(localStorage.getItem("selectedTransactions") as string) ?? [],
+    verifiedTrans: JSON.parse(localStorage.getItem("verTrans") as string) ?? [],
+    selectedTrans: JSON.parse(localStorage.getItem("selTrans") as string) ?? [],
     users: JSON.parse(localStorage.getItem("users") as string) ?? [],
     chain: JSON.parse(localStorage.getItem("chain") as string) ?? [
       {
         index: 0,
         prevHash: "",
-        currHash: new Array(256).fill("0").join(""),
+        currHash: new Array(64).fill("0").join(""),
         transactions: [],
-        timestamp: Date.parse("04/31/2021"),
-      },
-    ],
+        timestamp: Date.parse("04/31/2021")
+      }
+    ]
   });
 
   // prevent re-rendering children when App re-renders

@@ -10,7 +10,7 @@ export default function TransactionLineUI(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   function selectTransaction(transaction: ITransaction): void {
-    let selectedTrans = (JSON.parse(localStorage.getItem("selectedTransactions") as string) as ITransaction[]) || [];
+    let selectedTrans = (JSON.parse(localStorage.getItem("selTrans") as string) as ITransaction[]) || [];
     const signatures = selectedTrans.map((x) => x.signature);
     const included = signatures.includes(transaction.signature);
 
@@ -63,7 +63,7 @@ export default function TransactionLineUI(): JSX.Element {
                 </InputGroup.Append>
               </InputGroup>
 
-              <InputGroup className="mb-2">
+              <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text>Sig</InputGroup.Text>
                 </InputGroup.Prepend>
