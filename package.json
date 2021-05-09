@@ -17,6 +17,7 @@
     "@babel/preset-env": "^7.13.12",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.23",
     "@types/node": "^14.14.37",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
@@ -32,7 +33,8 @@
   },
   "scripts": {
     "clean": "tsc -b --clean",
-    "dist": "tsc -p ./config/tsconfig.json",
+    "tsc": "tsc -p ./config/tsconfig.json",
+    "test": "jest --coverage --maxWorkers=50%",
     "lint": "npx eslint src -c config/.eslintrc.js",
     "lint:style": "npx stylelint src --config config/.stylelintrc.json",
     "start": "react-scripts start",
