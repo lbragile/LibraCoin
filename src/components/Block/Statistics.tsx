@@ -1,8 +1,9 @@
 import React, { useState, useRef, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
-import { IState, ITransaction } from "../../typings/AppTypes";
+import { IAction, IBlock, IState } from "../../typings/AppTypes";
 import { mine } from "../../utils/mine";
+import { propagateBlockStatus } from "../../utils/propagate";
 
 interface IStats {
   chain: boolean;
@@ -10,17 +11,11 @@ interface IStats {
   solution: string;
   setIsValid: (arg: boolean) => void;
   setSolution: (arg: string) => void;
-  propagateBlockStatus?: (
-    prevHash: string,
-    skipFirstUpdate: boolean,
-    newRoot?: string,
-    transactions?: ITransaction[],
-    timestamp?: number
-  ) => Promise<void>;
+  details?: IBlock;
 }
 
 export default function Statistics(props: IStats): JSX.Element {
-  const { state } = useContext(AppContext) as { state: IState };
+  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   const nonce = useRef<number>();
   const [header, setHeader] = useState<number>();
@@ -29,8 +24,8 @@ export default function Statistics(props: IStats): JSX.Element {
   async function handleMine() {
     nonce.current = Math.round(Math.random() * 1e6);
     const hash = await mine(nonce.current, setHeader, setTarget, props.setSolution, props.setIsValid);
-    if (props.propagateBlockStatus) {
-      await props.propagateBlockStatus(hash, true);
+    if (props.chain && props.details) {
+      await propagateBlockStatus(state, dispatch, props.details, hash, true);
     }
   }
 

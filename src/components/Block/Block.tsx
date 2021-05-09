@@ -2,13 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 
 import Statistics from "./Statistics";
+import { AppContext } from "../../context/AppContext";
 import { IAction, IBlock, IState, ITransaction } from "../../typings/AppTypes";
 
-import "./Block.css";
 import { digestMessage } from "../../utils/conversion";
-import { AppContext } from "../../context/AppContext";
-import { ACTIONS } from "../../enums/AppDispatchActions";
 import { calculateMerkleTreeFormation } from "../../utils/merkleTree";
+import { propagateBlockStatus } from "../../utils/propagate";
+import "./Block.css";
 
 type TChange = "from" | "to" | "message" | "amount";
 
@@ -24,35 +24,6 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
 
   // update timestamp when solution is mined
   useEffect(() => setTimestamp(Date.now()), [solution]);
-
-  async function propagateBlockStatus(
-    prevHash: string,
-    skipFirstUpdate: boolean,
-    newRoot?: string,
-    transactions?: ITransaction[],
-    timestamp = Date.now()
-  ): Promise<void> {
-    const index = details.index;
-
-    for (let i = index; i < state.chain.length; i++) {
-      const merkleRoot = newRoot && i === index ? newRoot : state.chain[i].merkleRoot;
-      const currHash = i === index ? prevHash : await digestMessage(i + prevHash + merkleRoot);
-
-      const newBlock = {
-        index: i,
-        timestamp,
-        prevHash: i === index ? details.prevHash : prevHash,
-        currHash,
-        transactions: i === index && transactions ? transactions : state.chain[i].transactions,
-        merkleRoot,
-        valid: skipFirstUpdate ? i === index : false
-      };
-
-      prevHash = currHash; // next block's prevHash is this block's currHash
-
-      dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: newBlock } });
-    }
-  }
 
   async function calculateNewMerkleRoot(
     e: React.ChangeEvent<HTMLInputElement>,
@@ -74,7 +45,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
     setMerkleRoot(root);
     setSolution(newHash);
 
-    await propagateBlockStatus(newHash, false, root, newTrans);
+    await propagateBlockStatus(state, dispatch, details, newHash, false, root, newTrans);
   }
 
   return (
@@ -130,11 +101,11 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
 
         <Statistics
           chain={true}
+          details={details}
           solution={solution}
           setSolution={setSolution}
           isValid={isValid}
           setIsValid={setIsValid}
-          propagateBlockStatus={propagateBlockStatus}
         />
       </div>
 
