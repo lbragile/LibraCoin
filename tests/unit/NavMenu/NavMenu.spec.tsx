@@ -1,5 +1,5 @@
 import React from "react";
-import NavMenu from "../../src/components/NavMenu/NavMenu";
+import NavMenu from "../../../src/components/NavMenu/NavMenu";
 
 import { render } from "@testing-library/react";
 
@@ -16,7 +16,7 @@ it("renders correctly", () => {
   const walletLink = getByText("Wallet");
   const mineLink = getByText("Mine");
   const blockChainLink = getByText("Blockchain");
-  const brandLink = container.querySelector(".navbar-brand");
+  const brandLink = container.querySelector(".navbar-brand") as HTMLAnchorElement;
   const brandImg = brandLink.firstChild;
 
   // links & images render properly
