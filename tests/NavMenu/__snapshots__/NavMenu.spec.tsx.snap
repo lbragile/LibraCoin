@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <nav
+    class="mb-3 navbar navbar-expand-lg navbar-light"
+  >
+    <a
+      class="navbar-brand"
+      href="https://github.com/lbragile/LibraCoin"
+    >
+      <img
+        alt="LibraCoin Logo"
+        src="./assets/libracoin-logo-256.png"
+        width="64"
+      />
+    </a>
+    <button
+      aria-controls="basic-navbar-nav"
+      aria-label="Toggle navigation"
+      class="navbar-toggler collapsed"
+      type="button"
+    >
+      <span
+        class="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      class="navbar-collapse collapse"
+      id="basic-navbar-nav"
+    >
+      <div
+        class="ml-auto navbar-nav"
+      >
+        <a
+          class="nav-link"
+          data-rb-event-key="/LibraCoin/wallet"
+          href="/LibraCoin/wallet"
+        >
+          Wallet
+        </a>
+        <a
+          class="nav-link"
+          data-rb-event-key="/LibraCoin/mine"
+          href="/LibraCoin/mine"
+        >
+          Mine
+        </a>
+        <a
+          class="nav-link"
+          data-rb-event-key="/LibraCoin/blockchain"
+          href="/LibraCoin/blockchain"
+        >
+          Blockchain
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>
+`;
