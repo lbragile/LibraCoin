@@ -1,5 +1,6 @@
 node_modules/
 build/
+coverage/
 .vscode/
 .env
 react-app-env.d.ts
