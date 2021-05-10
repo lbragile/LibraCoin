@@ -44,9 +44,11 @@ export default function KeyGeneration(): JSX.Element {
       publicKeyRef.current.innerText = publicKeyStr;
       privateKeyRef.current.innerText = new Array(privateKeyStr.length).fill("◦").join("");
     }
-    localStorage.setItem("user", JSON.stringify({ publicKey: publicKeyStr, privateKey: privateKeyStr, balance: 1000 })); // prettier-ignore
 
-    const newUsers = [...state.users, { publicKey: publicKeyStr, balance: 1000 }];
+    const balance = Number(1000).toFixed(2);
+    localStorage.setItem("user", JSON.stringify({ publicKey: publicKeyStr, privateKey: privateKeyStr, balance }));
+
+    const newUsers = [...state.users, { publicKey: publicKeyStr, balance }];
     dispatch({ type: ACTIONS.UPDATE_USERS, payload: { users: newUsers } });
   }
 

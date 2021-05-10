@@ -21,7 +21,8 @@ export default function App(): JSX.Element {
         prevHash: "",
         currHash: new Array(64).fill("0").join(""),
         transactions: [],
-        timestamp: Date.parse("04/31/2021")
+        timestamp: Date.parse("04/31/2021"),
+        merkleRoot: ""
       }
     ]
   });
