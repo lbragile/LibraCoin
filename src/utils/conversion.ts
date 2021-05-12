@@ -4,6 +4,11 @@ export function bufferToHex(hashBuffer: ArrayBuffer): string {
   return hashHex;
 }
 
+export async function CryptoKeyToHex(format: string, key: CryptoKey): Promise<string> {
+  const buf = (await window.crypto.subtle.exportKey(format, key)) as ArrayBuffer;
+  return bufferToHex(buf);
+}
+
 export async function digestMessage(message: string): Promise<string> {
   const msgUint8 = new TextEncoder().encode(message); // encode as (utf-8) Uint8Array
   const hashBuffer = await window.crypto.subtle.digest("SHA-256", msgUint8); // hash the message

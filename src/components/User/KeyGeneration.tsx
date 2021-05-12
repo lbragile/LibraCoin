@@ -5,51 +5,49 @@ import { AppContext } from "../../context/AppContext";
 import { IAction, IState } from "../../typings/AppTypes";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { copyKey } from "../../utils/copyInput";
-import { bufferToHex } from "../../utils/conversion";
+import { CryptoKeyToHex } from "../../utils/conversion";
 
 import "./User.css";
 
 export default function KeyGeneration(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
+  const numRows = useRef(3);
   const publicKeyRef = useRef<HTMLTextAreaElement>(null);
   const privateKeyRef = useRef<HTMLTextAreaElement>(null);
-
-  const numRows = useRef(3);
 
   const [copied, setCopied] = useState<boolean[]>([false, false]);
 
   // add a user if it's the first time visiting
   useEffect(() => {
-    if (!JSON.parse(localStorage.getItem("user") as string)?.publicKey) {
-      addUser();
-    }
+    addUser();
   }, []);
 
-  async function CryptoKeyToHex(format: string, key: CryptoKey): Promise<string> {
-    const buf = (await window.crypto.subtle.exportKey(format, key)) as ArrayBuffer;
-    return bufferToHex(buf);
-  }
-
   async function addUser(): Promise<void> {
-    const { publicKey, privateKey } = await window.crypto.subtle.generateKey(
-      { name: "ECDSA", namedCurve: "P-256" },
-      true,
-      ["sign", "verify"]
-    );
+    try {
+      if (!JSON.parse(localStorage.getItem("user") as string)?.publicKey) {
+        const { publicKey, privateKey } = await window.crypto.subtle.generateKey(
+          { name: "ECDSA", namedCurve: "P-256" },
+          true,
+          ["sign", "verify"]
+        );
 
-    const publicKeyStr = await CryptoKeyToHex("spki", publicKey as CryptoKey);
-    const privateKeyStr = await CryptoKeyToHex("pkcs8", privateKey as CryptoKey);
-    if (publicKeyRef.current && privateKeyRef.current) {
-      publicKeyRef.current.innerText = publicKeyStr;
-      privateKeyRef.current.innerText = new Array(privateKeyStr.length).fill("◦").join("");
+        const publicKeyStr = await CryptoKeyToHex("spki", publicKey as CryptoKey);
+        const privateKeyStr = await CryptoKeyToHex("pkcs8", privateKey as CryptoKey);
+        if (publicKeyRef.current && privateKeyRef.current) {
+          publicKeyRef.current.innerText = publicKeyStr;
+          privateKeyRef.current.innerText = new Array(privateKeyStr.length).fill("◦").join("");
+        }
+
+        const balance = Number(1000).toFixed(2);
+        localStorage.setItem("user", JSON.stringify({ publicKey: publicKeyStr, privateKey: privateKeyStr, balance }));
+
+        const newUsers = [...state.users, { publicKey: publicKeyStr, balance }];
+        dispatch({ type: ACTIONS.UPDATE_USERS, payload: { users: newUsers } });
+      }
+    } catch (err) {
+      console.error(err);
     }
-
-    const balance = Number(1000).toFixed(2);
-    localStorage.setItem("user", JSON.stringify({ publicKey: publicKeyStr, privateKey: privateKeyStr, balance }));
-
-    const newUsers = [...state.users, { publicKey: publicKeyStr, balance }];
-    dispatch({ type: ACTIONS.UPDATE_USERS, payload: { users: newUsers } });
   }
 
   const togglePrivateKey = () => {
@@ -65,13 +63,14 @@ export default function KeyGeneration(): JSX.Element {
   return (
     <div className="container-fluid row d-flex align-items-center justify-content-center mx-auto">
       <Form.Group className="user-key col-5 px-0">
-        <Form.Label className="mb-3">
+        <Form.Label className="mb-3" htmlFor="publicKey">
           <h4 className="mb-0">Public:</h4>
         </Form.Label>
         <Form.Control
+          id="publicKey"
           as="textarea"
           rows={numRows.current}
-          defaultValue={localStorage.getItem("user") && JSON.parse(localStorage.getItem("user") as string).publicKey}
+          defaultValue={JSON.parse(localStorage.getItem("user") as string)?.publicKey}
           isValid={copied[0]}
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "public")}
           ref={publicKeyRef}
@@ -80,7 +79,7 @@ export default function KeyGeneration(): JSX.Element {
       </Form.Group>
 
       <Form.Group className="user-key col-5 px-0 ml-4">
-        <Form.Label className="mb-3">
+        <Form.Label className="mb-3" htmlFor="privateKey">
           <h4 className="mb-0">
             Private:{" "}
             {JSON.parse(localStorage.getItem("user") as string)?.publicKey && (
@@ -91,6 +90,7 @@ export default function KeyGeneration(): JSX.Element {
           </h4>
         </Form.Label>
         <Form.Control
+          id="privateKey"
           as="textarea"
           rows={numRows.current}
           defaultValue={
