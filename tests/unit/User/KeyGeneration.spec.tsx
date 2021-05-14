@@ -8,16 +8,16 @@ import { AppContext } from "../../../src/context/AppContext";
 const { state, dispatch } = global;
 
 it("renders correctly", () => {
-  const { getByLabelText, getByRole } = render(
+  render(
     <AppContext.Provider value={{ state, dispatch }}>
       <KeyGeneration />
     </AppContext.Provider>
   );
 
-  const publicTitle = getByLabelText("Public:");
-  const privateTitle = getByLabelText("Private:");
-  const publicField = screen.getByText("Private:", { selector: "heading" });
-  const privateField = screen.getByText("Public:", { selector: "heading" });
+  const publicTitle = screen.getByRole("heading", { name: /Public:/i, level: 4 });
+  const privateTitle = screen.getByRole("heading", { name: /Private:/i, level: 4 });
+  const publicField = screen.getByRole("textbox", { name: /publicKey/i });
+  const privateField = screen.getByRole("textbox", { name: /privateKey/i });
 
   [publicTitle, privateTitle, publicField, privateField].forEach((elem) => {
     expect(elem).toBeInTheDocument();
@@ -26,60 +26,52 @@ it("renders correctly", () => {
   expect(screen).toMatchSnapshot();
 });
 
-// describe("input field text", () => {
-//   const privateKey = "308187020100301306072a8648ce3d020106082a8648ce3";
+describe("input field text", () => {
+  const privateKey = "308187020100301306072a8648ce3d020106082a8648ce3";
+  const privateKeyHidden = new Array(privateKey.length).fill("◦").join("");
 
-//   it("has no user in localStorage", () => {
-//     localStorage.removeItem("user");
+  it("has no user in localStorage", () => {
+    localStorage.removeItem("user");
 
-//     const { container } = render(
-//       <AppContext.Provider value={{ state, dispatch }}>
-//         <KeyGeneration />
-//       </AppContext.Provider>
-//     );
+    render(
+      <AppContext.Provider value={{ state, dispatch }}>
+        <KeyGeneration />
+      </AppContext.Provider>
+    );
 
-//     const publicField = container.querySelector("#publicKey") as HTMLTextAreaElement;
-//     const privateField = container.querySelector("#privateKey") as HTMLTextAreaElement;
-//     const eyes = container.querySelector("#private-reveal-eyes");
+    expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue("");
+    expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue("");
+    expect(screen.queryByText("👀")).not.toBeInTheDocument();
+  });
 
-//     expect(publicField.value).toBe("");
-//     expect(privateField.value).toBe("");
-//     expect(eyes).toBeFalsy();
-//   });
+  it("has user in localStorage", () => {
+    localStorage.setItem("user", JSON.stringify({ ...state.users[0], privateKey }));
 
-//   it("has user in localStorage", () => {
-//     localStorage.setItem("user", JSON.stringify({ ...state.users[0], privateKey }));
+    render(
+      <AppContext.Provider value={{ state, dispatch }}>
+        <KeyGeneration />
+      </AppContext.Provider>
+    );
 
-//     const { container } = render(
-//       <AppContext.Provider value={{ state, dispatch }}>
-//         <KeyGeneration />
-//       </AppContext.Provider>
-//     );
+    expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(state.users[0].publicKey);
+    expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKeyHidden);
+    expect(screen.getByText("👀")).toBeInTheDocument();
+  });
 
-//     const publicField = container.querySelector("#publicKey") as HTMLTextAreaElement;
-//     const privateField = container.querySelector("#privateKey") as HTMLTextAreaElement;
-//     const eyes = container.querySelector("#private-reveal-eyes");
+  it("reveals private key on eye click", () => {
+    localStorage.setItem("user", JSON.stringify({ ...state.users[0], privateKey }));
 
-//     expect(publicField.value).toBe(state.users[0].publicKey);
-//     expect(privateField.value).toBe(new Array(privateKey.length).fill("◦").join(""));
-//     expect(eyes).toBeTruthy();
-//   });
+    render(
+      <AppContext.Provider value={{ state, dispatch }}>
+        <KeyGeneration />
+      </AppContext.Provider>
+    );
 
-//   it("reveals private key on eye click", () => {
-//     localStorage.setItem("user", JSON.stringify({ ...state.users[0], privateKey }));
+    expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(state.users[0].publicKey);
+    expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKeyHidden);
 
-//     const { container } = render(
-//       <AppContext.Provider value={{ state, dispatch }}>
-//         <KeyGeneration />
-//       </AppContext.Provider>
-//     );
+    fireEvent.click(screen.getByText("👀"));
 
-//     const privateField = container.querySelector("#privateKey") as HTMLTextAreaElement;
-//     const originalValue = privateField.value;
-//     const eyes = container.querySelector("#private-reveal-eyes") as HTMLSpanElement;
-//     fireEvent.click(eyes);
-
-//     expect(originalValue).toBe(new Array(privateKey.length).fill("◦").join(""));
-//     expect(privateField.value).toBe(privateKey);
-//   });
-// });
+    expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKey);
+  });
+});

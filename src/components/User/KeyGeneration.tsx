@@ -67,7 +67,7 @@ export default function KeyGeneration(): JSX.Element {
           <h4 className="mb-0">Public:</h4>
         </Form.Label>
         <Form.Control
-          id="publicKey"
+          aria-label="publicKey"
           as="textarea"
           rows={numRows.current}
           defaultValue={JSON.parse(localStorage.getItem("user") as string)?.publicKey}
@@ -90,7 +90,7 @@ export default function KeyGeneration(): JSX.Element {
           </h4>
         </Form.Label>
         <Form.Control
-          id="privateKey"
+          aria-label="privateKey"
           as="textarea"
           rows={numRows.current}
           defaultValue={

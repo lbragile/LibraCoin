@@ -1,59 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div>
-  <div
-    class="container-fluid row d-flex align-items-center justify-content-center mx-auto"
-  >
-    <div
-      class="user-key col-5 px-0 form-group"
-    >
-      <label
-        class="mb-3 form-label"
-        for="publicKey"
-      >
-        <h4
-          class="mb-0"
-        >
-          Public:
-        </h4>
-      </label>
-      <textarea
-        class="form-control"
-        id="publicKey"
-        rows="3"
-      />
-      <div
-        class="valid-feedback"
-      >
-        Copied to clipboard!
-      </div>
-    </div>
-    <div
-      class="user-key col-5 px-0 ml-4 form-group"
-    >
-      <label
-        class="mb-3 form-label"
-        for="privateKey"
-      >
-        <h4
-          class="mb-0"
-        >
-          Private:
-           
-        </h4>
-      </label>
-      <textarea
-        class="form-control"
-        id="privateKey"
-        rows="3"
-      />
-      <div
-        class="valid-feedback"
-      >
-        Copied to clipboard!
-      </div>
-    </div>
-  </div>
-</div>
+Object {
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "logTestingPlaygroundURL": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+}
 `;
