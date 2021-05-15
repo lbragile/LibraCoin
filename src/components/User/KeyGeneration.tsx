@@ -24,29 +24,25 @@ export default function KeyGeneration(): JSX.Element {
   }, []);
 
   async function addUser(): Promise<void> {
-    try {
-      if (!JSON.parse(localStorage.getItem("user") as string)?.publicKey) {
-        const { publicKey, privateKey } = await window.crypto.subtle.generateKey(
-          { name: "ECDSA", namedCurve: "P-256" },
-          true,
-          ["sign", "verify"]
-        );
+    if (!JSON.parse(localStorage.getItem("user") as string)?.publicKey) {
+      const { publicKey, privateKey } = await window.crypto.subtle.generateKey(
+        { name: "ECDSA", namedCurve: "P-256" },
+        true,
+        ["sign", "verify"]
+      );
 
-        const publicKeyStr = await CryptoKeyToHex("spki", publicKey as CryptoKey);
-        const privateKeyStr = await CryptoKeyToHex("pkcs8", privateKey as CryptoKey);
-        if (publicKeyRef.current && privateKeyRef.current) {
-          publicKeyRef.current.innerText = publicKeyStr;
-          privateKeyRef.current.innerText = new Array(privateKeyStr.length).fill("◦").join("");
-        }
-
-        const balance = Number(1000).toFixed(2);
-        localStorage.setItem("user", JSON.stringify({ publicKey: publicKeyStr, privateKey: privateKeyStr, balance }));
-
-        const newUsers = [...state.users, { publicKey: publicKeyStr, balance }];
-        dispatch({ type: ACTIONS.UPDATE_USERS, payload: { users: newUsers } });
+      const publicKeyStr = await CryptoKeyToHex("spki", publicKey as CryptoKey);
+      const privateKeyStr = await CryptoKeyToHex("pkcs8", privateKey as CryptoKey);
+      if (publicKeyRef.current && privateKeyRef.current) {
+        publicKeyRef.current.innerText = publicKeyStr;
+        privateKeyRef.current.innerText = new Array(privateKeyStr.length).fill("◦").join("");
       }
-    } catch (err) {
-      console.error(err);
+
+      const balance = Number(1000).toFixed(2);
+      localStorage.setItem("user", JSON.stringify({ publicKey: publicKeyStr, privateKey: privateKeyStr, balance }));
+
+      const newUsers = [...state.users, { publicKey: publicKeyStr, balance }];
+      dispatch({ type: ACTIONS.UPDATE_USERS, payload: { users: newUsers } });
     }
   }
 

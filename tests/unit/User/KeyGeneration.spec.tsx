@@ -7,6 +7,28 @@ import { AppContext } from "../../../src/context/AppContext";
 
 const { state, dispatch } = global;
 
+beforeAll(() => {
+  const algorithm = { name: "ECDSA", namedCurve: "P-256" };
+  const privateKey: CryptoKey = { type: "private", extractable: true, algorithm, usages: ["sign"] };
+  const publicKey: CryptoKey = { type: "public", extractable: true, algorithm, usages: ["verify"] };
+  const generateKeyMock = jest.fn().mockReturnValue(new Promise((resolve) => resolve({ publicKey, privateKey })));
+
+  const exportKeyMock = jest.fn().mockImplementation((format: string): Promise<ArrayBuffer> => {
+    return new Promise((resolve) => resolve(Buffer.from(format === "spki" ? global.spki : global.pkcs8)));
+  });
+
+  Object.defineProperty(window, "crypto", {
+    value: { subtle: { exportKey: exportKeyMock, generateKey: generateKeyMock } },
+    configurable: true
+  });
+});
+
+afterAll(() => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  /* @ts-ignore */
+  delete window.crypto;
+});
+
 it("renders correctly", () => {
   const { asFragment } = render(
     <AppContext.Provider value={{ state, dispatch }}>
