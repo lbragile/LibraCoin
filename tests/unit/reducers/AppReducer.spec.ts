@@ -32,6 +32,8 @@ describe("Testing each reducer case", () => {
 
     test("ACTIONS.ADD_VERIFIED_TRANS", () => {
       const ogState = JSON.parse(JSON.stringify(state));
+      localStorage.setItem("verTrans", JSON.stringify(ogState.verifiedTrans));
+
       const output = AppReducer(ogState, { type: ACTIONS.ADD_VERIFIED_TRANS, payload: { trans } });
       expect(output.verifiedTrans).toStrictEqual([...ogState.verifiedTrans, trans]);
     });
@@ -80,7 +82,11 @@ describe("Testing each reducer case", () => {
 
     test("ACTIONS.UPDATE_BLOCK", () => {
       const ogState = JSON.parse(JSON.stringify(state));
+      localStorage.setItem("chain", JSON.stringify(ogState.chain));
+
+      // update timestamp of block at index 0
       block.index = 0;
+      block.timestamp = Date.parse("05/15/2021");
 
       const output = AppReducer(ogState, { type: ACTIONS.UPDATE_BLOCK, payload: { block } });
       ogState.chain[0] = block;
