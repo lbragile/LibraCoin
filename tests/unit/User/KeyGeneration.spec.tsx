@@ -5,7 +5,20 @@ import "@testing-library/jest-dom";
 import KeyGeneration from "../../../src/components/User/KeyGeneration";
 import { AppContext } from "../../../src/context/AppContext";
 
-const { state, dispatch } = global;
+const { state, dispatch, exportKeyMock, generateKeyMock } = global;
+
+beforeAll(() => {
+  Object.defineProperty(window, "crypto", {
+    value: { subtle: { exportKey: exportKeyMock, generateKey: generateKeyMock } },
+    configurable: true
+  });
+});
+
+afterAll(() => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  /* @ts-ignore */
+  delete window.crypto;
+});
 
 it("renders correctly", () => {
   const { asFragment } = render(
