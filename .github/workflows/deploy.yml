@@ -2,12 +2,13 @@ name: Continuous Deployment
 
 on:
   pull_request:
-    branches: ["master", "main"]
+    branches: ["master"]
+    types: ["closed"]
 
 jobs:
   build_and_deploy:
     runs-on: windows-latest
-    if: "!contains(github.event.head_commit.message, 'SKIP DEPLOY') && github.event.pull_request.merged == 'true'"
+    if: github.event.pull_request.merged == true
 
     steps:
       - uses: actions/checkout@v2
