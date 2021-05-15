@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="container-fluid row d-flex align-items-center justify-content-center mx-auto"
+  >
+    <div
+      class="user-key col-5 px-0 form-group"
+    >
+      <label
+        class="mb-3 form-label"
+        for="publicKey"
+      >
+        <h4
+          class="mb-0"
+        >
+          Public:
+        </h4>
+      </label>
+      <textarea
+        aria-label="publicKey"
+        class="form-control"
+        rows="3"
+      />
+      <div
+        class="valid-feedback"
+      >
+        Copied to clipboard!
+      </div>
+    </div>
+    <div
+      class="user-key col-5 px-0 ml-4 form-group"
+    >
+      <label
+        class="mb-3 form-label"
+        for="privateKey"
+      >
+        <h4
+          class="mb-0"
+        >
+          Private: 
+        </h4>
+      </label>
+      <textarea
+        aria-label="privateKey"
+        class="form-control"
+        rows="3"
+      />
+      <div
+        class="valid-feedback"
+      >
+        Copied to clipboard!
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

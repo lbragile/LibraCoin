@@ -12,7 +12,7 @@ export default function UserItems(): JSX.Element {
 
   return (
     <div className="container-fluid mb-2">
-      <h3 className="font-weight-bold"> Users</h3>
+      <h3 className="font-weight-bold">Users</h3>
       <div className="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
         {state.users?.map((user: IUser) => {
           return (
@@ -20,6 +20,7 @@ export default function UserItems(): JSX.Element {
               <Form.Group>
                 <Form.Text className="font-weight-bold mb-1 my-0">Public Key</Form.Text>
                 <Form.Control
+                  aria-label="User Public Key"
                   type="text"
                   className="text-truncate"
                   onFocus={(e: React.FocusEvent<HTMLInputElement>) => copyKey(e, setCopied)}
@@ -30,7 +31,7 @@ export default function UserItems(): JSX.Element {
               </Form.Group>
 
               <InputGroup className="mt-2">
-                <Form.Control type="number" defaultValue={user.balance.toFixed(2)} disabled={true} />
+                <Form.Control aria-label="balance" type="number" defaultValue={user.balance} disabled={true} />
                 <InputGroup.Append>
                   <InputGroup.Text>LC</InputGroup.Text>
                 </InputGroup.Append>

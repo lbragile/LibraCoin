@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<div>
+<DocumentFragment>
   <nav
     class="mb-3 navbar navbar-expand-lg navbar-light"
   >
     <a
+      aria-label="LibraCoin Logo"
       class="navbar-brand"
       href="https://github.com/lbragile/LibraCoin"
     >
@@ -56,5 +57,5 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
   </nav>
-</div>
+</DocumentFragment>
 `;

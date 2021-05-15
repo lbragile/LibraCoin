@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="container-fluid mb-2"
+  >
+    <h3
+      class="font-weight-bold"
+    >
+      Users
+    </h3>
+    <div
+      class="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded"
+    >
+      <form
+        class="user-item rounded"
+      >
+        <div
+          class="form-group"
+        >
+          <small
+            class="font-weight-bold mb-1 my-0 form-text"
+          >
+            Public Key
+          </small>
+          <input
+            aria-label="User Public Key"
+            class="text-truncate form-control"
+            type="text"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babbc58c05cdb2d0676239e9f9958e932d2ebfff03b114582751f1ac63b410382cc2ad467c0cca079d7e4f3dd20aa37642e4b0f7a767f7394e92ab"
+          />
+          <div
+            class="valid-feedback"
+          >
+            Copied to clipboard
+          </div>
+        </div>
+        <div
+          class="mt-2 input-group"
+        >
+          <input
+            aria-label="balance"
+            class="form-control"
+            disabled=""
+            type="number"
+            value="1000"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;
