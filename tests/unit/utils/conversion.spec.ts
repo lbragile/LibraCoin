@@ -15,13 +15,7 @@ test("bufferToHex", () => {
 });
 
 test("CryptoKeyToHex", async () => {
-  const algorithm = { name: "ECDSA", namedCurve: "P-256" };
-  const privateKey: CryptoKey = { type: "private", extractable: true, algorithm, usages: ["sign"] };
-  const publicKey: CryptoKey = { type: "public", extractable: true, algorithm, usages: ["verify"] };
-
-  const exportKeyMock = jest.fn().mockImplementation((format: string): Promise<ArrayBuffer> => {
-    return new Promise((resolve) => resolve(Buffer.from(format === "spki" ? global.spki : global.pkcs8)));
-  });
+  const { publicKey, privateKey, exportKeyMock } = global;
 
   Object.defineProperty(window, "crypto", { value: { subtle: { exportKey: exportKeyMock } }, configurable: true });
 
@@ -37,9 +31,7 @@ test("CryptoKeyToHex", async () => {
 });
 
 test("digestMessage", async () => {
-  const LibraCoinEncode = new Uint8Array([76, 105, 98, 114, 97, 67, 111, 105, 110]);
-  const LibraCoinSHA = "0c76d1c0fd368a15e15438e0689a97d3e2b7b6a8d2254e4fe9ac89b0a51b5fbc";
-  const digestMock = jest.fn().mockImplementationOnce(() => Buffer.from(LibraCoinSHA));
+  const { LibraCoinSHA, LibraCoinEncode, digestMock } = global;
   Object.defineProperty(window, "crypto", { value: { subtle: { digest: digestMock } }, configurable: true });
 
   expect(await digestMessage("LibraCoin")).toBe(bufferToHex(Buffer.from(LibraCoinSHA)));
@@ -47,7 +39,7 @@ test("digestMessage", async () => {
 });
 
 test("randomHash", () => {
-  const getRandomValuesMock = jest.fn().mockImplementation((len: number) => new Uint32Array(len));
+  const { getRandomValuesMock } = global;
   Object.defineProperty(window, "crypto", { value: { getRandomValues: getRandomValuesMock }, configurable: true });
 
   // bufferToHex doubles the length since each byte is 2 hex bits max (due to padStart)
