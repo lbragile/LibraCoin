@@ -5,8 +5,7 @@ export const AppReducer = (state: IState, action: IAction): IState => {
   switch (action.type) {
     case ACTIONS.ADD_VERIFIED_TRANS: {
       const newTrans = (action.payload as { trans: ITransaction }).trans;
-      const prevTrans = JSON.parse(localStorage.getItem("verTrans") as string) ?? [];
-      const verifiedTrans = [...prevTrans, newTrans];
+      const verifiedTrans = [...state.verifiedTrans, newTrans];
       localStorage.setItem("verTrans", JSON.stringify(verifiedTrans));
       return { ...state, verifiedTrans };
     }
@@ -39,7 +38,7 @@ export const AppReducer = (state: IState, action: IAction): IState => {
 
     case ACTIONS.UPDATE_BLOCK: {
       const { block } = action.payload as { block: IBlock };
-      const chain = JSON.parse(localStorage.getItem("chain") as string);
+      const chain = state.chain;
       chain[block.index] = block;
       localStorage.setItem("chain", JSON.stringify(chain));
       return { ...state, chain };

@@ -12,7 +12,7 @@ interface IActiveStateProps {
 }
 
 it("renders correctly", () => {
-  render(<NavMenu />);
+  const { asFragment } = render(<NavMenu />);
 
   const walletLink = screen.getByText("Wallet");
   const mineLink = screen.getByText("Mine");
@@ -31,7 +31,7 @@ it("renders correctly", () => {
   expect(blockChainLink).toHaveAttribute("href", "/LibraCoin/blockchain");
   expect(brandLink).toHaveAttribute("href", "https://github.com/lbragile/LibraCoin");
 
-  expect(screen).toMatchSnapshot();
+  expect(asFragment()).toMatchSnapshot();
 });
 
 describe("Check active state of nav links for different URLs", () => {

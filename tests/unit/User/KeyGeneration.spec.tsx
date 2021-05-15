@@ -8,7 +8,7 @@ import { AppContext } from "../../../src/context/AppContext";
 const { state, dispatch } = global;
 
 it("renders correctly", () => {
-  render(
+  const { asFragment } = render(
     <AppContext.Provider value={{ state, dispatch }}>
       <KeyGeneration />
     </AppContext.Provider>
@@ -23,7 +23,7 @@ it("renders correctly", () => {
     expect(elem).toBeInTheDocument();
   });
 
-  expect(screen).toMatchSnapshot();
+  expect(asFragment()).toMatchSnapshot();
 });
 
 describe("input field text", () => {

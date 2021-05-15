@@ -2,7 +2,15 @@ import { AppReducer } from "../../src/reducers/AppReducer";
 import { IAction, IState } from "../../src/typings/AppTypes";
 
 const state: IState = {
-  verifiedTrans: [],
+  verifiedTrans: [
+    {
+      to: "A",
+      from: "B",
+      amount: 1.23,
+      message: "First Transaction",
+      signature: "ABCD"
+    }
+  ],
   selectedTrans: [],
   users: [
     {
