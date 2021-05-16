@@ -40,47 +40,43 @@ it("renders correctly", () => {
 });
 
 describe("input field text", () => {
-  const privateKey = "308187020100301306072a8648ce3d020106082a8648ce3";
+  const privateKey = state.user.privateKey;
   const privateKeyHidden = new Array(privateKey.length).fill("◦").join("");
 
   it("has no user in localStorage", () => {
-    localStorage.removeItem("user");
-
+    const ogState = JSON.parse(JSON.stringify(state));
+    ogState.user = {};
     render(
-      <AppContext.Provider value={{ state, dispatch }}>
+      <AppContext.Provider value={{ state: ogState, dispatch }}>
         <KeyGeneration />
       </AppContext.Provider>
     );
 
     expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue("");
     expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue("");
-    expect(screen.queryByText("👀")).not.toBeInTheDocument();
+    expect(screen.getByText("👀")).toBeInTheDocument();
   });
 
   it("has user in localStorage", () => {
-    localStorage.setItem("user", JSON.stringify({ ...state.users[0], privateKey }));
-
     render(
       <AppContext.Provider value={{ state, dispatch }}>
         <KeyGeneration />
       </AppContext.Provider>
     );
 
-    expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(state.users[0].publicKey);
+    expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(state.user.publicKey);
     expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKeyHidden);
     expect(screen.getByText("👀")).toBeInTheDocument();
   });
 
   it("reveals private key on eye click", () => {
-    localStorage.setItem("user", JSON.stringify({ ...state.users[0], privateKey }));
-
     render(
       <AppContext.Provider value={{ state, dispatch }}>
         <KeyGeneration />
       </AppContext.Provider>
     );
 
-    expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(state.users[0].publicKey);
+    expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(state.user.publicKey);
     expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKeyHidden);
 
     fireEvent.click(screen.getByText("👀"));

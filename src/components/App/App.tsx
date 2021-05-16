@@ -15,6 +15,7 @@ export default function App(): JSX.Element {
     verifiedTrans: JSON.parse(localStorage.getItem("verTrans") as string) ?? [],
     selectedTrans: JSON.parse(localStorage.getItem("selTrans") as string) ?? [],
     users: JSON.parse(localStorage.getItem("users") as string) ?? [],
+    user: JSON.parse(localStorage.getItem("user") as string) ?? {},
     chain: JSON.parse(localStorage.getItem("chain") as string) ?? [
       {
         index: 0,

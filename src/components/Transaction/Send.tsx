@@ -14,13 +14,13 @@ export default function Send(props: ISend): JSX.Element {
   return (
     <Form noValidate className="col-12 col-lg-5 my-2 my-lg-0 trans-form" onSubmit={(e) => props.handleSubmit(e)}>
       <Form.Group>
-        <Form.Control type="text" defaultValue={props.details.to} disabled={true} />
+        <Form.Control className="text-truncate" type="text" defaultValue={props.details.to} readOnly />
         <Form.Text className="text-muted">The receiver&apos;s public key</Form.Text>
       </Form.Group>
 
       <Form.Group>
         <InputGroup className="mb-2">
-          <Form.Control type="number" defaultValue={props.details.amount} disabled={true} />
+          <Form.Control type="number" defaultValue={props.details.amount} disabled />
           <InputGroup.Prepend>
             <InputGroup.Text>LC</InputGroup.Text>
           </InputGroup.Prepend>
@@ -33,12 +33,12 @@ export default function Send(props: ISend): JSX.Element {
           defaultValue={props.details.message}
           rows={5}
           placeholder="optional message..."
-          disabled={true}
+          readOnly
         />
       </Form.Group>
 
       <Form.Group>
-        <Form.Control type="text" defaultValue={props.details.signature} disabled={true} />
+        <Form.Control type="text" defaultValue={props.details.signature} readOnly />
         <Form.Text className="text-muted">
           Transaction Signature → receiver uses this along with your public key to verify transaction.
         </Form.Text>

@@ -24,7 +24,7 @@ export default function KeyGeneration(): JSX.Element {
   }, []);
 
   async function addUser(): Promise<void> {
-    if (!JSON.parse(localStorage.getItem("user") as string)?.publicKey) {
+    if (!state.user.publicKey) {
       const { publicKey, privateKey } = await window.crypto.subtle.generateKey(
         { name: "ECDSA", namedCurve: "P-256" },
         true,
@@ -39,7 +39,8 @@ export default function KeyGeneration(): JSX.Element {
       }
 
       const balance = Number(1000).toFixed(2);
-      localStorage.setItem("user", JSON.stringify({ publicKey: publicKeyStr, privateKey: privateKeyStr, balance }));
+      const mainUser = { publicKey: publicKeyStr, privateKey: privateKeyStr, balance };
+      dispatch({ type: ACTIONS.SET_MAIN_USER, payload: { user: mainUser } });
 
       const newUsers = [...state.users, { publicKey: publicKeyStr, balance }];
       dispatch({ type: ACTIONS.UPDATE_USERS, payload: { users: newUsers } });
@@ -49,7 +50,7 @@ export default function KeyGeneration(): JSX.Element {
   const togglePrivateKey = () => {
     if (privateKeyRef.current) {
       if (privateKeyRef.current.value.includes("◦")) {
-        privateKeyRef.current.value = JSON.parse(localStorage.getItem("user") as string).privateKey;
+        privateKeyRef.current.value = state.user.privateKey;
       } else {
         privateKeyRef.current.value = new Array(privateKeyRef.current.value.length).fill("◦").join("");
       }
@@ -66,9 +67,11 @@ export default function KeyGeneration(): JSX.Element {
           aria-label="publicKey"
           as="textarea"
           rows={numRows.current}
-          defaultValue={JSON.parse(localStorage.getItem("user") as string)?.publicKey}
+          defaultValue={state.user?.publicKey ?? ""}
           isValid={copied[0]}
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "public")}
+          onBlur={() => setCopied([false, false])}
+          readOnly
           ref={publicKeyRef}
         />
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
@@ -78,24 +81,20 @@ export default function KeyGeneration(): JSX.Element {
         <Form.Label className="mb-3" htmlFor="privateKey">
           <h4 className="mb-0">
             Private:{" "}
-            {JSON.parse(localStorage.getItem("user") as string)?.publicKey && (
-              <span id="private-reveal-eyes" onClick={togglePrivateKey}>
-                👀
-              </span>
-            )}
+            <span id="private-reveal-eyes" onClick={togglePrivateKey}>
+              👀
+            </span>
           </h4>
         </Form.Label>
         <Form.Control
           aria-label="privateKey"
           as="textarea"
           rows={numRows.current}
-          defaultValue={
-            localStorage.getItem("user")
-              ? new Array(JSON.parse(localStorage.getItem("user") as string).privateKey.length).fill("◦").join("")
-              : ""
-          }
+          defaultValue={state.user?.privateKey ? new Array(state.user.privateKey.length).fill("◦").join("") : ""}
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "private")}
+          onBlur={() => setCopied([false, false])}
           isValid={copied[1]}
+          readOnly
           ref={privateKeyRef}
         />
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>

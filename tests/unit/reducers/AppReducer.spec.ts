@@ -32,10 +32,10 @@ describe("Testing each reducer case", () => {
 
     test("ACTIONS.ADD_VERIFIED_TRANS", () => {
       const ogState = JSON.parse(JSON.stringify(state));
-      localStorage.setItem("verTrans", JSON.stringify(ogState.verifiedTrans));
+      const expectedOutput = [...ogState.verifiedTrans, trans];
 
       const output = AppReducer(ogState, { type: ACTIONS.ADD_VERIFIED_TRANS, payload: { trans } });
-      expect(output.verifiedTrans).toStrictEqual([...ogState.verifiedTrans, trans]);
+      expect(output.verifiedTrans).toStrictEqual(expectedOutput);
     });
 
     test("ACTIONS.UPDATE_VERIFIED_TRANS (no match)", () => {
@@ -75,9 +75,10 @@ describe("Testing each reducer case", () => {
 
     test("ACTIONS.ADD_BLOCK", () => {
       const ogState = JSON.parse(JSON.stringify(state));
+      const expectedOutput = [...ogState.chain, block];
 
       const output = AppReducer(ogState, { type: ACTIONS.ADD_BLOCK, payload: { block } });
-      expect(output.chain).toStrictEqual([...ogState.chain, block]);
+      expect(output.chain).toStrictEqual(expectedOutput);
     });
 
     test("ACTIONS.UPDATE_BLOCK", () => {

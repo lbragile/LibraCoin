@@ -6,11 +6,11 @@ import { IAction, IState, ITransaction } from "../../typings/AppTypes";
 
 import "./Transaction.css";
 
-export default function TransactionLineUI(): JSX.Element {
+export default function TransactionItems(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   function selectTransaction(transaction: ITransaction): void {
-    let selectedTrans = (JSON.parse(localStorage.getItem("selTrans") as string) as ITransaction[]) || [];
+    let selectedTrans: ITransaction[] = JSON.parse(JSON.stringify(state)).selectedTrans;
     const signatures = selectedTrans.map((x) => x.signature);
     const included = signatures.includes(transaction.signature);
 
@@ -33,7 +33,7 @@ export default function TransactionLineUI(): JSX.Element {
     <div className="container-fluid">
       <h3 className="font-weight-bold">Verified Transactions</h3>
       <div className="trans-list row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
-        {state.verifiedTrans.map((transaction: ITransaction) => {
+        {state.verifiedTrans.map((transaction: ITransaction, i: number) => {
           return (
             <div
               className={
@@ -41,23 +41,23 @@ export default function TransactionLineUI(): JSX.Element {
                 (state.selectedTrans.map((x) => x.signature).includes(transaction.signature) ? "selected" : "not-selected") // prettier-ignore
               }
               onClick={() => selectTransaction(transaction)}
-              key={Math.random()}
+              key={`verifiedTrans${i}`}
             >
               <Form.Group className="mb-2 text-center">
-                <Form.Control type="text" defaultValue={transaction.from} disabled={true} />
+                <Form.Control className="text-truncate" type="text" defaultValue={transaction.from} readOnly />
                 <h3 className="my-0">↓</h3>
-                <Form.Control type="text" defaultValue={transaction.to} disabled={true} />
+                <Form.Control className="text-truncate" type="text" defaultValue={transaction.to} readOnly />
               </Form.Group>
 
               <InputGroup className="mb-2">
                 <InputGroup.Prepend>
                   <InputGroup.Text>Msg</InputGroup.Text>
                 </InputGroup.Prepend>
-                <Form.Control as="textarea" defaultValue={transaction.message} disabled={true} />
+                <Form.Control as="textarea" defaultValue={transaction.message} readOnly />
               </InputGroup>
 
               <InputGroup className="mb-2">
-                <Form.Control type="number" defaultValue={transaction.amount} disabled={true} />
+                <Form.Control type="number" defaultValue={transaction.amount} disabled />
                 <InputGroup.Append>
                   <InputGroup.Text>LC</InputGroup.Text>
                 </InputGroup.Append>
@@ -67,7 +67,7 @@ export default function TransactionLineUI(): JSX.Element {
                 <InputGroup.Prepend>
                   <InputGroup.Text>Sig</InputGroup.Text>
                 </InputGroup.Prepend>
-                <Form.Control type="text" defaultValue={transaction.signature} disabled={true} />
+                <Form.Control className="text-truncate" type="text" defaultValue={transaction.signature} readOnly />
               </InputGroup>
             </div>
           );
