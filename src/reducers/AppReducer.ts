@@ -5,10 +5,9 @@ export const AppReducer = (state: IState, action: IAction): IState => {
   switch (action.type) {
     case ACTIONS.ADD_VERIFIED_TRANS: {
       const newTrans = (action.payload as { trans: ITransaction }).trans;
-      const prevTrans = JSON.parse(localStorage.getItem("verTrans") as string) ?? [];
-      const verifiedTrans = [...prevTrans, newTrans];
-      localStorage.setItem("verTrans", JSON.stringify(verifiedTrans));
-      return { ...state, verifiedTrans };
+      state.verifiedTrans.push(newTrans);
+      localStorage.setItem("verTrans", JSON.stringify(state.verifiedTrans));
+      return state;
     }
 
     case ACTIONS.UPDATE_VERIFIED_TRANS: {

@@ -115,7 +115,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
         <div className="row flex-nowrap overflow-auto mx-2">
           {trans.map((transaction: ITransaction, i: number) => {
             return (
-              <div className="col-12 mr-2 bg-light border border-dark p-1 rounded" key={Math.random()}>
+              <div className="col-12 mr-2 bg-light border border-dark p-1 rounded" key={`blockTrans${i}`}>
                 <Form.Group className="mb-2 text-center">
                   <Form.Control
                     type="text"

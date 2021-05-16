@@ -14,9 +14,9 @@ export default function UserItems(): JSX.Element {
     <div className="container-fluid mb-2">
       <h3 className="font-weight-bold">Users</h3>
       <div className="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
-        {state.users?.map((user: IUser) => {
+        {state.users?.map((user: IUser, i: number) => {
           return (
-            <Form className="user-item rounded" key={Math.random()}>
+            <Form className="user-item rounded" key={`user${i}`}>
               <Form.Group>
                 <Form.Text className="font-weight-bold mb-1 my-0">Public Key</Form.Text>
                 <Form.Control
@@ -24,6 +24,7 @@ export default function UserItems(): JSX.Element {
                   type="text"
                   className="text-truncate"
                   onFocus={(e: React.FocusEvent<HTMLInputElement>) => copyKey(e, setCopied)}
+                  onBlur={() => setCopied([false])}
                   defaultValue={user.publicKey}
                   isValid={copied[0]}
                 />

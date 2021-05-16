@@ -6,11 +6,11 @@ import { IAction, IState, ITransaction } from "../../typings/AppTypes";
 
 import "./Transaction.css";
 
-export default function TransactionLineUI(): JSX.Element {
+export default function TransactionItems(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   function selectTransaction(transaction: ITransaction): void {
-    let selectedTrans = (JSON.parse(localStorage.getItem("selTrans") as string) as ITransaction[]) || [];
+    let { selectedTrans } = state;
     const signatures = selectedTrans.map((x) => x.signature);
     const included = signatures.includes(transaction.signature);
 
@@ -33,7 +33,7 @@ export default function TransactionLineUI(): JSX.Element {
     <div className="container-fluid">
       <h3 className="font-weight-bold">Verified Transactions</h3>
       <div className="trans-list row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
-        {state.verifiedTrans.map((transaction: ITransaction) => {
+        {state.verifiedTrans.map((transaction: ITransaction, i: number) => {
           return (
             <div
               className={
@@ -41,7 +41,7 @@ export default function TransactionLineUI(): JSX.Element {
                 (state.selectedTrans.map((x) => x.signature).includes(transaction.signature) ? "selected" : "not-selected") // prettier-ignore
               }
               onClick={() => selectTransaction(transaction)}
-              key={Math.random()}
+              key={`verifiedTrans${i}`}
             >
               <Form.Group className="mb-2 text-center">
                 <Form.Control type="text" defaultValue={transaction.from} disabled={true} />

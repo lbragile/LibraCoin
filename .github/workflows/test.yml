@@ -2,7 +2,7 @@ name: Testing
 
 on:
   push:
-    branches: ["test"]
+    branches: ["develop", "test"]
 
 jobs:
   unit-testing:

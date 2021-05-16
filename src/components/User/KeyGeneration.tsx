@@ -69,6 +69,7 @@ export default function KeyGeneration(): JSX.Element {
           defaultValue={JSON.parse(localStorage.getItem("user") as string)?.publicKey}
           isValid={copied[0]}
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "public")}
+          onBlur={() => setCopied([false, false])}
           ref={publicKeyRef}
         />
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
@@ -95,6 +96,7 @@ export default function KeyGeneration(): JSX.Element {
               : ""
           }
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "private")}
+          onBlur={() => setCopied([false, false])}
           isValid={copied[1]}
           ref={privateKeyRef}
         />

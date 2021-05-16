@@ -11,8 +11,8 @@ export default function BlockChain(): JSX.Element {
 
   return (
     <div className="mx-3 row flex-nowrap overflow-auto">
-      {state.chain.map((block) => (
-        <Block details={block} key={Math.random()} />
+      {state.chain.map((block, i: number) => (
+        <Block details={block} key={`block${i}`} />
       ))}
     </div>
   );
