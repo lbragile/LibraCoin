@@ -27,8 +27,9 @@ exports[`renders correctly 1`] = `
           <input
             aria-label="User Public Key"
             class="text-truncate form-control"
+            readonly=""
             type="text"
-            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babbc58c05cdb2d0676239e9f9958e932d2ebfff03b114582751f1ac63b410382cc2ad467c0cca079d7e4f3dd20aa37642e4b0f7a767f7394e92ab"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
           />
           <div
             class="valid-feedback"

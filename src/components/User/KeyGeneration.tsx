@@ -67,7 +67,7 @@ export default function KeyGeneration(): JSX.Element {
           aria-label="publicKey"
           as="textarea"
           rows={numRows.current}
-          defaultValue={state.user.publicKey}
+          defaultValue={state.user?.publicKey ?? ""}
           isValid={copied[0]}
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "public")}
           onBlur={() => setCopied([false, false])}
@@ -90,7 +90,7 @@ export default function KeyGeneration(): JSX.Element {
           aria-label="privateKey"
           as="textarea"
           rows={numRows.current}
-          defaultValue={state.user.privateKey ? new Array(state.user.privateKey.length).fill("◦").join("") : ""}
+          defaultValue={state.user?.privateKey ? new Array(state.user.privateKey.length).fill("◦").join("") : ""}
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "private")}
           onBlur={() => setCopied([false, false])}
           isValid={copied[1]}

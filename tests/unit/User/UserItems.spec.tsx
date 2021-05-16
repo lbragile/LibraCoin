@@ -25,7 +25,7 @@ it("renders correctly", () => {
   expect(balance.length).toEqual(1);
 
   expect(publicKey).toBeEnabled();
-  expect(publicKey.value.length).toEqual(182);
+  expect(publicKey.value.length).toEqual(state.user.publicKey.length);
 
   expect(asFragment()).toMatchSnapshot();
 });
@@ -45,6 +45,6 @@ it("shows 'copied to clipboard' when public key field is focused", () => {
   publicKeyField.focus();
 
   publicKeyField = screen.getByRole("textbox", { name: /User Public Key/i });
-  expect(publicKeyField).not.toHaveFocus(); // will not have focus due to event handler
+  expect(publicKeyField).toHaveFocus();
   expect(publicKeyField).toHaveClass("is-valid");
 });
