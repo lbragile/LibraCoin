@@ -20,13 +20,16 @@ export default function Statistics(props: IStats): JSX.Element {
   const nonce = useRef<number>();
   const [header, setHeader] = useState<number>();
   const [target, setTarget] = useState<string>();
+  const [disableMineBtn, setDisableMineBtn] = useState<boolean>(false);
 
   async function handleMine() {
+    setDisableMineBtn(true);
     nonce.current = Math.round(Math.random() * 1e6);
     const hash = await mine(nonce.current, setHeader, setTarget, props.setSolution, props.setIsValid);
     if (props.chain && props.details) {
       await propagateBlockStatus(state, dispatch, props.details, hash, true);
     }
+    setDisableMineBtn(false);
   }
 
   return (
@@ -67,10 +70,12 @@ export default function Statistics(props: IStats): JSX.Element {
       <Button
         variant="primary"
         className="btn-block d-block mt-3"
-        disabled={props.isValid || (!props.chain && state.selectedTrans.length === 0)}
+        disabled={props.isValid || (!props.chain && state.selectedTrans.length === 0) || disableMineBtn}
         onClick={() => handleMine()}
       >
-        <h4 className="m-0">Mine</h4>
+        <h4 className="m-0">
+          Mine {disableMineBtn && <span className="spinner-border spinner-border-md mx-3" role="status" />}
+        </h4>
       </Button>
     </div>
   );

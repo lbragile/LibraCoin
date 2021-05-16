@@ -27,6 +27,7 @@ export default function UserItems(): JSX.Element {
                   onBlur={() => setCopied([false])}
                   defaultValue={user.publicKey}
                   isValid={copied[0]}
+                  readOnly={true}
                 />
                 <Form.Control.Feedback type="valid">Copied to clipboard</Form.Control.Feedback>
               </Form.Group>

@@ -10,7 +10,7 @@ export default function TransactionItems(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   function selectTransaction(transaction: ITransaction): void {
-    let { selectedTrans } = state;
+    let selectedTrans: ITransaction[] = JSON.parse(JSON.stringify(state)).selectedTrans;
     const signatures = selectedTrans.map((x) => x.signature);
     const included = signatures.includes(transaction.signature);
 

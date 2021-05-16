@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import { IAction, ITransaction } from "../../typings/AppTypes";
+import { IAction, IState, ITransaction } from "../../typings/AppTypes";
 import { digestMessage } from "../../utils/conversion";
 
 import Send from "./Send";
@@ -9,14 +9,14 @@ import Sign from "./Sign";
 import "./Transaction.css";
 
 export default function Transaction(): JSX.Element {
-  const { dispatch } = useContext(AppContext) as { dispatch: React.Dispatch<IAction> };
+  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   const [validated, setValidated] = useState<boolean>(false);
   const [signed, setSigned] = useState<boolean>(false);
 
   const formDetails = useRef<ITransaction>({
     to: "",
-    from: JSON.parse(localStorage.getItem("user") as string)?.publicKey ?? "",
+    from: state.user.publicKey ?? "",
     amount: undefined,
     message: "",
     signature: ""
@@ -24,6 +24,7 @@ export default function Transaction(): JSX.Element {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setValidated(true);
 
     const form = e.currentTarget;
     if (form.checkValidity()) {
@@ -36,10 +37,11 @@ export default function Transaction(): JSX.Element {
         formDetails.current.signature = await digestMessage(message);
       } else {
         // signed the transaction and need to send now
-        dispatch({ type: ACTIONS.ADD_VERIFIED_TRANS, payload: { trans: formDetails.current } });
+        const trans = JSON.parse(JSON.stringify(formDetails.current)); // create separate reference
+        dispatch({ type: ACTIONS.ADD_VERIFIED_TRANS, payload: { trans } });
+        setValidated(false);
       }
 
-      setValidated(!signed);
       setSigned(!signed);
     }
   };

@@ -13,6 +13,10 @@ export interface IUser {
   balance: number;
 }
 
+export interface IMainUser extends IUser {
+  privateKey: string;
+}
+
 export interface IBlock {
   index: number;
   prevHash: string;
@@ -27,6 +31,7 @@ export interface IState {
   verifiedTrans: ITransaction[];
   selectedTrans: ITransaction[];
   users: IUser[];
+  user: IMainUser;
   chain: IBlock[];
 }
 
