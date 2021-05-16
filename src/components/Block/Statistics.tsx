@@ -38,21 +38,21 @@ export default function Statistics(props: IStats): JSX.Element {
         <InputGroup.Prepend>
           <InputGroup.Text>Nonce</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control type="number" defaultValue={props.solution ? nonce.current : ""} disabled={true} />
+        <Form.Control type="number" defaultValue={props.solution ? nonce.current : ""} disabled />
       </InputGroup>
 
       <InputGroup className="my-2">
         <InputGroup.Prepend>
           <InputGroup.Text>Header</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control type="number" defaultValue={header} disabled={true} />
+        <Form.Control type="number" defaultValue={header} disabled />
       </InputGroup>
 
       <InputGroup className="my-2">
         <InputGroup.Prepend>
           <InputGroup.Text className="font-weight-bold">Target</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control type="text" defaultValue={target} disabled={true} />
+        <Form.Control className="text-truncate" type="text" defaultValue={target} readOnly />
       </InputGroup>
 
       <InputGroup className="my-2">
@@ -60,10 +60,11 @@ export default function Statistics(props: IStats): JSX.Element {
           <InputGroup.Text>Sol&apos;n</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control
+          className="text-truncate"
           type="text"
           style={props.isValid ? { color: "green" } : { color: "red" }}
           defaultValue={props.solution}
-          disabled={true}
+          readOnly
         />
       </InputGroup>
 

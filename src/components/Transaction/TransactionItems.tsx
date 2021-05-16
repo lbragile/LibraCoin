@@ -44,20 +44,20 @@ export default function TransactionItems(): JSX.Element {
               key={`verifiedTrans${i}`}
             >
               <Form.Group className="mb-2 text-center">
-                <Form.Control type="text" defaultValue={transaction.from} disabled={true} />
+                <Form.Control className="text-truncate" type="text" defaultValue={transaction.from} readOnly />
                 <h3 className="my-0">↓</h3>
-                <Form.Control type="text" defaultValue={transaction.to} disabled={true} />
+                <Form.Control className="text-truncate" type="text" defaultValue={transaction.to} readOnly />
               </Form.Group>
 
               <InputGroup className="mb-2">
                 <InputGroup.Prepend>
                   <InputGroup.Text>Msg</InputGroup.Text>
                 </InputGroup.Prepend>
-                <Form.Control as="textarea" defaultValue={transaction.message} disabled={true} />
+                <Form.Control as="textarea" defaultValue={transaction.message} readOnly />
               </InputGroup>
 
               <InputGroup className="mb-2">
-                <Form.Control type="number" defaultValue={transaction.amount} disabled={true} />
+                <Form.Control type="number" defaultValue={transaction.amount} disabled />
                 <InputGroup.Append>
                   <InputGroup.Text>LC</InputGroup.Text>
                 </InputGroup.Append>
@@ -67,7 +67,7 @@ export default function TransactionItems(): JSX.Element {
                 <InputGroup.Prepend>
                   <InputGroup.Text>Sig</InputGroup.Text>
                 </InputGroup.Prepend>
-                <Form.Control type="text" defaultValue={transaction.signature} disabled={true} />
+                <Form.Control className="text-truncate" type="text" defaultValue={transaction.signature} readOnly />
               </InputGroup>
             </div>
           );

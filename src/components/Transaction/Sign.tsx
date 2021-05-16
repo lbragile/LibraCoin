@@ -21,7 +21,7 @@ export default function Sign({ validated, signed, handleSubmit }: ISign): JSX.El
   return (
     <Form noValidate validated={validated} className="col-12 col-lg-5 trans-form" onSubmit={handleSubmit}>
       <Form.Group>
-        <Form.Control className="text-truncate" type="text" defaultValue={state.user.publicKey ?? ""} disabled={true} />
+        <Form.Control className="text-truncate" type="text" defaultValue={state.user.publicKey ?? ""} readOnly />
         <Form.Text className="text-muted">
           Your public key → used to verify transaction was signed using your private key
         </Form.Text>
@@ -58,12 +58,7 @@ export default function Sign({ validated, signed, handleSubmit }: ISign): JSX.El
       </Form.Group>
 
       <Form.Group>
-        <Form.Control
-          className="text-truncate"
-          type="text"
-          defaultValue={state.user.privateKey ?? ""}
-          disabled={true}
-        />
+        <Form.Control className="text-truncate" type="text" defaultValue={state.user.privateKey ?? ""} readOnly />
         <Form.Text className="text-muted">Your private key → not shared with anyone, keep this secret!</Form.Text>
       </Form.Group>
 

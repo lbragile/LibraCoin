@@ -71,7 +71,7 @@ export default function KeyGeneration(): JSX.Element {
           isValid={copied[0]}
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "public")}
           onBlur={() => setCopied([false, false])}
-          readOnly={true}
+          readOnly
           ref={publicKeyRef}
         />
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
@@ -94,7 +94,7 @@ export default function KeyGeneration(): JSX.Element {
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "private")}
           onBlur={() => setCopied([false, false])}
           isValid={copied[1]}
-          readOnly={true}
+          readOnly
           ref={privateKeyRef}
         />
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>

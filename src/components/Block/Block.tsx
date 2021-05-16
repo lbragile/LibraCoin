@@ -51,35 +51,40 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
   }
 
   return (
-    <div className="flex-column">
-      <div className={"block my-3 mx-1 p-2 rounded " + (isValid ? "valid-block" : "invalid-block")}>
+    <div className="block flex-column">
+      <div className={"my-3 mx-1 p-2 rounded " + (isValid ? "valid-block" : "invalid-block")}>
         <Form>
           <InputGroup className="my-2">
             <InputGroup.Prepend>
               <InputGroup.Text>Index</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control type="number" defaultValue={details.index} disabled={true} />
+            <Form.Control type="number" defaultValue={details.index} disabled />
           </InputGroup>
 
           <InputGroup className="my-2">
             <InputGroup.Prepend>
               <InputGroup.Text>Timestamp</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control type="number" defaultValue={solution ? timestamp : details.timestamp} disabled={true} />
+            <Form.Control type="number" defaultValue={solution ? timestamp : details.timestamp} disabled />
           </InputGroup>
 
           <InputGroup className="my-2">
             <InputGroup.Prepend>
               <InputGroup.Text>Previous #</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control type="text" defaultValue={details.prevHash} disabled={true} />
+            <Form.Control className="text-truncate" type="text" defaultValue={details.prevHash} readOnly />
           </InputGroup>
 
           <InputGroup className="my-2">
             <InputGroup.Prepend>
               <InputGroup.Text>Current #</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control type="text" defaultValue={solution ? solution : details.currHash} disabled={true} />
+            <Form.Control
+              className="text-truncate"
+              type="text"
+              defaultValue={solution ? solution : details.currHash}
+              readOnly
+            />
           </InputGroup>
 
           <InputGroup className="my-2">
@@ -87,10 +92,10 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
               <InputGroup.Text>Merkle #</InputGroup.Text>
             </InputGroup.Prepend>
             {details.index === 0 ? (
-              <Form.Control type="text" defaultValue={""} disabled={true} />
+              <Form.Control type="text" defaultValue={""} disabled />
             ) : (
               <React.Fragment>
-                <Form.Control type="text" defaultValue={merkleRoot} disabled={true} />
+                <Form.Control className="text-truncate" type="text" defaultValue={merkleRoot} readOnly />
                 <InputGroup.Append>
                   <InputGroup.Text className="show-trans-eye" onClick={() => handleViewTransactions()}>
                     {showTrans ? "🙈" : "🙉"}
@@ -118,12 +123,14 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
               <div className="col-12 mr-2 bg-light border border-dark p-1 rounded" key={`blockTrans${i}`}>
                 <Form.Group className="mb-2 text-center">
                   <Form.Control
+                    className="text-truncate"
                     type="text"
                     value={transaction.from}
                     onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "from")}
                   />
                   <h3 className="my-0">↓</h3>
                   <Form.Control
+                    className="text-truncate"
                     type="text"
                     value={transaction.to}
                     onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "to")}
@@ -158,7 +165,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
                   <InputGroup.Prepend>
                     <InputGroup.Text>Sig</InputGroup.Text>
                   </InputGroup.Prepend>
-                  <Form.Control type="text" defaultValue={transaction.signature} disabled={true} />
+                  <Form.Control className="text-truncate" type="text" defaultValue={transaction.signature} readOnly />
                 </InputGroup>
               </div>
             );

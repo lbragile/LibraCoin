@@ -27,13 +27,13 @@ export default function UserItems(): JSX.Element {
                   onBlur={() => setCopied([false])}
                   defaultValue={user.publicKey}
                   isValid={copied[0]}
-                  readOnly={true}
+                  readOnly
                 />
                 <Form.Control.Feedback type="valid">Copied to clipboard</Form.Control.Feedback>
               </Form.Group>
 
               <InputGroup className="mt-2">
-                <Form.Control aria-label="balance" type="number" defaultValue={user.balance} disabled={true} />
+                <Form.Control aria-label="balance" type="number" defaultValue={user.balance} disabled />
                 <InputGroup.Append>
                   <InputGroup.Text>LC</InputGroup.Text>
                 </InputGroup.Append>

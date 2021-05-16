@@ -93,21 +93,21 @@ export default function PreviewBlock(): JSX.Element {
           <InputGroup.Prepend>
             <InputGroup.Text>Previous #</InputGroup.Text>
           </InputGroup.Prepend>
-          <Form.Control type="text" value={prevHash} disabled />
+          <Form.Control className="text-truncate" type="text" value={prevHash} readOnly />
         </InputGroup>
 
         <InputGroup className="my-2">
           <InputGroup.Prepend>
             <InputGroup.Text>Current #</InputGroup.Text>
           </InputGroup.Prepend>
-          <Form.Control type="text" value={solution} disabled />
+          <Form.Control className="text-truncate" type="text" value={solution} readOnly />
         </InputGroup>
 
         <InputGroup className="mt-2">
           <InputGroup.Prepend>
             <InputGroup.Text>Merkle #</InputGroup.Text>
           </InputGroup.Prepend>
-          <Form.Control type="text" value={getMerkleRoot(merkleTree)} disabled />
+          <Form.Control className="text-truncate" type="text" value={getMerkleRoot(merkleTree)} readOnly />
         </InputGroup>
 
         {isValid && (
