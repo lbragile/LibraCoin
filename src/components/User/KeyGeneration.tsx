@@ -1,5 +1,5 @@
 import React, { useRef, useState, useContext, useEffect } from "react";
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 
 import { AppContext } from "../../context/AppContext";
 import { IAction, IState } from "../../typings/AppTypes";
@@ -54,11 +54,11 @@ export default function KeyGeneration(): JSX.Element {
   };
 
   return (
-    <div className="container-fluid row d-flex align-items-center justify-content-center mx-auto">
-      <Form.Group className="user-key col-5 px-0">
-        <Form.Label className="mb-3" htmlFor="publicKey">
-          <h4 className="mb-0">Public:</h4>
-        </Form.Label>
+    <div className="container-fluid row d-flex align-items-center justify-content-center mx-1 mt-0 mt-lg-5 mb-0 mb-lg-5">
+      <InputGroup className="user-key col-12 col-lg-5 px-0 mr-0 mr-lg-3">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Public</InputGroup.Text>
+        </InputGroup.Prepend>
         <Form.Control
           aria-label="publicKey"
           as="textarea"
@@ -71,17 +71,13 @@ export default function KeyGeneration(): JSX.Element {
           ref={publicKeyRef}
         />
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
-      </Form.Group>
+      </InputGroup>
 
-      <Form.Group className="user-key col-5 px-0 ml-4">
-        <Form.Label className="mb-3" htmlFor="privateKey">
-          <h4 className="mb-0">
-            Private:{" "}
-            <span id="private-reveal-eyes" onClick={togglePrivateKey}>
-              👀
-            </span>
-          </h4>
-        </Form.Label>
+      <InputGroup className="user-key col-12 col-lg-5 px-0">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Private</InputGroup.Text>
+        </InputGroup.Prepend>
+
         <Form.Control
           aria-label="privateKey"
           as="textarea"
@@ -94,7 +90,14 @@ export default function KeyGeneration(): JSX.Element {
           ref={privateKeyRef}
         />
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
-      </Form.Group>
+        <InputGroup.Append>
+          <InputGroup.Text>
+            <span id="private-reveal-eyes" onClick={togglePrivateKey}>
+              👀
+            </span>
+          </InputGroup.Text>
+        </InputGroup.Append>
+      </InputGroup>
     </div>
   );
 }

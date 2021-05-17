@@ -8,7 +8,13 @@ import "./User.css";
 
 export default function UserItems(): JSX.Element {
   const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
-  const [copied, setCopied] = useState<boolean[]>([false]);
+  const [copied, setCopied] = useState<boolean[]>(new Array(state.users.length).fill(false));
+
+  function resetCopy(index: number): void {
+    const newCopied = JSON.parse(JSON.stringify(copied));
+    newCopied[index] = false;
+    setCopied(newCopied);
+  }
 
   return (
     <div className="container-fluid mb-2">
@@ -16,21 +22,25 @@ export default function UserItems(): JSX.Element {
       <div className="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
         {state.users?.map((user: IUser, i: number) => {
           return (
-            <Form className="user-item rounded" key={`user${i}`}>
-              <Form.Group>
-                <Form.Text className="font-weight-bold mb-1 my-0">Public Key</Form.Text>
+            <Form className="user-item rounded flex-shrink-0" key={`user${i}`}>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>🔑</InputGroup.Text>
+                </InputGroup.Prepend>
                 <Form.Control
                   aria-label="User Public Key"
                   type="text"
                   className="text-truncate"
-                  onFocus={(e: React.FocusEvent<HTMLInputElement>) => copyKey(e, setCopied)}
-                  onBlur={() => setCopied([false])}
+                  onFocus={(e: React.FocusEvent<HTMLInputElement>) =>
+                    copyKey(e, setCopied, undefined, i, state.users.length)
+                  }
+                  onBlur={() => resetCopy(i)}
                   defaultValue={user.publicKey}
-                  isValid={copied[0]}
+                  isValid={copied[i]}
                   readOnly
                 />
                 <Form.Control.Feedback type="valid">Copied to clipboard</Form.Control.Feedback>
-              </Form.Group>
+              </InputGroup>
 
               <InputGroup className="mt-2">
                 <Form.Control aria-label="balance" type="number" defaultValue={user.balance} disabled />
