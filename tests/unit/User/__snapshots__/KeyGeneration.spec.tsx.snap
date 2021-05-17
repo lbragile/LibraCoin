@@ -3,21 +3,20 @@
 exports[`renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="container-fluid row d-flex align-items-center justify-content-center mx-auto"
+    class="container-fluid row d-flex align-items-center justify-content-center mx-1 mt-0 mt-lg-5 mb-0 mb-lg-5"
   >
     <div
-      class="user-key col-5 px-0 form-group"
+      class="user-key col-12 col-lg-5 px-0 mr-0 mr-lg-3 input-group"
     >
-      <label
-        class="mb-3 form-label"
-        for="publicKey"
+      <div
+        class="input-group-prepend"
       >
-        <h4
-          class="mb-0"
+        <span
+          class="input-group-text"
         >
-          Public:
-        </h4>
-      </label>
+          Public
+        </span>
+      </div>
       <textarea
         aria-label="publicKey"
         class="form-control"
@@ -33,23 +32,17 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="user-key col-5 px-0 ml-4 form-group"
+      class="user-key col-12 col-lg-5 px-0 input-group"
     >
-      <label
-        class="mb-3 form-label"
-        for="privateKey"
+      <div
+        class="input-group-prepend"
       >
-        <h4
-          class="mb-0"
+        <span
+          class="input-group-text"
         >
-          Private: 
-          <span
-            id="private-reveal-eyes"
-          >
-            👀
-          </span>
-        </h4>
-      </label>
+          Private
+        </span>
+      </div>
       <textarea
         aria-label="privateKey"
         class="form-control"
@@ -62,6 +55,19 @@ exports[`renders correctly 1`] = `
         class="valid-feedback"
       >
         Copied to clipboard!
+      </div>
+      <div
+        class="input-group-append"
+      >
+        <span
+          class="input-group-text"
+        >
+          <span
+            id="private-reveal-eyes"
+          >
+            👀
+          </span>
+        </span>
       </div>
     </div>
   </div>
