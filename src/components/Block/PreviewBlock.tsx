@@ -61,9 +61,9 @@ export default function PreviewBlock(): JSX.Element {
 
   return (
     <div className="container-fluid row d-flex justify-content-center mx-auto my-3">
-      <div className="overflow-auto mb-2">
+      <div className="mb-2 d-none d-lg-block">
         <h4 className="font-weight-bold text-center">Merkle Tree Visualization</h4>
-        <canvas ref={treeCanvas} className="border border-dark rounded" width={1500} />
+        <canvas ref={treeCanvas} className="border border-dark rounded" width={window.outerWidth * 0.7} />
       </div>
 
       <Statistics

@@ -48,13 +48,9 @@ export default function KeyGeneration(): JSX.Element {
   }
 
   const togglePrivateKey = () => {
-    if (privateKeyRef.current) {
-      if (privateKeyRef.current.value.includes("◦")) {
-        privateKeyRef.current.value = state.user.privateKey;
-      } else {
-        privateKeyRef.current.value = new Array(privateKeyRef.current.value.length).fill("◦").join("");
-      }
-    }
+    const show = privateKeyRef.current?.value.includes("◦");
+    const hiddenVal = new Array(state.user.privateKey.length).fill("◦").join("");
+    (privateKeyRef.current as HTMLTextAreaElement).value = show ? state.user.privateKey : hiddenVal;
   };
 
   return (

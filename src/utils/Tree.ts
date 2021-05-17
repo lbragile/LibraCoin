@@ -54,7 +54,7 @@ export class Tree {
   #ctx: CanvasRenderingContext2D | null;
 
   constructor(canvas: HTMLCanvasElement, transactions: ITransaction[]) {
-    const xStart = window.innerWidth < 1200 ? window.innerWidth * 1.8 : (window.innerWidth / 2) * 0.8;
+    const xStart = window.innerWidth < 1200 ? window.innerWidth * 1.8 : (window.innerWidth / 2) * 0.7;
     this.#root = null;
     this.#transactionSignatures = transactions.map((transaction) => transaction.signature.slice(0, 25) + "...");
     this.#startPosition = { x: xStart, y: 5 };

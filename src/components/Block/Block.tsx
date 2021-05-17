@@ -4,75 +4,70 @@ import { Form, InputGroup } from "react-bootstrap";
 import Statistics from "./Statistics";
 import { AppContext } from "../../context/AppContext";
 import { IAction, IBlock, IState, ITransaction } from "../../typings/AppTypes";
+import { ACTIONS } from "../../enums/AppDispatchActions";
 
 import { digestMessage } from "../../utils/conversion";
 import { calculateMerkleTreeFormation } from "../../utils/merkleTree";
 import { propagateBlockStatus } from "../../utils/propagate";
+
 import "./Block.css";
-import { ACTIONS } from "../../enums/AppDispatchActions";
 
 type TChange = "from" | "to" | "message" | "amount";
 type TInputChange<T = HTMLInputElement> = React.ChangeEvent<T>;
 
-export default function Block({ details }: { details: IBlock }): JSX.Element {
+export default function Block({ block }: { block: IBlock }): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   const [solution, setSolution] = useState<string>("");
   const [timestamp, setTimestamp] = useState<number>(Date.now());
-  const [merkleRoot, setMerkleRoot] = useState<string>(details.merkleRoot);
-  const [isValid, setIsValid] = useState<boolean>(details.valid ?? true);
-  const [showTrans, setShowTrans] = useState<boolean>(details.showTrans ?? false);
-  const [trans, setTrans] = useState<ITransaction[]>(details.transactions);
+  const [isValid, setIsValid] = useState<boolean>(block.valid ?? true);
+  const [showTrans, setShowTrans] = useState<boolean>(block.showTrans ?? false);
 
   // update timestamp when solution is mined
   useEffect(() => setTimestamp(Date.now()), [solution]);
 
   async function calculateNewMerkleRoot(newVal: number | string, index: number, type: TChange): Promise<void> {
-    const newTrans = JSON.parse(JSON.stringify(trans)); // deep copy
+    const newTrans = JSON.parse(JSON.stringify(block.transactions)); // deep copy
 
     // update the changed value & signature
-    newTrans[index] = { ...newTrans[index], [type]: newVal };
+    newTrans[index][type] = newVal;
     newTrans[index].signature = await digestMessage(newTrans[index].to + newTrans[index].from + newTrans[index].amount + newTrans[index].message); // prettier-ignore
 
     // calculate new merkle root and currHash
     const root = await calculateMerkleTreeFormation(newTrans, newTrans);
-    const newHash = await digestMessage(details.index + details.prevHash + root);
+    const newHash = await digestMessage(block.index + block.prevHash + root);
 
-    setTrans(newTrans);
-    setMerkleRoot(root);
-    setSolution(newHash);
-
-    await propagateBlockStatus(state, dispatch, details, newHash, false, root, newTrans);
+    await propagateBlockStatus(state, dispatch, block, newHash, false, root, newTrans);
   }
 
   function handleViewTransactions(): void {
     setShowTrans(!showTrans);
-    dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: { ...details, showTrans: !showTrans } } });
+    dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: { ...block, showTrans: !showTrans } } });
   }
 
   return (
-    <div className="block flex-column">
+    <div className="block flex-column flex-shrink-0">
       <div className={"my-3 mx-1 p-2 rounded " + (isValid ? "valid-block" : "invalid-block")}>
         <Form>
           <InputGroup className="my-2">
             <InputGroup.Prepend>
               <InputGroup.Text>Index</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control type="number" defaultValue={details.index} disabled />
+            <Form.Control type="number" defaultValue={block.index} disabled />
           </InputGroup>
 
           <InputGroup className="my-2">
             <InputGroup.Prepend>
               <InputGroup.Text>Timestamp</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control type="number" defaultValue={solution ? timestamp : details.timestamp} disabled />
+            <Form.Control type="number" defaultValue={solution ? timestamp : block.timestamp} disabled />
           </InputGroup>
 
           <InputGroup className="my-2">
             <InputGroup.Prepend>
               <InputGroup.Text>Previous #</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control className="text-truncate" type="text" defaultValue={details.prevHash} readOnly />
+            <Form.Control className="text-truncate" type="text" defaultValue={block.prevHash} readOnly />
           </InputGroup>
 
           <InputGroup className="my-2">
@@ -82,7 +77,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
             <Form.Control
               className="text-truncate"
               type="text"
-              defaultValue={solution ? solution : details.currHash}
+              defaultValue={solution ? solution : block.currHash}
               readOnly
             />
           </InputGroup>
@@ -91,11 +86,11 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
             <InputGroup.Prepend>
               <InputGroup.Text>Merkle #</InputGroup.Text>
             </InputGroup.Prepend>
-            {details.index === 0 ? (
+            {block.index === 0 ? (
               <Form.Control type="text" defaultValue={""} disabled />
             ) : (
               <React.Fragment>
-                <Form.Control className="text-truncate" type="text" defaultValue={merkleRoot} readOnly />
+                <Form.Control className="text-truncate" type="text" defaultValue={block.merkleRoot} readOnly />
                 <InputGroup.Append>
                   <InputGroup.Text className="show-trans-eye" onClick={() => handleViewTransactions()}>
                     {showTrans ? "🙈" : "🙉"}
@@ -108,7 +103,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
 
         <Statistics
           chain={true}
-          details={details}
+          block={block}
           solution={solution}
           setSolution={setSolution}
           isValid={isValid}
@@ -118,7 +113,7 @@ export default function Block({ details }: { details: IBlock }): JSX.Element {
 
       {showTrans && (
         <div className="row flex-nowrap overflow-auto mx-2">
-          {trans.map((transaction: ITransaction, i: number) => {
+          {block.transactions.map((transaction: ITransaction, i: number) => {
             return (
               <div className="col-12 mr-2 bg-light border border-dark p-1 rounded" key={`blockTrans${i}`}>
                 <Form.Group className="mb-2 text-center">

@@ -44,9 +44,10 @@ export const AppReducer = (state: IState, action: IAction): IState => {
 
     case ACTIONS.UPDATE_BLOCK: {
       const { block } = action.payload as { block: IBlock };
-      state.chain[block.index] = block;
-      localStorage.setItem("chain", JSON.stringify(state.chain));
-      return state;
+      const ogState = JSON.parse(JSON.stringify(state));
+      ogState.chain[block.index] = block;
+      localStorage.setItem("chain", JSON.stringify(ogState.chain));
+      return { ...ogState, chain: ogState.chain };
     }
 
     default:

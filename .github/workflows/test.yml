@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Cache node modules
+      - name: Cache Node Modules
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
@@ -22,11 +22,6 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-
-      - name: Test using Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12"
 
       - name: Install Dependencies
         run: npm ci
