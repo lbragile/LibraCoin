@@ -12,7 +12,7 @@ import "./User.css";
 export default function KeyGeneration(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-  const numRows = useRef(3);
+  const numRows = useRef(4);
   const publicKeyRef = useRef<HTMLTextAreaElement>(null);
   const privateKeyRef = useRef<HTMLTextAreaElement>(null);
 
@@ -63,6 +63,7 @@ export default function KeyGeneration(): JSX.Element {
           aria-label="publicKey"
           as="textarea"
           rows={numRows.current}
+          className="rounded-right"
           defaultValue={state.user?.publicKey ?? ""}
           isValid={copied[0]}
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "public")}
@@ -89,14 +90,14 @@ export default function KeyGeneration(): JSX.Element {
           readOnly
           ref={privateKeyRef}
         />
-        <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
         <InputGroup.Append>
-          <InputGroup.Text>
+          <InputGroup.Text className="rounded-right">
             <span id="private-reveal-eyes" onClick={togglePrivateKey}>
               👀
             </span>
           </InputGroup.Text>
         </InputGroup.Append>
+        <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
       </InputGroup>
     </div>
   );

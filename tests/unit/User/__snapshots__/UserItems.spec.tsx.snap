@@ -30,7 +30,7 @@ exports[`renders correctly 1`] = `
           </div>
           <input
             aria-label="User Public Key"
-            class="text-truncate form-control"
+            class="text-truncate rounded-right form-control"
             readonly=""
             type="text"
             value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"

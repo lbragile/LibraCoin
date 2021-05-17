@@ -19,9 +19,9 @@ exports[`renders correctly 1`] = `
       </div>
       <textarea
         aria-label="publicKey"
-        class="form-control"
+        class="rounded-right form-control"
         readonly=""
-        rows="3"
+        rows="4"
       >
         3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb
       </textarea>
@@ -47,20 +47,15 @@ exports[`renders correctly 1`] = `
         aria-label="privateKey"
         class="form-control"
         readonly=""
-        rows="3"
+        rows="4"
       >
         ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
       </textarea>
       <div
-        class="valid-feedback"
-      >
-        Copied to clipboard!
-      </div>
-      <div
         class="input-group-append"
       >
         <span
-          class="input-group-text"
+          class="rounded-right input-group-text"
         >
           <span
             id="private-reveal-eyes"
@@ -68,6 +63,11 @@ exports[`renders correctly 1`] = `
             👀
           </span>
         </span>
+      </div>
+      <div
+        class="valid-feedback"
+      >
+        Copied to clipboard!
       </div>
     </div>
   </div>

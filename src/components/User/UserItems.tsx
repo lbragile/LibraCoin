@@ -30,7 +30,7 @@ export default function UserItems(): JSX.Element {
                 <Form.Control
                   aria-label="User Public Key"
                   type="text"
-                  className="text-truncate"
+                  className="text-truncate rounded-right"
                   onFocus={(e: React.FocusEvent<HTMLInputElement>) =>
                     copyKey(e, setCopied, undefined, i, state.users.length)
                   }

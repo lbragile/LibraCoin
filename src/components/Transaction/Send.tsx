@@ -22,7 +22,7 @@ export default function Send(props: ISend): JSX.Element {
         <InputGroup className="mb-2">
           <Form.Control type="number" defaultValue={props.details.amount} disabled />
           <InputGroup.Prepend>
-            <InputGroup.Text>LC</InputGroup.Text>
+            <InputGroup.Text className="rounded-right border-left-0">LC</InputGroup.Text>
           </InputGroup.Prepend>
         </InputGroup>
       </Form.Group>
