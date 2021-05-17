@@ -48,7 +48,7 @@ export default function Sign({ validated, signed, handleSubmit }: ISign): JSX.El
             required
           />
           <InputGroup.Prepend>
-            <InputGroup.Text>LC</InputGroup.Text>
+            <InputGroup.Text className="rounded-right border-left-0">LC</InputGroup.Text>
           </InputGroup.Prepend>
         </InputGroup>
       </Form.Group>

@@ -11,7 +11,7 @@ interface IStats {
   solution: string;
   setIsValid: (arg: boolean) => void;
   setSolution: (arg: string) => void;
-  details?: IBlock;
+  block?: IBlock;
 }
 
 export default function Statistics(props: IStats): JSX.Element {
@@ -23,13 +23,16 @@ export default function Statistics(props: IStats): JSX.Element {
   const [disableMineBtn, setDisableMineBtn] = useState<boolean>(false);
 
   async function handleMine() {
-    setDisableMineBtn(true);
     nonce.current = Math.round(Math.random() * 1e6);
+
+    setDisableMineBtn(true);
     const hash = await mine(nonce.current, setHeader, setTarget, props.setSolution, props.setIsValid);
-    if (props.chain && props.details) {
-      await propagateBlockStatus(state, dispatch, props.details, hash, true);
-    }
     setDisableMineBtn(false);
+
+    // propagate changes if needed
+    if (props.chain && props.block) {
+      await propagateBlockStatus(state, dispatch, props.block, hash, true);
+    }
   }
 
   return (

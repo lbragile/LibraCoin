@@ -1,5 +1,5 @@
 import React, { useRef, useState, useContext, useEffect } from "react";
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 
 import { AppContext } from "../../context/AppContext";
 import { IAction, IState } from "../../typings/AppTypes";
@@ -12,7 +12,7 @@ import "./User.css";
 export default function KeyGeneration(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-  const numRows = useRef(3);
+  const numRows = useRef(4);
   const publicKeyRef = useRef<HTMLTextAreaElement>(null);
   const privateKeyRef = useRef<HTMLTextAreaElement>(null);
 
@@ -48,25 +48,22 @@ export default function KeyGeneration(): JSX.Element {
   }
 
   const togglePrivateKey = () => {
-    if (privateKeyRef.current) {
-      if (privateKeyRef.current.value.includes("◦")) {
-        privateKeyRef.current.value = state.user.privateKey;
-      } else {
-        privateKeyRef.current.value = new Array(privateKeyRef.current.value.length).fill("◦").join("");
-      }
-    }
+    const show = privateKeyRef.current?.value.includes("◦");
+    const hiddenVal = new Array(state.user.privateKey.length).fill("◦").join("");
+    (privateKeyRef.current as HTMLTextAreaElement).value = show ? state.user.privateKey : hiddenVal;
   };
 
   return (
-    <div className="container-fluid row d-flex align-items-center justify-content-center mx-auto">
-      <Form.Group className="user-key col-5 px-0">
-        <Form.Label className="mb-3" htmlFor="publicKey">
-          <h4 className="mb-0">Public:</h4>
-        </Form.Label>
+    <div className="container-fluid row d-flex align-items-center justify-content-center mx-1 mt-0 mt-lg-5 mb-0 mb-lg-5">
+      <InputGroup className="user-key col-12 col-lg-5 px-0 mr-0 mr-lg-3">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Public</InputGroup.Text>
+        </InputGroup.Prepend>
         <Form.Control
           aria-label="publicKey"
           as="textarea"
           rows={numRows.current}
+          className="rounded-right"
           defaultValue={state.user?.publicKey ?? ""}
           isValid={copied[0]}
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "public")}
@@ -75,17 +72,13 @@ export default function KeyGeneration(): JSX.Element {
           ref={publicKeyRef}
         />
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
-      </Form.Group>
+      </InputGroup>
 
-      <Form.Group className="user-key col-5 px-0 ml-4">
-        <Form.Label className="mb-3" htmlFor="privateKey">
-          <h4 className="mb-0">
-            Private:{" "}
-            <span id="private-reveal-eyes" onClick={togglePrivateKey}>
-              👀
-            </span>
-          </h4>
-        </Form.Label>
+      <InputGroup className="user-key col-12 col-lg-5 px-0">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Private</InputGroup.Text>
+        </InputGroup.Prepend>
+
         <Form.Control
           aria-label="privateKey"
           as="textarea"
@@ -97,8 +90,15 @@ export default function KeyGeneration(): JSX.Element {
           readOnly
           ref={privateKeyRef}
         />
+        <InputGroup.Append>
+          <InputGroup.Text className="rounded-right">
+            <span id="private-reveal-eyes" onClick={togglePrivateKey}>
+              👀
+            </span>
+          </InputGroup.Text>
+        </InputGroup.Append>
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
-      </Form.Group>
+      </InputGroup>
     </div>
   );
 }

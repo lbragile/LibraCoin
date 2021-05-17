@@ -27,14 +27,8 @@ it("renders correctly", () => {
     </AppContext.Provider>
   );
 
-  const publicTitle = screen.getByRole("heading", { name: /Public:/i, level: 4 });
-  const privateTitle = screen.getByRole("heading", { name: /Private:/i, level: 4 });
-  const publicField = screen.getByRole("textbox", { name: /publicKey/i });
-  const privateField = screen.getByRole("textbox", { name: /privateKey/i });
-
-  [publicTitle, privateTitle, publicField, privateField].forEach((elem) => {
-    expect(elem).toBeInTheDocument();
-  });
+  expect(screen.getByRole("textbox", { name: /publicKey/i })).toBeInTheDocument();
+  expect(screen.getByRole("textbox", { name: /privateKey/i })).toBeInTheDocument();
 
   expect(asFragment()).toMatchSnapshot();
 });

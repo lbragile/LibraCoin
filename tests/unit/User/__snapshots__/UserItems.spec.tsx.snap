@@ -14,19 +14,23 @@ exports[`renders correctly 1`] = `
       class="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded"
     >
       <form
-        class="user-item rounded"
+        class="user-item rounded flex-shrink-0"
       >
         <div
-          class="form-group"
+          class="input-group"
         >
-          <small
-            class="font-weight-bold mb-1 my-0 form-text"
+          <div
+            class="input-group-prepend"
           >
-            Public Key
-          </small>
+            <span
+              class="input-group-text"
+            >
+              🔑
+            </span>
+          </div>
           <input
             aria-label="User Public Key"
-            class="text-truncate form-control"
+            class="text-truncate rounded-right form-control"
             readonly=""
             type="text"
             value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"

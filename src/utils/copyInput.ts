@@ -1,7 +1,9 @@
 export function copyKey(
   e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>,
   setCopied: (arg: boolean[]) => void,
-  type?: "public" | "private"
+  type?: "public" | "private",
+  index?: number,
+  totalUsers?: number
 ): void {
   const visible = !e.target.value.includes("◦");
   if (visible) {
@@ -17,6 +19,8 @@ export function copyKey(
     setCopied([isPublic, !isPublic && visible]);
   } else {
     // user items, copying public key
-    setCopied([true]);
+    const newCopied = new Array(totalUsers).fill(false);
+    newCopied[index as number] = true;
+    setCopied(newCopied);
   }
 }
