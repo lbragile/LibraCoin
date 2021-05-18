@@ -4,6 +4,7 @@ import "@testing-library/jest-dom";
 
 import KeyGeneration from "../../../src/components/User/KeyGeneration";
 import { AppContext } from "../../../src/context/AppContext";
+import * as utilsFunc from "../../../src/utils/copyInput";
 
 const { state, dispatch, exportKeyMock, generateKeyMock } = global;
 
@@ -76,5 +77,38 @@ describe("input field text", () => {
     fireEvent.click(screen.getByText("👀"));
 
     expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKey);
+  });
+});
+
+describe("copy input of key fields", () => {
+  document.execCommand = jest.fn();
+
+  test("public key copy", () => {
+    render(
+      <AppContext.Provider value={{ state, dispatch }}>
+        <KeyGeneration />
+      </AppContext.Provider>
+    );
+
+    const copyKeySpy = jest.spyOn(utilsFunc, "copyKey");
+
+    // both don't have feedback
+    expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");
+    expect(screen.getByRole("textbox", { name: /privateKey/i })).not.toHaveClass("is-valid");
+
+    fireEvent.focus(screen.getByRole("textbox", { name: /publicKey/i }));
+
+    // public has feedback while private doesn't
+    expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveClass("is-valid");
+    expect(screen.getByRole("textbox", { name: /privateKey/i })).not.toHaveClass("is-valid");
+
+    expect(copyKeySpy).toHaveBeenCalledTimes(1);
+    expect(copyKeySpy).toHaveBeenCalledWith(expect.objectContaining({ type: "focus" }), expect.any(Function), "public");
+
+    fireEvent.blur(screen.getByRole("textbox", { name: /publicKey/i }));
+
+    // after blur, both do not have feedback
+    expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");
+    expect(screen.getByRole("textbox", { name: /privateKey/i })).not.toHaveClass("is-valid");
   });
 });
