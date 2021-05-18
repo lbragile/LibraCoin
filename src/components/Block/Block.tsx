@@ -10,8 +10,6 @@ import { digestMessage } from "../../utils/conversion";
 import { calculateMerkleTreeFormation } from "../../utils/merkleTree";
 import { propagateBlockStatus } from "../../utils/propagate";
 
-import "./Block.css";
-
 type TChange = "from" | "to" | "message" | "amount";
 type TInputChange<T = HTMLInputElement> = React.ChangeEvent<T>;
 

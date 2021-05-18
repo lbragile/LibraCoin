@@ -6,7 +6,7 @@ import { digestMessage } from "../../utils/conversion";
 
 import Send from "./Send";
 import Sign from "./Sign";
-import "./Transaction.css";
+import "./Transaction.scss";
 
 export default function Transaction(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };

@@ -4,7 +4,7 @@ import Block from "./Block";
 import { AppContext } from "../../context/AppContext";
 import { IAction, IState } from "../../typings/AppTypes";
 
-import "./Block.css";
+import "./Block.scss";
 
 export default function BlockChain(): JSX.Element {
   const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };

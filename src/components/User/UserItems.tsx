@@ -4,7 +4,7 @@ import { AppContext } from "../../context/AppContext";
 import { IAction, IState, IUser } from "../../typings/AppTypes";
 import { copyKey } from "../../utils/copyInput";
 
-import "./User.css";
+import "./User.scss";
 
 export default function UserItems(): JSX.Element {
   const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };

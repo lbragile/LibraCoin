@@ -5,10 +5,10 @@ import Wallet from "../../pages/Wallet";
 import Chain from "../../pages/Chain";
 import Mine from "../../pages/Mine";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 import { AppReducer } from "../../reducers/AppReducer";
 import { AppContext } from "../../context/AppContext";
+
+import "./App.scss";
 
 export default function App(): JSX.Element {
   const [state, dispatch] = useReducer(AppReducer, {

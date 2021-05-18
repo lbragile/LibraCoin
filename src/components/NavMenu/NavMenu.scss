@@ -1,5 +1,8 @@
+$navbar_bg: #eee;
+$nav_link_underscore: #8ac0ff;
+
 nav {
-  background-color: #eee;
+  background-color: $navbar_bg;
 }
 
 .nav-link {
@@ -7,15 +10,15 @@ nav {
   text-align: right;
   color: black;
   font-weight: bolder;
-}
 
-.nav-link:hover,
-.nav-link.active {
-  font-weight: bolder;
-}
+  &:hover,
+  &.active {
+    font-weight: bolder;
+  }
 
-.nav-link:hover {
-  border-bottom: #8ac0ff 1px solid;
+  &:hover {
+    border-bottom: $nav_link_underscore 1px solid;
+  }
 }
 
 @media only screen and (max-width: 1200px) {

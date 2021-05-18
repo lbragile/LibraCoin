@@ -4,7 +4,7 @@ import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { IAction, IState, ITransaction } from "../../typings/AppTypes";
 
-import "./Transaction.css";
+import "./Transaction.scss";
 
 export default function TransactionItems(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };

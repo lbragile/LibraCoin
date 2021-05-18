@@ -7,7 +7,7 @@ import { ACTIONS } from "../../enums/AppDispatchActions";
 import { copyKey } from "../../utils/copyInput";
 import { CryptoKeyToHex } from "../../utils/conversion";
 
-import "./User.css";
+import "./User.scss";
 
 export default function KeyGeneration(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };

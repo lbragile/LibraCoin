@@ -7,7 +7,7 @@ import { IAction, IState } from "../../typings/AppTypes";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { calculateMerkleTreeFormation, drawTreeDiagramOnCanvas, getMerkleRoot } from "../../utils/merkleTree";
 
-import "./Block.css";
+import "./Block.scss";
 
 export default function PreviewBlock(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
