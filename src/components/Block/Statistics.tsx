@@ -53,7 +53,7 @@ export default function Statistics(props: IStats): JSX.Element {
 
       <InputGroup className="my-2">
         <InputGroup.Prepend>
-          <InputGroup.Text className="font-weight-bold">Target</InputGroup.Text>
+          <InputGroup.Text>Target</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control className="text-truncate" type="text" defaultValue={target} readOnly />
       </InputGroup>

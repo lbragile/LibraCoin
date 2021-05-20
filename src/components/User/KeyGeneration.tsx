@@ -54,11 +54,12 @@ export default function KeyGeneration(): JSX.Element {
   };
 
   return (
-    <div className="container-fluid row d-flex align-items-center justify-content-center mx-1 mt-0 mt-lg-5 mb-0 mb-lg-5">
-      <InputGroup className="user-key col-12 col-lg-5 px-0 mr-0 mr-lg-3">
+    <div className="container-fluid d-flex justify-content-center mx-auto row my-5">
+      <InputGroup className="user-key col-12 col-lg-5 pl-3 pl-lg-0">
         <InputGroup.Prepend>
           <InputGroup.Text>Public</InputGroup.Text>
         </InputGroup.Prepend>
+
         <Form.Control
           aria-label="publicKey"
           as="textarea"
@@ -71,10 +72,11 @@ export default function KeyGeneration(): JSX.Element {
           readOnly
           ref={publicKeyRef}
         />
+
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
       </InputGroup>
 
-      <InputGroup className="user-key col-12 col-lg-5 px-0">
+      <InputGroup className="user-key col-12 col-lg-5 pl-3">
         <InputGroup.Prepend>
           <InputGroup.Text>Private</InputGroup.Text>
         </InputGroup.Prepend>
@@ -90,6 +92,7 @@ export default function KeyGeneration(): JSX.Element {
           readOnly
           ref={privateKeyRef}
         />
+
         <InputGroup.Append>
           <InputGroup.Text className="rounded-right">
             <span id="private-reveal-eyes" onClick={togglePrivateKey}>
@@ -97,6 +100,7 @@ export default function KeyGeneration(): JSX.Element {
             </span>
           </InputGroup.Text>
         </InputGroup.Append>
+
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
       </InputGroup>
     </div>

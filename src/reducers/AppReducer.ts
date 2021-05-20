@@ -5,9 +5,9 @@ export const AppReducer = (state: IState, action: IAction): IState => {
   switch (action.type) {
     case ACTIONS.ADD_VERIFIED_TRANS: {
       const { trans } = action.payload as { trans: ITransaction };
-      state.verifiedTrans.push(trans);
-      localStorage.setItem("verTrans", JSON.stringify(state.verifiedTrans));
-      return state;
+      const verifiedTrans = [...state.verifiedTrans, JSON.parse(JSON.stringify(trans))];
+      localStorage.setItem("verTrans", JSON.stringify(verifiedTrans));
+      return { ...state, verifiedTrans };
     }
 
     case ACTIONS.UPDATE_VERIFIED_TRANS: {
@@ -37,17 +37,17 @@ export const AppReducer = (state: IState, action: IAction): IState => {
 
     case ACTIONS.ADD_BLOCK: {
       const { block } = action.payload as { block: IBlock };
-      state.chain.push(block);
-      localStorage.setItem("chain", JSON.stringify(state.chain));
-      return state;
+      const chain = [...state.chain, block];
+      localStorage.setItem("chain", JSON.stringify(chain));
+      return { ...state, chain };
     }
 
     case ACTIONS.UPDATE_BLOCK: {
       const { block } = action.payload as { block: IBlock };
-      const ogState = JSON.parse(JSON.stringify(state));
-      ogState.chain[block.index] = block;
-      localStorage.setItem("chain", JSON.stringify(ogState.chain));
-      return { ...ogState, chain: ogState.chain };
+      const chain = [...state.chain];
+      chain[block.index] = block;
+      localStorage.setItem("chain", JSON.stringify(chain));
+      return { ...state, chain };
     }
 
     default:

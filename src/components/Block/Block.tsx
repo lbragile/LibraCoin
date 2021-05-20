@@ -113,7 +113,7 @@ export default function Block({ block }: { block: IBlock }): JSX.Element {
         <div className="row flex-nowrap overflow-auto mx-2">
           {block.transactions.map((transaction: ITransaction, i: number) => {
             return (
-              <div className="col-12 mr-2 bg-light border border-dark p-1 rounded" key={`blockTrans${i}`}>
+              <div className="col-12 mr-2 bg-light border border-dark p-1 rounded" key={`sig:${transaction.signature}`}>
                 <Form.Group className="mb-2 text-center">
                   <Form.Control
                     className="text-truncate"
