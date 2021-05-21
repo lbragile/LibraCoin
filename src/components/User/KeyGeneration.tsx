@@ -20,32 +20,32 @@ export default function KeyGeneration(): JSX.Element {
 
   // add a user if it's the first time visiting
   useEffect(() => {
-    addUser();
-  }, []);
+    async function addUser(): Promise<void> {
+      if (!state.user.publicKey) {
+        const { publicKey, privateKey } = await window.crypto.subtle.generateKey(
+          { name: "ECDSA", namedCurve: "P-256" },
+          true,
+          ["sign", "verify"]
+        );
 
-  async function addUser(): Promise<void> {
-    if (!state.user.publicKey) {
-      const { publicKey, privateKey } = await window.crypto.subtle.generateKey(
-        { name: "ECDSA", namedCurve: "P-256" },
-        true,
-        ["sign", "verify"]
-      );
+        const publicKeyStr = await CryptoKeyToHex("spki", publicKey as CryptoKey);
+        const privateKeyStr = await CryptoKeyToHex("pkcs8", privateKey as CryptoKey);
+        if (publicKeyRef.current && privateKeyRef.current) {
+          publicKeyRef.current.innerText = publicKeyStr;
+          privateKeyRef.current.innerText = new Array(privateKeyStr.length).fill("◦").join("");
+        }
 
-      const publicKeyStr = await CryptoKeyToHex("spki", publicKey as CryptoKey);
-      const privateKeyStr = await CryptoKeyToHex("pkcs8", privateKey as CryptoKey);
-      if (publicKeyRef.current && privateKeyRef.current) {
-        publicKeyRef.current.innerText = publicKeyStr;
-        privateKeyRef.current.innerText = new Array(privateKeyStr.length).fill("◦").join("");
+        const balance = Number(1000).toFixed(2);
+        const mainUser = { publicKey: publicKeyStr, privateKey: privateKeyStr, balance };
+        dispatch({ type: ACTIONS.SET_MAIN_USER, payload: { user: mainUser } });
+
+        const newUsers = [...state.users, { publicKey: publicKeyStr, balance }];
+        dispatch({ type: ACTIONS.UPDATE_USERS, payload: { users: newUsers } });
       }
-
-      const balance = Number(1000).toFixed(2);
-      const mainUser = { publicKey: publicKeyStr, privateKey: privateKeyStr, balance };
-      dispatch({ type: ACTIONS.SET_MAIN_USER, payload: { user: mainUser } });
-
-      const newUsers = [...state.users, { publicKey: publicKeyStr, balance }];
-      dispatch({ type: ACTIONS.UPDATE_USERS, payload: { users: newUsers } });
     }
-  }
+
+    addUser();
+  }, [dispatch, state.user.publicKey, state.users]);
 
   const togglePrivateKey = () => {
     const show = privateKeyRef.current?.value.includes("◦");

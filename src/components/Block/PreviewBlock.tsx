@@ -24,12 +24,12 @@ export default function PreviewBlock(): JSX.Element {
   useEffect(() => {
     calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans, setMerkleTree);
     setIsValid(false);
-  }, [state.selectedTrans]);
+  }, [state.selectedTrans, state.verifiedTrans]);
 
   // draw tree in canvas
   useEffect(() => {
     drawTreeDiagramOnCanvas(merkleTree, treeCanvas.current, state.selectedTrans);
-  }, [merkleTree]);
+  }, [merkleTree, state.selectedTrans]);
 
   // update timestamp & currentHash when solution is mined
   useEffect(() => setTimestamp(Date.now()), [solution]);
