@@ -1,38 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 
 import { AppContext } from "../../context/AppContext";
-import { IAction, IBlock, IState, ITransaction } from "../../typings/AppTypes";
+import { IAction, IState, ITransaction } from "../../typings/AppTypes";
 
 import { digestMessage } from "../../utils/conversion";
 import { calculateMerkleTreeFormation } from "../../utils/merkleTree";
 import { propagateBlockStatus } from "../../utils/propagate";
 
-type TChange = "from" | "to" | "message" | "amount";
+type TChangeType = "from" | "to" | "message" | "amount";
 type TInputChange<T = HTMLInputElement> = React.ChangeEvent<T>;
 
-export default function BlockTrans({ block }: { block: IBlock }): JSX.Element {
+export default function BlockTrans({ index }: { index: number }): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-  async function calculateNewMerkleRoot(newVal: number | string, index: number, type: TChange): Promise<void> {
-    const newTrans = JSON.parse(JSON.stringify(block.transactions)); // deep copy
+  const [transDetails, setTransDetails] = useState<ITransaction[]>(state.chain[index].transactions);
+
+  async function calculateNewMerkleRoot(newVal: number | string, i: number, type: TChangeType): Promise<void> {
+    const newTrans: ITransaction[] = JSON.parse(JSON.stringify(transDetails)); // deep copy
 
     // update the changed value & signature
-    newTrans[index][type] = newVal;
-    newTrans[index].signature = await digestMessage(newTrans[index].to + newTrans[index].from + newTrans[index].amount + newTrans[index].message); // prettier-ignore
+    newTrans[i] = { ...newTrans[i], [type]: newVal };
+    const message = newTrans[i].to + newTrans[i].from + newTrans[i].amount + newTrans[i].message;
+    newTrans[i].signature = await digestMessage(message);
 
     // calculate new merkle root and currHash
-    const root = await calculateMerkleTreeFormation(newTrans, newTrans);
-    const newHash = await digestMessage(block.index + block.prevHash + root);
+    const prevHash = state.chain[index].prevHash;
+    const newRoot = await calculateMerkleTreeFormation(transDetails, transDetails);
+    const newHash = await digestMessage(index + prevHash + newRoot);
 
-    await propagateBlockStatus(state, dispatch, block, newHash, false, root, newTrans);
+    setTransDetails(newTrans);
+    await propagateBlockStatus(state, dispatch, index, prevHash, newHash, false, newRoot, newTrans);
   }
 
   return (
     <div className="row flex-nowrap overflow-auto mx-2">
-      {block.transactions.map((transaction: ITransaction, i: number) => {
+      {transDetails.map((transaction, i) => {
         return (
-          <div className="col-12 mr-2 bg-light border border-dark p-1 rounded" key={`sig:${transaction.signature}`}>
+          <div className="col-12 mr-2 bg-light border border-dark p-1 rounded" key={`sig:${i}`}>
             <Form.Group className="mb-2 text-center">
               <Form.Control
                 className="text-truncate"
@@ -77,7 +82,13 @@ export default function BlockTrans({ block }: { block: IBlock }): JSX.Element {
               <InputGroup.Prepend>
                 <InputGroup.Text>Sig</InputGroup.Text>
               </InputGroup.Prepend>
-              <Form.Control className="text-truncate" type="text" defaultValue={transaction.signature} readOnly />
+              <Form.Control
+                key={transaction.signature}
+                className="text-truncate"
+                type="text"
+                defaultValue={transaction.signature}
+                readOnly
+              />
             </InputGroup>
           </div>
         );

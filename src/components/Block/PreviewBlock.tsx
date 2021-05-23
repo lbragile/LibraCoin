@@ -74,7 +74,7 @@ export default function PreviewBlock(): JSX.Element {
         setIsValid={setIsValid}
       />
 
-      <Form className={"col-10 col-lg-5 my-4 my-lg-0 pb-2 rounded " + (isValid ? "valid-block" : "invalid-block")}>
+      <Form className={"col-10 col-lg-5 my-4 my-lg-0 pb-2 px-2 rounded " + (isValid ? "valid-block" : "invalid-block")}>
         <InputGroup className="my-2">
           <InputGroup.Prepend>
             <InputGroup.Text>Index</InputGroup.Text>
@@ -112,7 +112,7 @@ export default function PreviewBlock(): JSX.Element {
 
         {isValid && (
           <Button className="mt-2" variant="success" block onClick={() => handleAddBlock()}>
-            <h3 className="my-0 font-weight-bold">+</h3>
+            <h4 className="my-0 font-weight-bold">Add Block</h4>
           </Button>
         )}
       </Form>

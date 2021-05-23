@@ -26,12 +26,12 @@ export default function Statistics(props: IStats): JSX.Element {
     nonce.current = Math.round(Math.random() * 1e6);
 
     setDisableMineBtn(true);
-    const hash = await mine(nonce.current, setHeader, setTarget, props.setSolution, props.setIsValid);
+    const currHash = await mine(nonce.current, setHeader, setTarget, props.setSolution, props.setIsValid);
     setDisableMineBtn(false);
 
     // propagate changes if needed
     if (props.chain && props.block) {
-      await propagateBlockStatus(state, dispatch, props.block, hash, true);
+      await propagateBlockStatus(state, dispatch, props.block.index, props.block.prevHash, currHash, true);
     }
   }
 
@@ -65,7 +65,7 @@ export default function Statistics(props: IStats): JSX.Element {
         <Form.Control
           className="text-truncate"
           type="text"
-          style={props.isValid ? { color: "green" } : { color: "red" }}
+          style={{ color: `${props.isValid ? "green" : "red"}` }}
           defaultValue={props.solution}
           readOnly
         />
@@ -73,12 +73,13 @@ export default function Statistics(props: IStats): JSX.Element {
 
       <Button
         variant="primary"
-        className="btn-block d-block mt-3"
+        className="btn-block d-block mt-2"
         disabled={props.isValid || (!props.chain && state.selectedTrans.length === 0) || disableMineBtn}
         onClick={() => handleMine()}
       >
-        <h4 className="m-0">
-          Mine {disableMineBtn && <span className="spinner-border spinner-border-md mx-3" role="status" />}
+        <h4 className="my-1">
+          Mine
+          {disableMineBtn && <span className="position-absolute spinner-border spinner-border-md mx-4" role="status" />}
         </h4>
       </Button>
     </div>

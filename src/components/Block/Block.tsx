@@ -50,6 +50,7 @@ export default function Block({ block }: { block: IBlock }): JSX.Element {
               <InputGroup.Text>Current #</InputGroup.Text>
             </InputGroup.Prepend>
             <Form.Control
+              key={solution ? solution : block.currHash}
               className="text-truncate"
               type="text"
               defaultValue={solution ? solution : block.currHash}
@@ -65,7 +66,13 @@ export default function Block({ block }: { block: IBlock }): JSX.Element {
               <Form.Control type="text" defaultValue={""} disabled />
             ) : (
               <React.Fragment>
-                <Form.Control className="text-truncate" type="text" defaultValue={block.merkleRoot} readOnly />
+                <Form.Control
+                  key={block.merkleRoot}
+                  className="text-truncate"
+                  type="text"
+                  defaultValue={block.merkleRoot}
+                  readOnly
+                />
                 <InputGroup.Append>
                   <InputGroup.Text className="show-trans-eye" onClick={() => handleViewTransactions()}>
                     {block.showTrans ? "🙈" : "🙉"}
