@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<DocumentFragment>
+  <form
+    aria-label="Sign Form"
+    class="col-12 col-lg-5 trans-form"
+    novalidate=""
+  >
+    <div
+      class="input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Sender Public Key
+        </span>
+      </div>
+      <input
+        aria-label="Sender Public Key"
+        class="text-truncate rounded-right form-control"
+        name="sender-pk"
+        readonly=""
+        type="text"
+        value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
+      />
+    </div>
+    <small
+      class="text-muted form-text"
+    >
+      Used to verify transaction was signed using your private key
+    </small>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Receiver Public Key
+        </span>
+      </div>
+      <input
+        aria-label="Receiver Public Key"
+        class="text-truncate rounded-right form-control"
+        name="receiver-pk"
+        pattern="[A-Za-z0-9]{182,182}"
+        required=""
+        type="text"
+      />
+      <div
+        class="invalid-feedback"
+      >
+        <b>
+          Length or format are incorrect!
+        </b>
+      </div>
+    </div>
+    <div
+      class="mb-2 input-group"
+    >
+      <input
+        aria-label="Sign Amount"
+        class="form-control"
+        name="amount"
+        placeholder="1.00"
+        required=""
+        step="any"
+        type="number"
+      />
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="rounded-right border-left-0 input-group-text"
+        >
+          LC
+        </span>
+      </div>
+    </div>
+    <div
+      class="mb-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Message
+        </span>
+      </div>
+      <textarea
+        aria-label="Sign Message"
+        class="form-control"
+        name="msg"
+        placeholder="optional message..."
+        rows="2"
+      />
+    </div>
+    <div
+      class="input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Sender Private Key
+        </span>
+      </div>
+      <input
+        aria-label="Sender Private Key"
+        class="text-truncate form-control"
+        name="sender-sk"
+        readonly=""
+        type="text"
+        value="308187020100301306072a8648ce3d020106082a8648ce3d030107046d306b020101042047979df7cebe59dd7bf901"
+      />
+    </div>
+    <small
+      class="text-muted form-text"
+    >
+      Not shared with anyone, keep this secret!
+    </small>
+    <button
+      aria-label="Sign Button"
+      class="mt-2 btn btn-primary btn-block"
+      type="submit"
+    >
+      <b>
+        Sign
+      </b>
+    </button>
+  </form>
+</DocumentFragment>
+`;

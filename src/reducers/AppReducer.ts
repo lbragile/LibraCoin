@@ -1,13 +1,17 @@
 import { ACTIONS } from "../enums/AppDispatchActions";
 import { IAction, IState, IUser, ITransaction, IBlock, IMainUser } from "../typings/AppTypes";
 
+function deepCopy<T>(obj: T): T {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 export const AppReducer = (state: IState, action: IAction): IState => {
   switch (action.type) {
     case ACTIONS.ADD_VERIFIED_TRANS: {
       const { trans } = action.payload as { trans: ITransaction };
-      state.verifiedTrans.push(trans);
-      localStorage.setItem("verTrans", JSON.stringify(state.verifiedTrans));
-      return state;
+      const verifiedTrans = [...state.verifiedTrans, deepCopy(trans)];
+      localStorage.setItem("verTrans", JSON.stringify(verifiedTrans));
+      return { ...state, verifiedTrans };
     }
 
     case ACTIONS.UPDATE_VERIFIED_TRANS: {
@@ -37,17 +41,20 @@ export const AppReducer = (state: IState, action: IAction): IState => {
 
     case ACTIONS.ADD_BLOCK: {
       const { block } = action.payload as { block: IBlock };
-      state.chain.push(block);
-      localStorage.setItem("chain", JSON.stringify(state.chain));
-      return state;
+      const chain = [...deepCopy(state.chain), block];
+      localStorage.setItem("chain", JSON.stringify(chain));
+      return { ...state, chain };
     }
 
     case ACTIONS.UPDATE_BLOCK: {
-      const { block } = action.payload as { block: IBlock };
-      const ogState = JSON.parse(JSON.stringify(state));
-      ogState.chain[block.index] = block;
-      localStorage.setItem("chain", JSON.stringify(ogState.chain));
-      return { ...ogState, chain: ogState.chain };
+      const { block } = action.payload as { block: IBlock | IBlock[] };
+      const blocks = Array.isArray(block) ? block : [block];
+      const chain = deepCopy(state.chain);
+
+      blocks.forEach((b) => (chain[b.index] = deepCopy(b)));
+
+      localStorage.setItem("chain", JSON.stringify(chain));
+      return { ...state, chain };
     }
 
     default:

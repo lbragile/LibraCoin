@@ -3,7 +3,7 @@ const ignore_arr = ["(<rootDir>/)(?=(node_modules|build|public))"];
 module.exports = {
   rootDir: "../",
   preset: "ts-jest",
-  moduleNameMapper: { "\\.(jpg|jpeg|png|gif|css)$": "<rootDir>/tests/__mocks__/emptyMock.ts" },
+  moduleNameMapper: { "\\.(jpg|jpeg|png|gif|css|scss)$": "<rootDir>/tests/__mocks__/emptyMock.ts" },
   moduleFileExtensions: ["js", "ts", "tsx"],
   testPathIgnorePatterns: ignore_arr,
   coveragePathIgnorePatterns: ignore_arr,

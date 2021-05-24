@@ -19,50 +19,85 @@ export default function Sign({ validated, signed, handleSubmit }: ISign): JSX.El
   }
 
   return (
-    <Form noValidate validated={validated} className="col-12 col-lg-5 trans-form" onSubmit={handleSubmit}>
-      <Form.Group>
-        <Form.Control className="text-truncate" type="text" defaultValue={state.user.publicKey ?? ""} readOnly />
-        <Form.Text className="text-muted">
-          Your public key → used to verify transaction was signed using your private key
-        </Form.Text>
-        <h3 className="my-0 text-center">↓</h3>
+    <Form
+      aria-label="Sign Form"
+      noValidate
+      validated={validated}
+      className="col-12 col-lg-5 trans-form"
+      onSubmit={handleSubmit}
+    >
+      <InputGroup>
+        <InputGroup.Prepend>
+          <InputGroup.Text>Sender Public Key</InputGroup.Text>
+        </InputGroup.Prepend>
         <Form.Control
-          className="text-truncate"
+          aria-label="Sender Public Key"
+          name="sender-pk"
+          className="text-truncate rounded-right"
           type="text"
-          placeholder="Receiver's public key"
+          defaultValue={state.user.publicKey ?? ""}
+          readOnly
+        />
+      </InputGroup>
+
+      <Form.Text className="text-muted">Used to verify transaction was signed using your private key</Form.Text>
+
+      <InputGroup className="my-2">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Receiver Public Key</InputGroup.Text>
+        </InputGroup.Prepend>
+        <Form.Control
+          aria-label="Receiver Public Key"
+          name="receiver-pk"
+          className="text-truncate rounded-right"
+          type="text"
           pattern="[A-Za-z0-9]{182,182}"
           required
         />
         <Form.Control.Feedback type="invalid">
           <b>Length or format are incorrect!</b>
         </Form.Control.Feedback>
-      </Form.Group>
+      </InputGroup>
 
-      <Form.Group>
-        <InputGroup className="mb-2">
-          <Form.Control
-            type="number"
-            step="any"
-            placeholder={Number(1).toFixed(2)}
-            onBlur={(e: React.FocusEvent<HTMLInputElement>) => checkAmount(e)}
-            required
-          />
-          <InputGroup.Prepend>
-            <InputGroup.Text className="rounded-right border-left-0">LC</InputGroup.Text>
-          </InputGroup.Prepend>
-        </InputGroup>
-      </Form.Group>
+      <InputGroup className="mb-2">
+        <Form.Control
+          aria-label="Sign Amount"
+          name="amount"
+          type="number"
+          step="any"
+          placeholder={Number(1).toFixed(2)}
+          onBlur={(e: React.FocusEvent<HTMLInputElement>) => checkAmount(e)}
+          required
+        />
+        <InputGroup.Prepend>
+          <InputGroup.Text className="rounded-right border-left-0">LC</InputGroup.Text>
+        </InputGroup.Prepend>
+      </InputGroup>
 
-      <Form.Group>
-        <Form.Control as="textarea" rows={2} placeholder="optional message..." />
-      </Form.Group>
+      <InputGroup className="mb-2">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Message</InputGroup.Text>
+        </InputGroup.Prepend>
+        <Form.Control aria-label="Sign Message" name="msg" as="textarea" rows={2} placeholder="optional message..." />
+      </InputGroup>
 
-      <Form.Group>
-        <Form.Control className="text-truncate" type="text" defaultValue={state.user.privateKey ?? ""} readOnly />
-        <Form.Text className="text-muted">Your private key → not shared with anyone, keep this secret!</Form.Text>
-      </Form.Group>
+      <InputGroup>
+        <InputGroup.Prepend>
+          <InputGroup.Text>Sender Private Key</InputGroup.Text>
+        </InputGroup.Prepend>
+        <Form.Control
+          aria-label="Sender Private Key"
+          name="sender-sk"
+          className="text-truncate"
+          type="text"
+          defaultValue={state.user.privateKey ?? ""}
+          readOnly
+        />
+      </InputGroup>
 
-      <Button variant="primary" type="submit" disabled={signed} block>
+      <Form.Text className="text-muted">Not shared with anyone, keep this secret!</Form.Text>
+
+      <Button aria-label="Sign Button" className="mt-2" variant="primary" type="submit" disabled={signed} block>
         <b>Sign</b>
       </Button>
     </Form>

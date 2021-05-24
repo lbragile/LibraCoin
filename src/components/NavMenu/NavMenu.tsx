@@ -1,7 +1,7 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 
-import "./NavMenu.css";
+import "./NavMenu.scss";
 
 export default function NavMenu(): JSX.Element {
   return (

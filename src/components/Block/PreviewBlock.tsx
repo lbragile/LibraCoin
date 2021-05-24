@@ -7,7 +7,7 @@ import { IAction, IState } from "../../typings/AppTypes";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { calculateMerkleTreeFormation, drawTreeDiagramOnCanvas, getMerkleRoot } from "../../utils/merkleTree";
 
-import "./Block.css";
+import "./Block.scss";
 
 export default function PreviewBlock(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
@@ -24,12 +24,12 @@ export default function PreviewBlock(): JSX.Element {
   useEffect(() => {
     calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans, setMerkleTree);
     setIsValid(false);
-  }, [state.selectedTrans]);
+  }, [state.selectedTrans, state.verifiedTrans]);
 
   // draw tree in canvas
   useEffect(() => {
     drawTreeDiagramOnCanvas(merkleTree, treeCanvas.current, state.selectedTrans);
-  }, [merkleTree]);
+  }, [merkleTree, state.selectedTrans]);
 
   // update timestamp & currentHash when solution is mined
   useEffect(() => setTimestamp(Date.now()), [solution]);
@@ -74,7 +74,7 @@ export default function PreviewBlock(): JSX.Element {
         setIsValid={setIsValid}
       />
 
-      <Form className={"col-10 col-lg-5 my-4 my-lg-0 pb-2 rounded " + (isValid ? "valid-block" : "invalid-block")}>
+      <Form className={"col-10 col-lg-5 my-4 my-lg-0 pb-2 px-2 rounded " + (isValid ? "valid-block" : "invalid-block")}>
         <InputGroup className="my-2">
           <InputGroup.Prepend>
             <InputGroup.Text>Index</InputGroup.Text>
@@ -112,7 +112,7 @@ export default function PreviewBlock(): JSX.Element {
 
         {isValid && (
           <Button className="mt-2" variant="success" block onClick={() => handleAddBlock()}>
-            <h3 className="my-0 font-weight-bold">+</h3>
+            <h4 className="my-0">Add Block</h4>
           </Button>
         )}
       </Form>

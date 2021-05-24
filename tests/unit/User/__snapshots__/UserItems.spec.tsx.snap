@@ -62,6 +62,104 @@ exports[`renders correctly 1`] = `
           </div>
         </div>
       </form>
+      <form
+        class="user-item rounded flex-shrink-0"
+      >
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="input-group-text"
+            >
+              🔑
+            </span>
+          </div>
+          <input
+            aria-label="User Public Key"
+            class="text-truncate rounded-right form-control"
+            readonly=""
+            type="text"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599bacd"
+          />
+          <div
+            class="valid-feedback"
+          >
+            Copied to clipboard
+          </div>
+        </div>
+        <div
+          class="mt-2 input-group"
+        >
+          <input
+            aria-label="balance"
+            class="form-control"
+            disabled=""
+            type="number"
+            value="111.11"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+      </form>
+      <form
+        class="user-item rounded flex-shrink-0"
+      >
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="input-group-text"
+            >
+              🔑
+            </span>
+          </div>
+          <input
+            aria-label="User Public Key"
+            class="text-truncate rounded-right form-control"
+            readonly=""
+            type="text"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599baef"
+          />
+          <div
+            class="valid-feedback"
+          >
+            Copied to clipboard
+          </div>
+        </div>
+        <div
+          class="mt-2 input-group"
+        >
+          <input
+            aria-label="balance"
+            class="form-control"
+            disabled=""
+            type="number"
+            value="222.22"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </DocumentFragment>

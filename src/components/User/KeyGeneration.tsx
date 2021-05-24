@@ -7,7 +7,7 @@ import { ACTIONS } from "../../enums/AppDispatchActions";
 import { copyKey } from "../../utils/copyInput";
 import { CryptoKeyToHex } from "../../utils/conversion";
 
-import "./User.css";
+import "./User.scss";
 
 export default function KeyGeneration(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
@@ -20,32 +20,32 @@ export default function KeyGeneration(): JSX.Element {
 
   // add a user if it's the first time visiting
   useEffect(() => {
-    addUser();
-  }, []);
+    async function addUser(): Promise<void> {
+      if (!state.user.publicKey) {
+        const { publicKey, privateKey } = await window.crypto.subtle.generateKey(
+          { name: "ECDSA", namedCurve: "P-256" },
+          true,
+          ["sign", "verify"]
+        );
 
-  async function addUser(): Promise<void> {
-    if (!state.user.publicKey) {
-      const { publicKey, privateKey } = await window.crypto.subtle.generateKey(
-        { name: "ECDSA", namedCurve: "P-256" },
-        true,
-        ["sign", "verify"]
-      );
+        const publicKeyStr = await CryptoKeyToHex("spki", publicKey as CryptoKey);
+        const privateKeyStr = await CryptoKeyToHex("pkcs8", privateKey as CryptoKey);
+        if (publicKeyRef.current && privateKeyRef.current) {
+          publicKeyRef.current.innerText = publicKeyStr;
+          privateKeyRef.current.innerText = new Array(privateKeyStr.length).fill("◦").join("");
+        }
 
-      const publicKeyStr = await CryptoKeyToHex("spki", publicKey as CryptoKey);
-      const privateKeyStr = await CryptoKeyToHex("pkcs8", privateKey as CryptoKey);
-      if (publicKeyRef.current && privateKeyRef.current) {
-        publicKeyRef.current.innerText = publicKeyStr;
-        privateKeyRef.current.innerText = new Array(privateKeyStr.length).fill("◦").join("");
+        const balance = Number(1000).toFixed(2);
+        const mainUser = { publicKey: publicKeyStr, privateKey: privateKeyStr, balance };
+        dispatch({ type: ACTIONS.SET_MAIN_USER, payload: { user: mainUser } });
+
+        const newUsers = [...state.users, { publicKey: publicKeyStr, balance }];
+        dispatch({ type: ACTIONS.UPDATE_USERS, payload: { users: newUsers } });
       }
-
-      const balance = Number(1000).toFixed(2);
-      const mainUser = { publicKey: publicKeyStr, privateKey: privateKeyStr, balance };
-      dispatch({ type: ACTIONS.SET_MAIN_USER, payload: { user: mainUser } });
-
-      const newUsers = [...state.users, { publicKey: publicKeyStr, balance }];
-      dispatch({ type: ACTIONS.UPDATE_USERS, payload: { users: newUsers } });
     }
-  }
+
+    addUser();
+  }, [dispatch, state.user.publicKey, state.users]);
 
   const togglePrivateKey = () => {
     const show = privateKeyRef.current?.value.includes("◦");
@@ -54,11 +54,12 @@ export default function KeyGeneration(): JSX.Element {
   };
 
   return (
-    <div className="container-fluid row d-flex align-items-center justify-content-center mx-1 mt-0 mt-lg-5 mb-0 mb-lg-5">
-      <InputGroup className="user-key col-12 col-lg-5 px-0 mr-0 mr-lg-3">
+    <div className="container-fluid d-flex justify-content-center mx-auto row my-5">
+      <InputGroup className="user-key col-12 col-lg-5 pl-3 pl-lg-0">
         <InputGroup.Prepend>
           <InputGroup.Text>Public</InputGroup.Text>
         </InputGroup.Prepend>
+
         <Form.Control
           aria-label="publicKey"
           as="textarea"
@@ -71,10 +72,11 @@ export default function KeyGeneration(): JSX.Element {
           readOnly
           ref={publicKeyRef}
         />
+
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
       </InputGroup>
 
-      <InputGroup className="user-key col-12 col-lg-5 px-0">
+      <InputGroup className="user-key col-12 col-lg-5 pl-3">
         <InputGroup.Prepend>
           <InputGroup.Text>Private</InputGroup.Text>
         </InputGroup.Prepend>
@@ -90,6 +92,7 @@ export default function KeyGeneration(): JSX.Element {
           readOnly
           ref={privateKeyRef}
         />
+
         <InputGroup.Append>
           <InputGroup.Text className="rounded-right">
             <span id="private-reveal-eyes" onClick={togglePrivateKey}>
@@ -97,6 +100,7 @@ export default function KeyGeneration(): JSX.Element {
             </span>
           </InputGroup.Text>
         </InputGroup.Append>
+
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
       </InputGroup>
     </div>

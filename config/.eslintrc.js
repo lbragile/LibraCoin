@@ -5,11 +5,13 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:jest-dom/recommended",
-    "plugin:testing-library/react"
+    "plugin:react-hooks/recommended",
+    "plugin:testing-library/react",
+    "plugin:jest/recommended"
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: { ecmaFeatures: { jsx: true }, ecmaVersion: 12 },
-  plugins: ["react", "@typescript-eslint", "testing-library", "jest-dom"],
+  plugins: ["react", "@typescript-eslint", "testing-library", "jest", "jest-dom"],
   rules: {},
   settings: { react: { version: "detect" } },
   ignorePatterns: ["dist/*.js"]

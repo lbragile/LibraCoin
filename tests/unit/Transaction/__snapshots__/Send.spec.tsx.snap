@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<DocumentFragment>
+  <form
+    aria-label="Send Form"
+    class="col-12 col-lg-5 my-2 my-lg-0 trans-form"
+    novalidate=""
+  >
+    <div
+      class="input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Receiver Public Key
+        </span>
+      </div>
+      <input
+        aria-label="Receiver Public Key"
+        class="text-truncate form-control"
+        name="receiver-pk"
+        readonly=""
+        type="text"
+        value=""
+      />
+    </div>
+    <small
+      class="text-muted form-text"
+    >
+      Make sure this matches the value used when signing
+    </small>
+    <div
+      class="my-2 input-group"
+    >
+      <input
+        aria-label="Send Amount"
+        class="form-control"
+        disabled=""
+        name="amount"
+        type="number"
+        value=""
+      />
+      <div
+        class="input-group-append"
+      >
+        <span
+          class="rounded-right border-left-0 input-group-text"
+        >
+          LC
+        </span>
+      </div>
+    </div>
+    <div
+      class="mb-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Message
+        </span>
+      </div>
+      <textarea
+        aria-label="Send Message"
+        class="form-control"
+        name="msg"
+        placeholder="optional message..."
+        readonly=""
+        rows="4"
+      />
+    </div>
+    <div
+      class="input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Transaction Signature
+        </span>
+      </div>
+      <input
+        aria-label="Transaction Signature"
+        class="form-control"
+        name="sig"
+        readonly=""
+        type="text"
+        value=""
+      />
+    </div>
+    <small
+      class="text-muted form-text"
+    >
+      Receiver uses this along with your public key to verify transaction
+    </small>
+    <button
+      aria-label="Send Button"
+      class="mt-2 btn btn-primary btn-block"
+      disabled=""
+      type="submit"
+    >
+      <b>
+        Send
+      </b>
+    </button>
+  </form>
+</DocumentFragment>
+`;

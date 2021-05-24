@@ -4,7 +4,7 @@ import { AppContext } from "../../context/AppContext";
 import { IAction, IState, IUser } from "../../typings/AppTypes";
 import { copyKey } from "../../utils/copyInput";
 
-import "./User.css";
+import "./User.scss";
 
 export default function UserItems(): JSX.Element {
   const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
@@ -22,7 +22,7 @@ export default function UserItems(): JSX.Element {
       <div className="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
         {state.users?.map((user: IUser, i: number) => {
           return (
-            <Form className="user-item rounded flex-shrink-0" key={`user${i}`}>
+            <Form className="user-item rounded flex-shrink-0" key={`user-${user.publicKey}`}>
               <InputGroup>
                 <InputGroup.Prepend>
                   <InputGroup.Text>🔑</InputGroup.Text>

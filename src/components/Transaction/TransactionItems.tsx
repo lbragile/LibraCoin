@@ -4,7 +4,7 @@ import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { IAction, IState, ITransaction } from "../../typings/AppTypes";
 
-import "./Transaction.css";
+import "./Transaction.scss";
 
 export default function TransactionItems(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
@@ -33,7 +33,7 @@ export default function TransactionItems(): JSX.Element {
     <div className="container-fluid">
       <h3 className="font-weight-bold">Verified Transactions</h3>
       <div className="trans-list row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
-        {state.verifiedTrans.map((transaction: ITransaction, i: number) => {
+        {state.verifiedTrans.map((transaction) => {
           return (
             <div
               className={
@@ -41,7 +41,7 @@ export default function TransactionItems(): JSX.Element {
                 (state.selectedTrans.map((x) => x.signature).includes(transaction.signature) ? "selected" : "not-selected") // prettier-ignore
               }
               onClick={() => selectTransaction(transaction)}
-              key={`verifiedTrans${i}`}
+              key={`sig:${transaction.signature}`}
             >
               <Form.Group className="mb-2 text-center">
                 <Form.Control className="text-truncate" type="text" defaultValue={transaction.from} readOnly />

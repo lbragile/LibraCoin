@@ -5,27 +5,26 @@ import { digestMessage } from "./conversion";
 export async function propagateBlockStatus(
   state: IState,
   dispatch: React.Dispatch<IAction>,
-  block: IBlock,
+  index: number,
   prevHash: string,
+  currHash: string,
   skipFirstUpdate: boolean,
   newRoot?: string,
   transactions?: ITransaction[],
   timestamp = Date.now()
 ): Promise<void> {
-  const index = block.index;
-
+  const newBlocks: IBlock[] = [];
   for (let i = index; i < state.chain.length; i++) {
     const merkleRoot = newRoot && i === index ? newRoot : state.chain[i].merkleRoot;
-    const currHash = i === index ? prevHash : await digestMessage(i + prevHash + merkleRoot);
-    const valid = skipFirstUpdate ? i === index : false;
+    const valid = skipFirstUpdate && i === index;
     const showTrans = state.chain[i].showTrans ?? false;
-    prevHash = i === index ? block.prevHash : prevHash;
+    currHash = i === index ? currHash : await digestMessage(i + prevHash + merkleRoot);
     transactions = i === index && transactions ? transactions : state.chain[i].transactions;
 
-    const newBlock = { index: i, timestamp, prevHash, currHash, transactions, merkleRoot, valid, showTrans };
+    newBlocks.push({ index: i, timestamp, prevHash, currHash, transactions, merkleRoot, valid, showTrans });
 
     prevHash = currHash; // next block's prevHash is this block's currHash
-
-    dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: newBlock } });
   }
+
+  dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: newBlocks } });
 }
