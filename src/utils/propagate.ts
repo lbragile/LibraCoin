@@ -10,7 +10,8 @@ export async function propagateBlockStatus(
   currHash: string,
   skipFirstUpdate: boolean,
   newRoot?: string,
-  transactions?: ITransaction[]
+  transactions?: ITransaction[],
+  timestamp = Date.now()
 ): Promise<void> {
   const newBlocks: IBlock[] = [];
   for (let i = index; i < state.chain.length; i++) {
@@ -20,7 +21,7 @@ export async function propagateBlockStatus(
     currHash = i === index ? currHash : await digestMessage(i + prevHash + merkleRoot);
     transactions = i === index && transactions ? transactions : state.chain[i].transactions;
 
-    newBlocks.push({ index: i, timestamp: Date.now(), prevHash, currHash, transactions, merkleRoot, valid, showTrans });
+    newBlocks.push({ index: i, timestamp, prevHash, currHash, transactions, merkleRoot, valid, showTrans });
 
     prevHash = currHash; // next block's prevHash is this block's currHash
   }

@@ -112,7 +112,7 @@ export default function PreviewBlock(): JSX.Element {
 
         {isValid && (
           <Button className="mt-2" variant="success" block onClick={() => handleAddBlock()}>
-            <h4 className="my-0 font-weight-bold">Add Block</h4>
+            <h4 className="my-0">Add Block</h4>
           </Button>
         )}
       </Form>

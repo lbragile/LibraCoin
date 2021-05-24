@@ -26,7 +26,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
 
     // calculate new merkle root and currHash
     const prevHash = state.chain[index].prevHash;
-    const newRoot = await calculateMerkleTreeFormation(transDetails, transDetails);
+    const newRoot = await calculateMerkleTreeFormation(newTrans, newTrans);
     const newHash = await digestMessage(index + prevHash + newRoot);
 
     setTransDetails(newTrans);
@@ -37,7 +37,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
     <div className="row flex-nowrap overflow-auto mx-2">
       {transDetails.map((transaction, i) => {
         return (
-          <div className="col-12 mr-2 bg-light border border-dark p-1 rounded" key={`sig:${i}`}>
+          <div className="block col-12 mr-2 bg-light border border-dark p-1 rounded" key={`sig:${i}`}>
             <Form.Group className="mb-2 text-center">
               <Form.Control
                 className="text-truncate"
@@ -60,6 +60,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
               </InputGroup.Prepend>
               <Form.Control
                 as="textarea"
+                rows={3}
                 value={transaction.message}
                 onChange={(e: TInputChange<HTMLTextAreaElement>) =>
                   calculateNewMerkleRoot(e.target.value, i, "message")
@@ -70,7 +71,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
             <InputGroup className="mb-2">
               <Form.Control
                 type="number"
-                value={transaction.amount && parseFloat(transaction.amount + "").toFixed(2)}
+                value={transaction.amount ?? 0}
                 onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "amount")}
               />
               <InputGroup.Append>

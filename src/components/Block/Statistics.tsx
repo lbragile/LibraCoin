@@ -30,8 +30,9 @@ export default function Statistics(props: IStats): JSX.Element {
     setDisableMineBtn(false);
 
     // propagate changes if needed
-    if (props.chain && props.block) {
-      await propagateBlockStatus(state, dispatch, props.block.index, props.block.prevHash, currHash, true);
+    const { chain, block } = props;
+    if (chain && block) {
+      await propagateBlockStatus(state, dispatch, block.index, block.prevHash, currHash, true);
     }
   }
 

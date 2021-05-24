@@ -10,18 +10,30 @@ export default function Block({ block }: { block: IBlock }): JSX.Element {
   const { dispatch } = useContext(AppContext) as { dispatch: React.Dispatch<IAction> };
 
   const [solution, setSolution] = useState<string>("");
-  const [timestamp, setTimestamp] = useState<number>(Date.now());
+  const [timestamp, setTimestamp] = useState<number | undefined>(undefined);
   const [isValid, setIsValid] = useState<boolean>(block.valid ?? true);
 
   // update timestamp when solution is mined
-  useEffect(() => setTimestamp(Date.now()), [solution]);
+  useEffect(() => {
+    setTimestamp(block.timestamp);
+  }, [block.timestamp]);
+
+  useEffect(() => {
+    if (block.valid !== undefined) {
+      setIsValid(block.valid);
+    }
+  }, [block.valid]);
+
+  useEffect(() => {
+    setSolution(block.currHash);
+  }, [block.currHash]);
 
   function handleViewTransactions(): void {
     dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: { ...block, showTrans: !block.showTrans } } });
   }
 
   return (
-    <div className="flex-column flex-shrink-0">
+    <div className="block flex-column flex-shrink-0">
       <div className={"my-3 mx-1 p-2 rounded " + (isValid ? "valid-block" : "invalid-block")}>
         <Form>
           <InputGroup className="my-2">
@@ -35,7 +47,12 @@ export default function Block({ block }: { block: IBlock }): JSX.Element {
             <InputGroup.Prepend>
               <InputGroup.Text>Timestamp</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control type="number" defaultValue={solution ? timestamp : block.timestamp} disabled />
+            <Form.Control
+              key={timestamp ?? block.timestamp}
+              type="number"
+              defaultValue={timestamp ?? block.timestamp}
+              disabled
+            />
           </InputGroup>
 
           <InputGroup className="my-2">
