@@ -15,7 +15,11 @@ const state: IState = {
     }
   ],
   selectedTrans: [],
-  users: [{ publicKey, balance: 1000 }],
+  users: [
+    { publicKey, balance: 1000.0 },
+    { publicKey: publicKey.slice(0, publicKey.length - 2) + "cd", balance: 111.11 },
+    { publicKey: publicKey.slice(0, publicKey.length - 2) + "ef", balance: 222.22 }
+  ],
   user: { publicKey, privateKey, balance: 1000 },
   chain: [
     {

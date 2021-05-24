@@ -3,10 +3,10 @@
 exports[`renders correctly 1`] = `
 <DocumentFragment>
   <div
-    class="container-fluid row d-flex align-items-center justify-content-center mx-1 mt-0 mt-lg-5 mb-0 mb-lg-5"
+    class="container-fluid d-flex justify-content-center mx-auto row my-5"
   >
     <div
-      class="user-key col-12 col-lg-5 px-0 mr-0 mr-lg-3 input-group"
+      class="user-key col-12 col-lg-5 pl-3 pl-lg-0 input-group"
     >
       <div
         class="input-group-prepend"
@@ -32,7 +32,7 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="user-key col-12 col-lg-5 px-0 input-group"
+      class="user-key col-12 col-lg-5 pl-3 input-group"
     >
       <div
         class="input-group-prepend"
