@@ -11,10 +11,46 @@ const state: IState = {
       from: "B",
       amount: 1.23,
       message: "First Transaction",
-      signature: "ABCD"
+      signature: "AB1.23"
+    },
+    {
+      to: "A",
+      from: "C",
+      amount: 456.78,
+      message: "Second Transaction",
+      signature: "AC456.78"
+    },
+    {
+      to: "A",
+      from: "D",
+      amount: 999.99,
+      message: "Third Transaction",
+      signature: "AD999.99"
+    },
+    {
+      to: "A",
+      from: "E",
+      amount: 987.65,
+      message: "Forth Transaction",
+      signature: "AE987.65"
+    },
+    {
+      to: "A",
+      from: "F",
+      amount: 1.01,
+      message: "Fifth Transaction",
+      signature: "AF1.01"
     }
   ],
-  selectedTrans: [],
+  selectedTrans: [
+    {
+      to: "A",
+      from: "C",
+      amount: 456.78,
+      message: "Second Transaction",
+      signature: "AC456.78"
+    }
+  ],
   users: [
     { publicKey, balance: 1000.0 },
     { publicKey: publicKey.slice(0, publicKey.length - 2) + "cd", balance: 111.11 },

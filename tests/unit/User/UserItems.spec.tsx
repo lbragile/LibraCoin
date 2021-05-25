@@ -14,24 +14,24 @@ it("renders correctly", () => {
     </AppContext.Provider>
   );
 
-  const title = screen.getByRole("heading", { name: /Users/i, level: 3 });
-  const publicKeys = screen.getAllByRole("textbox", { name: /User Public Key/i }) as HTMLInputElement[];
-  const balances = screen.getAllByRole("spinbutton", { name: /balance/i }) as HTMLInputElement[];
+  const publicKeys = screen.getAllByRole("textbox", { name: /User Public Key/i });
+  const balances = screen.getAllByRole("spinbutton", { name: /balance/i });
 
-  expect(title).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: /Users/i, level: 3 })).toHaveTextContent("Users");
 
   balances.forEach((balance, i) => {
     expect(balance).toBeDisabled();
-    expect(balance.value).toEqual(state.users[i].balance.toString());
+    expect(balance).toHaveValue(state.users[i].balance);
   });
 
-  publicKeys.forEach((key) => {
+  publicKeys.forEach((key, i) => {
     expect(key).toHaveAttribute("readOnly");
-    expect(key.value.length).toEqual(state.user.publicKey.length);
+    expect(key).toHaveValue(state.users[i].publicKey);
   });
 
-  expect(publicKeys.length).toEqual(state.users.length);
-  expect(balances.length).toEqual(state.users.length);
+  const numUsers = state.users.length;
+  expect(publicKeys.length).toEqual(numUsers);
+  expect(balances.length).toEqual(numUsers);
 
   expect(asFragment()).toMatchSnapshot();
 });

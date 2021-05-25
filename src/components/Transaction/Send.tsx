@@ -70,6 +70,7 @@ export default function Send(props: ISend): JSX.Element {
           aria-label="Transaction Signature"
           name="sig"
           type="text"
+          className="text-truncate"
           defaultValue={props.details.signature}
           readOnly
         />

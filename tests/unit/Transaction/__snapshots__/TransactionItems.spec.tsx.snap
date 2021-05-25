@@ -1,0 +1,485 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="container-fluid"
+  >
+    <h3
+      aria-label="Title"
+      class="font-weight-bold"
+    >
+      Verified Transactions
+    </h3>
+    <div
+      class="trans-list row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded"
+    >
+      <form
+        aria-label="Transaction Information"
+        class="trans-item not-selected"
+      >
+        <div
+          class="mb-2 text-center form-group"
+        >
+          <input
+            aria-label="Transaction From"
+            class="text-truncate form-control"
+            name="from"
+            readonly=""
+            type="text"
+            value="B"
+          />
+          <h3
+            class="my-0"
+          >
+            ↓
+          </h3>
+          <input
+            aria-label="Transaction To"
+            class="text-truncate form-control"
+            name="to"
+            readonly=""
+            type="text"
+            value="A"
+          />
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="input-group-text"
+            >
+              Msg
+            </span>
+          </div>
+          <textarea
+            aria-label="Transaction Message"
+            class="form-control"
+            name="message"
+            readonly=""
+          >
+            First Transaction
+          </textarea>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <input
+            aria-label="Transaction Amount"
+            class="form-control"
+            disabled=""
+            name="amount"
+            type="number"
+            value="1.23"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="input-group-text"
+            >
+              Sig
+            </span>
+          </div>
+          <input
+            aria-label="Transaction Signature"
+            class="text-truncate form-control"
+            name="signature"
+            readonly=""
+            type="text"
+            value="AB1.23"
+          />
+        </div>
+      </form>
+      <form
+        aria-label="Transaction Information"
+        class="trans-item selected"
+      >
+        <div
+          class="mb-2 text-center form-group"
+        >
+          <input
+            aria-label="Transaction From"
+            class="text-truncate form-control"
+            name="from"
+            readonly=""
+            type="text"
+            value="C"
+          />
+          <h3
+            class="my-0"
+          >
+            ↓
+          </h3>
+          <input
+            aria-label="Transaction To"
+            class="text-truncate form-control"
+            name="to"
+            readonly=""
+            type="text"
+            value="A"
+          />
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="input-group-text"
+            >
+              Msg
+            </span>
+          </div>
+          <textarea
+            aria-label="Transaction Message"
+            class="form-control"
+            name="message"
+            readonly=""
+          >
+            Second Transaction
+          </textarea>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <input
+            aria-label="Transaction Amount"
+            class="form-control"
+            disabled=""
+            name="amount"
+            type="number"
+            value="456.78"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="input-group-text"
+            >
+              Sig
+            </span>
+          </div>
+          <input
+            aria-label="Transaction Signature"
+            class="text-truncate form-control"
+            name="signature"
+            readonly=""
+            type="text"
+            value="AC456.78"
+          />
+        </div>
+      </form>
+      <form
+        aria-label="Transaction Information"
+        class="trans-item not-selected"
+      >
+        <div
+          class="mb-2 text-center form-group"
+        >
+          <input
+            aria-label="Transaction From"
+            class="text-truncate form-control"
+            name="from"
+            readonly=""
+            type="text"
+            value="D"
+          />
+          <h3
+            class="my-0"
+          >
+            ↓
+          </h3>
+          <input
+            aria-label="Transaction To"
+            class="text-truncate form-control"
+            name="to"
+            readonly=""
+            type="text"
+            value="A"
+          />
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="input-group-text"
+            >
+              Msg
+            </span>
+          </div>
+          <textarea
+            aria-label="Transaction Message"
+            class="form-control"
+            name="message"
+            readonly=""
+          >
+            Third Transaction
+          </textarea>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <input
+            aria-label="Transaction Amount"
+            class="form-control"
+            disabled=""
+            name="amount"
+            type="number"
+            value="999.99"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="input-group-text"
+            >
+              Sig
+            </span>
+          </div>
+          <input
+            aria-label="Transaction Signature"
+            class="text-truncate form-control"
+            name="signature"
+            readonly=""
+            type="text"
+            value="AD999.99"
+          />
+        </div>
+      </form>
+      <form
+        aria-label="Transaction Information"
+        class="trans-item not-selected"
+      >
+        <div
+          class="mb-2 text-center form-group"
+        >
+          <input
+            aria-label="Transaction From"
+            class="text-truncate form-control"
+            name="from"
+            readonly=""
+            type="text"
+            value="E"
+          />
+          <h3
+            class="my-0"
+          >
+            ↓
+          </h3>
+          <input
+            aria-label="Transaction To"
+            class="text-truncate form-control"
+            name="to"
+            readonly=""
+            type="text"
+            value="A"
+          />
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="input-group-text"
+            >
+              Msg
+            </span>
+          </div>
+          <textarea
+            aria-label="Transaction Message"
+            class="form-control"
+            name="message"
+            readonly=""
+          >
+            Forth Transaction
+          </textarea>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <input
+            aria-label="Transaction Amount"
+            class="form-control"
+            disabled=""
+            name="amount"
+            type="number"
+            value="987.65"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="input-group-text"
+            >
+              Sig
+            </span>
+          </div>
+          <input
+            aria-label="Transaction Signature"
+            class="text-truncate form-control"
+            name="signature"
+            readonly=""
+            type="text"
+            value="AE987.65"
+          />
+        </div>
+      </form>
+      <form
+        aria-label="Transaction Information"
+        class="trans-item not-selected"
+      >
+        <div
+          class="mb-2 text-center form-group"
+        >
+          <input
+            aria-label="Transaction From"
+            class="text-truncate form-control"
+            name="from"
+            readonly=""
+            type="text"
+            value="F"
+          />
+          <h3
+            class="my-0"
+          >
+            ↓
+          </h3>
+          <input
+            aria-label="Transaction To"
+            class="text-truncate form-control"
+            name="to"
+            readonly=""
+            type="text"
+            value="A"
+          />
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="input-group-text"
+            >
+              Msg
+            </span>
+          </div>
+          <textarea
+            aria-label="Transaction Message"
+            class="form-control"
+            name="message"
+            readonly=""
+          >
+            Fifth Transaction
+          </textarea>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <input
+            aria-label="Transaction Amount"
+            class="form-control"
+            disabled=""
+            name="amount"
+            type="number"
+            value="1.01"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="input-group-text"
+            >
+              Sig
+            </span>
+          </div>
+          <input
+            aria-label="Transaction Signature"
+            class="text-truncate form-control"
+            name="signature"
+            readonly=""
+            type="text"
+            value="AF1.01"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;

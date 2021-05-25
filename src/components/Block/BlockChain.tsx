@@ -14,7 +14,7 @@ export default function BlockChain(): JSX.Element {
   return (
     <div className="mx-3 row flex-nowrap overflow-auto">
       {state.chain.map((block) => (
-        <div key={block.prevHash}>
+        <div className="block" key={block.prevHash}>
           <Block block={block} />
           {block.showTrans && <BlockTrans index={block.index} />}
         </div>
