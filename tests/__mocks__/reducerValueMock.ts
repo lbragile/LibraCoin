@@ -65,6 +65,22 @@ const state: IState = {
       transactions: [],
       timestamp: Date.parse("04/31/2021"),
       merkleRoot: ""
+    },
+    {
+      index: 1,
+      prevHash: new Array(64).fill("0").join(""),
+      currHash: new Array(64).fill("A").join(""),
+      transactions: [
+        {
+          to: "A",
+          from: "E",
+          amount: 987.65,
+          message: "Forth Transaction",
+          signature: "AE987.65"
+        }
+      ],
+      timestamp: Date.parse("05/01/2021"),
+      merkleRoot: "987.65EForthTransactionAE987.65A"
     }
   ]
 };
