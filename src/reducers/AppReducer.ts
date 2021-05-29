@@ -41,14 +41,14 @@ export const AppReducer = (state: IState, action: IAction): IState => {
 
     case ACTIONS.ADD_BLOCK: {
       const { block } = action.payload as { block: IBlock };
-      const chain = [...deepCopy(state.chain), block];
+      const chain = [...deepCopy(state.chain), deepCopy(block)];
       localStorage.setItem("chain", JSON.stringify(chain));
       return { ...state, chain };
     }
 
     case ACTIONS.UPDATE_BLOCK: {
       const { block } = action.payload as { block: IBlock | IBlock[] };
-      const blocks = Array.isArray(block) ? block : [block];
+      const blocks = Array.isArray(block) ? deepCopy(block) : [deepCopy(block)];
       const chain = deepCopy(state.chain);
 
       blocks.forEach((b) => (chain[b.index] = deepCopy(b)));

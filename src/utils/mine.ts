@@ -1,6 +1,6 @@
 import { digestMessage, randomHash } from "./conversion";
 
-async function createTarget(numZeros: number): Promise<string> {
+export async function createTarget(numZeros: number): Promise<string> {
   const targetHash = await digestMessage(randomHash(20));
 
   // replace leading bits with zeros
@@ -11,12 +11,11 @@ async function createTarget(numZeros: number): Promise<string> {
 }
 
 export async function mine(
-  nonce: number,
+  header: number,
   setHeader: (arg: number) => void,
   setTarget: (arg: string) => void,
-  setSolution: (arg: string) => void,
-  setIsValid: (arg: boolean) => void
-): Promise<string> {
+  setSolution: (arg: string) => void
+): Promise<{ currHash: string; targetHash: string }> {
   // make target
   const numZeros = Math.round(Math.random()) + 2;
   const targetHash = await createTarget(numZeros);
@@ -24,18 +23,15 @@ export async function mine(
 
   // mine
   let candidateSolution = "";
-  let header = nonce; // re-assigning for clarity
   while (header <= Number.MAX_SAFE_INTEGER) {
     candidateSolution = await digestMessage(header.toString());
     setSolution(candidateSolution);
-    setHeader(header++);
 
-    const leadingBits = candidateSolution.substr(0, numZeros).split("");
-    if (leadingBits.every((bit) => bit === "0")) {
-      break;
-    }
+    // stopping condition if first numZero characters are all 0
+    if (candidateSolution.substr(0, numZeros).match(/^0+$/)) break;
+
+    setHeader(header++);
   }
 
-  setIsValid(candidateSolution <= targetHash);
-  return candidateSolution;
+  return { currHash: candidateSolution, targetHash };
 }

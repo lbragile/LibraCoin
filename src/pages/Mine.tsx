@@ -1,15 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 
 import NavMenu from "../components/NavMenu/NavMenu";
 import PreviewBlock from "../components/Block/PreviewBlock";
 import TransactionItems from "../components/Transaction/TransactionItems";
+import PreviewTree from "../components/Transaction/PreviewTree";
+import Statistics from "../components/Block/Statistics";
 
 export default function Mine(): JSX.Element {
+  const [solution, setSolution] = useState<string>("");
+  const [merkleRoot, setMerkleRoot] = useState<string>("");
+  const [isValid, setIsValid] = useState<boolean>(false);
+
   return (
     <div>
       <NavMenu />
       <TransactionItems />
-      <PreviewBlock />
+      <div className="container-fluid row d-flex justify-content-center mx-auto my-3">
+        <PreviewTree setMerkleRoot={setMerkleRoot} setIsValid={setIsValid} />
+
+        <Statistics
+          chain={false}
+          isValid={isValid}
+          setIsValid={setIsValid}
+          solution={solution}
+          setSolution={setSolution}
+        />
+
+        <PreviewBlock
+          merkleRoot={merkleRoot}
+          isValid={isValid}
+          setIsValid={setIsValid}
+          solution={solution}
+          setSolution={setSolution}
+        />
+      </div>
     </div>
   );
 }

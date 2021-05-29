@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 
 import Statistics from "./Statistics";
@@ -10,23 +10,7 @@ export default function Block({ block }: { block: IBlock }): JSX.Element {
   const { dispatch } = useContext(AppContext) as { dispatch: React.Dispatch<IAction> };
 
   const [solution, setSolution] = useState<string>("");
-  const [timestamp, setTimestamp] = useState<number | undefined>(undefined);
   const [isValid, setIsValid] = useState<boolean>(block.valid ?? true);
-
-  // update timestamp when solution is mined
-  useEffect(() => {
-    setTimestamp(block.timestamp);
-  }, [block.timestamp]);
-
-  useEffect(() => {
-    if (block.valid !== undefined) {
-      setIsValid(block.valid);
-    }
-  }, [block.valid]);
-
-  useEffect(() => {
-    setSolution(block.currHash);
-  }, [block.currHash]);
 
   function handleViewTransactions(): void {
     dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: { ...block, showTrans: !block.showTrans } } });
@@ -47,12 +31,7 @@ export default function Block({ block }: { block: IBlock }): JSX.Element {
             <InputGroup.Prepend>
               <InputGroup.Text>Timestamp</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control
-              key={timestamp ?? block.timestamp}
-              type="number"
-              defaultValue={timestamp ?? block.timestamp}
-              disabled
-            />
+            <Form.Control key={block.timestamp} type="number" defaultValue={block.timestamp} disabled />
           </InputGroup>
 
           <InputGroup className="my-2">
@@ -67,7 +46,7 @@ export default function Block({ block }: { block: IBlock }): JSX.Element {
               <InputGroup.Text>Current #</InputGroup.Text>
             </InputGroup.Prepend>
             <Form.Control
-              key={solution ? solution : block.currHash}
+              key={solution}
               className="text-truncate"
               type="text"
               defaultValue={solution ? solution : block.currHash}

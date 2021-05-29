@@ -26,8 +26,10 @@ export default function Statistics(props: IStats): JSX.Element {
     nonce.current = Math.round(Math.random() * 1e6);
 
     setDisableMineBtn(true);
-    const currHash = await mine(nonce.current, setHeader, setTarget, props.setSolution, props.setIsValid);
+    const { currHash, targetHash } = await mine(nonce.current, setHeader, setTarget, props.setSolution);
     setDisableMineBtn(false);
+
+    props.setIsValid(currHash <= targetHash);
 
     // propagate changes if needed
     const { chain, block } = props;
