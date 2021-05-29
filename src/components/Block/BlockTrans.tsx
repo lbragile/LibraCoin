@@ -34,10 +34,16 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
   }
 
   return (
-    <div className="row flex-nowrap overflow-auto mx-2">
+    <div className="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark">
       {transDetails.map((transaction, i) => {
         return (
-          <div className="col-12 mr-2 bg-light border border-dark p-1 rounded" key={`sig:${i}`}>
+          <div
+            className={
+              (transDetails.length > 1 && i !== transDetails.length - 1 ? "mr-2 " : "") +
+              "col-12 bg-light border border-dark p-1 rounded"
+            }
+            key={`sig:${i}`}
+          >
             <Form.Group className="mb-2 text-center">
               <Form.Control
                 className="text-truncate"

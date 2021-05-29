@@ -39,7 +39,7 @@ export default function Statistics(props: IStats): JSX.Element {
   }
 
   return (
-    <Form aria-label="Block Statistics" className={props.chain ? "bordered-background" : "col-11 col-lg-5 mx-3"}>
+    <Form aria-label="Block Statistics" className={props.chain ? "my-3" : "col-11 col-lg-5 mx-3"}>
       <InputGroup className="my-2">
         <InputGroup.Prepend>
           <InputGroup.Text>Nonce</InputGroup.Text>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import NavMenu from "../components/NavMenu/NavMenu";
-import PreviewBlock from "../components/Block/PreviewBlock";
+import Block from "../components/Block/Block";
 import TransactionItems from "../components/Transaction/TransactionItems";
 import PreviewTree from "../components/Transaction/PreviewTree";
 import Statistics from "../components/Block/Statistics";
@@ -26,7 +26,9 @@ export default function Mine(): JSX.Element {
           setSolution={setSolution}
         />
 
-        <PreviewBlock
+        <Block
+          chain={false}
+          index={undefined}
           merkleRoot={merkleRoot}
           isValid={isValid}
           setIsValid={setIsValid}
