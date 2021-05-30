@@ -12,20 +12,24 @@ export async function createTarget(numZeros: number): Promise<string> {
 
 export async function mine(
   header: number,
+  index: number,
   setHeader: (arg: number) => void,
   setTarget: (arg: string) => void,
-  setSolution: (arg: string) => void
+  solution: string[],
+  setSolution: (arg: string[]) => void
 ): Promise<{ currHash: string; targetHash: string }> {
-  // make target
+  // make target with 2 or 3 leading zeros
   const numZeros = Math.round(Math.random()) + 2;
   const targetHash = await createTarget(numZeros);
   setTarget(targetHash);
 
-  // mine
+  // mine block for a new current hash (solution)
   let candidateSolution = "";
   while (header <= Number.MAX_SAFE_INTEGER) {
     candidateSolution = await digestMessage(header.toString());
-    setSolution(candidateSolution);
+
+    solution[index] = candidateSolution;
+    setSolution(JSON.parse(JSON.stringify(solution)));
 
     // stopping condition if first numZero characters are all 0
     if (candidateSolution.substr(0, numZeros).match(/^0+$/)) break;

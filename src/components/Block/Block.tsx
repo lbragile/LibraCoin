@@ -7,14 +7,14 @@ import { ACTIONS } from "../../enums/AppDispatchActions";
 
 import "./Block.scss";
 
-interface IBlockProps {
+export interface IBlockProps {
   chain: boolean;
-  index: number | undefined;
   merkleRoot: string;
-  isValid: boolean;
-  setIsValid: (arg: boolean) => void;
-  solution: string;
-  setSolution: (arg: string) => void;
+  isValid: boolean[];
+  setIsValid: (arg: boolean[]) => void;
+  solution: string[];
+  setSolution: (arg: string[]) => void;
+  index?: number;
 }
 
 export default function Block(props: IBlockProps): JSX.Element {
@@ -23,14 +23,15 @@ export default function Block(props: IBlockProps): JSX.Element {
   const blockIndex = props.index ?? state.chain[state.chain.length - 1].index;
   const index = useRef<number>(props.chain ? blockIndex : blockIndex + 1);
   const prevHash = useRef<string>(state.chain[blockIndex].currHash);
+  const timestamp = useRef<number>(props.chain ? state.chain[blockIndex].timestamp : Date.now());
 
   function handleAddBlock() {
     const block = {
       index: index.current,
       prevHash: prevHash.current,
-      currHash: props.solution,
+      currHash: props.solution[0],
       transactions: state.selectedTrans,
-      timestamp: Date.now(),
+      timestamp: timestamp.current,
       merkleRoot: props.merkleRoot,
       valid: state.chain[index.current - 1].valid, // validity depends on previous block
       showTrans: false
@@ -43,9 +44,9 @@ export default function Block(props: IBlockProps): JSX.Element {
 
     // update preview details
     index.current += 1;
-    prevHash.current = props.solution;
-    props.setIsValid(false);
-    props.setSolution("");
+    prevHash.current = props.solution[0];
+    props.setSolution([""]);
+    props.setIsValid([false]);
   }
 
   function handleViewTransactions(): void {
@@ -58,21 +59,25 @@ export default function Block(props: IBlockProps): JSX.Element {
       className={
         (props.chain ? "" : "col-10 col-lg-5 ") +
         "my-4 my-lg-0 p-2 rounded " +
-        (props.isValid ? "valid-block" : "invalid-block")
+        (props.isValid[props.index ?? 0] ? "valid-block" : "invalid-block")
       }
     >
       <InputGroup className="mb-2">
         <InputGroup.Prepend>
           <InputGroup.Text>Index</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control type="number" defaultValue={index.current} disabled />
+        <Form.Control key={index.current} type="number" defaultValue={index.current} disabled />
       </InputGroup>
 
       <InputGroup className="my-2">
         <InputGroup.Prepend>
           <InputGroup.Text>Timestamp</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control key={props.solution} type="number" defaultValue={Date.now()} disabled />
+        <Form.Control
+          type="number"
+          value={props.solution[props.index ?? 0] ? Date.now() : timestamp.current}
+          disabled
+        />
       </InputGroup>
 
       <InputGroup className="my-2">
@@ -92,12 +97,7 @@ export default function Block(props: IBlockProps): JSX.Element {
         <InputGroup.Prepend>
           <InputGroup.Text>Current #</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control
-          className="text-truncate"
-          type="text"
-          defaultValue={!props.solution && props.chain ? state.chain[index.current].currHash : props.solution}
-          readOnly
-        />
+        <Form.Control className="text-truncate" type="text" value={props.solution[props.index ?? 0]} readOnly />
       </InputGroup>
 
       <InputGroup className="mt-2">
@@ -126,7 +126,7 @@ export default function Block(props: IBlockProps): JSX.Element {
         )}
       </InputGroup>
 
-      {props.isValid && !props.chain && (
+      {props.isValid[0] && !props.chain && (
         <Button className="mt-2" variant="success" block onClick={() => handleAddBlock()}>
           <h4 className="my-0">Add Block</h4>
         </Button>

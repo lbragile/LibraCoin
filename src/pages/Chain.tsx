@@ -9,8 +9,8 @@ import { IState } from "../typings/AppTypes";
 export default function Chain(): JSX.Element {
   const { state } = useContext(AppContext) as { state: IState };
 
-  const [solution, setSolution] = useState<string>("");
-  const [isValid, setIsValid] = useState<boolean>(true);
+  const [solution, setSolution] = useState<string[]>(state.chain.map((block) => block.currHash));
+  const [isValid, setIsValid] = useState<boolean[]>(state.chain.map((block) => block.valid));
 
   return (
     <div>
@@ -31,11 +31,12 @@ export default function Chain(): JSX.Element {
 
             <Statistics
               chain={true}
-              block={block}
-              solution={solution}
-              setSolution={setSolution}
               isValid={isValid}
               setIsValid={setIsValid}
+              solution={solution}
+              setSolution={setSolution}
+              index={i}
+              prevHash={block.prevHash}
             />
 
             {block.showTrans && <BlockTrans index={i} />}

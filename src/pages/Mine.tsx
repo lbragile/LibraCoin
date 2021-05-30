@@ -7,9 +7,9 @@ import PreviewTree from "../components/Transaction/PreviewTree";
 import Statistics from "../components/Block/Statistics";
 
 export default function Mine(): JSX.Element {
-  const [solution, setSolution] = useState<string>("");
   const [merkleRoot, setMerkleRoot] = useState<string>("");
-  const [isValid, setIsValid] = useState<boolean>(false);
+  const [isValid, setIsValid] = useState<boolean[]>([false]);
+  const [solution, setSolution] = useState<string[]>([""]);
 
   return (
     <div>
@@ -28,7 +28,6 @@ export default function Mine(): JSX.Element {
 
         <Block
           chain={false}
-          index={undefined}
           merkleRoot={merkleRoot}
           isValid={isValid}
           setIsValid={setIsValid}

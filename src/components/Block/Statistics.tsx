@@ -1,20 +1,18 @@
 import React, { useState, useRef, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
-import { IAction, IBlock, IState } from "../../typings/AppTypes";
+import { IAction, IState } from "../../typings/AppTypes";
 import { mine } from "../../utils/mine";
 import { propagateBlockStatus } from "../../utils/propagate";
+import { IBlockProps } from "./Block";
 
-interface IStats {
-  chain: boolean;
-  isValid: boolean;
-  solution: string;
-  setIsValid: (arg: boolean) => void;
-  setSolution: (arg: string) => void;
-  block?: IBlock;
+import "./Block.scss";
+
+interface IStatisticsProps extends Omit<IBlockProps, "merkleRoot"> {
+  prevHash?: string;
 }
 
-export default function Statistics(props: IStats): JSX.Element {
+export default function Statistics(props: IStatisticsProps): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   const nonce = useRef<number>();
@@ -23,19 +21,22 @@ export default function Statistics(props: IStats): JSX.Element {
   const [disableMineBtn, setDisableMineBtn] = useState<boolean>(false);
 
   async function handleMine() {
+    const { index, prevHash } = props;
+
+    const newIsValid = [...props.isValid];
+    const blockIndex = index ?? newIsValid.length - 1;
+
     nonce.current = Math.round(Math.random() * 1e6);
 
     setDisableMineBtn(true);
-    const { currHash, targetHash } = await mine(nonce.current, setHeader, setTarget, props.setSolution);
+    const { currHash, targetHash } = await mine(nonce.current, blockIndex, setHeader, setTarget, props.solution, props.setSolution); // prettier-ignore
     setDisableMineBtn(false);
 
-    props.setIsValid(currHash <= targetHash);
+    newIsValid[blockIndex] = currHash <= targetHash;
+    props.setIsValid(newIsValid);
 
     // propagate changes if needed
-    const { chain, block } = props;
-    if (chain && block) {
-      await propagateBlockStatus(state, dispatch, block.index, block.prevHash, currHash, true);
-    }
+    if (index && prevHash) await propagateBlockStatus(state, dispatch, index, prevHash, currHash, true);
   }
 
   return (
@@ -48,7 +49,7 @@ export default function Statistics(props: IStats): JSX.Element {
           aria-label="Block Nonce"
           name="nonce"
           type="number"
-          defaultValue={props.solution ? nonce.current : ""}
+          defaultValue={props.solution[props.index ?? 0] ? nonce.current : ""}
           disabled
         />
       </InputGroup>
@@ -80,11 +81,11 @@ export default function Statistics(props: IStats): JSX.Element {
         </InputGroup.Prepend>
         <Form.Control
           aria-label="Block Solution"
+          key={props.solution[props.index ?? 0]}
           name="solution"
-          className="text-truncate"
+          className={"text-truncate " + (props.isValid[props.index ?? 0] ? "valid-solution" : "invalid-solution")}
           type="text"
-          style={{ color: `${props.isValid ? "green" : "red"}` }}
-          defaultValue={props.solution}
+          defaultValue={props.solution[props.index ?? 0]}
           readOnly
         />
       </InputGroup>
@@ -93,7 +94,9 @@ export default function Statistics(props: IStats): JSX.Element {
         aria-label="Block Mine"
         variant="primary"
         className="btn-block d-block mt-2"
-        disabled={props.isValid || (!props.chain && state.selectedTrans.length === 0) || disableMineBtn}
+        disabled={
+          props.isValid[props.index ?? 0] || (!props.chain && state.selectedTrans.length === 0) || disableMineBtn
+        }
         onClick={() => handleMine()}
       >
         <h4 className="my-1">

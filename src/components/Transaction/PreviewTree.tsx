@@ -4,7 +4,7 @@ import { IState } from "../../typings/AppTypes";
 import { calculateMerkleTreeFormation, drawTreeDiagramOnCanvas, getMerkleRoot } from "../../utils/merkleTree";
 interface IPreviewTreeProps {
   setMerkleRoot: (arg: string) => void;
-  setIsValid: (arg: boolean) => void;
+  setIsValid: (arg: boolean[]) => void;
 }
 
 export default function PreviewTree({ setMerkleRoot, setIsValid }: IPreviewTreeProps): JSX.Element {
@@ -19,7 +19,7 @@ export default function PreviewTree({ setMerkleRoot, setIsValid }: IPreviewTreeP
 
   useEffect(() => {
     calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans, setMerkleTree);
-    setIsValid(false);
+    setIsValid([false]);
   }, [state.selectedTrans, state.verifiedTrans, setIsValid]);
 
   // draw tree in canvas
