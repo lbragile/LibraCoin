@@ -24,7 +24,7 @@ exports[`in preview mode renders correctly 1`] = `
         disabled=""
         name="nonce"
         type="number"
-        value=""
+        value="0"
       />
     </div>
     <div
@@ -45,7 +45,7 @@ exports[`in preview mode renders correctly 1`] = `
         disabled=""
         name="header"
         type="number"
-        value=""
+        value="0"
       />
     </div>
     <div
@@ -83,116 +83,9 @@ exports[`in preview mode renders correctly 1`] = `
       </div>
       <input
         aria-label="Block Solution"
-        class="text-truncate form-control"
+        class="text-truncate invalid-solution form-control"
         name="solution"
         readonly=""
-        style="color: red;"
-        type="text"
-        value=""
-      />
-    </div>
-    <button
-      aria-label="Block Mine"
-      class="btn-block d-block mt-2 btn btn-primary"
-      type="button"
-    >
-      <h4
-        class="my-1"
-      >
-        Mine
-      </h4>
-    </button>
-  </form>
-</DocumentFragment>
-`;
-
-exports[`on the blockchain renders properly 1`] = `
-<DocumentFragment>
-  <form
-    aria-label="Block Statistics"
-    class="bordered-background"
-  >
-    <div
-      class="my-2 input-group"
-    >
-      <div
-        class="input-group-prepend"
-      >
-        <span
-          class="input-group-text"
-        >
-          Nonce
-        </span>
-      </div>
-      <input
-        aria-label="Block Nonce"
-        class="form-control"
-        disabled=""
-        name="nonce"
-        type="number"
-        value=""
-      />
-    </div>
-    <div
-      class="my-2 input-group"
-    >
-      <div
-        class="input-group-prepend"
-      >
-        <span
-          class="input-group-text"
-        >
-          Header
-        </span>
-      </div>
-      <input
-        aria-label="Block Header"
-        class="form-control"
-        disabled=""
-        name="header"
-        type="number"
-        value=""
-      />
-    </div>
-    <div
-      class="my-2 input-group"
-    >
-      <div
-        class="input-group-prepend"
-      >
-        <span
-          class="input-group-text"
-        >
-          Target
-        </span>
-      </div>
-      <input
-        aria-label="Block Target"
-        class="text-truncate form-control"
-        name="target"
-        readonly=""
-        type="text"
-        value=""
-      />
-    </div>
-    <div
-      class="my-2 input-group"
-    >
-      <div
-        class="input-group-prepend"
-      >
-        <span
-          class="input-group-text"
-        >
-          Sol'n
-        </span>
-      </div>
-      <input
-        aria-label="Block Solution"
-        class="text-truncate form-control"
-        name="solution"
-        readonly=""
-        style="color: red;"
         type="text"
         value=""
       />

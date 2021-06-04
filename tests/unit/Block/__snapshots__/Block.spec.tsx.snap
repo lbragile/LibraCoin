@@ -1,0 +1,242 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`in preview mode Shows 'Add Block' button when valid 1`] = `
+<DocumentFragment>
+  <form
+    aria-label="Block Form"
+    class="col-10 col-lg-5 my-4 my-lg-0 p-2 rounded valid-block"
+  >
+    <div
+      class="mb-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Index
+        </span>
+      </div>
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="2"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value=""
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkle"
+        readonly=""
+        type="text"
+        value="abc"
+      />
+    </div>
+    <button
+      aria-label="Add Block"
+      class="mt-2 btn btn-success btn-block"
+      type="button"
+    >
+      <h4
+        class="my-0"
+      >
+        Add Block
+      </h4>
+    </button>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`in preview mode renders correctly 1`] = `
+<DocumentFragment>
+  <form
+    aria-label="Block Form"
+    class="col-10 col-lg-5 my-4 my-lg-0 p-2 rounded invalid-block"
+  >
+    <div
+      class="mb-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Index
+        </span>
+      </div>
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="2"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="45678"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkle"
+        readonly=""
+        type="text"
+        value="abc"
+      />
+    </div>
+  </form>
+</DocumentFragment>
+`;

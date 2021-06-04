@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../context/AppContext";
-import { IState } from "../../typings/AppTypes";
+import { IAction, IState } from "../../typings/AppTypes";
 import { calculateMerkleTreeFormation, drawTreeDiagramOnCanvas, getMerkleRoot } from "../../utils/merkleTree";
 interface IPreviewTreeProps {
   setMerkleRoot: (arg: string) => void;
-  setIsValid: (arg: boolean[]) => void;
 }
 
-export default function PreviewTree({ setMerkleRoot, setIsValid }: IPreviewTreeProps): JSX.Element {
-  const { state } = useContext(AppContext) as { state: IState };
+export default function PreviewTree({ setMerkleRoot }: IPreviewTreeProps): JSX.Element {
+  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   const treeCanvas = useRef<HTMLCanvasElement | null>(null);
   const [merkleTree, setMerkleTree] = useState<string[][]>([[""]]);
@@ -19,8 +18,7 @@ export default function PreviewTree({ setMerkleRoot, setIsValid }: IPreviewTreeP
 
   useEffect(() => {
     calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans, setMerkleTree);
-    setIsValid([false]);
-  }, [state.selectedTrans, state.verifiedTrans, setIsValid]);
+  }, [dispatch, state.selectedTrans, state.verifiedTrans, state.preview]);
 
   // draw tree in canvas
   useEffect(() => {

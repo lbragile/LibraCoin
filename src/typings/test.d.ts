@@ -1,8 +1,9 @@
+import { IState } from "./AppTypes";
+
 export declare global {
   namespace NodeJS {
     interface Global {
-      state: IState;
-      dispatch: React.Dispatch<IAction>;
+      initialState: IState;
       spki: string;
       spki_hex: string;
       pkcs8: string;

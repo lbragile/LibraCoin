@@ -1,25 +1,40 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import Statistics from "../../../src/components/Block/Statistics";
 import { AppContext } from "../../../src/context/AppContext";
+import { IAction, IState } from "../../../src/typings/AppTypes";
+import { ACTIONS } from "../../../src/enums/AppDispatchActions";
 import * as MineUtil from "../../../src/utils/mine";
-import * as PropagateUtil from "../../../src/utils/propagate";
+import * as ConversionUtil from "../../../src/utils/conversion";
+import { AppReducer } from "../../../src/reducers/AppReducer";
 
-const { state, dispatch } = global;
+const { initialState } = global;
+
+interface IStatisticsWrapper {
+  chain: boolean;
+  stateMock?: IState;
+  dispatchMock?: React.Dispatch<IAction>;
+}
+
+const StatisticsWrapper = ({ chain, stateMock, dispatchMock }: IStatisticsWrapper) => {
+  const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  return (
+    <AppContext.Provider value={{ state: stateMock ?? state, dispatch: dispatchMock ?? dispatch }}>
+      <Statistics chain={chain} />
+    </AppContext.Provider>
+  );
+};
 
 describe("in preview mode", () => {
   it("renders correctly", () => {
-    const { asFragment } = render(
-      <AppContext.Provider value={{ state, dispatch }}>
-        <Statistics chain={false} isValid={false} solution={""} setSolution={jest.fn()} setIsValid={jest.fn()} />
-      </AppContext.Provider>
-    );
+    const { asFragment } = render(<StatisticsWrapper chain={false} />);
 
     expect(screen.getByRole("form", { name: /Block Statistics/i })).toHaveFormValues({
-      nonce: null,
-      header: null,
+      nonce: 0,
+      header: 0,
       target: "",
       solution: ""
     });
@@ -39,7 +54,7 @@ describe("in preview mode", () => {
     const solution = screen.getByRole("textbox", { name: /Block Solution/i });
     expect(solution).toHaveAttribute("readOnly");
     expect(solution).not.toBeRequired();
-    expect(solution).toHaveStyle({ color: "red" });
+    expect(solution).toHaveClass("invalid-solution");
 
     const mineBtn = screen.getByRole("button", { name: /Block Mine/i });
     expect(mineBtn).toHaveTextContent("Mine");
@@ -51,164 +66,96 @@ describe("in preview mode", () => {
   describe("mining process", () => {
     describe("selected transactions", () => {
       test("that mine button is disabled when there are no selected transactions", () => {
-        const ogState = JSON.parse(JSON.stringify(state));
+        const ogState: IState = JSON.parse(JSON.stringify(initialState));
         ogState.selectedTrans = [];
 
-        render(
-          <AppContext.Provider value={{ state: ogState, dispatch }}>
-            <Statistics chain={false} isValid={false} solution={""} setSolution={jest.fn()} setIsValid={jest.fn()} />
-          </AppContext.Provider>
-        );
+        render(<StatisticsWrapper chain={false} stateMock={ogState} />);
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled();
       });
 
       test("that mine button is enabled when there are a few selected transactions", () => {
-        render(
-          <AppContext.Provider value={{ state, dispatch }}>
-            <Statistics chain={false} isValid={false} solution={""} setSolution={jest.fn()} setIsValid={jest.fn()} />
-          </AppContext.Provider>
-        );
+        render(<StatisticsWrapper chain={false} />);
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
       });
     });
 
-    describe("button behavior during mining", () => {
-      it("disables the button while mining, but enables after since not valid", async () => {
-        const solution = "000111222333";
+    describe("button behavior during mining (disabled the button while mining)", () => {
+      afterEach(() => {
+        jest.restoreAllMocks();
+      });
 
-        render(
-          <AppContext.Provider value={{ state, dispatch }}>
-            <Statistics
-              chain={false}
-              isValid={false}
-              solution={solution}
-              setSolution={jest.fn()}
-              setIsValid={jest.fn()}
-            />
-          </AppContext.Provider>
-        );
+      it("calls dispatch correctly", async () => {
+        const badSolution = "032a4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+        const solution = "000a4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+        const target = "000z4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
 
-        Math.random = jest.fn().mockReturnValueOnce(0.5);
-        const mineSpy = jest.spyOn(MineUtil, "mine").mockReturnValueOnce(new Promise((resolve) => resolve(solution)));
+        const dispatchMock = jest.fn();
+        Date.now = jest.fn().mockReturnValueOnce(12345);
+        jest.spyOn(MineUtil, "createTarget").mockReturnValueOnce(Promise.resolve(target));
+        jest
+          .spyOn(ConversionUtil, "digestMessage")
+          .mockReturnValueOnce(Promise.resolve(badSolution))
+          .mockReturnValueOnce(Promise.resolve(solution));
+
+        render(<StatisticsWrapper chain={false} dispatchMock={dispatchMock} />);
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
         fireEvent.click(screen.getByRole("button", { name: /Block Mine/i })); // mining is async so setting mine button to disabled happens outside React's call stack
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
 
-        // becomes enabled again since not valid
+        expect(dispatchMock).toHaveBeenCalledTimes(1);
+        expect(dispatchMock).toHaveBeenCalledWith({
+          type: ACTIONS.UPDATE_PREVIEW,
+          payload: {
+            preview: {
+              ...initialState.preview,
+              timestamp: 12345,
+              prevHash: initialState.chain[initialState.preview.index - 1].currHash,
+              currHash: solution,
+              valid: true
+            }
+          }
+        });
+      });
+
+      it("enables mining button after mining due to invalid solution", async () => {
+        const solution = "000a4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+        const target = "00034fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+
+        jest.spyOn(MineUtil, "createTarget").mockReturnValueOnce(Promise.resolve(target));
+        jest.spyOn(ConversionUtil, "digestMessage").mockReturnValueOnce(Promise.resolve(solution));
+
+        render(<StatisticsWrapper chain={false} />);
+
+        expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
+        fireEvent.click(screen.getByRole("button", { name: /Block Mine/i })); // mining is async so setting mine button to disabled happens outside React's call stack
+        await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
+
+        // solution is invalid, so it will re-enable
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled());
-
-        expect(screen.getByRole("form", { name: /Block Statistics/i })).toHaveFormValues({
-          nonce: 0.5 * 1e6,
-          header: null,
-          target: "",
-          solution
-        });
-
-        const anyFunc = expect.any(Function);
-        expect(mineSpy).toHaveBeenCalledTimes(1);
-        expect(mineSpy).toHaveBeenCalledWith(0.5 * 1e6, anyFunc, anyFunc, anyFunc, anyFunc);
-
-        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveValue(solution);
-        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveStyle({ color: "red" });
       });
 
-      it("disables the button while mining, and remains disabled after since valid", async () => {
-        const solution = "000111222333";
+      it("keeps mining button disabled after mining due to valid solution", async () => {
+        const solution = "000a4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+        const target = "000b4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
 
-        const { rerender } = render(
-          <AppContext.Provider value={{ state, dispatch }}>
-            <Statistics
-              chain={false}
-              isValid={false}
-              solution={solution}
-              setSolution={jest.fn()}
-              setIsValid={jest.fn()}
-            />
-          </AppContext.Provider>
-        );
+        jest.spyOn(MineUtil, "createTarget").mockReturnValue(Promise.resolve(target));
+        jest.spyOn(ConversionUtil, "digestMessage").mockReturnValue(Promise.resolve(solution));
 
-        Math.random = jest.fn().mockReturnValueOnce(0.5);
-        const mineSpy = jest.spyOn(MineUtil, "mine").mockReturnValueOnce(new Promise((resolve) => resolve(solution)));
+        render(<StatisticsWrapper chain={false} />);
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
-        fireEvent.click(screen.getByRole("button", { name: /Block Mine/i })); // mining is async so setting mine button to disabled happens outside React's call stack
-        await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
 
-        rerender(
-          <AppContext.Provider value={{ state, dispatch }}>
-            <Statistics
-              chain={false}
-              isValid={true}
-              solution={solution}
-              setSolution={jest.fn()}
-              setIsValid={jest.fn()}
-            />
-          </AppContext.Provider>
-        );
-
-        // here it does not become valid after mining unlike the previous test
-
-        expect(screen.getByRole("form", { name: /Block Statistics/i })).toHaveFormValues({
-          nonce: 0.5 * 1e6,
-          header: null,
-          target: "",
-          solution
+        // need to await state changes
+        fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+        await waitFor(() => {
+          expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled();
         });
 
-        const anyFunc = expect.any(Function);
-        expect(mineSpy).toHaveBeenCalledTimes(1);
-        expect(mineSpy).toHaveBeenCalledWith(0.5 * 1e6, anyFunc, anyFunc, anyFunc, anyFunc);
-
-        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveValue(solution);
-        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveStyle({ color: "green" });
+        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("valid-solution");
       });
     });
-  });
-});
-
-describe("on the blockchain", () => {
-  it("renders properly", () => {
-    const { asFragment } = render(
-      <AppContext.Provider value={{ state, dispatch }}>
-        <Statistics chain={true} isValid={false} solution={""} setSolution={jest.fn()} setIsValid={jest.fn()} />
-      </AppContext.Provider>
-    );
-
-    expect(asFragment()).toMatchSnapshot();
-  });
-
-  it("propagates the block status after mining regardless of if valid", async () => {
-    const solution = "000111222333";
-    const blockMock = state.chain[1];
-
-    render(
-      <AppContext.Provider value={{ state, dispatch }}>
-        <Statistics
-          chain={true}
-          isValid={false}
-          solution={solution}
-          setSolution={jest.fn()}
-          setIsValid={jest.fn()}
-          block={blockMock}
-        />
-      </AppContext.Provider>
-    );
-
-    Math.random = jest.fn().mockReturnValueOnce(0.5);
-    const mineSpy = jest.spyOn(MineUtil, "mine").mockReturnValueOnce(new Promise((resolve) => resolve(solution)));
-    const propagateSpy = jest.spyOn(PropagateUtil, "propagateBlockStatus").mockResolvedValue(undefined);
-
-    fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
-    await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
-
-    const anyFunc = expect.any(Function);
-    expect(mineSpy).toHaveBeenCalledTimes(1);
-    expect(mineSpy).toHaveBeenCalledWith(0.5 * 1e6, anyFunc, anyFunc, anyFunc, anyFunc);
-
-    expect(propagateSpy).toHaveBeenCalledTimes(1);
-    expect(propagateSpy).toHaveBeenCalledWith(state, dispatch, blockMock.index, blockMock.prevHash, solution, true);
   });
 });

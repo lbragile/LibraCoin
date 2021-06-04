@@ -2,7 +2,7 @@ import { ACTIONS } from "../../../src/enums/AppDispatchActions";
 import { AppReducer } from "../../../src/reducers/AppReducer";
 import { IBlock, ITransaction, IUser } from "../../../src/typings/AppTypes";
 
-const { state } = global;
+const { initialState } = global;
 
 const trans: ITransaction = {
   to: "B",
@@ -25,12 +25,13 @@ const block: IBlock = {
   currHash: new Array(64).fill("1").join(""),
   transactions: [trans],
   timestamp: Date.parse("05/15/2021"),
-  merkleRoot: "abcdedcba"
+  merkleRoot: "abcdedcba",
+  valid: true
 };
 
 describe("VERIFIED TRANSACTION", () => {
   test("ACTIONS.ADD_VERIFIED_TRANS", () => {
-    const ogState = JSON.parse(JSON.stringify(state));
+    const ogState = JSON.parse(JSON.stringify(initialState));
     const expectedOutput = [...ogState.verifiedTrans, trans];
 
     const output = AppReducer(ogState, { type: ACTIONS.ADD_VERIFIED_TRANS, payload: { trans } });
@@ -38,7 +39,7 @@ describe("VERIFIED TRANSACTION", () => {
   });
 
   test("ACTIONS.UPDATE_VERIFIED_TRANS (no match)", () => {
-    const ogState = JSON.parse(JSON.stringify(state));
+    const ogState = JSON.parse(JSON.stringify(initialState));
 
     // selected not in verified list
     ogState.selectedTrans = [];
@@ -49,7 +50,7 @@ describe("VERIFIED TRANSACTION", () => {
   });
 
   test("ACTIONS.UPDATE_VERIFIED_TRANS (match at least 1)", () => {
-    const ogState = JSON.parse(JSON.stringify(state));
+    const ogState = JSON.parse(JSON.stringify(initialState));
 
     // select existing transaction and new transaction
     ogState.selectedTrans.push(...ogState.verifiedTrans);
@@ -62,7 +63,7 @@ describe("VERIFIED TRANSACTION", () => {
 
 describe("SELECTED TRANSACTION", () => {
   test("ACTIONS.UPDATE_SELECTED_TRANS", () => {
-    const ogState = JSON.parse(JSON.stringify(state));
+    const ogState = JSON.parse(JSON.stringify(initialState));
 
     const output = AppReducer(ogState, { type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans: [trans] } });
     expect(output.selectedTrans).toStrictEqual([trans]);
@@ -71,7 +72,7 @@ describe("SELECTED TRANSACTION", () => {
 
 describe("USERS", () => {
   test("ACTIONS.UPDATE_USERS", () => {
-    const ogState = JSON.parse(JSON.stringify(state));
+    const ogState = JSON.parse(JSON.stringify(initialState));
 
     const output = AppReducer(ogState, { type: ACTIONS.UPDATE_USERS, payload: { users } });
     expect(output.users).toStrictEqual(users);
@@ -80,7 +81,7 @@ describe("USERS", () => {
 
 describe("BLOCK", () => {
   test("ACTIONS.ADD_BLOCK", () => {
-    const ogState = JSON.parse(JSON.stringify(state));
+    const ogState = JSON.parse(JSON.stringify(initialState));
     const expectedOutput = [...ogState.chain, block];
 
     const output = AppReducer(ogState, { type: ACTIONS.ADD_BLOCK, payload: { block } });
@@ -88,7 +89,7 @@ describe("BLOCK", () => {
   });
 
   test("ACTIONS.UPDATE_BLOCK", () => {
-    const ogState = JSON.parse(JSON.stringify(state));
+    const ogState = JSON.parse(JSON.stringify(initialState));
     localStorage.setItem("chain", JSON.stringify(ogState.chain));
 
     // update timestamp of block at index 0
@@ -103,7 +104,7 @@ describe("BLOCK", () => {
 
 describe("RANDOM", () => {
   test("action type that doesn't exist", () => {
-    const ogState = JSON.parse(JSON.stringify(state));
+    const ogState = JSON.parse(JSON.stringify(initialState));
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     /* @ts-ignore */

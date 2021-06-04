@@ -1,42 +1,66 @@
 import React, { useState, useRef, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
+import { ACTIONS } from "../../enums/AppDispatchActions";
 import { IAction, IState } from "../../typings/AppTypes";
-import { mine } from "../../utils/mine";
-import { propagateBlockStatus } from "../../utils/propagate";
-import { IBlockProps } from "./Block";
+import { digestMessage } from "../../utils/conversion";
+import { createTarget } from "../../utils/mine";
+// import { propagateBlockStatus } from "../../utils/propagate";
 
 import "./Block.scss";
 
-interface IStatisticsProps extends Omit<IBlockProps, "merkleRoot"> {
+interface IStatisticsProps {
+  chain: boolean;
+  index?: number;
   prevHash?: string;
 }
 
 export default function Statistics(props: IStatisticsProps): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-  const nonce = useRef<number>();
-  const [header, setHeader] = useState<number>();
-  const [target, setTarget] = useState<string>();
+  const nonce = useRef<number>(0);
+  const [header, setHeader] = useState<number>(0);
+  const [target, setTarget] = useState<string>("");
+  const [solution, setSolution] = useState<string>("");
   const [disableMineBtn, setDisableMineBtn] = useState<boolean>(false);
 
   async function handleMine() {
-    const { index, prevHash } = props;
-
-    const newIsValid = [...props.isValid];
-    const blockIndex = index ?? newIsValid.length - 1;
+    // const { index, prevHash } = props;
 
     nonce.current = Math.round(Math.random() * 1e6);
 
     setDisableMineBtn(true);
-    const { currHash, targetHash } = await mine(nonce.current, blockIndex, setHeader, setTarget, props.solution, props.setSolution); // prettier-ignore
+    // make target with 2 or 3 leading zeros
+    const numZeros = Math.round(Math.random()) + 2;
+    const targetHash = await createTarget(numZeros);
+    setTarget(targetHash);
+
+    // mine block for a new current hash (solution)
+    let candidateSolution = "";
+    let nonceVal = nonce.current;
+    while (nonceVal <= Number.MAX_SAFE_INTEGER) {
+      candidateSolution = await digestMessage(nonceVal.toString());
+      setSolution(candidateSolution);
+      setHeader(nonceVal++);
+
+      // stopping condition if first numZero characters are all 0
+      if (candidateSolution.substr(0, numZeros).match(/^0+$/)) break;
+    }
+
+    const payload = {
+      preview: {
+        ...state.preview,
+        timestamp: Date.now(),
+        prevHash: state.chain[state.preview.index - 1].currHash,
+        currHash: candidateSolution,
+        valid: candidateSolution <= targetHash
+      }
+    };
+    dispatch({ type: ACTIONS.UPDATE_PREVIEW, payload });
     setDisableMineBtn(false);
 
-    newIsValid[blockIndex] = currHash <= targetHash;
-    props.setIsValid(newIsValid);
-
     // propagate changes if needed
-    if (index && prevHash) await propagateBlockStatus(state, dispatch, index, prevHash, currHash, true);
+    // if (index && prevHash) await propagateBlockStatus(state, dispatch, index, prevHash, candidateSolution, true);
   }
 
   return (
@@ -49,7 +73,8 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
           aria-label="Block Nonce"
           name="nonce"
           type="number"
-          defaultValue={props.solution[props.index ?? 0] ? nonce.current : ""}
+          key={nonce.current}
+          defaultValue={nonce.current}
           disabled
         />
       </InputGroup>
@@ -58,7 +83,7 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
         <InputGroup.Prepend>
           <InputGroup.Text>Header</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control aria-label="Block Header" name="header" type="number" defaultValue={header} disabled />
+        <Form.Control aria-label="Block Header" name="header" type="number" value={header} disabled />
       </InputGroup>
 
       <InputGroup className="my-2">
@@ -70,7 +95,7 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
           name="target"
           className="text-truncate"
           type="text"
-          defaultValue={target}
+          value={target}
           readOnly
         />
       </InputGroup>
@@ -81,11 +106,15 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
         </InputGroup.Prepend>
         <Form.Control
           aria-label="Block Solution"
-          key={props.solution[props.index ?? 0]}
           name="solution"
-          className={"text-truncate " + (props.isValid[props.index ?? 0] ? "valid-solution" : "invalid-solution")}
+          className={
+            "text-truncate " +
+            ((props.chain && props.index && state.chain[props.index].valid) || (!props.chain && state.preview.valid)
+              ? "valid-solution"
+              : "invalid-solution")
+          }
           type="text"
-          defaultValue={props.solution[props.index ?? 0]}
+          value={solution}
           readOnly
         />
       </InputGroup>
@@ -95,7 +124,10 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
         variant="primary"
         className="btn-block d-block mt-2"
         disabled={
-          props.isValid[props.index ?? 0] || (!props.chain && state.selectedTrans.length === 0) || disableMineBtn
+          (props.chain && props.index && state.chain[props.index].valid) ||
+          (!props.chain && state.preview.valid) ||
+          (!props.chain && state.selectedTrans.length === 0) ||
+          disableMineBtn
         }
         onClick={() => handleMine()}
       >
