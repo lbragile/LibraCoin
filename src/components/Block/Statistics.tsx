@@ -3,8 +3,7 @@ import { Button, Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { IAction, IState } from "../../typings/AppTypes";
-import { digestMessage } from "../../utils/conversion";
-import { createTarget } from "../../utils/mine";
+import { digestMessage, randomHash } from "../../utils/conversion";
 // import { propagateBlockStatus } from "../../utils/propagate";
 
 import "./Block.scss";
@@ -32,20 +31,24 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
     setDisableMineBtn(true);
     // make target with 2 or 3 leading zeros
     const numZeros = Math.round(Math.random()) + 2;
-    const targetHash = await createTarget(numZeros);
+    const re = new RegExp(`^.{0,${numZeros}}`, "g");
+    const zerosStr = new Array(numZeros).fill("0").join("");
+    let targetHash = await digestMessage(randomHash(20));
+    targetHash = targetHash.replace(re, zerosStr);
     setTarget(targetHash);
 
     // mine block for a new current hash (solution)
     let candidateSolution = "";
-    let nonceVal = nonce.current;
-    while (nonceVal <= Number.MAX_SAFE_INTEGER) {
-      candidateSolution = await digestMessage(nonceVal.toString());
+    let header = nonce.current;
+    while (header <= Number.MAX_SAFE_INTEGER) {
+      candidateSolution = await digestMessage(header.toString());
       setSolution(candidateSolution);
-      setHeader(nonceVal++);
+      setHeader(header++);
 
       // stopping condition if first numZero characters are all 0
       if (candidateSolution.substr(0, numZeros).match(/^0+$/)) break;
     }
+    setDisableMineBtn(false);
 
     const payload = {
       preview: {
@@ -57,7 +60,6 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
       }
     };
     dispatch({ type: ACTIONS.UPDATE_PREVIEW, payload });
-    setDisableMineBtn(false);
 
     // propagate changes if needed
     // if (index && prevHash) await propagateBlockStatus(state, dispatch, index, prevHash, candidateSolution, true);
@@ -124,9 +126,8 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
         variant="primary"
         className="btn-block d-block mt-2"
         disabled={
-          (props.chain && props.index && state.chain[props.index].valid) ||
-          (!props.chain && state.preview.valid) ||
-          (!props.chain && state.selectedTrans.length === 0) ||
+          (props.chain && state.chain?.[props.index ?? -1].valid) ||
+          (!props.chain && (state.preview.valid || state.selectedTrans.length === 0)) ||
           disableMineBtn
         }
         onClick={() => handleMine()}

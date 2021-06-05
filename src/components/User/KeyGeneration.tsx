@@ -49,7 +49,7 @@ export default function KeyGeneration(): JSX.Element {
 
   const togglePrivateKey = () => {
     const show = privateKeyRef.current?.value.includes("◦");
-    const hiddenVal = new Array(state.user.privateKey.length).fill("◦").join("");
+    const hiddenVal = new Array(state.user.privateKey?.length ?? 0).fill("◦").join("");
     (privateKeyRef.current as HTMLTextAreaElement).value = show ? state.user.privateKey : hiddenVal;
   };
 
@@ -65,7 +65,7 @@ export default function KeyGeneration(): JSX.Element {
           as="textarea"
           rows={numRows.current}
           className="rounded-right"
-          defaultValue={state.user?.publicKey ?? ""}
+          value={state.user?.publicKey}
           isValid={copied[0]}
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "public")}
           onBlur={() => setCopied([false, false])}
@@ -85,7 +85,7 @@ export default function KeyGeneration(): JSX.Element {
           aria-label="privateKey"
           as="textarea"
           rows={numRows.current}
-          defaultValue={state.user?.privateKey ? new Array(state.user.privateKey.length).fill("◦").join("") : ""}
+          value={new Array(state.user.privateKey?.length ?? 0).fill("◦").join("")}
           onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "private")}
           onBlur={() => setCopied([false, false])}
           isValid={copied[1]}

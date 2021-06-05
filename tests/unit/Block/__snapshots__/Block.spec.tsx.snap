@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`in preview mode Shows 'Add Block' button when valid 1`] = `
+exports[`in preview mode Valid State Shows 'Add Block' button 1`] = `
 <DocumentFragment>
   <form
     aria-label="Block Form"

@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import TransactionItems from "../../../src/components/Transaction/TransactionItems";
 import { AppContext } from "../../../src/context/AppContext";
 import { ACTIONS } from "../../../src/enums/AppDispatchActions";
-import { IState } from "../../../src/typings/AppTypes";
+import { IAction, IState } from "../../../src/typings/AppTypes";
+import { AppReducer } from "../../../src/reducers/AppReducer";
 
-it("renders correctly", () => {
-  const { state, dispatch } = global;
+const { initialState } = global;
 
-  const { asFragment } = render(
-    <AppContext.Provider value={{ state, dispatch }}>
+interface ITransactionItemsWrapper {
+  stateMock?: IState;
+  dispatchMock?: React.Dispatch<IAction>;
+}
+
+const TransactionItemsWrapper = ({ stateMock, dispatchMock }: ITransactionItemsWrapper) => {
+  const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  return (
+    <AppContext.Provider value={{ state: stateMock ?? state, dispatch: dispatchMock ?? dispatch }}>
       <TransactionItems />
     </AppContext.Provider>
   );
+};
+
+it("renders correctly", () => {
+  const { asFragment } = render(<TransactionItemsWrapper />);
 
   const transactions = screen.getAllByRole("form", { name: /Transaction Information/i });
   const fromFields = screen.getAllByRole("textbox", { name: /Transaction From/i });
@@ -25,9 +37,7 @@ it("renders correctly", () => {
 
   expect(screen.getByRole("heading", { name: /Title/i, level: 3 })).toHaveTextContent("Verified Transactions");
 
-  transactions.forEach((transaction, i) => {
-    expect(transaction).toHaveFormValues(state.verifiedTrans[i]);
-  });
+  transactions.forEach((transaction, i) => expect(transaction).toHaveFormValues({ ...initialState.verifiedTrans[i] }));
 
   [...fromFields, ...toFields, ...msgFields, ...sigFields].forEach((field) => {
     expect(field).toHaveAttribute("readOnly");
@@ -39,7 +49,7 @@ it("renders correctly", () => {
     expect(balance).not.toBeRequired();
   });
 
-  const numTrans = state.verifiedTrans.length;
+  const numTrans = initialState.verifiedTrans.length;
   expect(transactions.length).toEqual(numTrans);
   expect(fromFields.length).toEqual(numTrans);
   expect(toFields.length).toEqual(numTrans);
@@ -51,18 +61,10 @@ it("renders correctly", () => {
 });
 
 describe("Select Transaction", () => {
-  const { state } = global;
-  const dispatch = jest.fn();
+  const dispatchMock = jest.fn();
 
   describe("Less than 4 already selected", () => {
-    beforeEach(() => {
-      render(
-        <AppContext.Provider value={{ state, dispatch }}>
-          <TransactionItems />
-        </AppContext.Provider>
-      );
-    });
-
+    beforeEach(() => render(<TransactionItemsWrapper dispatchMock={dispatchMock} />));
     afterEach(() => jest.clearAllMocks());
 
     it("adds selected transaction if not already selected", () => {
@@ -81,12 +83,12 @@ describe("Select Transaction", () => {
         to: toFields[0].value
       };
 
-      const selectedTrans = [...state.selectedTrans, newSelected]; // expected
+      const selectedTrans = [...initialState.selectedTrans, newSelected]; // expected
 
       fireEvent.click(transactions[0]);
 
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenCalledWith({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans } });
+      expect(dispatchMock).toHaveBeenCalledTimes(1);
+      expect(dispatchMock).toHaveBeenCalledWith({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans } });
     });
 
     it("removes selected transaction from the list if already selected", () => {
@@ -94,27 +96,25 @@ describe("Select Transaction", () => {
 
       fireEvent.click(transactions[1]);
 
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenCalledWith({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans: [] } });
+      expect(dispatchMock).toHaveBeenCalledTimes(1);
+      expect(dispatchMock).toHaveBeenCalledWith({
+        type: ACTIONS.UPDATE_SELECTED_TRANS,
+        payload: { selectedTrans: [] }
+      });
     });
   });
 
   describe("4 or more already selected", () => {
     let ogState: IState;
 
+    const dispatchMock = jest.fn();
+
     beforeAll(() => {
-      ogState = JSON.parse(JSON.stringify(state));
+      ogState = JSON.parse(JSON.stringify(initialState));
       ogState.selectedTrans.push(...ogState.verifiedTrans.slice(2));
     });
 
-    beforeEach(() => {
-      render(
-        <AppContext.Provider value={{ state: ogState, dispatch }}>
-          <TransactionItems />
-        </AppContext.Provider>
-      );
-    });
-
+    beforeEach(() => render(<TransactionItemsWrapper stateMock={ogState} dispatchMock={dispatchMock} />));
     afterEach(() => jest.clearAllMocks());
 
     it("alerts", () => {
@@ -136,8 +136,8 @@ describe("Select Transaction", () => {
       fireEvent.click(transactions[transactions.length - 1]);
 
       expect(alertSpy).not.toHaveBeenCalled();
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenCalledWith({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans } });
+      expect(dispatchMock).toHaveBeenCalledTimes(1);
+      expect(dispatchMock).toHaveBeenCalledWith({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans } });
     });
   });
 });

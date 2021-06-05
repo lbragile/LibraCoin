@@ -39,7 +39,7 @@ export default function Block(props: IBlockProps): JSX.Element {
     dispatch({ type: ACTIONS.ADD_BLOCK, payload: { block } });
     dispatch({ type: ACTIONS.UPDATE_VERIFIED_TRANS });
     dispatch({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans: [] } });
-    dispatch({ type: ACTIONS.UPDATE_PREVIEW, payload: preview });
+    dispatch({ type: ACTIONS.UPDATE_PREVIEW, payload: { preview } });
   }
 
   function handleViewTransactions(): void {
@@ -66,7 +66,7 @@ export default function Block(props: IBlockProps): JSX.Element {
           aria-label="Block Index"
           name="index"
           type="number"
-          value={props.index === 0 ? state.preview.index : props.index}
+          value={props.index === 0 && !props.chain ? state.preview.index : props.index}
           disabled
         />
       </InputGroup>
@@ -75,7 +75,13 @@ export default function Block(props: IBlockProps): JSX.Element {
         <InputGroup.Prepend>
           <InputGroup.Text>Timestamp</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control aria-label="Block Timestamp" name="timestamp" type="number" defaultValue={Date.now()} disabled />
+        <Form.Control
+          aria-label="Block Timestamp"
+          name="timestamp"
+          type="number"
+          defaultValue={props.chain ? state.chain[props.index].timestamp : Date.now()}
+          disabled
+        />
       </InputGroup>
 
       <InputGroup className="my-2">
@@ -87,7 +93,13 @@ export default function Block(props: IBlockProps): JSX.Element {
           name="prevHash"
           className="text-truncate"
           type="text"
-          value={props.chain ? state.chain[props.index - 1].currHash : state.preview.prevHash}
+          value={
+            props.chain && props.index > 0
+              ? state.chain[props.index - 1].currHash
+              : !props.chain
+              ? state.preview.prevHash
+              : ""
+          }
           readOnly
         />
       </InputGroup>
@@ -138,7 +150,7 @@ export default function Block(props: IBlockProps): JSX.Element {
         )}
       </InputGroup>
 
-      {((!props.chain && state.preview.valid) || (props.chain && state.chain[props.index].valid)) && (
+      {!props.chain && state.preview.valid && (
         <Button aria-label="Add Block" className="mt-2" variant="success" block onClick={() => handleAddBlock()}>
           <h4 className="my-0">Add Block</h4>
         </Button>

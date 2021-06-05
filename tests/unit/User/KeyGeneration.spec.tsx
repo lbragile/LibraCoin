@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import KeyGeneration from "../../../src/components/User/KeyGeneration";
 import { AppContext } from "../../../src/context/AppContext";
 import * as utilsFunc from "../../../src/utils/copyInput";
+import { IAction, IState } from "../../../src/typings/AppTypes";
+import { AppReducer } from "../../../src/reducers/AppReducer";
 
-const { state, dispatch, exportKeyMock, generateKeyMock } = global;
+const { initialState, exportKeyMock, generateKeyMock } = global;
+
+interface IKeyGenerationWrapper {
+  stateMock?: IState;
+  dispatchMock?: React.Dispatch<IAction>;
+}
+
+const KeyGenerationWrapper = ({ stateMock, dispatchMock }: IKeyGenerationWrapper) => {
+  const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  return (
+    <AppContext.Provider value={{ state: stateMock ?? state, dispatch: dispatchMock ?? dispatch }}>
+      <KeyGeneration />
+    </AppContext.Provider>
+  );
+};
 
 beforeAll(() => {
   Object.defineProperty(window, "crypto", {
@@ -21,57 +38,41 @@ afterAll(() => {
   delete window.crypto;
 });
 
-it("renders correctly", () => {
-  const { asFragment } = render(
-    <AppContext.Provider value={{ state, dispatch }}>
-      <KeyGeneration />
-    </AppContext.Provider>
-  );
+it("renders correctly", async () => {
+  const { asFragment } = render(<KeyGenerationWrapper />);
 
-  expect(screen.getByRole("textbox", { name: /publicKey/i })).toBeInTheDocument();
-  expect(screen.getByRole("textbox", { name: /privateKey/i })).toBeInTheDocument();
+  expect(await screen.findByRole("textbox", { name: /publicKey/i })).toBeInTheDocument();
+  expect(await screen.findByRole("textbox", { name: /privateKey/i })).toBeInTheDocument();
 
   expect(asFragment()).toMatchSnapshot();
 });
 
 describe("input field text", () => {
-  const privateKey = state.user.privateKey;
+  const privateKey = initialState.user.privateKey;
   const privateKeyHidden = new Array(privateKey.length).fill("◦").join("");
 
-  it("has no user in localStorage", () => {
-    const ogState = JSON.parse(JSON.stringify(state));
-    ogState.user = {};
+  it("has no user in localStorage", async () => {
     render(
-      <AppContext.Provider value={{ state: ogState, dispatch }}>
-        <KeyGeneration />
-      </AppContext.Provider>
+      <KeyGenerationWrapper stateMock={{ ...initialState, user: { privateKey: "", publicKey: "", balance: 1000 } }} />
     );
 
-    expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue("");
+    expect(await screen.findByText("👀")).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveValue(initialState.user.publicKey);
     expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue("");
-    expect(screen.getByText("👀")).toBeInTheDocument();
   });
 
-  it("has user in localStorage", () => {
-    render(
-      <AppContext.Provider value={{ state, dispatch }}>
-        <KeyGeneration />
-      </AppContext.Provider>
-    );
+  it("has user in localStorage", async () => {
+    render(<KeyGenerationWrapper />);
 
-    expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(state.user.publicKey);
+    expect(await screen.findByText("👀")).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(initialState.user.publicKey);
     expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKeyHidden);
-    expect(screen.getByText("👀")).toBeInTheDocument();
   });
 
-  it("reveals private key on eye click", () => {
-    render(
-      <AppContext.Provider value={{ state, dispatch }}>
-        <KeyGeneration />
-      </AppContext.Provider>
-    );
+  it("reveals private key on eye click", async () => {
+    render(<KeyGenerationWrapper />);
 
-    expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(state.user.publicKey);
+    expect(await screen.findByText("👀")).toBeInTheDocument();
     expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKeyHidden);
 
     fireEvent.click(screen.getByText("👀"));
@@ -82,18 +83,8 @@ describe("input field text", () => {
 
 describe("copy input of key fields", () => {
   document.execCommand = jest.fn();
-
-  beforeEach(() => {
-    render(
-      <AppContext.Provider value={{ state, dispatch }}>
-        <KeyGeneration />
-      </AppContext.Provider>
-    );
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+  beforeEach(() => render(<KeyGenerationWrapper />));
+  afterEach(() => jest.clearAllMocks());
 
   test("public key copy", () => {
     const copyKeySpy = jest.spyOn(utilsFunc, "copyKey");
@@ -140,6 +131,9 @@ describe("copy input of key fields", () => {
       expect(screen.getByRole("textbox", { name: /privateKey/i })).not.toHaveClass("is-valid");
 
       fireEvent.click(screen.getByText("👀"));
+
+      expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(initialState.user.privateKey);
+
       fireEvent.focus(screen.getByRole("textbox", { name: /privateKey/i }));
 
       // private has feedback while public doesn't
