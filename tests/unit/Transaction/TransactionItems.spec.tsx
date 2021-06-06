@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import TransactionItems from "../../../src/components/Transaction/TransactionItems";
@@ -7,6 +7,7 @@ import { AppContext } from "../../../src/context/AppContext";
 import { ACTIONS } from "../../../src/enums/AppDispatchActions";
 import { IAction, IState } from "../../../src/typings/AppTypes";
 import { AppReducer } from "../../../src/reducers/AppReducer";
+import * as TreeUtils from "../../../src/utils/merkleTree";
 
 const { initialState } = global;
 
@@ -67,7 +68,7 @@ describe("Select Transaction", () => {
     beforeEach(() => render(<TransactionItemsWrapper dispatchMock={dispatchMock} />));
     afterEach(() => jest.clearAllMocks());
 
-    it("adds selected transaction if not already selected", () => {
+    it("adds selected transaction if not already selected", async () => {
       const transactions = screen.getAllByRole("form", { name: /Transaction Information/i });
       const fromFields = screen.getAllByRole("textbox", { name: /Transaction From/i }) as HTMLInputElement[];
       const toFields = screen.getAllByRole("textbox", { name: /Transaction To/i }) as HTMLInputElement[];
@@ -83,23 +84,53 @@ describe("Select Transaction", () => {
         to: toFields[0].value
       };
 
+      // new merkleRoot will be just the transaction signature since only 1 selected
+      jest.spyOn(TreeUtils, "calculateMerkleTreeFormation").mockResolvedValueOnce([[sigFields[0].value]]);
+      const newPreview = {
+        ...initialState.preview,
+        merkleRoot: sigFields[0].value,
+        valid: false
+      };
+
       const selectedTrans = [...initialState.selectedTrans, newSelected]; // expected
 
       fireEvent.click(transactions[0]);
 
-      expect(dispatchMock).toHaveBeenCalledTimes(1);
-      expect(dispatchMock).toHaveBeenCalledWith({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans } });
+      await waitFor(() => {
+        expect(dispatchMock).toHaveBeenCalledTimes(2);
+      });
+      expect(dispatchMock).toHaveBeenNthCalledWith(1, {
+        type: ACTIONS.UPDATE_SELECTED_TRANS,
+        payload: { selectedTrans }
+      });
+      expect(dispatchMock).toHaveBeenNthCalledWith(2, {
+        type: ACTIONS.UPDATE_PREVIEW,
+        payload: { preview: newPreview }
+      });
     });
 
-    it("removes selected transaction from the list if already selected", () => {
+    it("removes selected transaction from the list if already selected", async () => {
       const transactions = screen.getAllByRole("form", { name: /Transaction Information/i });
+
+      jest.spyOn(TreeUtils, "calculateMerkleTreeFormation").mockResolvedValueOnce([[""]]);
+      const newPreview = {
+        ...initialState.preview,
+        merkleRoot: "",
+        valid: false
+      };
 
       fireEvent.click(transactions[1]);
 
-      expect(dispatchMock).toHaveBeenCalledTimes(1);
-      expect(dispatchMock).toHaveBeenCalledWith({
+      await waitFor(() => {
+        expect(dispatchMock).toHaveBeenCalledTimes(2);
+      });
+      expect(dispatchMock).toHaveBeenNthCalledWith(1, {
         type: ACTIONS.UPDATE_SELECTED_TRANS,
         payload: { selectedTrans: [] }
+      });
+      expect(dispatchMock).toHaveBeenNthCalledWith(2, {
+        type: ACTIONS.UPDATE_PREVIEW,
+        payload: { preview: newPreview }
       });
     });
   });
@@ -127,17 +158,34 @@ describe("Select Transaction", () => {
       expect(alertSpy).toHaveBeenCalledWith("You can mine at most 4 transactions at a time!");
     });
 
-    it("removes the selectedTrans from the list without alerting if the clicked transaction matches it", () => {
+    it("removes the selectedTrans from the list without alerting if the clicked transaction matches it", async () => {
       const alertSpy = jest.spyOn(window, "alert").mockImplementation(() => undefined);
 
       const transactions = screen.getAllByRole("form", { name: /Transaction Information/i });
       const selectedTrans = ogState.selectedTrans.slice(0, ogState.selectedTrans.length - 1); // expected
 
+      jest.spyOn(TreeUtils, "calculateMerkleTreeFormation").mockResolvedValueOnce([["randomRoot"]]);
+      const newPreview = {
+        ...initialState.preview,
+        merkleRoot: "randomRoot",
+        valid: false
+      };
+
       fireEvent.click(transactions[transactions.length - 1]);
 
+      await waitFor(() => {
+        expect(dispatchMock).toHaveBeenCalledTimes(2);
+      });
+      expect(dispatchMock).toHaveBeenNthCalledWith(1, {
+        type: ACTIONS.UPDATE_SELECTED_TRANS,
+        payload: { selectedTrans }
+      });
+      expect(dispatchMock).toHaveBeenNthCalledWith(2, {
+        type: ACTIONS.UPDATE_PREVIEW,
+        payload: { preview: newPreview }
+      });
+
       expect(alertSpy).not.toHaveBeenCalled();
-      expect(dispatchMock).toHaveBeenCalledTimes(1);
-      expect(dispatchMock).toHaveBeenCalledWith({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans } });
     });
   });
 });

@@ -5,7 +5,7 @@ import { AppContext } from "../../context/AppContext";
 import { IAction, IState, ITransaction } from "../../typings/AppTypes";
 
 import { digestMessage } from "../../utils/conversion";
-import { calculateMerkleTreeFormation } from "../../utils/merkleTree";
+import { calculateMerkleTreeFormation, getMerkleRoot } from "../../utils/merkleTree";
 import { propagateBlockStatus } from "../../utils/propagate";
 
 type TChangeType = "from" | "to" | "message" | "amount";
@@ -26,7 +26,8 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
 
     // calculate new merkle root and currHash
     const prevHash = state.chain[index].prevHash;
-    const newRoot = await calculateMerkleTreeFormation(newTrans, newTrans);
+    const newTree = await calculateMerkleTreeFormation(newTrans, newTrans);
+    const newRoot = getMerkleRoot(newTree);
     const newHash = await digestMessage(index + prevHash + newRoot);
 
     setTransDetails(newTrans);

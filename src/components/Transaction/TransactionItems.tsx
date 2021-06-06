@@ -3,13 +3,14 @@ import { Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { IAction, IState, ITransaction } from "../../typings/AppTypes";
+import { calculateMerkleTreeFormation, getMerkleRoot } from "../../utils/merkleTree";
 
 import "./Transaction.scss";
 
 export default function TransactionItems(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-  function selectTransaction(transaction: ITransaction): void {
+  async function selectTransaction(transaction: ITransaction): Promise<void> {
     let selectedTrans: ITransaction[] = JSON.parse(JSON.stringify(state.selectedTrans));
     const signatures = selectedTrans.map((x) => x.signature);
     const included = signatures.includes(transaction.signature);
@@ -23,7 +24,15 @@ export default function TransactionItems(): JSX.Element {
         selectedTrans = selectedTrans.filter((x) => x.signature !== transaction.signature);
       }
 
+      const newTree = await calculateMerkleTreeFormation(state.verifiedTrans, selectedTrans);
+      const newPreview = {
+        ...state.preview,
+        merkleRoot: getMerkleRoot(newTree),
+        valid: false
+      };
+
       dispatch({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans } });
+      dispatch({ type: ACTIONS.UPDATE_PREVIEW, payload: { preview: newPreview } });
     } else {
       alert("You can mine at most 4 transactions at a time!");
     }

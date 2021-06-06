@@ -1,29 +1,21 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { AppContext } from "../../context/AppContext";
-import { IAction, IState } from "../../typings/AppTypes";
-import { calculateMerkleTreeFormation, drawTreeDiagramOnCanvas, getMerkleRoot } from "../../utils/merkleTree";
-interface IPreviewTreeProps {
-  setMerkleRoot: (arg: string) => void;
-}
+import { IState } from "../../typings/AppTypes";
+import { calculateMerkleTreeFormation, drawTreeDiagramOnCanvas } from "../../utils/merkleTree";
 
-export default function PreviewTree({ setMerkleRoot }: IPreviewTreeProps): JSX.Element {
-  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+export default function PreviewTree(): JSX.Element {
+  const { state } = useContext(AppContext) as { state: IState };
 
   const treeCanvas = useRef<HTMLCanvasElement | null>(null);
-  const [merkleTree, setMerkleTree] = useState<string[][]>([[""]]);
 
   useEffect(() => {
-    setMerkleRoot(getMerkleRoot(merkleTree));
-  }, [merkleTree, setMerkleRoot]);
+    async function drawTree() {
+      const tree = await calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans);
+      drawTreeDiagramOnCanvas(tree, treeCanvas.current, state.selectedTrans);
+    }
 
-  useEffect(() => {
-    calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans, setMerkleTree);
-  }, [dispatch, state.selectedTrans, state.verifiedTrans, state.preview]);
-
-  // draw tree in canvas
-  useEffect(() => {
-    drawTreeDiagramOnCanvas(merkleTree, treeCanvas.current, state.selectedTrans);
-  }, [merkleTree, state.selectedTrans]);
+    drawTree();
+  }, [state.selectedTrans, state.verifiedTrans]);
 
   return (
     <div className="mb-2 d-none d-lg-block">

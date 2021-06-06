@@ -12,34 +12,31 @@ const { initialState } = global;
 
 interface IBlockWrapper {
   chain: boolean;
-  merkleRoot: string;
   index: number;
   stateMock?: IState;
   dispatchMock?: React.Dispatch<IAction>;
 }
 
-const BlockWrapper = ({ chain, merkleRoot, index, stateMock, dispatchMock }: IBlockWrapper) => {
+const BlockWrapper = ({ chain, index, stateMock, dispatchMock }: IBlockWrapper) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   return (
     <AppContext.Provider value={{ state: stateMock ?? state, dispatch: dispatchMock ?? dispatch }}>
-      <Block chain={chain} merkleRoot={merkleRoot} index={index} />
+      <Block chain={chain} index={index} />
     </AppContext.Provider>
   );
 };
 
 describe("in preview mode", () => {
   it("renders correctly", () => {
-    Date.now = jest.fn().mockReturnValueOnce(45678);
+    Date.now = jest.fn().mockReturnValueOnce(initialState.preview.timestamp);
 
-    const { asFragment } = render(<BlockWrapper chain={false} merkleRoot={"abc"} index={0} />);
+    const { asFragment } = render(<BlockWrapper chain={false} index={initialState.preview.index} />);
 
     expect(screen.getByRole("form", { name: /Block Form/i })).toHaveFormValues({
-      index: initialState.preview.index,
-      timestamp: 45678,
-      prevHash: initialState.preview.prevHash,
-      currHash: initialState.preview.currHash,
-      merkle: "abc"
+      ...initialState.preview,
+      valid: undefined,
+      transactions: undefined
     });
 
     const index = screen.getByRole("spinbutton", { name: /Block Index/i });
@@ -73,8 +70,7 @@ describe("in preview mode", () => {
       const { asFragment } = render(
         <BlockWrapper
           chain={false}
-          merkleRoot={"abc"}
-          index={0}
+          index={initialState.preview.index}
           stateMock={{ ...initialState, preview: { ...initialState.preview, valid: true } }}
         />
       );
@@ -92,23 +88,22 @@ describe("in preview mode", () => {
         showTrans: false
       };
 
-      Date.now = jest.fn().mockReturnValueOnce(45678).mockReturnValueOnce(12345); // first time is called during initial render
-
       const previewPayload = {
-        timestamp: 12345,
         index: initialState.preview.index + 1,
+        timestamp: initialState.preview.timestamp,
         prevHash: initialState.preview.currHash,
         currHash: "",
         merkleRoot: "",
         valid: false
       };
 
+      Date.now = jest.fn().mockReturnValueOnce(initialState.preview.timestamp);
+
       const dispatchMock = jest.fn();
       render(
         <BlockWrapper
           chain={false}
-          merkleRoot={"abc"}
-          index={0}
+          index={initialState.preview.index}
           stateMock={{ ...initialState, preview: { ...initialState.preview, valid: true } }}
           dispatchMock={dispatchMock}
         />

@@ -4,9 +4,8 @@ import { digestMessage } from "./conversion";
 
 export async function calculateMerkleTreeFormation(
   verifiedTrans: ITransaction[],
-  selectedTrans: ITransaction[],
-  setMerkleTree?: (arg: string[][]) => void
-): Promise<string> {
+  selectedTrans: ITransaction[]
+): Promise<string[][]> {
   let tree = [[""]];
   if (selectedTrans.length > 0) {
     // need to make sure node's in tree appear in same order as in the verified transaction pane, regardless of selection order
@@ -27,11 +26,7 @@ export async function calculateMerkleTreeFormation(
     }
   }
 
-  if (setMerkleTree) {
-    setMerkleTree(tree);
-  }
-
-  return getMerkleRoot(tree);
+  return tree;
 }
 
 export function getMerkleRoot(tree: string[][]): string {

@@ -9,7 +9,6 @@ import "./Block.scss";
 
 export interface IBlockProps {
   chain: boolean;
-  merkleRoot: string;
   index: number;
 }
 
@@ -66,7 +65,7 @@ export default function Block(props: IBlockProps): JSX.Element {
           aria-label="Block Index"
           name="index"
           type="number"
-          value={props.index === 0 && !props.chain ? state.preview.index : props.index}
+          value={props.chain ? props.index : state.preview.index}
           disabled
         />
       </InputGroup>
@@ -79,7 +78,7 @@ export default function Block(props: IBlockProps): JSX.Element {
           aria-label="Block Timestamp"
           name="timestamp"
           type="number"
-          defaultValue={props.chain ? state.chain[props.index].timestamp : Date.now()}
+          value={props.chain ? state.chain[props.index].timestamp : state.preview.timestamp}
           disabled
         />
       </InputGroup>
@@ -128,11 +127,16 @@ export default function Block(props: IBlockProps): JSX.Element {
           <React.Fragment>
             <Form.Control
               aria-label="Block Merkle"
-              name="merkle"
-              key={props.merkleRoot}
+              name="merkleRoot"
               className="text-truncate"
               type="text"
-              defaultValue={props.merkleRoot}
+              value={
+                props.chain && props.index > 0
+                  ? state.chain[props.index].merkleRoot
+                  : props.chain
+                  ? ""
+                  : state.preview.merkleRoot
+              }
               readOnly
             />
             {props.chain && (

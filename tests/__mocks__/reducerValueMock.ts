@@ -88,9 +88,9 @@ const initialState: IState = {
     index: 2,
     timestamp: Date.parse("05/02/2021"),
     prevHash: new Array(64).fill("A").join(""),
-    currHash: "",
+    currHash: new Array(64).fill("B").join(""),
     transactions: [],
-    merkleRoot: "",
+    merkleRoot: "previewMerkle",
     valid: false
   }
 };
