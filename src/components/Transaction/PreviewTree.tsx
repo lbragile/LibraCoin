@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef } from "react";
 import { AppContext } from "../../context/AppContext";
 import { IState } from "../../typings/AppTypes";
 import { calculateMerkleTreeFormation, drawTreeDiagramOnCanvas } from "../../utils/merkleTree";
+import { Tree } from "../../utils/Tree";
 
 export default function PreviewTree(): JSX.Element {
   const { state } = useContext(AppContext) as { state: IState };
@@ -10,8 +11,11 @@ export default function PreviewTree(): JSX.Element {
 
   useEffect(() => {
     async function drawTree() {
-      const tree = await calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans);
-      drawTreeDiagramOnCanvas(tree, treeCanvas.current, state.selectedTrans);
+      if (treeCanvas.current) {
+        const tree = await calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans);
+        const canvasTree = new Tree(treeCanvas.current, state.selectedTrans);
+        drawTreeDiagramOnCanvas(tree, canvasTree);
+      }
     }
 
     drawTree();

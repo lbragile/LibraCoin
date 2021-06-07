@@ -27,7 +27,7 @@ const BlockStatisticsWrapper = ({ chain, index, stateMock, dispatchMock }: IBloc
   return (
     <AppContext.Provider value={{ state: stateMock ?? state, dispatch: dispatchMock ?? dispatch }}>
       <div className="container-fluid row d-flex justify-content-center mx-auto my-3">
-        <Statistics chain={chain} />
+        <Statistics chain={chain} index={index} />
         <Block chain={chain} index={index} />
       </div>
     </AppContext.Provider>
@@ -43,7 +43,7 @@ describe("in preview mode", () => {
     jest.spyOn(ConversionUtil, "randomHash").mockReturnValue("random");
     jest.spyOn(ConversionUtil, "digestMessage").mockResolvedValueOnce(target).mockResolvedValueOnce(solution);
 
-    const { asFragment } = render(<BlockStatisticsWrapper chain={false} index={2} />);
+    const { asFragment } = render(<BlockStatisticsWrapper chain={false} index={initialState.preview.timestamp} />);
 
     expect(screen.getByRole("form", { name: /Block Statistics/i })).toHaveFormValues({
       nonce: 0,

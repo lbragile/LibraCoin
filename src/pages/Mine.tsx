@@ -13,7 +13,7 @@ export default function Mine(): JSX.Element {
       <TransactionItems />
       <div className="container-fluid row d-flex justify-content-center mx-auto my-3">
         <PreviewTree />
-        <Statistics chain={false} />
+        <Statistics chain={false} index={0} />
         <Block chain={false} index={0} />
       </div>
     </div>

@@ -13,23 +13,24 @@ const { initialState } = global;
 
 interface IStatisticsWrapper {
   chain: boolean;
+  index: number;
   stateMock?: IState;
   dispatchMock?: React.Dispatch<IAction>;
 }
 
-const StatisticsWrapper = ({ chain, stateMock, dispatchMock }: IStatisticsWrapper) => {
+const StatisticsWrapper = ({ chain, index, stateMock, dispatchMock }: IStatisticsWrapper) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   return (
     <AppContext.Provider value={{ state: stateMock ?? state, dispatch: dispatchMock ?? dispatch }}>
-      <Statistics chain={chain} />
+      <Statistics chain={chain} index={index} />
     </AppContext.Provider>
   );
 };
 
 describe("in preview mode", () => {
   it("renders correctly", () => {
-    const { asFragment } = render(<StatisticsWrapper chain={false} />);
+    const { asFragment } = render(<StatisticsWrapper chain={false} index={initialState.preview.index} />);
 
     expect(screen.getByRole("form", { name: /Block Statistics/i })).toHaveFormValues({
       nonce: 0,
@@ -68,13 +69,13 @@ describe("in preview mode", () => {
         const ogState: IState = JSON.parse(JSON.stringify(initialState));
         ogState.selectedTrans = [];
 
-        render(<StatisticsWrapper chain={false} stateMock={ogState} />);
+        render(<StatisticsWrapper chain={false} index={initialState.preview.index} stateMock={ogState} />);
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled();
       });
 
       test("that mine button is enabled when there are a few selected transactions", () => {
-        render(<StatisticsWrapper chain={false} />);
+        render(<StatisticsWrapper chain={false} index={initialState.preview.index} />);
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
       });
@@ -102,7 +103,7 @@ describe("in preview mode", () => {
           .mockResolvedValueOnce(badSolution)
           .mockResolvedValueOnce(solution);
 
-        render(<StatisticsWrapper chain={false} dispatchMock={dispatchMock} />);
+        render(<StatisticsWrapper chain={false} index={initialState.preview.index} dispatchMock={dispatchMock} />);
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
         fireEvent.click(screen.getByRole("button", { name: /Block Mine/i })); // mining is async so setting mine button to disabled happens outside React's call stack
@@ -132,7 +133,7 @@ describe("in preview mode", () => {
 
         jest.spyOn(ConversionUtil, "digestMessage").mockResolvedValueOnce(target).mockResolvedValueOnce(solution);
 
-        render(<StatisticsWrapper chain={false} />);
+        render(<StatisticsWrapper chain={false} index={initialState.preview.index} />);
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
 
@@ -152,7 +153,7 @@ describe("in preview mode", () => {
 
         jest.spyOn(ConversionUtil, "digestMessage").mockResolvedValueOnce(target).mockResolvedValueOnce(solution);
 
-        render(<StatisticsWrapper chain={false} />);
+        render(<StatisticsWrapper chain={false} index={initialState.preview.index} />);
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
 

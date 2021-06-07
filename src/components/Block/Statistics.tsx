@@ -10,7 +10,7 @@ import "./Block.scss";
 
 interface IStatisticsProps {
   chain: boolean;
-  index?: number;
+  index: number;
   prevHash?: string;
 }
 
@@ -51,15 +51,17 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
     setDisableMineBtn(false);
 
     const payload = {
-      preview: {
-        ...state.preview,
+      [!props.chain ? "preview" : "block"]: {
+        ...(!props.chain ? state.preview : state.chain[props.index]),
         timestamp: Date.now(),
-        prevHash: state.chain[state.preview.index - 1].currHash,
+        prevHash: state.chain[(!props.chain ? state.preview.index : props.index) - 1].currHash,
         currHash: candidateSolution,
         valid: candidateSolution <= targetHash
       }
     };
-    dispatch({ type: ACTIONS.UPDATE_PREVIEW, payload });
+
+    const type = !props.chain ? ACTIONS.UPDATE_PREVIEW : ACTIONS.UPDATE_BLOCK;
+    dispatch({ type, payload });
 
     // propagate changes if needed
     // if (index && prevHash) await propagateBlockStatus(state, dispatch, index, prevHash, candidateSolution, true);
@@ -111,7 +113,7 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
           name="solution"
           className={
             "text-truncate " +
-            ((props.chain && props.index && state.chain[props.index].valid) || (!props.chain && state.preview.valid)
+            ((props.chain && state.chain[props.index].valid) || (!props.chain && state.preview.valid)
               ? "valid-solution"
               : "invalid-solution")
           }
@@ -126,7 +128,7 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
         variant="primary"
         className="btn-block d-block mt-2"
         disabled={
-          (props.chain && state.chain?.[props.index ?? -1].valid) ||
+          (props.chain && state.chain?.[props.index].valid) ||
           (!props.chain && (state.preview.valid || state.selectedTrans.length === 0)) ||
           disableMineBtn
         }

@@ -43,18 +43,11 @@ export function flattenTree(tree: string[][]): string[] {
   return flatTree;
 }
 
-export function drawTreeDiagramOnCanvas(
-  merkleTree: string[][],
-  canvas: HTMLCanvasElement | null,
-  transactions: ITransaction[]
-): void {
-  if (canvas) {
-    const canvasTree = new Tree(canvas, transactions);
-    canvasTree.clear();
-    const flatTree = flattenTree(merkleTree);
-    for (let i = flatTree.length - 1; i >= 0; i--) {
-      canvasTree.addNode(flatTree[i]);
-    }
-    canvasTree.drawTree();
+export function drawTreeDiagramOnCanvas(merkleTree: string[][], canvasTree: Tree): void {
+  canvasTree.clear();
+  const flatTree = flattenTree(merkleTree);
+  for (let i = flatTree.length - 1; i >= 0; i--) {
+    canvasTree.addNode(flatTree[i]);
   }
+  canvasTree.drawTree();
 }
