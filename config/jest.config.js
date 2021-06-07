@@ -1,4 +1,4 @@
-const ignore_arr = ["(<rootDir>/)(?=(node_modules|build|public))"];
+const ignore_arr = ["(<rootDir>/)(?=(node_modules|build|public))", "<rootDir>/src/utils/Tree.ts"];
 
 module.exports = {
   rootDir: "../",

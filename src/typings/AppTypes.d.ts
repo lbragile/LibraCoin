@@ -1,10 +1,10 @@
 import { ACTIONS } from "../enums/AppDispatchActions";
 
 export interface ITransaction {
-  to: string;
+  amount?: number;
   from: string;
-  amount: number | undefined;
   message: string;
+  to: string;
   signature: string;
 }
 
@@ -24,7 +24,7 @@ export interface IBlock {
   transactions: ITransaction[];
   timestamp: number;
   merkleRoot: string;
-  valid?: boolean;
+  valid: boolean;
   showTrans?: boolean;
 }
 export interface IState {
@@ -33,6 +33,7 @@ export interface IState {
   users: IUser[];
   user: IMainUser;
   chain: IBlock[];
+  preview: IBlock;
 }
 
 export interface IAction {

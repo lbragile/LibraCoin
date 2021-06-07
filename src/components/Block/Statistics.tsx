@@ -1,62 +1,107 @@
 import React, { useState, useRef, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
-import { IAction, IBlock, IState } from "../../typings/AppTypes";
-import { mine } from "../../utils/mine";
-import { propagateBlockStatus } from "../../utils/propagate";
+import { ACTIONS } from "../../enums/AppDispatchActions";
+import { IAction, IState } from "../../typings/AppTypes";
+import { digestMessage, randomHash } from "../../utils/conversion";
+// import { propagateBlockStatus } from "../../utils/propagate";
 
-interface IStats {
+import "./Block.scss";
+
+interface IStatisticsProps {
   chain: boolean;
-  isValid: boolean;
-  solution: string;
-  setIsValid: (arg: boolean) => void;
-  setSolution: (arg: string) => void;
-  block?: IBlock;
+  index: number;
+  prevHash?: string;
 }
 
-export default function Statistics(props: IStats): JSX.Element {
+export default function Statistics(props: IStatisticsProps): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-  const nonce = useRef<number>();
-  const [header, setHeader] = useState<number>();
-  const [target, setTarget] = useState<string>();
+  const nonce = useRef<number>(0);
+  const [header, setHeader] = useState<number>(0);
+  const [target, setTarget] = useState<string>("");
+  const [solution, setSolution] = useState<string>("");
   const [disableMineBtn, setDisableMineBtn] = useState<boolean>(false);
 
   async function handleMine() {
+    // const { index, prevHash } = props;
+
     nonce.current = Math.round(Math.random() * 1e6);
 
     setDisableMineBtn(true);
-    const currHash = await mine(nonce.current, setHeader, setTarget, props.setSolution, props.setIsValid);
+    // make target with 2 or 3 leading zeros
+    const numZeros = Math.round(Math.random()) + 2;
+    const re = new RegExp(`^.{0,${numZeros}}`, "g");
+    const zerosStr = new Array(numZeros).fill("0").join("");
+    let targetHash = await digestMessage(randomHash(20));
+    targetHash = targetHash.replace(re, zerosStr);
+    setTarget(targetHash);
+
+    // mine block for a new current hash (solution)
+    let candidateSolution = "";
+    let header = nonce.current;
+    while (header <= Number.MAX_SAFE_INTEGER) {
+      candidateSolution = await digestMessage(header.toString());
+      setSolution(candidateSolution);
+      setHeader(header++);
+
+      // stopping condition if first numZero characters are all 0
+      if (candidateSolution.substr(0, numZeros).match(/^0+$/)) break;
+    }
     setDisableMineBtn(false);
 
+    const payload = {
+      [!props.chain ? "preview" : "block"]: {
+        ...(!props.chain ? state.preview : state.chain[props.index]),
+        timestamp: Date.now(),
+        prevHash: state.chain[(!props.chain ? state.preview.index : props.index) - 1].currHash,
+        currHash: candidateSolution,
+        valid: candidateSolution <= targetHash
+      }
+    };
+
+    const type = !props.chain ? ACTIONS.UPDATE_PREVIEW : ACTIONS.UPDATE_BLOCK;
+    dispatch({ type, payload });
+
     // propagate changes if needed
-    const { chain, block } = props;
-    if (chain && block) {
-      await propagateBlockStatus(state, dispatch, block.index, block.prevHash, currHash, true);
-    }
+    // if (index && prevHash) await propagateBlockStatus(state, dispatch, index, prevHash, candidateSolution, true);
   }
 
   return (
-    <div className={props.chain ? "bordered-background" : "col-11 col-lg-5 mx-3"}>
+    <Form aria-label="Block Statistics" className={props.chain ? "my-3" : "col-11 col-lg-5 mx-3"}>
       <InputGroup className="my-2">
         <InputGroup.Prepend>
           <InputGroup.Text>Nonce</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control type="number" defaultValue={props.solution ? nonce.current : ""} disabled />
+        <Form.Control
+          aria-label="Block Nonce"
+          name="nonce"
+          type="number"
+          key={nonce.current}
+          defaultValue={nonce.current}
+          disabled
+        />
       </InputGroup>
 
       <InputGroup className="my-2">
         <InputGroup.Prepend>
           <InputGroup.Text>Header</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control type="number" defaultValue={header} disabled />
+        <Form.Control aria-label="Block Header" name="header" type="number" value={header} disabled />
       </InputGroup>
 
       <InputGroup className="my-2">
         <InputGroup.Prepend>
           <InputGroup.Text>Target</InputGroup.Text>
         </InputGroup.Prepend>
-        <Form.Control className="text-truncate" type="text" defaultValue={target} readOnly />
+        <Form.Control
+          aria-label="Block Target"
+          name="target"
+          className="text-truncate"
+          type="text"
+          value={target}
+          readOnly
+        />
       </InputGroup>
 
       <InputGroup className="my-2">
@@ -64,18 +109,29 @@ export default function Statistics(props: IStats): JSX.Element {
           <InputGroup.Text>Sol&apos;n</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control
-          className="text-truncate"
+          aria-label="Block Solution"
+          name="solution"
+          className={
+            "text-truncate " +
+            ((props.chain && state.chain[props.index].valid) || (!props.chain && state.preview.valid)
+              ? "valid-solution"
+              : "invalid-solution")
+          }
           type="text"
-          style={{ color: `${props.isValid ? "green" : "red"}` }}
-          defaultValue={props.solution}
+          value={solution}
           readOnly
         />
       </InputGroup>
 
       <Button
+        aria-label="Block Mine"
         variant="primary"
         className="btn-block d-block mt-2"
-        disabled={props.isValid || (!props.chain && state.selectedTrans.length === 0) || disableMineBtn}
+        disabled={
+          (props.chain && state.chain?.[props.index].valid) ||
+          (!props.chain && (state.preview.valid || state.selectedTrans.length === 0)) ||
+          disableMineBtn
+        }
         onClick={() => handleMine()}
       >
         <h4 className="my-1">
@@ -83,6 +139,6 @@ export default function Statistics(props: IStats): JSX.Element {
           {disableMineBtn && <span className="position-absolute spinner-border spinner-border-md mx-4" role="status" />}
         </h4>
       </Button>
-    </div>
+    </Form>
   );
 }

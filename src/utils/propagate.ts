@@ -16,7 +16,7 @@ export async function propagateBlockStatus(
   const newBlocks: IBlock[] = [];
   for (let i = index; i < state.chain.length; i++) {
     const merkleRoot = newRoot && i === index ? newRoot : state.chain[i].merkleRoot;
-    const valid = skipFirstUpdate && i === index;
+    const valid = skipFirstUpdate && i === index ? state.chain[i].valid : false;
     const showTrans = state.chain[i].showTrans ?? false;
     currHash = i === index ? currHash : await digestMessage(i + prevHash + merkleRoot);
     transactions = i === index && transactions ? transactions : state.chain[i].transactions;

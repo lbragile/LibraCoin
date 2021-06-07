@@ -1,8 +1,9 @@
+import { IState } from "./AppTypes";
+
 export declare global {
   namespace NodeJS {
     interface Global {
-      state: IState;
-      dispatch: React.Dispatch<IAction>;
+      initialState: IState;
       spki: string;
       spki_hex: string;
       pkcs8: string;
@@ -11,10 +12,10 @@ export declare global {
       publicKey: CryptoKey;
       LibraCoinSHA: string;
       LibraCoinEncode: Uint8Array;
-      generateKeyMock: jest.Mock;
-      exportKeyMock: jest.Mock;
-      digestMock: jest.Mock;
-      getRandomValuesMock: jest.Mock;
+      generateKeyMock: jest.Mock<Promise<{ publicKey: CryptoKey; privateKey: CryptoKey }>>;
+      exportKeyMock: jest.Mock<(format: string) => Promise<ArrayBuffer>>;
+      digestMock: jest.Mock<ArrayBuffer>;
+      getRandomValuesMock: jest.Mock<(len: number) => Uint32Array>;
     }
   }
 }

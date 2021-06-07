@@ -5,7 +5,7 @@ import { AppContext } from "../../context/AppContext";
 import { IAction, IState, ITransaction } from "../../typings/AppTypes";
 
 import { digestMessage } from "../../utils/conversion";
-import { calculateMerkleTreeFormation } from "../../utils/merkleTree";
+import { calculateMerkleTreeFormation, getMerkleRoot } from "../../utils/merkleTree";
 import { propagateBlockStatus } from "../../utils/propagate";
 
 type TChangeType = "from" | "to" | "message" | "amount";
@@ -26,7 +26,8 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
 
     // calculate new merkle root and currHash
     const prevHash = state.chain[index].prevHash;
-    const newRoot = await calculateMerkleTreeFormation(newTrans, newTrans);
+    const newTree = await calculateMerkleTreeFormation(newTrans, newTrans);
+    const newRoot = getMerkleRoot(newTree);
     const newHash = await digestMessage(index + prevHash + newRoot);
 
     setTransDetails(newTrans);
@@ -34,10 +35,16 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
   }
 
   return (
-    <div className="row flex-nowrap overflow-auto mx-2">
+    <div className="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark">
       {transDetails.map((transaction, i) => {
         return (
-          <div className="block col-12 mr-2 bg-light border border-dark p-1 rounded" key={`sig:${i}`}>
+          <div
+            className={
+              (transDetails.length > 1 && i !== transDetails.length - 1 ? "mr-2 " : "") +
+              "col-12 bg-light border border-dark p-1 rounded"
+            }
+            key={`sig:${i}`}
+          >
             <Form.Group className="mb-2 text-center">
               <Form.Control
                 className="text-truncate"

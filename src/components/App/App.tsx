@@ -23,9 +23,19 @@ export default function App(): JSX.Element {
         currHash: new Array(64).fill("0").join(""),
         transactions: [],
         timestamp: Date.parse("04/31/2021"),
-        merkleRoot: ""
+        merkleRoot: "",
+        valid: true
       }
-    ]
+    ],
+    preview: JSON.parse(localStorage.getItem("preview") as string) ?? {
+      index: 1,
+      prevHash: new Array(64).fill("0").join(""),
+      currHash: "",
+      transactions: [],
+      timestamp: Date.parse("04/31/2021"),
+      merkleRoot: "",
+      valid: false
+    }
   });
 
   // prevent re-rendering children when App re-renders

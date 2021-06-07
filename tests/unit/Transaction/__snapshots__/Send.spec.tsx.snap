@@ -89,7 +89,7 @@ exports[`renders correctly 1`] = `
       </div>
       <input
         aria-label="Transaction Signature"
-        class="form-control"
+        class="text-truncate form-control"
         name="sig"
         readonly=""
         type="text"

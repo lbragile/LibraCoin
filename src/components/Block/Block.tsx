@@ -1,114 +1,164 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Form, InputGroup } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Button, Form, InputGroup } from "react-bootstrap";
 
-import Statistics from "./Statistics";
-import { IAction, IBlock } from "../../typings/AppTypes";
 import { AppContext } from "../../context/AppContext";
+import { IAction, IState } from "../../typings/AppTypes";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 
-export default function Block({ block }: { block: IBlock }): JSX.Element {
-  const { dispatch } = useContext(AppContext) as { dispatch: React.Dispatch<IAction> };
+import "./Block.scss";
 
-  const [solution, setSolution] = useState<string>("");
-  const [timestamp, setTimestamp] = useState<number | undefined>(undefined);
-  const [isValid, setIsValid] = useState<boolean>(block.valid ?? true);
+export interface IBlockProps {
+  chain: boolean;
+  index: number;
+}
 
-  // update timestamp when solution is mined
-  useEffect(() => {
-    setTimestamp(block.timestamp);
-  }, [block.timestamp]);
+export default function Block(props: IBlockProps): JSX.Element {
+  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-  useEffect(() => {
-    if (block.valid !== undefined) {
-      setIsValid(block.valid);
-    }
-  }, [block.valid]);
+  function handleAddBlock() {
+    // this only happens on the mining page so can use state.preview.index here
 
-  useEffect(() => {
-    setSolution(block.currHash);
-  }, [block.currHash]);
+    const block = {
+      ...state.preview,
+      transactions: state.selectedTrans,
+      valid: state.chain[state.preview.index - 1].valid, // validity depends on previous block
+      showTrans: false
+    };
+
+    const preview = {
+      timestamp: Date.now(),
+      index: state.preview.index + 1,
+      prevHash: state.preview.currHash,
+      currHash: "",
+      merkleRoot: "",
+      valid: false
+    };
+
+    // add the block, update verified transactions, clear selected transactions, update preview
+    dispatch({ type: ACTIONS.ADD_BLOCK, payload: { block } });
+    dispatch({ type: ACTIONS.UPDATE_VERIFIED_TRANS });
+    dispatch({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans: [] } });
+    dispatch({ type: ACTIONS.UPDATE_PREVIEW, payload: { preview } });
+  }
 
   function handleViewTransactions(): void {
+    const block = state.chain[props.index];
     dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: { ...block, showTrans: !block.showTrans } } });
   }
 
   return (
-    <div className="block flex-column flex-shrink-0">
-      <div className={"my-3 mx-1 p-2 rounded " + (isValid ? "valid-block" : "invalid-block")}>
-        <Form>
-          <InputGroup className="my-2">
-            <InputGroup.Prepend>
-              <InputGroup.Text>Index</InputGroup.Text>
-            </InputGroup.Prepend>
-            <Form.Control type="number" defaultValue={block.index} disabled />
-          </InputGroup>
+    <Form
+      aria-label="Block Form"
+      className={
+        (props.chain ? "" : "col-10 col-lg-5 ") +
+        "my-4 my-lg-0 p-2 rounded " +
+        ((props.chain && state.chain[props.index].valid) || (!props.chain && state.preview.valid)
+          ? "valid-block"
+          : "invalid-block")
+      }
+    >
+      <InputGroup className="mb-2">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Index</InputGroup.Text>
+        </InputGroup.Prepend>
+        <Form.Control
+          aria-label="Block Index"
+          name="index"
+          type="number"
+          value={props.chain ? props.index : state.preview.index}
+          disabled
+        />
+      </InputGroup>
 
-          <InputGroup className="my-2">
-            <InputGroup.Prepend>
-              <InputGroup.Text>Timestamp</InputGroup.Text>
-            </InputGroup.Prepend>
+      <InputGroup className="my-2">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Timestamp</InputGroup.Text>
+        </InputGroup.Prepend>
+        <Form.Control
+          aria-label="Block Timestamp"
+          name="timestamp"
+          type="number"
+          value={props.chain ? state.chain[props.index].timestamp : state.preview.timestamp}
+          disabled
+        />
+      </InputGroup>
+
+      <InputGroup className="my-2">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Previous #</InputGroup.Text>
+        </InputGroup.Prepend>
+        <Form.Control
+          aria-label="Block PrevHash"
+          name="prevHash"
+          className="text-truncate"
+          type="text"
+          value={
+            props.chain && props.index > 0
+              ? state.chain[props.index - 1].currHash
+              : !props.chain
+              ? state.preview.prevHash
+              : ""
+          }
+          readOnly
+        />
+      </InputGroup>
+
+      <InputGroup className="my-2">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Current #</InputGroup.Text>
+        </InputGroup.Prepend>
+        <Form.Control
+          aria-label="Block CurrHash"
+          name="currHash"
+          className="text-truncate"
+          type="text"
+          value={props.chain ? state.chain[props.index].currHash : state.preview.currHash}
+          readOnly
+        />
+      </InputGroup>
+
+      <InputGroup className="mt-2">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Merkle #</InputGroup.Text>
+        </InputGroup.Prepend>
+        {props.chain && props.index === 0 ? (
+          <Form.Control aria-label="Block Merkle Genesis" name="merkle" type="text" defaultValue={""} disabled />
+        ) : (
+          <React.Fragment>
             <Form.Control
-              key={timestamp ?? block.timestamp}
-              type="number"
-              defaultValue={timestamp ?? block.timestamp}
-              disabled
-            />
-          </InputGroup>
-
-          <InputGroup className="my-2">
-            <InputGroup.Prepend>
-              <InputGroup.Text>Previous #</InputGroup.Text>
-            </InputGroup.Prepend>
-            <Form.Control className="text-truncate" type="text" defaultValue={block.prevHash} readOnly />
-          </InputGroup>
-
-          <InputGroup className="my-2">
-            <InputGroup.Prepend>
-              <InputGroup.Text>Current #</InputGroup.Text>
-            </InputGroup.Prepend>
-            <Form.Control
-              key={solution ? solution : block.currHash}
+              aria-label="Block Merkle"
+              name="merkleRoot"
               className="text-truncate"
               type="text"
-              defaultValue={solution ? solution : block.currHash}
+              value={
+                props.chain && props.index > 0
+                  ? state.chain[props.index].merkleRoot
+                  : props.chain
+                  ? ""
+                  : state.preview.merkleRoot
+              }
               readOnly
             />
-          </InputGroup>
-
-          <InputGroup className="my-2">
-            <InputGroup.Prepend>
-              <InputGroup.Text>Merkle #</InputGroup.Text>
-            </InputGroup.Prepend>
-            {block.index === 0 ? (
-              <Form.Control type="text" defaultValue={""} disabled />
-            ) : (
-              <React.Fragment>
-                <Form.Control
-                  key={block.merkleRoot}
-                  className="text-truncate"
-                  type="text"
-                  defaultValue={block.merkleRoot}
-                  readOnly
-                />
-                <InputGroup.Append>
-                  <InputGroup.Text className="show-trans-eye" onClick={() => handleViewTransactions()}>
-                    {block.showTrans ? "🙈" : "🙉"}
-                  </InputGroup.Text>
-                </InputGroup.Append>
-              </React.Fragment>
+            {props.chain && (
+              <InputGroup.Append>
+                <InputGroup.Text
+                  aria-label="Show Trans"
+                  className="show-trans-eye"
+                  onClick={() => handleViewTransactions()}
+                >
+                  {state.chain[props.index].showTrans ? "🙈" : "🙉"}
+                </InputGroup.Text>
+              </InputGroup.Append>
             )}
-          </InputGroup>
-        </Form>
+          </React.Fragment>
+        )}
+      </InputGroup>
 
-        <Statistics
-          chain={true}
-          block={block}
-          solution={solution}
-          setSolution={setSolution}
-          isValid={isValid}
-          setIsValid={setIsValid}
-        />
-      </div>
-    </div>
+      {!props.chain && state.preview.valid && (
+        <Button aria-label="Add Block" className="mt-2" variant="success" block onClick={() => handleAddBlock()}>
+          <h4 className="my-0">Add Block</h4>
+        </Button>
+      )}
+    </Form>
   );
 }

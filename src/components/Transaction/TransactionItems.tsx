@@ -3,14 +3,15 @@ import { Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { IAction, IState, ITransaction } from "../../typings/AppTypes";
+import { calculateMerkleTreeFormation, getMerkleRoot } from "../../utils/merkleTree";
 
 import "./Transaction.scss";
 
 export default function TransactionItems(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-  function selectTransaction(transaction: ITransaction): void {
-    let selectedTrans: ITransaction[] = JSON.parse(JSON.stringify(state)).selectedTrans;
+  async function selectTransaction(transaction: ITransaction): Promise<void> {
+    let selectedTrans: ITransaction[] = JSON.parse(JSON.stringify(state.selectedTrans));
     const signatures = selectedTrans.map((x) => x.signature);
     const included = signatures.includes(transaction.signature);
 
@@ -23,7 +24,15 @@ export default function TransactionItems(): JSX.Element {
         selectedTrans = selectedTrans.filter((x) => x.signature !== transaction.signature);
       }
 
+      const newTree = await calculateMerkleTreeFormation(state.verifiedTrans, selectedTrans);
+      const newPreview = {
+        ...state.preview,
+        merkleRoot: getMerkleRoot(newTree),
+        valid: false
+      };
+
       dispatch({ type: ACTIONS.UPDATE_SELECTED_TRANS, payload: { selectedTrans } });
+      dispatch({ type: ACTIONS.UPDATE_PREVIEW, payload: { preview: newPreview } });
     } else {
       alert("You can mine at most 4 transactions at a time!");
     }
@@ -31,11 +40,14 @@ export default function TransactionItems(): JSX.Element {
 
   return (
     <div className="container-fluid">
-      <h3 className="font-weight-bold">Verified Transactions</h3>
+      <h3 aria-label="Title" className="font-weight-bold">
+        Verified Transactions
+      </h3>
       <div className="trans-list row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
         {state.verifiedTrans.map((transaction) => {
           return (
-            <div
+            <Form
+              aria-label="Transaction Information"
               className={
                 "trans-item " +
                 (state.selectedTrans.map((x) => x.signature).includes(transaction.signature) ? "selected" : "not-selected") // prettier-ignore
@@ -44,20 +56,46 @@ export default function TransactionItems(): JSX.Element {
               key={`sig:${transaction.signature}`}
             >
               <Form.Group className="mb-2 text-center">
-                <Form.Control className="text-truncate" type="text" defaultValue={transaction.from} readOnly />
+                <Form.Control
+                  aria-label="Transaction From"
+                  name="from"
+                  className="text-truncate"
+                  type="text"
+                  defaultValue={transaction.from}
+                  readOnly
+                />
                 <h3 className="my-0">↓</h3>
-                <Form.Control className="text-truncate" type="text" defaultValue={transaction.to} readOnly />
+                <Form.Control
+                  aria-label="Transaction To"
+                  name="to"
+                  className="text-truncate"
+                  type="text"
+                  defaultValue={transaction.to}
+                  readOnly
+                />
               </Form.Group>
 
               <InputGroup className="mb-2">
                 <InputGroup.Prepend>
                   <InputGroup.Text>Msg</InputGroup.Text>
                 </InputGroup.Prepend>
-                <Form.Control as="textarea" defaultValue={transaction.message} readOnly />
+                <Form.Control
+                  aria-label="Transaction Message"
+                  name="message"
+                  as="textarea"
+                  defaultValue={transaction.message}
+                  readOnly
+                />
               </InputGroup>
 
               <InputGroup className="mb-2">
-                <Form.Control type="number" defaultValue={transaction.amount} disabled />
+                <Form.Control
+                  aria-label="Transaction Amount"
+                  name="amount"
+                  type="number"
+                  defaultValue={transaction.amount}
+                  disabled
+                />
                 <InputGroup.Append>
                   <InputGroup.Text>LC</InputGroup.Text>
                 </InputGroup.Append>
@@ -67,9 +105,16 @@ export default function TransactionItems(): JSX.Element {
                 <InputGroup.Prepend>
                   <InputGroup.Text>Sig</InputGroup.Text>
                 </InputGroup.Prepend>
-                <Form.Control className="text-truncate" type="text" defaultValue={transaction.signature} readOnly />
+                <Form.Control
+                  aria-label="Transaction Signature"
+                  name="signature"
+                  className="text-truncate"
+                  type="text"
+                  defaultValue={transaction.signature}
+                  readOnly
+                />
               </InputGroup>
-            </div>
+            </Form>
           );
         })}
       </div>

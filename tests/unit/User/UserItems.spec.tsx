@@ -1,37 +1,50 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import UserItems from "../../../src/components/User/UserItems";
 import { AppContext } from "../../../src/context/AppContext";
+import { IAction, IState } from "../../../src/typings/AppTypes";
+import { AppReducer } from "../../../src/reducers/AppReducer";
 
-const { state, dispatch } = global;
+const { initialState } = global;
 
-it("renders correctly", () => {
-  const { asFragment } = render(
-    <AppContext.Provider value={{ state, dispatch }}>
+interface IUserItemsWrapper {
+  stateMock?: IState;
+  dispatchMock?: React.Dispatch<IAction>;
+}
+
+const UserItemsWrapper = ({ stateMock, dispatchMock }: IUserItemsWrapper) => {
+  const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  return (
+    <AppContext.Provider value={{ state: stateMock ?? state, dispatch: dispatchMock ?? dispatch }}>
       <UserItems />
     </AppContext.Provider>
   );
+};
 
-  const title = screen.getByRole("heading", { name: /Users/i, level: 3 });
-  const publicKeys = screen.getAllByRole("textbox", { name: /User Public Key/i }) as HTMLInputElement[];
-  const balances = screen.getAllByRole("spinbutton", { name: /balance/i }) as HTMLInputElement[];
+it("renders correctly", () => {
+  const { asFragment } = render(<UserItemsWrapper />);
 
-  expect(title).toBeInTheDocument();
+  const publicKeys = screen.getAllByRole("textbox", { name: /User Public Key/i });
+  const balances = screen.getAllByRole("spinbutton", { name: /balance/i });
+
+  expect(screen.getByRole("heading", { name: /Users/i, level: 3 })).toHaveTextContent("Users");
 
   balances.forEach((balance, i) => {
     expect(balance).toBeDisabled();
-    expect(balance.value).toEqual(state.users[i].balance.toString());
+    expect(balance).toHaveValue(initialState.users[i].balance);
   });
 
-  publicKeys.forEach((key) => {
+  publicKeys.forEach((key, i) => {
     expect(key).toHaveAttribute("readOnly");
-    expect(key.value.length).toEqual(state.user.publicKey.length);
+    expect(key).toHaveValue(initialState.users[i].publicKey);
   });
 
-  expect(publicKeys.length).toEqual(state.users.length);
-  expect(balances.length).toEqual(state.users.length);
+  const numUsers = initialState.users.length;
+  expect(publicKeys.length).toEqual(numUsers);
+  expect(balances.length).toEqual(numUsers);
 
   expect(asFragment()).toMatchSnapshot();
 });
@@ -39,12 +52,7 @@ it("renders correctly", () => {
 describe("public key of user - copy/blur", () => {
   beforeEach(() => {
     document.execCommand = jest.fn();
-
-    render(
-      <AppContext.Provider value={{ state, dispatch }}>
-        <UserItems />
-      </AppContext.Provider>
-    );
+    render(<UserItemsWrapper />);
   });
 
   afterEach(() => {
@@ -53,9 +61,7 @@ describe("public key of user - copy/blur", () => {
 
   it("shows 'copied to clipboard' on the correct key when public key field is focused", () => {
     const publicKeyFields = screen.getAllByRole("textbox", { name: /User Public Key/i });
-    publicKeyFields.forEach((key) => {
-      expect(key).not.toHaveClass("is-valid");
-    });
+    publicKeyFields.forEach((key) => expect(key).not.toHaveClass("is-valid"));
 
     publicKeyFields[1].focus();
 
@@ -70,9 +76,7 @@ describe("public key of user - copy/blur", () => {
 
   it("removes 'copied to clipboard' from the correct key when focus is lost", () => {
     const publicKeyFields = screen.getAllByRole("textbox", { name: /User Public Key/i });
-    publicKeyFields.forEach((key) => {
-      expect(key).not.toHaveClass("is-valid");
-    });
+    publicKeyFields.forEach((key) => expect(key).not.toHaveClass("is-valid"));
 
     publicKeyFields[1].focus();
 

@@ -1,16 +1,8 @@
 $valid_bg: #b4ff9a;
 $invalid_bg: #ff9a9a;
 
-.block-background {
-  border-radius: 10px;
-  padding: 1rem 2rem;
-}
-
-.bordered-background {
-  border: 1px dashed black;
-  border-radius: 10px;
-  padding: 0 0.5em 0.5em 0.5em;
-}
+$valid_solution: #008000 !important;
+$invalid_solution: #f00 !important;
 
 .block {
   width: 20rem;
@@ -22,6 +14,14 @@ $invalid_bg: #ff9a9a;
 
 .invalid-block {
   background-color: $invalid_bg;
+}
+
+.valid-solution {
+  color: $valid_solution;
+}
+
+.invalid-solution {
+  color: $invalid_solution;
 }
 
 .show-trans-eye:hover {

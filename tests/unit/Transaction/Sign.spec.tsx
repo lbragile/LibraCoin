@@ -1,25 +1,41 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import Sign from "../../../src/components/Transaction/Sign";
 import { AppContext } from "../../../src/context/AppContext";
+import { AppReducer } from "../../../src/reducers/AppReducer";
+import { IAction, IState } from "../../../src/typings/AppTypes";
 
-const { state, dispatch } = global;
+const { initialState } = global;
 
-it("renders correctly", () => {
-  const { asFragment } = render(
-    <AppContext.Provider value={{ state, dispatch }}>
-      <Sign validated={false} signed={false} handleSubmit={jest.fn()} />
+interface ISendWrapper {
+  validated: boolean;
+  signed: boolean;
+  handleSubmit?: () => void;
+  stateMock?: IState;
+  dispatchMock?: React.Dispatch<IAction>;
+}
+
+const SignWrapper = ({ validated, signed, handleSubmit, stateMock, dispatchMock }: ISendWrapper) => {
+  const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  return (
+    <AppContext.Provider value={{ state: stateMock ?? state, dispatch: dispatchMock ?? dispatch }}>
+      <Sign validated={validated} signed={signed} handleSubmit={handleSubmit ?? jest.fn()} />
     </AppContext.Provider>
   );
+};
+
+it("renders correctly", () => {
+  const { asFragment } = render(<SignWrapper validated={false} signed={false} />);
 
   expect(screen.getByRole("form", { name: /Sign Form/i })).toHaveFormValues({
-    "sender-pk": state.user.publicKey,
+    "sender-pk": initialState.user.publicKey,
     "receiver-pk": "",
     amount: null,
     msg: "",
-    "sender-sk": state.user.privateKey
+    "sender-sk": initialState.user.privateKey
   });
 
   const senderPublicKey = screen.getByRole("textbox", { name: /Sender Public Key/i });
@@ -53,22 +69,14 @@ it("renders correctly", () => {
 
 describe("sign button state", () => {
   it("is enabled when not signed", () => {
-    render(
-      <AppContext.Provider value={{ state, dispatch }}>
-        <Sign validated={false} signed={false} handleSubmit={jest.fn()} />
-      </AppContext.Provider>
-    );
+    render(<SignWrapper validated={false} signed={false} />);
 
     expect(screen.getByRole("button", { name: /Sign Button/i })).toBeEnabled();
     expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveTextContent("Sign");
   });
 
   it("is disabled when signed", () => {
-    render(
-      <AppContext.Provider value={{ state, dispatch }}>
-        <Sign validated={false} signed={true} handleSubmit={jest.fn()} />
-      </AppContext.Provider>
-    );
+    render(<SignWrapper validated={false} signed={true} />);
 
     expect(screen.getByRole("button", { name: /Sign Button/i })).toBeDisabled();
     expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveTextContent("Sign");
@@ -77,11 +85,7 @@ describe("sign button state", () => {
 
 describe("Amount checking", () => {
   beforeEach(() => {
-    render(
-      <AppContext.Provider value={{ state, dispatch }}>
-        <Sign validated={false} signed={false} handleSubmit={jest.fn()} />
-      </AppContext.Provider>
-    );
+    render(<SignWrapper validated={false} signed={false} />);
   });
 
   it("clamps when below minimum (0.10)", () => {
@@ -124,11 +128,7 @@ describe("Amount checking", () => {
 it("submits form when send button is pressed", () => {
   const handleSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
 
-  render(
-    <AppContext.Provider value={{ state, dispatch }}>
-      <Sign validated={false} signed={false} handleSubmit={handleSubmit} />
-    </AppContext.Provider>
-  );
+  render(<SignWrapper validated={false} signed={false} handleSubmit={handleSubmit} />);
 
   fireEvent.click(screen.getByRole("button"));
 
