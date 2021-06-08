@@ -29,6 +29,13 @@ jobs:
       - name: Run Tests
         run: npm run test:unit
 
+      - name: Store Unit Test Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: unit-test-coverage
+          path: ./coverage/coverage-unit-final.json
+          retention-days: 1
+
   integration:
     runs-on: windows-latest
     if: "!contains(github.event.head_commit.message, 'SKIP INTEGRATION')"
@@ -54,6 +61,13 @@ jobs:
       - name: Run Tests
         run: npm run test:integration
 
+      - name: Store Integration Test Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: integration-test-coverage
+          path: ./coverage/coverage-integration-final.json
+          retention-days: 1
+
   combine:
     runs-on: windows-latest
     if: "!contains(github.event.head_commit.message, 'SKIP INTEGRATION')"
@@ -76,7 +90,10 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Run Tests
+      - name: Get All Coverage Reports
+        uses: actions/download-artifact@v2
+
+      - name: Combine Coverage Results
         run: npm run test:combine
 
       - name: Upload Coverage Report to Codecov
