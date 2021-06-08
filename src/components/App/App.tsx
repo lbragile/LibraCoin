@@ -22,7 +22,7 @@ export default function App(): JSX.Element {
         prevHash: "",
         currHash: new Array(64).fill("0").join(""),
         transactions: [],
-        timestamp: Date.parse("04/31/2021"),
+        timestamp: Date.parse("31 Apr 2021 00:00:00 UTC"),
         merkleRoot: "",
         valid: true
       }
@@ -32,7 +32,7 @@ export default function App(): JSX.Element {
       prevHash: new Array(64).fill("0").join(""),
       currHash: "",
       transactions: [],
-      timestamp: Date.parse("04/31/2021"),
+      timestamp: Date.parse("31 Apr 2021 00:00:00 UTC"),
       merkleRoot: "",
       valid: false
     }

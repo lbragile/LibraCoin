@@ -148,7 +148,7 @@ exports[`in preview mode starts off invalid, but after mining turns valid 1`] = 
           disabled=""
           name="timestamp"
           type="number"
-          value="1619938800000"
+          value="1619913600000"
         />
       </div>
       <div

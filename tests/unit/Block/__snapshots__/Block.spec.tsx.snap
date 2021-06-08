@@ -45,7 +45,7 @@ exports[`in preview mode Valid State Shows 'Add Block' button 1`] = `
         disabled=""
         name="timestamp"
         type="number"
-        value="1619938800000"
+        value="1619913600000"
       />
     </div>
     <div
@@ -171,7 +171,7 @@ exports[`in preview mode renders correctly 1`] = `
         disabled=""
         name="timestamp"
         type="number"
-        value="1619938800000"
+        value="1619913600000"
       />
     </div>
     <div
