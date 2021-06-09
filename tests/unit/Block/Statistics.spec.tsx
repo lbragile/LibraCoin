@@ -1,3 +1,7 @@
+/**
+ * @group unit
+ */
+
 import React, { useReducer } from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";

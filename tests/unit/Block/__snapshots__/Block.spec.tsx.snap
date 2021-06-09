@@ -1,6 +1,861 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`in preview mode Valid State Shows 'Add Block' button 1`] = `
+exports[`in blockchain mode 'Add Block' button is not present when block is invalid 1`] = `
+<DocumentFragment>
+  <form
+    aria-label="Block Form"
+    class="my-4 my-lg-0 p-2 rounded invalid-block"
+  >
+    <div
+      class="mb-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Index
+        </span>
+      </div>
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="2"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619827200000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="567.89ZForthTransactionAZ567.89A"
+      />
+      <div
+        class="input-group-append"
+      >
+        <span
+          aria-label="Show Trans"
+          class="show-trans-eye input-group-text"
+        >
+          🙈
+        </span>
+      </div>
+    </div>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`in blockchain mode 'Add Block' button is not present when block is valid 1`] = `
+<DocumentFragment>
+  <form
+    aria-label="Block Form"
+    class="my-4 my-lg-0 p-2 rounded valid-block"
+  >
+    <div
+      class="mb-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Index
+        </span>
+      </div>
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="1"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619827200000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="0000000000000000000000000000000000000000000000000000000000000000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="987.65EForthTransactionAE987.65A"
+      />
+      <div
+        class="input-group-append"
+      >
+        <span
+          aria-label="Show Trans"
+          class="show-trans-eye input-group-text"
+        >
+          🙉
+        </span>
+      </div>
+    </div>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`in blockchain mode handleViewTransactions changes emoji when show transactions is clicked 1`] = `
+<DocumentFragment>
+  <form
+    aria-label="Block Form"
+    class="my-4 my-lg-0 p-2 rounded valid-block"
+  >
+    <div
+      class="mb-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Index
+        </span>
+      </div>
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="1"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619827200000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="0000000000000000000000000000000000000000000000000000000000000000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="987.65EForthTransactionAE987.65A"
+      />
+      <div
+        class="input-group-append"
+      >
+        <span
+          aria-label="Show Trans"
+          class="show-trans-eye input-group-text"
+        >
+          🙈
+        </span>
+      </div>
+    </div>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`in blockchain mode renders correctly index === 0 1`] = `
+<DocumentFragment>
+  <form
+    aria-label="Block Form"
+    class="my-4 my-lg-0 p-2 rounded valid-block"
+  >
+    <div
+      class="mb-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Index
+        </span>
+      </div>
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="0"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619827200000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="0000000000000000000000000000000000000000000000000000000000000000"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle Genesis"
+        class="form-control"
+        disabled=""
+        name="merkleRoot"
+        type="text"
+        value=""
+      />
+    </div>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`in blockchain mode renders correctly index > 0 index → 1, class → valid-block 1`] = `
+<DocumentFragment>
+  <form
+    aria-label="Block Form"
+    class="my-4 my-lg-0 p-2 rounded valid-block"
+  >
+    <div
+      class="mb-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Index
+        </span>
+      </div>
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="1"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619827200000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="0000000000000000000000000000000000000000000000000000000000000000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="987.65EForthTransactionAE987.65A"
+      />
+      <div
+        class="input-group-append"
+      >
+        <span
+          aria-label="Show Trans"
+          class="show-trans-eye input-group-text"
+        >
+          🙉
+        </span>
+      </div>
+    </div>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`in blockchain mode renders correctly index > 0 index → 2, class → invalid-block 1`] = `
+<DocumentFragment>
+  <form
+    aria-label="Block Form"
+    class="my-4 my-lg-0 p-2 rounded invalid-block"
+  >
+    <div
+      class="mb-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Index
+        </span>
+      </div>
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="2"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619827200000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="567.89ZForthTransactionAZ567.89A"
+      />
+      <div
+        class="input-group-append"
+      >
+        <span
+          aria-label="Show Trans"
+          class="show-trans-eye input-group-text"
+        >
+          🙈
+        </span>
+      </div>
+    </div>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`in preview mode renders correctly 1`] = `
+<DocumentFragment>
+  <form
+    aria-label="Block Form"
+    class="col-10 col-lg-5 my-4 my-lg-0 p-2 rounded invalid-block"
+  >
+    <div
+      class="mb-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Index
+        </span>
+      </div>
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="3"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619913600000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="previewMerkle"
+      />
+    </div>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`in preview mode valid State Shows 'Add Block' button 1`] = `
 <DocumentFragment>
   <form
     aria-label="Block Form"
@@ -24,7 +879,7 @@ exports[`in preview mode Valid State Shows 'Add Block' button 1`] = `
         disabled=""
         name="index"
         type="number"
-        value="2"
+        value="3"
       />
     </div>
     <div
@@ -122,121 +977,6 @@ exports[`in preview mode Valid State Shows 'Add Block' button 1`] = `
         Add Block
       </h4>
     </button>
-  </form>
-</DocumentFragment>
-`;
-
-exports[`in preview mode renders correctly 1`] = `
-<DocumentFragment>
-  <form
-    aria-label="Block Form"
-    class="col-10 col-lg-5 my-4 my-lg-0 p-2 rounded invalid-block"
-  >
-    <div
-      class="mb-2 input-group"
-    >
-      <div
-        class="input-group-prepend"
-      >
-        <span
-          class="input-group-text"
-        >
-          Index
-        </span>
-      </div>
-      <input
-        aria-label="Block Index"
-        class="form-control"
-        disabled=""
-        name="index"
-        type="number"
-        value="2"
-      />
-    </div>
-    <div
-      class="my-2 input-group"
-    >
-      <div
-        class="input-group-prepend"
-      >
-        <span
-          class="input-group-text"
-        >
-          Timestamp
-        </span>
-      </div>
-      <input
-        aria-label="Block Timestamp"
-        class="form-control"
-        disabled=""
-        name="timestamp"
-        type="number"
-        value="1619913600000"
-      />
-    </div>
-    <div
-      class="my-2 input-group"
-    >
-      <div
-        class="input-group-prepend"
-      >
-        <span
-          class="input-group-text"
-        >
-          Previous #
-        </span>
-      </div>
-      <input
-        aria-label="Block PrevHash"
-        class="text-truncate form-control"
-        name="prevHash"
-        readonly=""
-        type="text"
-        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-      />
-    </div>
-    <div
-      class="my-2 input-group"
-    >
-      <div
-        class="input-group-prepend"
-      >
-        <span
-          class="input-group-text"
-        >
-          Current #
-        </span>
-      </div>
-      <input
-        aria-label="Block CurrHash"
-        class="text-truncate form-control"
-        name="currHash"
-        readonly=""
-        type="text"
-        value="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-      />
-    </div>
-    <div
-      class="mt-2 input-group"
-    >
-      <div
-        class="input-group-prepend"
-      >
-        <span
-          class="input-group-text"
-        >
-          Merkle #
-        </span>
-      </div>
-      <input
-        aria-label="Block Merkle"
-        class="text-truncate form-control"
-        name="merkleRoot"
-        readonly=""
-        type="text"
-        value="previewMerkle"
-      />
-    </div>
   </form>
 </DocumentFragment>
 `;

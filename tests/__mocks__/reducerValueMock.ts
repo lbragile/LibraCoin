@@ -64,7 +64,8 @@ const initialState: IState = {
       transactions: [],
       timestamp: Date.parse("31 Apr 2021 00:00:00 UTC"),
       merkleRoot: "",
-      valid: true
+      valid: true,
+      showTrans: false
     },
     {
       index: 1,
@@ -81,11 +82,30 @@ const initialState: IState = {
       ],
       timestamp: Date.parse("01 May 2021 00:00:00 UTC"),
       merkleRoot: "987.65EForthTransactionAE987.65A",
-      valid: true
+      valid: true,
+      showTrans: false
+    },
+    {
+      index: 2,
+      prevHash: new Array(64).fill("A").join(""),
+      currHash: new Array(64).fill("Z").join(""),
+      transactions: [
+        {
+          to: "A",
+          from: "Z",
+          amount: 567.89,
+          message: "Forth Transaction",
+          signature: "AZ567.89"
+        }
+      ],
+      timestamp: Date.parse("01 May 2021 00:00:00 UTC"),
+      merkleRoot: "567.89ZForthTransactionAZ567.89A",
+      valid: false,
+      showTrans: true
     }
   ],
   preview: {
-    index: 2,
+    index: 3,
     timestamp: Date.parse("02 May 2021 00:00:00 UTC"),
     prevHash: new Array(64).fill("A").join(""),
     currHash: new Array(64).fill("B").join(""),

@@ -1,4 +1,8 @@
-import { bufferToHex, CryptoKeyToHex, digestMessage, randomHash } from "../../../src/utils/conversion";
+/**
+ * @group utils
+ */
+
+import { bufferToHex, CryptoKeyToHex, digestMessage, randomHash } from "../../src/utils/conversion";
 
 afterEach(() => {
   // if defined object property, need to clear (delete) it before next test

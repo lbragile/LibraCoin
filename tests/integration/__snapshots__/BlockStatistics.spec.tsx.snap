@@ -127,7 +127,7 @@ exports[`in preview mode starts off invalid, but after mining turns valid 1`] = 
           disabled=""
           name="index"
           type="number"
-          value="2"
+          value="3"
         />
       </div>
       <div

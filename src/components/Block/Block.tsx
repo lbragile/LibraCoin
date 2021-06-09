@@ -95,9 +95,9 @@ export default function Block(props: IBlockProps): JSX.Element {
           value={
             props.chain && props.index > 0
               ? state.chain[props.index - 1].currHash
-              : !props.chain
-              ? state.preview.prevHash
-              : ""
+              : props.chain
+              ? ""
+              : state.preview.prevHash
           }
           readOnly
         />
@@ -122,7 +122,7 @@ export default function Block(props: IBlockProps): JSX.Element {
           <InputGroup.Text>Merkle #</InputGroup.Text>
         </InputGroup.Prepend>
         {props.chain && props.index === 0 ? (
-          <Form.Control aria-label="Block Merkle Genesis" name="merkle" type="text" defaultValue={""} disabled />
+          <Form.Control aria-label="Block Merkle Genesis" name="merkleRoot" type="text" defaultValue={""} disabled />
         ) : (
           <React.Fragment>
             <Form.Control
@@ -130,13 +130,7 @@ export default function Block(props: IBlockProps): JSX.Element {
               name="merkleRoot"
               className="text-truncate"
               type="text"
-              value={
-                props.chain && props.index > 0
-                  ? state.chain[props.index].merkleRoot
-                  : props.chain
-                  ? ""
-                  : state.preview.merkleRoot
-              }
+              value={props.chain ? state.chain[props.index].merkleRoot : state.preview.merkleRoot}
               readOnly
             />
             {props.chain && (

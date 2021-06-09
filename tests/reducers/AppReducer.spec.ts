@@ -1,6 +1,10 @@
-import { ACTIONS } from "../../../src/enums/AppDispatchActions";
-import { AppReducer } from "../../../src/reducers/AppReducer";
-import { IBlock, ITransaction, IUser } from "../../../src/typings/AppTypes";
+/**
+ * @group reducers
+ */
+
+import { ACTIONS } from "../../src/enums/AppDispatchActions";
+import { AppReducer } from "../../src/reducers/AppReducer";
+import { IBlock, ITransaction, IUser } from "../../src/typings/AppTypes";
 
 const { initialState } = global;
 

@@ -1,13 +1,17 @@
+/**
+ * @group utils
+ */
+
 import {
   calculateMerkleTreeFormation,
   drawTreeDiagramOnCanvas,
   flattenTree,
   getMerkleRoot
-} from "../../../src/utils/merkleTree";
-import { Tree } from "../../../src/utils/Tree";
-import * as ConversionUtil from "../../../src/utils/conversion";
+} from "../../src/utils/merkleTree";
+import { Tree } from "../../src/utils/Tree";
+import * as ConversionUtil from "../../src/utils/conversion";
 
-jest.mock("../../../src/utils/Tree");
+jest.mock("../../src/utils/Tree");
 
 const { initialState } = global;
 const canvas = document.createElement("canvas");

@@ -1,3 +1,7 @@
+/**
+ * @group integration
+ */
+
 import React, { useReducer } from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
@@ -70,9 +74,9 @@ describe("in preview mode", () => {
     await waitFor(() => expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("valid-block"));
     expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("valid-solution");
     expect(screen.getByRole("button", { name: /Add Block/i })).toBeInTheDocument();
-    expect(state.selectedTrans).toHaveLength(1);
-    expect(state.verifiedTrans).toHaveLength(5);
-    expect(state.chain).toHaveLength(2);
+    expect(state.selectedTrans).toHaveLength(initialState.selectedTrans.length);
+    expect(state.verifiedTrans).toHaveLength(initialState.verifiedTrans.length);
+    expect(state.chain).toHaveLength(initialState.chain.length);
 
     fireEvent.click(screen.getByRole("button", { name: /Add Block/i }));
 
@@ -80,8 +84,8 @@ describe("in preview mode", () => {
     await waitFor(() => expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("invalid-block"));
     expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("invalid-solution");
     expect(state.selectedTrans).toHaveLength(0);
-    expect(state.verifiedTrans).toHaveLength(4);
-    expect(state.chain).toHaveLength(3);
+    expect(state.verifiedTrans).toHaveLength(initialState.verifiedTrans.length - initialState.selectedTrans.length);
+    expect(state.chain).toHaveLength(initialState.chain.length + 1);
 
     await waitFor(() =>
       expect(screen.getByRole("form", { name: /Block Form/i })).toHaveFormValues({
