@@ -2,7 +2,7 @@ name: Testing
 
 on:
   push:
-    branches: ["develop", "test"]
+    branches: ["master", "develop", "test"]
 
 jobs:
   unit:
@@ -29,15 +29,10 @@ jobs:
       - name: Run Tests
         run: npm run test:unit
 
-      - name: Store Unit Test Results
-        uses: actions/upload-artifact@v2
+      - name: Upload Coverage Report to Codecov
+        uses: codecov/codecov-action@v1
         with:
-          name: unit-test-coverage
-          path: ./coverage/coverage-unit-final.json
-          retention-days: 1
-
-      - name: Show Dir Structure
-        run: dir
+          file: ./coverage/coverage-final.json
 
   integration:
     runs-on: windows-latest
@@ -62,41 +57,6 @@ jobs:
 
       - name: Run Tests
         run: npm run test:integration
-
-      - name: Store Integration Test Results
-        uses: actions/upload-artifact@v2
-        with:
-          name: integration-test-coverage
-          path: ./coverage/coverage-integration-final.json
-          retention-days: 1
-
-  combine:
-    runs-on: windows-latest
-    if: "!contains(github.event.head_commit.message, 'SKIP INTEGRATION')"
-    needs: [unit, integration]
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Cache Node Modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: "**/node_modules"
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - name: Install Dependencies
-        run: npm i
-
-      - name: Get All Coverage Reports
-        uses: actions/download-artifact@v2
-
-      - name: Combine Coverage Results
-        run: npm run test:combine
 
       - name: Upload Coverage Report to Codecov
         uses: codecov/codecov-action@v1
