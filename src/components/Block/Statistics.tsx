@@ -128,7 +128,7 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
         variant="primary"
         className="btn-block d-block mt-2"
         disabled={
-          (props.chain && state.chain?.[props.index].valid) ||
+          (props.chain && state.chain[props.index].valid) ||
           (!props.chain && (state.preview.valid || state.selectedTrans.length === 0)) ||
           disableMineBtn
         }
