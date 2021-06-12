@@ -2,16 +2,13 @@ import React, { useState, useRef, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import { IAction, IState } from "../../typings/AppTypes";
+import { IAction, IBlock, IState } from "../../typings/AppTypes";
 import { digestMessage, randomHash } from "../../utils/conversion";
-// import { propagateBlockStatus } from "../../utils/propagate";
 
 import "./Block.scss";
-
 interface IStatisticsProps {
   chain: boolean;
   index: number;
-  prevHash?: string;
 }
 
 export default function Statistics(props: IStatisticsProps): JSX.Element {
@@ -24,8 +21,6 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
   const [disableMineBtn, setDisableMineBtn] = useState<boolean>(false);
 
   async function handleMine() {
-    // const { index, prevHash } = props;
-
     nonce.current = Math.round(Math.random() * 1e6);
 
     setDisableMineBtn(true);
@@ -63,8 +58,23 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
     const type = !props.chain ? ACTIONS.UPDATE_PREVIEW : ACTIONS.UPDATE_BLOCK;
     dispatch({ type, payload });
 
-    // propagate changes if needed
-    // if (index && prevHash) await propagateBlockStatus(state, dispatch, index, prevHash, candidateSolution, true);
+    // propagate changes to next blocks if in blockchain mode and mined block is not last
+    const { chain, index } = props;
+    if (chain) {
+      const newBlocks: IBlock[] = [];
+      const timestamp = Date.now();
+      let prevHash = state.chain[index].currHash;
+      let currHash = "";
+      for (let i = index + 1; i < state.chain.length; i++) {
+        currHash = await digestMessage(i + prevHash + state.chain[i].merkleRoot);
+        newBlocks.push({ ...state.chain[i], timestamp, prevHash, currHash, valid: false });
+        prevHash = currHash; // next block's prevHash is this block's currHash
+      }
+
+      if (newBlocks.length) {
+        dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: newBlocks } });
+      }
+    }
   }
 
   return (
@@ -126,7 +136,7 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
       <Button
         aria-label="Block Mine"
         variant="primary"
-        className="btn-block d-block mt-2"
+        className="btn-block mt-2 py-2"
         disabled={
           (props.chain && state.chain[props.index].valid) ||
           (!props.chain && (state.preview.valid || state.selectedTrans.length === 0)) ||
@@ -134,9 +144,12 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
         }
         onClick={() => handleMine()}
       >
-        <h4 className="my-1">
+        <h4 className="my-0 d-flex align-items-center justify-content-end">
           Mine
-          {disableMineBtn && <span className="position-absolute spinner-border spinner-border-md mx-4" role="status" />}
+          <span
+            className={"spinner-border spinner-border-md mx-5 " + (disableMineBtn ? "visible" : "invisible")}
+            role="status"
+          />
         </h4>
       </Button>
     </Form>

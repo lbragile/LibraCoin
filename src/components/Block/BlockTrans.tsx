@@ -2,11 +2,11 @@ import React, { useContext, useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 
 import { AppContext } from "../../context/AppContext";
-import { IAction, IState, ITransaction } from "../../typings/AppTypes";
+import { ACTIONS } from "../../enums/AppDispatchActions";
+import { IAction, IBlock, IState, ITransaction } from "../../typings/AppTypes";
 
 import { digestMessage } from "../../utils/conversion";
 import { calculateMerkleTreeFormation, getMerkleRoot } from "../../utils/merkleTree";
-import { propagateBlockStatus } from "../../utils/propagate";
 
 type TChangeType = "from" | "to" | "message" | "amount";
 type TInputChange<T = HTMLInputElement> = React.ChangeEvent<T>;
@@ -23,15 +23,27 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
     newTrans[i] = { ...newTrans[i], [type]: newVal };
     const message = newTrans[i].to + newTrans[i].from + newTrans[i].amount + newTrans[i].message;
     newTrans[i].signature = await digestMessage(message);
+    setTransDetails(newTrans);
 
-    // calculate new merkle root and currHash
-    const prevHash = state.chain[index].prevHash;
+    // calculate new merkle root
     const newTree = await calculateMerkleTreeFormation(newTrans, newTrans);
     const newRoot = getMerkleRoot(newTree);
-    const newHash = await digestMessage(index + prevHash + newRoot);
 
-    setTransDetails(newTrans);
-    await propagateBlockStatus(state, dispatch, index, prevHash, newHash, false, newRoot, newTrans);
+    // propagate changes to next blocks
+    const newBlocks: IBlock[] = [];
+    const timestamp = Date.now();
+    let prevHash = state.chain[index].prevHash;
+    let currHash = "";
+    for (let i = index; i < state.chain.length; i++) {
+      const transactions = i === index ? newTrans : state.chain[i].transactions;
+      const merkleRoot = i === index ? newRoot : state.chain[i].merkleRoot;
+      currHash = await digestMessage(i + prevHash + merkleRoot);
+      newBlocks.push({ ...state.chain[i], timestamp, prevHash, currHash, transactions, merkleRoot, valid: false });
+
+      prevHash = currHash; // next block's prevHash is this block's currHash
+    }
+
+    dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: newBlocks } });
   }
 
   return (

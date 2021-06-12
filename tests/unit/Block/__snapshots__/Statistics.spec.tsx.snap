@@ -92,13 +92,17 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
     </div>
     <button
       aria-label="Block Mine"
-      class="btn-block d-block mt-2 btn btn-primary"
+      class="btn-block mt-2 py-2 btn btn-primary"
       type="button"
     >
       <h4
-        class="my-1"
+        class="my-0 d-flex align-items-center justify-content-end"
       >
         Mine
+        <span
+          class="spinner-border spinner-border-md mx-5 invisible"
+          role="status"
+        />
       </h4>
     </button>
   </form>
@@ -197,14 +201,18 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
     </div>
     <button
       aria-label="Block Mine"
-      class="btn-block d-block mt-2 btn btn-primary"
+      class="btn-block mt-2 py-2 btn btn-primary"
       disabled=""
       type="button"
     >
       <h4
-        class="my-1"
+        class="my-0 d-flex align-items-center justify-content-end"
       >
         Mine
+        <span
+          class="spinner-border spinner-border-md mx-5 invisible"
+          role="status"
+        />
       </h4>
     </button>
   </form>
@@ -303,13 +311,17 @@ exports[`in preview mode renders correctly 1`] = `
     </div>
     <button
       aria-label="Block Mine"
-      class="btn-block d-block mt-2 btn btn-primary"
+      class="btn-block mt-2 py-2 btn btn-primary"
       type="button"
     >
       <h4
-        class="my-1"
+        class="my-0 d-flex align-items-center justify-content-end"
       >
         Mine
+        <span
+          class="spinner-border spinner-border-md mx-5 invisible"
+          role="status"
+        />
       </h4>
     </button>
   </form>
