@@ -39,7 +39,48 @@ const BlockStatisticsWrapper = ({ chain, index, stateMock, dispatchMock }: IBloc
 };
 
 describe("in preview mode", () => {
-  it("starts off invalid, but after mining turns valid", async () => {
+  it("starts off invalid, and after mining it stays invalid (cannot be added to blockchain)", async () => {
+    const solution = "000z4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+    const target = "000y4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+
+    Date.now = jest.fn().mockReturnValueOnce(12345);
+    jest.spyOn(ConversionUtil, "randomHash").mockReturnValue("random");
+    jest.spyOn(ConversionUtil, "digestMessage").mockResolvedValueOnce(target).mockResolvedValueOnce(solution);
+
+    const { asFragment } = render(<BlockStatisticsWrapper chain={false} index={initialState.preview.timestamp} />);
+
+    expect(screen.getByRole("form", { name: /Block Statistics/i })).toHaveFormValues({
+      nonce: 0,
+      header: 0,
+      target: "",
+      solution: ""
+    });
+
+    expect(screen.getByRole("form", { name: /Block Form/i })).toHaveFormValues({
+      ...initialState.preview,
+      valid: undefined,
+      transactions: undefined
+    });
+
+    expect(screen.queryByRole("button", { name: /Add Block/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("invalid-block");
+    expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("invalid-solution");
+
+    expect(asFragment()).toMatchSnapshot();
+
+    fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+
+    // once mining is complete
+    await waitFor(() => expect(screen.getByRole("status")).toHaveClass("invisible"));
+    expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("invalid-block");
+    expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("invalid-solution");
+    expect(screen.queryByRole("button", { name: /Add Block/i })).not.toBeInTheDocument();
+    expect(state.selectedTrans).toHaveLength(initialState.selectedTrans.length);
+    expect(state.verifiedTrans).toHaveLength(initialState.verifiedTrans.length);
+    expect(state.chain).toHaveLength(initialState.chain.length);
+  });
+
+  it("starts off invalid, but after mining turns valid, and is added to blockchain", async () => {
     const solution = "000a4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
     const target = "000z4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
 
@@ -71,7 +112,8 @@ describe("in preview mode", () => {
     fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
 
     // once mining is complete
-    await waitFor(() => expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("valid-block"));
+    await waitFor(() => expect(screen.getByRole("status")).toHaveClass("invisible"));
+    expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("valid-block");
     expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("valid-solution");
     expect(screen.getByRole("button", { name: /Add Block/i })).toBeInTheDocument();
     expect(state.selectedTrans).toHaveLength(initialState.selectedTrans.length);

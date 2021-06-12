@@ -213,7 +213,7 @@ describe("in blockchain mode", () => {
       beforeEach(() => jest.spyOn(ConversionUtil, "randomHash").mockReturnValueOnce("random"));
       afterEach(() => jest.restoreAllMocks());
 
-      it("calls dispatch & updates solution/target fields correctly", async () => {
+      it("calls dispatch & updates solution/target fields correctly (last block)", async () => {
         const badSolution = "032a4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
         const solution = "000a4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
         const target = "000z4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
@@ -287,6 +287,77 @@ describe("in blockchain mode", () => {
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
         expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("valid-solution");
       });
+    });
+  });
+
+  describe("propagation after mining", () => {
+    beforeEach(() => jest.spyOn(ConversionUtil, "randomHash").mockReturnValueOnce("random"));
+    afterEach(() => jest.restoreAllMocks());
+
+    it("only updates current block if last", async () => {
+      const solution = "000a4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+      const target = "000z4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+      const index = initialState.chain.length - 1; // last block
+
+      // need to make it invalid first, to be able to mine it
+      const chain = [...initialState.chain];
+      if (initialState.chain[index].valid) {
+        chain[index].valid = false;
+      }
+
+      const dispatchMock = jest.fn();
+      Date.now = jest.fn().mockReturnValueOnce(12345);
+      jest.spyOn(ConversionUtil, "digestMessage").mockResolvedValueOnce(target).mockResolvedValueOnce(solution);
+
+      render(
+        <StatisticsWrapper
+          chain={true}
+          index={index}
+          stateMock={{ ...initialState, chain }}
+          dispatchMock={dispatchMock}
+        />
+      );
+
+      expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
+      fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+      await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
+
+      expect(dispatchMock).toHaveBeenCalledTimes(1); // first call is the block itself
+    });
+
+    it("propagates if not last", async () => {
+      const solution = "000a4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+      const target = "000z4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+      const index = initialState.chain.length - 2; // second to last block
+
+      // need to make it invalid first, to be able to mine it
+      const chain = [...initialState.chain];
+      if (initialState.chain[index].valid) {
+        chain[index].valid = false;
+      }
+
+      const dispatchMock = jest.fn();
+      Date.now = jest.fn().mockReturnValueOnce(12345);
+      jest
+        .spyOn(ConversionUtil, "digestMessage")
+        .mockResolvedValue("random")
+        .mockResolvedValueOnce(target)
+        .mockResolvedValueOnce(solution);
+
+      render(
+        <StatisticsWrapper
+          chain={true}
+          index={index}
+          stateMock={{ ...initialState, chain }}
+          dispatchMock={dispatchMock}
+        />
+      );
+
+      expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
+      fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+      await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
+
+      expect(dispatchMock).toHaveBeenCalledTimes(2);
     });
   });
 });

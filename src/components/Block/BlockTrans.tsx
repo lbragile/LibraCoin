@@ -39,7 +39,6 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
       const merkleRoot = i === index ? newRoot : state.chain[i].merkleRoot;
       currHash = await digestMessage(i + prevHash + merkleRoot);
       newBlocks.push({ ...state.chain[i], timestamp, prevHash, currHash, transactions, merkleRoot, valid: false });
-
       prevHash = currHash; // next block's prevHash is this block's currHash
     }
 
