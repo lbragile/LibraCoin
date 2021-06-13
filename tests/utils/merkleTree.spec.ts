@@ -24,18 +24,47 @@ describe("calculateMerkleTreeFormation", () => {
   });
 
   test("1 selected transactions", async () => {
-    const { verifiedTrans, selectedTrans } = initialState;
-    const expectedValue = [[selectedTrans[0].signature]];
-    expect(await calculateMerkleTreeFormation(verifiedTrans, selectedTrans)).toStrictEqual(expectedValue);
+    const { verifiedTrans } = initialState;
+    expect(await calculateMerkleTreeFormation(verifiedTrans, [verifiedTrans[0]])).toStrictEqual([
+      [verifiedTrans[0].signature]
+    ]);
   });
 
-  test("multiple selected transactions", async () => {
-    jest.spyOn(ConversionUtil, "digestMessage").mockResolvedValueOnce("ABCDE");
-    const { verifiedTrans, selectedTrans } = initialState;
-    const expectedValue = [[verifiedTrans[0].signature, selectedTrans[0].signature], ["ABCDE"]];
+  test("2 selected transactions", async () => {
+    const { verifiedTrans } = initialState;
 
-    const extraSelTrans = [...selectedTrans, verifiedTrans[0]];
-    expect(await calculateMerkleTreeFormation(verifiedTrans, extraSelTrans)).toStrictEqual(expectedValue);
+    jest.spyOn(ConversionUtil, "digestMessage").mockResolvedValueOnce("ABC");
+    expect(await calculateMerkleTreeFormation(verifiedTrans, [...verifiedTrans.slice(0, 2)])).toStrictEqual([
+      [verifiedTrans[0].signature, verifiedTrans[1].signature],
+      ["ABC"]
+    ]);
+  });
+
+  test("3 selected transactions", async () => {
+    const { verifiedTrans } = initialState;
+
+    jest.spyOn(ConversionUtil, "digestMessage").mockResolvedValueOnce("ABC").mockResolvedValueOnce("DEF");
+    expect(await calculateMerkleTreeFormation(verifiedTrans, [...verifiedTrans.slice(0, 3)])).toStrictEqual([
+      [...verifiedTrans.slice(0, 3).map((trans) => trans.signature)],
+      ["ABC", verifiedTrans[2].signature],
+      ["DEF"]
+    ]);
+  });
+
+  test("4 selected transactions", async () => {
+    const { verifiedTrans } = initialState;
+
+    jest
+      .spyOn(ConversionUtil, "digestMessage")
+      .mockResolvedValueOnce("ABC")
+      .mockResolvedValueOnce("DEF")
+      .mockResolvedValueOnce("GHI");
+
+    expect(await calculateMerkleTreeFormation(verifiedTrans, [...verifiedTrans.slice(0, 4)])).toStrictEqual([
+      [...verifiedTrans.slice(0, 4).map((trans) => trans.signature)],
+      ["ABC", "DEF"],
+      ["GHI"]
+    ]);
   });
 });
 

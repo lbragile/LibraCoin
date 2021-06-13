@@ -4,7 +4,7 @@ import { Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
 import { IAction, IState } from "../../typings/AppTypes";
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import { copyKey } from "../../utils/copyInput";
+import { copyInput, removeCopied } from "../../utils/copyInput";
 import { CryptoKeyToHex } from "../../utils/conversion";
 
 import "./User.scss";
@@ -13,8 +13,6 @@ export default function KeyGeneration(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   const numRows = useRef(4);
-
-  const [copied, setCopied] = useState<boolean[]>([false, false]);
   const [show, setShow] = useState<boolean>(false);
 
   // add a user if it's the first time visiting
@@ -55,9 +53,9 @@ export default function KeyGeneration(): JSX.Element {
           rows={numRows.current}
           className="rounded-right"
           value={state.user.publicKey}
-          isValid={copied[0]}
-          onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "public")}
-          onBlur={() => setCopied([false, false])}
+          isValid={state.copied === "walletPK"}
+          onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyInput(e.target, "walletPK", dispatch)}
+          onBlur={() => removeCopied(dispatch)}
           readOnly
         />
 
@@ -74,9 +72,9 @@ export default function KeyGeneration(): JSX.Element {
           as="textarea"
           rows={numRows.current}
           value={show ? state.user.privateKey : new Array(state.user.privateKey.length).fill("◦").join("")}
-          onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "private")}
-          onBlur={() => setCopied([false, false])}
-          isValid={copied[1]}
+          onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyInput(e.target, "walletSK", dispatch)}
+          onBlur={() => removeCopied(dispatch)}
+          isValid={state.copied === "walletSK"}
           readOnly
         />
 

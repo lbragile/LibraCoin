@@ -27,6 +27,7 @@ export default function App(): JSX.Element {
         valid: true
       }
     ],
+    copied: "",
     preview: JSON.parse(localStorage.getItem("preview") as string) ?? {
       index: 1,
       prevHash: new Array(64).fill("0").join(""),

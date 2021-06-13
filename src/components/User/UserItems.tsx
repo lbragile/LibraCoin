@@ -1,26 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
 import { IAction, IState, IUser } from "../../typings/AppTypes";
-import { copyKey } from "../../utils/copyInput";
+import { copyInput, removeCopied } from "../../utils/copyInput";
 
 import "./User.scss";
 
 export default function UserItems(): JSX.Element {
-  const { state } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
-  const [copied, setCopied] = useState<boolean[]>(new Array(state.users.length).fill(false));
-
-  function resetCopy(index: number): void {
-    const newCopied = JSON.parse(JSON.stringify(copied));
-    newCopied[index] = false;
-    setCopied(newCopied);
-  }
+  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   return (
     <div className="container-fluid mb-2">
       <h3 className="font-weight-bold">Users</h3>
       <div className="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
-        {state.users?.map((user: IUser, i: number) => {
+        {state.users.map((user: IUser, i: number) => {
           return (
             <Form className="user-item rounded flex-shrink-0" key={`user-${user.publicKey}`}>
               <InputGroup>
@@ -31,12 +24,10 @@ export default function UserItems(): JSX.Element {
                   aria-label="User Public Key"
                   type="text"
                   className="text-truncate rounded-right"
-                  onFocus={(e: React.FocusEvent<HTMLInputElement>) =>
-                    copyKey(e, setCopied, undefined, i, state.users.length)
-                  }
-                  onBlur={() => resetCopy(i)}
+                  onFocus={(e: React.FocusEvent<HTMLInputElement>) => copyInput(e.target, "userItem-" + i, dispatch)}
+                  onBlur={() => removeCopied(dispatch)}
                   defaultValue={user.publicKey}
-                  isValid={copied[i]}
+                  isValid={state.copied === "userItem-" + i}
                   readOnly
                 />
                 <Form.Control.Feedback type="valid">Copied to clipboard</Form.Control.Feedback>

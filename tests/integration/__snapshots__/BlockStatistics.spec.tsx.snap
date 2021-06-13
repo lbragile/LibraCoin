@@ -219,11 +219,15 @@ exports[`in blockchain mode starts off invalid, after mining it stays invalid, d
         type="button"
       >
         <h4
-          class="my-0 d-flex align-items-center justify-content-end"
+          class="my-0 row justify-content-end flex-nowrap"
         >
-          Mine
           <span
-            class="spinner-border spinner-border-md mx-5 invisible"
+            class="col-10 pl-5"
+          >
+            Mine
+          </span>
+          <span
+            class="spinner-border spinner-border-md mr-3 invisible"
             role="status"
           />
         </h4>
@@ -452,11 +456,15 @@ exports[`in blockchain mode starts off invalid, after mining it stays invalid, p
         type="button"
       >
         <h4
-          class="my-0 d-flex align-items-center justify-content-end"
+          class="my-0 row justify-content-end flex-nowrap"
         >
-          Mine
           <span
-            class="spinner-border spinner-border-md mx-5 invisible"
+            class="col-10 pl-5"
+          >
+            Mine
+          </span>
+          <span
+            class="spinner-border spinner-border-md mr-3 invisible"
             role="status"
           />
         </h4>
@@ -685,11 +693,15 @@ exports[`in blockchain mode starts off invalid, after mining it stays valid, doe
         type="button"
       >
         <h4
-          class="my-0 d-flex align-items-center justify-content-end"
+          class="my-0 row justify-content-end flex-nowrap"
         >
-          Mine
           <span
-            class="spinner-border spinner-border-md mx-5 invisible"
+            class="col-10 pl-5"
+          >
+            Mine
+          </span>
+          <span
+            class="spinner-border spinner-border-md mr-3 invisible"
             role="status"
           />
         </h4>
@@ -918,11 +930,15 @@ exports[`in blockchain mode starts off invalid, after mining it stays valid, pro
         type="button"
       >
         <h4
-          class="my-0 d-flex align-items-center justify-content-end"
+          class="my-0 row justify-content-end flex-nowrap"
         >
-          Mine
           <span
-            class="spinner-border spinner-border-md mx-5 invisible"
+            class="col-10 pl-5"
+          >
+            Mine
+          </span>
+          <span
+            class="spinner-border spinner-border-md mr-3 invisible"
             role="status"
           />
         </h4>
@@ -1141,11 +1157,15 @@ exports[`in preview mode starts off invalid, and after mining it stays invalid (
         type="button"
       >
         <h4
-          class="my-0 d-flex align-items-center justify-content-end"
+          class="my-0 row justify-content-end flex-nowrap"
         >
-          Mine
           <span
-            class="spinner-border spinner-border-md mx-5 invisible"
+            class="col-10 pl-5"
+          >
+            Mine
+          </span>
+          <span
+            class="spinner-border spinner-border-md mr-3 invisible"
             role="status"
           />
         </h4>
@@ -1364,11 +1384,15 @@ exports[`in preview mode starts off invalid, but after mining turns valid, and i
         type="button"
       >
         <h4
-          class="my-0 d-flex align-items-center justify-content-end"
+          class="my-0 row justify-content-end flex-nowrap"
         >
-          Mine
           <span
-            class="spinner-border spinner-border-md mx-5 invisible"
+            class="col-10 pl-5"
+          >
+            Mine
+          </span>
+          <span
+            class="spinner-border spinner-border-md mr-3 invisible"
             role="status"
           />
         </h4>

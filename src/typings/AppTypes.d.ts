@@ -33,6 +33,7 @@ export interface IState {
   users: IUser[];
   user: IMainUser;
   chain: IBlock[];
+  copied: string;
   preview: IBlock;
 }
 

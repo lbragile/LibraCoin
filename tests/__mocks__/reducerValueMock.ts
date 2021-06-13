@@ -104,6 +104,7 @@ const initialState: IState = {
       showTrans: true
     }
   ],
+  copied: "",
   preview: {
     index: 3,
     timestamp: Date.parse("02 May 2021 00:00:00 UTC"),

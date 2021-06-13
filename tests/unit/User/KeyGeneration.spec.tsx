@@ -8,7 +8,7 @@ import "@testing-library/jest-dom";
 
 import KeyGeneration from "../../../src/components/User/KeyGeneration";
 import { AppContext } from "../../../src/context/AppContext";
-import * as utilsFunc from "../../../src/utils/copyInput";
+import * as CopyInputUtil from "../../../src/utils/copyInput";
 import * as ConversionUtil from "../../../src/utils/conversion";
 import { IAction, IState } from "../../../src/typings/AppTypes";
 import { AppReducer } from "../../../src/reducers/AppReducer";
@@ -20,8 +20,10 @@ interface IKeyGenerationWrapper {
   dispatchMock?: React.Dispatch<IAction>;
 }
 
+let state: IState, dispatch: React.Dispatch<IAction>;
+
 const KeyGenerationWrapper = ({ stateMock, dispatchMock }: IKeyGenerationWrapper) => {
-  const [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
+  [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
 
   return (
     <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
@@ -103,7 +105,7 @@ describe("copy input of key fields", () => {
   afterEach(() => jest.clearAllMocks());
 
   test("public key copy", () => {
-    const copyKeySpy = jest.spyOn(utilsFunc, "copyKey");
+    const copyInputSpy = jest.spyOn(CopyInputUtil, "copyInput");
 
     // both don't have feedback
     expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");
@@ -115,8 +117,8 @@ describe("copy input of key fields", () => {
     expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveClass("is-valid");
     expect(screen.getByRole("textbox", { name: /privateKey/i })).not.toHaveClass("is-valid");
 
-    expect(copyKeySpy).toHaveBeenCalledTimes(1);
-    expect(copyKeySpy).toHaveBeenCalledWith(expect.objectContaining({ type: "focus" }), expect.any(Function), "public");
+    expect(copyInputSpy).toHaveBeenCalledTimes(1);
+    expect(copyInputSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement), "walletPK", dispatch);
 
     fireEvent.blur(screen.getByRole("textbox", { name: /publicKey/i }));
 
@@ -140,7 +142,7 @@ describe("copy input of key fields", () => {
     });
 
     test("when visible", () => {
-      const copyKeySpy = jest.spyOn(utilsFunc, "copyKey");
+      const copyInputSpy = jest.spyOn(CopyInputUtil, "copyInput");
 
       // both don't have feedback
       expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");
@@ -156,12 +158,8 @@ describe("copy input of key fields", () => {
       expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");
       expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveClass("is-valid");
 
-      expect(copyKeySpy).toHaveBeenCalledTimes(1);
-      expect(copyKeySpy).toHaveBeenCalledWith(
-        expect.objectContaining({ type: "focus" }),
-        expect.any(Function),
-        "private"
-      );
+      expect(copyInputSpy).toHaveBeenCalledTimes(1);
+      expect(copyInputSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement), "walletSK", dispatch);
 
       fireEvent.blur(screen.getByRole("textbox", { name: /privateKey/i }));
 

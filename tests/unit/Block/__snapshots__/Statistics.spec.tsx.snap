@@ -96,11 +96,15 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
       type="button"
     >
       <h4
-        class="my-0 d-flex align-items-center justify-content-end"
+        class="my-0 row justify-content-end flex-nowrap"
       >
-        Mine
         <span
-          class="spinner-border spinner-border-md mx-5 invisible"
+          class="col-10 pl-5"
+        >
+          Mine
+        </span>
+        <span
+          class="spinner-border spinner-border-md mr-3 invisible"
           role="status"
         />
       </h4>
@@ -206,11 +210,15 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
       type="button"
     >
       <h4
-        class="my-0 d-flex align-items-center justify-content-end"
+        class="my-0 row justify-content-end flex-nowrap"
       >
-        Mine
         <span
-          class="spinner-border spinner-border-md mx-5 invisible"
+          class="col-10 pl-5"
+        >
+          Mine
+        </span>
+        <span
+          class="spinner-border spinner-border-md mr-3 invisible"
           role="status"
         />
       </h4>
@@ -315,11 +323,15 @@ exports[`in preview mode renders correctly 1`] = `
       type="button"
     >
       <h4
-        class="my-0 d-flex align-items-center justify-content-end"
+        class="my-0 row justify-content-end flex-nowrap"
       >
-        Mine
         <span
-          class="spinner-border spinner-border-md mx-5 invisible"
+          class="col-10 pl-5"
+        >
+          Mine
+        </span>
+        <span
+          class="spinner-border spinner-border-md mr-3 invisible"
           role="status"
         />
       </h4>

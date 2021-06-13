@@ -1,15 +1,11 @@
 import { ACTIONS } from "../enums/AppDispatchActions";
 import { IAction, IState, IUser, ITransaction, IBlock, IMainUser } from "../typings/AppTypes";
 
-function deepCopy<T>(obj: T): T {
-  return JSON.parse(JSON.stringify(obj));
-}
-
 export const AppReducer = (state: IState, action: IAction): IState => {
   switch (action.type) {
     case ACTIONS.ADD_VERIFIED_TRANS: {
       const { trans } = action.payload as { trans: ITransaction };
-      const verifiedTrans = [...state.verifiedTrans, deepCopy(trans)];
+      const verifiedTrans = [...state.verifiedTrans, { ...trans }];
       localStorage.setItem("verTrans", JSON.stringify(verifiedTrans, null, 2));
       return { ...state, verifiedTrans };
     }
@@ -41,17 +37,17 @@ export const AppReducer = (state: IState, action: IAction): IState => {
 
     case ACTIONS.ADD_BLOCK: {
       const { block } = action.payload as { block: IBlock };
-      const chain = [...deepCopy(state.chain), deepCopy(block)];
+      const chain = [...state.chain, { ...block }];
       localStorage.setItem("chain", JSON.stringify(chain, null, 2));
       return { ...state, chain };
     }
 
     case ACTIONS.UPDATE_BLOCK: {
       const { block } = action.payload as { block: IBlock | IBlock[] };
-      const blocks = Array.isArray(block) ? deepCopy(block) : [deepCopy(block)];
-      const chain = deepCopy(state.chain);
+      const blocks = Array.isArray(block) ? [...block] : [block];
+      const chain = [...state.chain];
 
-      blocks.forEach((b) => (chain[b.index] = deepCopy(b)));
+      blocks.forEach((b) => (chain[b.index] = { ...b }));
 
       localStorage.setItem("chain", JSON.stringify(chain, null, 2));
       return { ...state, chain };
@@ -60,7 +56,13 @@ export const AppReducer = (state: IState, action: IAction): IState => {
     case ACTIONS.UPDATE_PREVIEW: {
       const { preview } = action.payload as { preview: IBlock };
       localStorage.setItem("preview", JSON.stringify(preview, null, 2));
-      return { ...state, preview: deepCopy(preview) };
+      return { ...state, preview: { ...preview } };
+    }
+
+    case ACTIONS.ASSIGN_COPIED: {
+      const { copied } = action.payload as { copied: string };
+      localStorage.setItem("copied", copied);
+      return { ...state, copied };
     }
 
     default:
