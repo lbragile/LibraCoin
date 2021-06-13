@@ -23,10 +23,10 @@ interface IStatisticsWrapper {
 }
 
 const StatisticsWrapper = ({ chain, index, stateMock, dispatchMock }: IStatisticsWrapper) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
+  const [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
 
   return (
-    <AppContext.Provider value={{ state: stateMock ?? state, dispatch: dispatchMock ?? dispatch }}>
+    <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
       <Statistics chain={chain} index={index} />
     </AppContext.Provider>
   );

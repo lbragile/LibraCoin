@@ -47,10 +47,11 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
     }
     setDisableMineBtn(false);
 
+    const timestamp = Date.now();
     const payload = {
       [!chain ? "preview" : "block"]: {
         ...(!chain ? state.preview : state.chain[index]),
-        timestamp: Date.now(),
+        timestamp,
         prevHash: state.chain[(!chain ? state.preview.index : index) - 1].currHash,
         currHash: candidateSolution,
         valid: candidateSolution <= targetHash
@@ -63,7 +64,6 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
     // propagate changes to next blocks if in blockchain mode and mined block is not last
     if (chain) {
       const newBlocks: IBlock[] = [];
-      const timestamp = Date.now();
       let prevHash = candidateSolution;
       let currHash = "";
       for (let i = index + 1; i < state.chain.length; i++) {

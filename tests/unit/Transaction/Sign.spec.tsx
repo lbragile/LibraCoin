@@ -22,10 +22,10 @@ interface ISendWrapper {
 }
 
 const SignWrapper = ({ validated, signed, handleSubmit, stateMock, dispatchMock }: ISendWrapper) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
+  const [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
 
   return (
-    <AppContext.Provider value={{ state: stateMock ?? state, dispatch: dispatchMock ?? dispatch }}>
+    <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
       <Sign validated={validated} signed={signed} handleSubmit={handleSubmit ?? jest.fn()} />
     </AppContext.Provider>
   );

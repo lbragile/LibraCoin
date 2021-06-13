@@ -12,6 +12,7 @@ import Statistics from "../../src/components/Block/Statistics";
 import { IAction, IState } from "../../src/typings/AppTypes";
 import { AppReducer } from "../../src/reducers/AppReducer";
 import * as ConversionUtil from "../../src/utils/conversion";
+import { ACTIONS } from "../../src/enums/AppDispatchActions";
 
 const { initialState } = global;
 
@@ -26,13 +27,13 @@ interface IBlockStatisticsWrapper {
 let state: IState, dispatch: React.Dispatch<IAction>;
 
 const BlockStatisticsWrapper = ({ chain, index, stateMock, dispatchMock }: IBlockStatisticsWrapper) => {
-  [state, dispatch] = useReducer(AppReducer, initialState);
+  [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
 
   return (
-    <AppContext.Provider value={{ state: stateMock ?? state, dispatch: dispatchMock ?? dispatch }}>
-      <div className="container-fluid row d-flex justify-content-center mx-auto my-3">
-        <Statistics chain={chain} index={index} />
+    <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
+      <div className="block mx-2 flex-column flex-shrink-0">
         <Block chain={chain} index={index} />
+        <Statistics chain={chain} index={index} />
       </div>
     </AppContext.Provider>
   );
@@ -138,5 +139,163 @@ describe("in preview mode", () => {
         merkleRoot: ""
       })
     );
+  });
+});
+
+describe("in blockchain mode", () => {
+  // add an extra block to the chain to validate propagation
+  const ogChain = [...initialState.chain];
+  ogChain.push({
+    index: 3,
+    prevHash: new Array(64).fill("Z").join(""),
+    currHash: new Array(64).fill("Y").join(""),
+    transactions: [
+      {
+        to: "Z",
+        from: "Y",
+        amount: 123.45,
+        message: "Fifth Transaction",
+        signature: "ZY123.45"
+      }
+    ],
+    timestamp: Date.parse("01 May 2021 00:00:00 UTC"),
+    merkleRoot: "123.45ZFifthTransactionY123.45Z",
+    valid: false,
+    showTrans: true
+  });
+
+  const newState = { ...initialState, chain: ogChain };
+
+  it.each`
+    type
+    ${"valid"}
+    ${"invalid"}
+  `("starts off invalid, after mining it stays $type, propagates to future blocks", async ({ type }) => {
+    const solution =
+      "000" + (type === "valid" ? "x" : "z") + "4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+    const target = "000y4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+    const index = 2;
+    Date.now = jest.fn().mockReturnValueOnce(12345);
+    jest.spyOn(ConversionUtil, "randomHash").mockReturnValue("random");
+    jest
+      .spyOn(ConversionUtil, "digestMessage")
+      .mockResolvedValue("currHash")
+      .mockResolvedValueOnce(target)
+      .mockResolvedValueOnce(solution);
+    const dispatchMock = jest.fn();
+
+    const { asFragment } = render(
+      <BlockStatisticsWrapper chain={true} index={index} stateMock={newState} dispatchMock={dispatchMock} />
+    );
+
+    expect(screen.getByRole("form", { name: /Block Statistics/i })).toHaveFormValues({
+      nonce: 0,
+      header: 0,
+      target: "",
+      solution: ""
+    });
+
+    expect(screen.getByRole("form", { name: /Block Form/i })).toHaveFormValues({
+      ...initialState.chain[index],
+      valid: undefined,
+      transactions: undefined,
+      showTrans: undefined
+    });
+
+    expect(screen.queryByRole("button", { name: /Add Block/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("invalid-block");
+    expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("invalid-solution");
+
+    expect(asFragment()).toMatchSnapshot();
+
+    fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+
+    // once mining is complete
+    await waitFor(() => expect(screen.getByRole("status")).toHaveClass("invisible"));
+
+    expect(dispatchMock).toHaveBeenCalledTimes(2);
+    expect(dispatchMock).toHaveBeenNthCalledWith(1, {
+      type: ACTIONS.UPDATE_BLOCK,
+      payload: {
+        block: {
+          ...newState.chain[index],
+          timestamp: 12345,
+          prevHash: state.chain[index - 1].currHash,
+          currHash: solution,
+          valid: type === "valid"
+        }
+      }
+    });
+    expect(dispatchMock).toHaveBeenNthCalledWith(2, {
+      type: ACTIONS.UPDATE_BLOCK,
+      payload: {
+        block: [
+          {
+            ...newState.chain[index + 1],
+            timestamp: 12345,
+            prevHash: solution,
+            currHash: "currHash",
+            valid: false
+          }
+        ]
+      }
+    });
+  });
+
+  it.each`
+    type
+    ${"valid"}
+    ${"invalid"}
+  `("starts off invalid, after mining it stays $type, does not propagate since last", async ({ type }) => {
+    const solution =
+      "000" + (type === "valid" ? "x" : "z") + "4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+    const target = "000y4fda363405b2796986a63e8cedde080e1f29ed774f5f93bd97c42b9a96fc0";
+    const index = 3;
+    Date.now = jest.fn().mockReturnValueOnce(12345);
+    jest.spyOn(ConversionUtil, "randomHash").mockReturnValue("random");
+    jest.spyOn(ConversionUtil, "digestMessage").mockResolvedValueOnce(target).mockResolvedValueOnce(solution);
+    const dispatchMock = jest.fn();
+
+    const { asFragment } = render(
+      <BlockStatisticsWrapper chain={true} index={index} stateMock={newState} dispatchMock={dispatchMock} />
+    );
+
+    expect(screen.getByRole("form", { name: /Block Statistics/i })).toHaveFormValues({
+      nonce: 0,
+      header: 0,
+      target: "",
+      solution: ""
+    });
+
+    expect(screen.getByRole("form", { name: /Block Form/i })).toHaveFormValues({
+      ...initialState.chain[index],
+      valid: undefined,
+      transactions: undefined,
+      showTrans: undefined
+    });
+
+    expect(screen.queryByRole("button", { name: /Add Block/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("invalid-block");
+    expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("invalid-solution");
+
+    expect(asFragment()).toMatchSnapshot();
+
+    fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+
+    // once mining is complete
+    await waitFor(() => expect(screen.getByRole("status")).toHaveClass("invisible"));
+    expect(dispatchMock).toHaveBeenCalledTimes(1);
+    expect(dispatchMock).toHaveBeenCalledWith({
+      type: ACTIONS.UPDATE_BLOCK,
+      payload: {
+        block: {
+          ...newState.chain[index],
+          timestamp: 12345,
+          prevHash: state.chain[index - 1].currHash,
+          currHash: solution,
+          valid: type === "valid"
+        }
+      }
+    });
   });
 });
