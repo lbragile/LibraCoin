@@ -4,7 +4,7 @@ import { Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
 import { IAction, IState } from "../../typings/AppTypes";
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import { copyKey } from "../../utils/copyInput";
+import { copyInput, removeCopied } from "../../utils/copyInput";
 import { CryptoKeyToHex } from "../../utils/conversion";
 
 import "./User.scss";
@@ -13,15 +13,12 @@ export default function KeyGeneration(): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   const numRows = useRef(4);
-  const publicKeyRef = useRef<HTMLTextAreaElement>(null);
-  const privateKeyRef = useRef<HTMLTextAreaElement>(null);
-
-  const [copied, setCopied] = useState<boolean[]>([false, false]);
+  const [show, setShow] = useState<boolean>(false);
 
   // add a user if it's the first time visiting
   useEffect(() => {
     async function addUser(): Promise<void> {
-      if (!state.user.publicKey) {
+      if (state.user.privateKey === "") {
         const { publicKey, privateKey } = await window.crypto.subtle.generateKey(
           { name: "ECDSA", namedCurve: "P-256" },
           true,
@@ -30,10 +27,6 @@ export default function KeyGeneration(): JSX.Element {
 
         const publicKeyStr = await CryptoKeyToHex("spki", publicKey as CryptoKey);
         const privateKeyStr = await CryptoKeyToHex("pkcs8", privateKey as CryptoKey);
-        if (publicKeyRef.current && privateKeyRef.current) {
-          publicKeyRef.current.innerText = publicKeyStr;
-          privateKeyRef.current.innerText = new Array(privateKeyStr.length).fill("◦").join("");
-        }
 
         const balance = Number(1000).toFixed(2);
         const mainUser = { publicKey: publicKeyStr, privateKey: privateKeyStr, balance };
@@ -45,13 +38,7 @@ export default function KeyGeneration(): JSX.Element {
     }
 
     addUser();
-  }, [dispatch, state.user.publicKey, state.users]);
-
-  const togglePrivateKey = () => {
-    const show = privateKeyRef.current?.value.includes("◦");
-    const hiddenVal = new Array(state.user.privateKey?.length ?? 0).fill("◦").join("");
-    (privateKeyRef.current as HTMLTextAreaElement).value = show ? state.user.privateKey : hiddenVal;
-  };
+  }, [dispatch, state.user.privateKey, state.users]);
 
   return (
     <div className="container-fluid d-flex justify-content-center mx-auto row my-5">
@@ -65,12 +52,11 @@ export default function KeyGeneration(): JSX.Element {
           as="textarea"
           rows={numRows.current}
           className="rounded-right"
-          value={state.user?.publicKey}
-          isValid={copied[0]}
-          onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "public")}
-          onBlur={() => setCopied([false, false])}
+          value={state.user.publicKey}
+          isValid={state.copied === "walletPK"}
+          onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyInput(e.target, "walletPK", dispatch)}
+          onBlur={() => removeCopied(dispatch)}
           readOnly
-          ref={publicKeyRef}
         />
 
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
@@ -85,17 +71,16 @@ export default function KeyGeneration(): JSX.Element {
           aria-label="privateKey"
           as="textarea"
           rows={numRows.current}
-          value={new Array(state.user.privateKey?.length ?? 0).fill("◦").join("")}
-          onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyKey(e, setCopied, "private")}
-          onBlur={() => setCopied([false, false])}
-          isValid={copied[1]}
+          value={show ? state.user.privateKey : new Array(state.user.privateKey.length).fill("◦").join("")}
+          onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => copyInput(e.target, "walletSK", dispatch)}
+          onBlur={() => removeCopied(dispatch)}
+          isValid={state.copied === "walletSK"}
           readOnly
-          ref={privateKeyRef}
         />
 
         <InputGroup.Append>
           <InputGroup.Text className="rounded-right">
-            <span id="private-reveal-eyes" onClick={togglePrivateKey}>
+            <span id="private-reveal-eyes" onClick={() => setShow(!show)}>
               👀
             </span>
           </InputGroup.Text>

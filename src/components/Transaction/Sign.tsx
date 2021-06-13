@@ -14,8 +14,7 @@ export default function Sign({ validated, signed, handleSubmit }: ISign): JSX.El
   const { state } = useContext(AppContext) as { state: IState };
 
   function checkAmount(e: React.FocusEvent<HTMLInputElement>): void {
-    const userBalance = state.user.balance ?? 1000;
-    e.target.value = Math.min(Math.max(0.1, +e.target.value), userBalance).toFixed(2);
+    e.target.value = Math.min(Math.max(0.1, +e.target.value), state.user.balance).toFixed(2);
   }
 
   return (
@@ -35,7 +34,7 @@ export default function Sign({ validated, signed, handleSubmit }: ISign): JSX.El
           name="sender-pk"
           className="text-truncate rounded-right"
           type="text"
-          defaultValue={state.user.publicKey ?? ""}
+          defaultValue={state.user.publicKey}
           readOnly
         />
       </InputGroup>
@@ -90,7 +89,7 @@ export default function Sign({ validated, signed, handleSubmit }: ISign): JSX.El
           name="sender-sk"
           className="text-truncate"
           type="text"
-          defaultValue={state.user.privateKey ?? ""}
+          defaultValue={state.user.privateKey}
           readOnly
         />
       </InputGroup>

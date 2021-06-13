@@ -15,24 +15,25 @@ export default function App(): JSX.Element {
     verifiedTrans: JSON.parse(localStorage.getItem("verTrans") as string) ?? [],
     selectedTrans: JSON.parse(localStorage.getItem("selTrans") as string) ?? [],
     users: JSON.parse(localStorage.getItem("users") as string) ?? [],
-    user: JSON.parse(localStorage.getItem("user") as string) ?? {},
+    user: JSON.parse(localStorage.getItem("user") as string) ?? { publicKey: "", privateKey: "", balance: 1000.0 },
     chain: JSON.parse(localStorage.getItem("chain") as string) ?? [
       {
         index: 0,
         prevHash: "",
         currHash: new Array(64).fill("0").join(""),
         transactions: [],
-        timestamp: Date.parse("04/31/2021"),
+        timestamp: Date.parse("31 Apr 2021 00:00:00 UTC"),
         merkleRoot: "",
         valid: true
       }
     ],
+    copied: "",
     preview: JSON.parse(localStorage.getItem("preview") as string) ?? {
       index: 1,
       prevHash: new Array(64).fill("0").join(""),
       currHash: "",
       transactions: [],
-      timestamp: Date.parse("04/31/2021"),
+      timestamp: Date.parse("31 Apr 2021 00:00:00 UTC"),
       merkleRoot: "",
       valid: false
     }

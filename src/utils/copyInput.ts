@@ -1,26 +1,21 @@
-export function copyKey(
-  e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>,
-  setCopied: (arg: boolean[]) => void,
-  type?: "public" | "private",
-  index?: number,
-  totalUsers?: number
-): void {
-  const visible = !e.target.value.includes("◦");
-  if (visible) {
-    e.target.select();
-    document.execCommand("copy");
-  } else {
-    e.target.blur();
-  }
+import React from "react";
+import { ACTIONS } from "../enums/AppDispatchActions";
+import { IAction } from "../typings/AppTypes";
 
-  if (type) {
-    // wallet page, copying keys (public / private)
-    const isPublic = type === "public";
-    setCopied([isPublic, !isPublic && visible]);
+export function copyInput(
+  target: HTMLTextAreaElement | HTMLInputElement,
+  assignName: string,
+  dispatch: React.Dispatch<IAction>
+): void {
+  if (!target.value.includes("◦")) {
+    target.select();
+    document.execCommand("copy");
+    dispatch({ type: ACTIONS.ASSIGN_COPIED, payload: { copied: assignName } });
   } else {
-    // user items, copying public key
-    const newCopied = new Array(totalUsers).fill(false);
-    newCopied[index as number] = true;
-    setCopied(newCopied);
+    target.blur();
   }
+}
+
+export function removeCopied(dispatch: React.Dispatch<IAction>): void {
+  dispatch({ type: ACTIONS.ASSIGN_COPIED, payload: { copied: "" } });
 }

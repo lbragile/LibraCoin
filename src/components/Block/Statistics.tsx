@@ -2,16 +2,13 @@ import React, { useState, useRef, useContext } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import { IAction, IState } from "../../typings/AppTypes";
+import { IAction, IBlock, IState } from "../../typings/AppTypes";
 import { digestMessage, randomHash } from "../../utils/conversion";
-// import { propagateBlockStatus } from "../../utils/propagate";
 
 import "./Block.scss";
-
 interface IStatisticsProps {
   chain: boolean;
   index: number;
-  prevHash?: string;
 }
 
 export default function Statistics(props: IStatisticsProps): JSX.Element {
@@ -24,11 +21,11 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
   const [disableMineBtn, setDisableMineBtn] = useState<boolean>(false);
 
   async function handleMine() {
-    // const { index, prevHash } = props;
-
-    nonce.current = Math.round(Math.random() * 1e6);
+    const { chain, index } = props;
 
     setDisableMineBtn(true);
+    nonce.current = Math.round(Math.random() * 1e6);
+
     // make target with 2 or 3 leading zeros
     const numZeros = Math.round(Math.random()) + 2;
     const re = new RegExp(`^.{0,${numZeros}}`, "g");
@@ -45,26 +42,40 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
       setSolution(candidateSolution);
       setHeader(header++);
 
-      // stopping condition if first numZero characters are all 0
-      if (candidateSolution.substr(0, numZeros).match(/^0+$/)) break;
+      const re = new RegExp(`^0{${numZeros}}`); // exactly numZeros 0 characters at start of string
+      if (candidateSolution.match(re)) break;
     }
     setDisableMineBtn(false);
 
+    const timestamp = Date.now();
     const payload = {
-      [!props.chain ? "preview" : "block"]: {
-        ...(!props.chain ? state.preview : state.chain[props.index]),
-        timestamp: Date.now(),
-        prevHash: state.chain[(!props.chain ? state.preview.index : props.index) - 1].currHash,
+      [!chain ? "preview" : "block"]: {
+        ...(!chain ? state.preview : state.chain[index]),
+        timestamp,
+        prevHash: state.chain[(!chain ? state.preview.index : index) - 1].currHash,
         currHash: candidateSolution,
         valid: candidateSolution <= targetHash
       }
     };
 
-    const type = !props.chain ? ACTIONS.UPDATE_PREVIEW : ACTIONS.UPDATE_BLOCK;
+    const type = !chain ? ACTIONS.UPDATE_PREVIEW : ACTIONS.UPDATE_BLOCK;
     dispatch({ type, payload });
 
-    // propagate changes if needed
-    // if (index && prevHash) await propagateBlockStatus(state, dispatch, index, prevHash, candidateSolution, true);
+    // propagate changes to next blocks if in blockchain mode and mined block is not last
+    if (chain) {
+      const newBlocks: IBlock[] = [];
+      let prevHash = candidateSolution;
+      let currHash = "";
+      for (let i = index + 1; i < state.chain.length; i++) {
+        currHash = await digestMessage(i + prevHash + state.chain[i].merkleRoot);
+        newBlocks.push({ ...state.chain[i], timestamp, prevHash, currHash, valid: false });
+        prevHash = currHash; // next block's prevHash is this block's currHash
+      }
+
+      if (newBlocks.length) {
+        dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: newBlocks } });
+      }
+    }
   }
 
   return (
@@ -126,17 +137,20 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
       <Button
         aria-label="Block Mine"
         variant="primary"
-        className="btn-block d-block mt-2"
+        className="btn-block mt-2 py-2"
         disabled={
-          (props.chain && state.chain?.[props.index].valid) ||
+          (props.chain && state.chain[props.index].valid) ||
           (!props.chain && (state.preview.valid || state.selectedTrans.length === 0)) ||
           disableMineBtn
         }
         onClick={() => handleMine()}
       >
-        <h4 className="my-1">
-          Mine
-          {disableMineBtn && <span className="position-absolute spinner-border spinner-border-md mx-4" role="status" />}
+        <h4 className="my-0 row justify-content-end flex-nowrap">
+          <span className="col-10 pl-5">Mine</span>
+          <span
+            className={"spinner-border spinner-border-md mr-3 " + (disableMineBtn ? "visible" : "invisible")}
+            role="status"
+          />
         </h4>
       </Button>
     </Form>

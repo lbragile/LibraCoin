@@ -1,3 +1,7 @@
+/**
+ * @group unit
+ */
+
 import React, { useReducer } from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
@@ -17,10 +21,10 @@ interface ITransactionItemsWrapper {
 }
 
 const TransactionItemsWrapper = ({ stateMock, dispatchMock }: ITransactionItemsWrapper) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
+  const [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
 
   return (
-    <AppContext.Provider value={{ state: stateMock ?? state, dispatch: dispatchMock ?? dispatch }}>
+    <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
       <TransactionItems />
     </AppContext.Provider>
   );
