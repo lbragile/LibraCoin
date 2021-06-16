@@ -39,10 +39,10 @@ exports[`renders correctly 1`] = `
       <input
         aria-label="Send Amount"
         class="form-control"
-        disabled=""
         name="amount"
+        readonly=""
         type="number"
-        value=""
+        value="0"
       />
       <div
         class="input-group-append"

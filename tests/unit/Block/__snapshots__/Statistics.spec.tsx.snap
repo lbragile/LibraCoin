@@ -96,7 +96,7 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
       type="button"
     >
       <h4
-        class="my-0 row justify-content-end flex-nowrap"
+        class="my-0 row justify-content-end align-items-center flex-nowrap"
       >
         <span
           class="col-10 pl-5"
@@ -210,7 +210,7 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
       type="button"
     >
       <h4
-        class="my-0 row justify-content-end flex-nowrap"
+        class="my-0 row justify-content-end align-items-center flex-nowrap"
       >
         <span
           class="col-10 pl-5"
@@ -323,7 +323,7 @@ exports[`in preview mode renders correctly 1`] = `
       type="button"
     >
       <h4
-        class="my-0 row justify-content-end flex-nowrap"
+        class="my-0 row justify-content-end align-items-center flex-nowrap"
       >
         <span
           class="col-10 pl-5"

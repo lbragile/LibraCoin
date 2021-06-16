@@ -1,23 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Form, Button, InputGroup } from "react-bootstrap";
-import { ITransaction } from "../../typings/AppTypes";
-import { ISign } from "./Sign";
+import { AppContext } from "../../context/AppContext";
+import { ACTIONS } from "../../enums/AppDispatchActions";
+import { IAction, IState } from "../../typings/AppTypes";
 
-interface ISend extends ISign {
-  details: ITransaction;
-  setSigned: (arg: boolean) => void;
-  setValidated: (arg: boolean) => void;
-}
+export default function Send(): JSX.Element {
+  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-export default function Send(props: ISend): JSX.Element {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    dispatch({ type: ACTIONS.SET_SIGNED, payload: { signed: false } });
+    dispatch({ type: ACTIONS.SET_VALIDATED, payload: { validated: false } });
+    dispatch({ type: ACTIONS.ADD_VERIFIED_TRANS, payload: { trans: state.wallet.details } });
+    dispatch({
+      type: ACTIONS.SET_DETAILS,
+      payload: { details: { from: "", to: "", amount: (0).toFixed(2), message: "", signature: "" } }
+    });
+  };
+
   return (
-    <Form
-      aria-label="Send Form"
-      noValidate
-      className="col-12 col-lg-5 my-2 my-lg-0 trans-form"
-      onSubmit={(e) => props.handleSubmit(e)}
-    >
+    <Form aria-label="Send Form" noValidate className="col-12 col-lg-5 my-2 my-lg-0 trans-form" onSubmit={handleSubmit}>
       <InputGroup>
         <InputGroup.Prepend>
           <InputGroup.Text>Receiver Public Key</InputGroup.Text>
@@ -27,7 +31,7 @@ export default function Send(props: ISend): JSX.Element {
           name="receiver-pk"
           className="text-truncate"
           type="text"
-          defaultValue={props.details.to}
+          value={state.wallet.details.to}
           readOnly
         />
       </InputGroup>
@@ -39,8 +43,8 @@ export default function Send(props: ISend): JSX.Element {
           aria-label="Send Amount"
           name="amount"
           type="number"
-          defaultValue={props.details.amount}
-          disabled
+          value={state.wallet.details.amount}
+          readOnly
         />
         <InputGroup.Append>
           <InputGroup.Text className="rounded-right border-left-0">LC</InputGroup.Text>
@@ -55,7 +59,7 @@ export default function Send(props: ISend): JSX.Element {
           aria-label="Send Message"
           name="msg"
           as="textarea"
-          defaultValue={props.details.message}
+          value={state.wallet.details.message}
           rows={4}
           placeholder="optional message..."
           readOnly
@@ -71,15 +75,22 @@ export default function Send(props: ISend): JSX.Element {
           name="sig"
           type="text"
           className="text-truncate"
-          defaultValue={props.details.signature}
+          value={state.wallet.details.signature}
           readOnly
         />
       </InputGroup>
 
       <Form.Text className="text-muted">Receiver uses this along with your public key to verify transaction</Form.Text>
 
-      <Button aria-label="Send Button" className="mt-2" variant="primary" type="submit" disabled={!props.signed} block>
-        <b>Send</b>
+      <Button
+        aria-label="Send Button"
+        className="mt-2"
+        variant={state.wallet.sent ? "success" : "primary"}
+        type="submit"
+        disabled={!state.wallet.signed}
+        block
+      >
+        <b>{state.wallet.sent ? "Sent" : "Send"}</b>
       </Button>
     </Form>
   );

@@ -3,36 +3,29 @@
  */
 
 import React, { useReducer } from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import Sign from "../../../src/components/Transaction/Sign";
 import { AppContext } from "../../../src/context/AppContext";
 import { AppReducer } from "../../../src/reducers/AppReducer";
 import { IAction, IState } from "../../../src/typings/AppTypes";
+import * as conversionUtils from "../../../src/utils/conversion";
 
 const { initialState } = global;
 
-interface ISendWrapper {
-  validated: boolean;
-  signed: boolean;
-  handleSubmit?: () => void;
-  stateMock?: IState;
-  dispatchMock?: React.Dispatch<IAction>;
-}
-
-const SignWrapper = ({ validated, signed, handleSubmit, stateMock, dispatchMock }: ISendWrapper) => {
+const SignWrapper = ({ stateMock, dispatchMock }: { stateMock?: IState; dispatchMock?: React.Dispatch<IAction> }) => {
   const [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
 
   return (
     <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
-      <Sign validated={validated} signed={signed} handleSubmit={handleSubmit ?? jest.fn()} />
+      <Sign />
     </AppContext.Provider>
   );
 };
 
 it("renders correctly", () => {
-  const { asFragment } = render(<SignWrapper validated={false} signed={false} />);
+  const { asFragment } = render(<SignWrapper />);
 
   expect(screen.getByRole("form", { name: /Sign Form/i })).toHaveFormValues({
     "sender-pk": initialState.user.publicKey,
@@ -73,24 +66,40 @@ it("renders correctly", () => {
 
 describe("sign button state", () => {
   it("is enabled when not signed", () => {
-    render(<SignWrapper validated={false} signed={false} />);
+    render(<SignWrapper />);
 
     expect(screen.getByRole("button", { name: /Sign Button/i })).toBeEnabled();
     expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveTextContent("Sign");
+    expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveClass("btn-primary");
   });
 
-  it("is disabled when signed", () => {
-    render(<SignWrapper validated={false} signed={true} />);
+  it("is disabled when signed", async () => {
+    jest.spyOn(conversionUtils, "digestMessage").mockResolvedValueOnce("random digest");
+    render(<SignWrapper />);
 
-    expect(screen.getByRole("button", { name: /Sign Button/i })).toBeDisabled();
-    expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveTextContent("Sign");
+    // fill out the form
+    fireEvent.change(screen.getByRole("textbox", { name: /Receiver Public Key/i }), {
+      target: { value: new Array(182).fill("A").join("") }
+    });
+
+    fireEvent.change(screen.getByRole("spinbutton", { name: /Sign Amount/i }), {
+      target: { value: Number(320.12).toFixed(2) }
+    });
+
+    fireEvent.change(screen.getByRole("textbox", { name: /Sign Message/i }), {
+      target: { value: "random message" }
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: /Sign Button/i }));
+
+    await waitFor(() => expect(screen.getByRole("button", { name: /Sign Button/i })).toBeDisabled());
+    expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveTextContent("Signed");
+    expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveClass("btn-success");
   });
 });
 
 describe("Amount checking", () => {
-  beforeEach(() => {
-    render(<SignWrapper validated={false} signed={false} />);
-  });
+  beforeEach(() => render(<SignWrapper />));
 
   it("clamps when below minimum (0.10)", () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
@@ -129,12 +138,23 @@ describe("Amount checking", () => {
   });
 });
 
-it("submits form when send button is pressed", () => {
-  const handleSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
+describe("form validation", () => {
+  test("invalid receiver public key length", async () => {
+    render(<SignWrapper stateMock={{ ...initialState, wallet: { ...initialState.wallet, validated: true } }} />);
+    fireEvent.change(screen.getByRole("textbox", { name: /Receiver Public Key/i }), { target: { value: "tooShort" } });
+    expect(screen.getByText("Length or format are incorrect!")).toBeVisible();
+  });
 
-  render(<SignWrapper validated={false} signed={false} handleSubmit={handleSubmit} />);
+  test("valid receiver public key length", async () => {
+    render(<SignWrapper stateMock={{ ...initialState, wallet: { ...initialState.wallet, validated: true } }} />);
+    expect(screen.getByRole("alert", { name: /Receiver PK Feedback/i })).toBeVisible();
 
-  fireEvent.click(screen.getByRole("button"));
+    fireEvent.change(screen.getByRole("textbox", { name: /Receiver Public Key/i }), {
+      target: { value: new Array(182).fill("A").join("") }
+    });
 
-  expect(handleSubmit).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole("button", { name: /Sign Button/i }));
+
+    await waitFor(() => expect(screen.queryByText("Length or format are incorrect!")).not.toBeVisible());
+  });
 });

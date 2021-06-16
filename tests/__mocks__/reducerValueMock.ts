@@ -113,6 +113,12 @@ const initialState: IState = {
     transactions: [],
     merkleRoot: "previewMerkle",
     valid: false
+  },
+  wallet: {
+    sent: false,
+    signed: false,
+    validated: false,
+    details: { from: "", to: "", amount: 0, message: "", signature: "" }
   }
 };
 

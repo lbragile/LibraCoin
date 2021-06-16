@@ -49,16 +49,16 @@ exports[`renders correctly 1`] = `
         aria-label="Receiver Public Key"
         class="text-truncate rounded-right form-control"
         name="receiver-pk"
-        pattern="[A-Za-z0-9]{182,182}"
+        pattern="[A-Za-z0-9]{182}"
         required=""
         type="text"
       />
       <div
-        class="invalid-feedback"
+        aria-label="Receiver PK Feedback"
+        class="font-weight-bold invalid-feedback"
+        role="alert"
       >
-        <b>
-          Length or format are incorrect!
-        </b>
+        Length or format are incorrect!
       </div>
     </div>
     <div
@@ -74,7 +74,7 @@ exports[`renders correctly 1`] = `
         type="number"
       />
       <div
-        class="input-group-prepend"
+        class="input-group-append"
       >
         <span
           class="rounded-right border-left-0 input-group-text"

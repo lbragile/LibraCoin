@@ -24,7 +24,7 @@ const block: IBlock = {
   prevHash: new Array(64).fill("0").join(""),
   currHash: new Array(64).fill("1").join(""),
   transactions: [trans],
-  timestamp: Date.parse("05/15/2021"),
+  timestamp: Date.parse("15 May 2021 00:00:00 UTC"),
   merkleRoot: "abcdedcba",
   valid: true
 };
@@ -85,7 +85,7 @@ describe("BLOCK", () => {
     // update timestamp of block at index 1
     const newBlock = { ...block };
     newBlock.index = 1;
-    newBlock.timestamp = Date.parse("05/15/2021");
+    newBlock.timestamp = Date.parse("15 May 2021 00:00:00 UTC");
 
     // expected updated chain
     const chain = [...initialState.chain];
@@ -99,11 +99,11 @@ describe("BLOCK", () => {
     // update timestamp of blocks at index 1 & 2
     const firstBlock = { ...block };
     firstBlock.index = 1;
-    firstBlock.timestamp = Date.parse("05/15/2021");
+    firstBlock.timestamp = Date.parse("15 May 2021 00:00:00 UTC");
 
     const secondBlock = { ...firstBlock };
     secondBlock.index = 2;
-    secondBlock.timestamp = Date.parse("05/15/2021");
+    secondBlock.timestamp = Date.parse("15 May 2021 00:00:00 UTC");
 
     // expected updated chain
     const chain = [...initialState.chain];
@@ -121,7 +121,7 @@ describe("BLOCK", () => {
     // update timestamp of block at index 5
     const newPreview = { ...block };
     newPreview.index = 5;
-    newPreview.timestamp = Date.parse("06/14/2021");
+    newPreview.timestamp = Date.parse("14 Jun 2021 00:00:00 UTC");
 
     const output = AppReducer(initialState, { type: ACTIONS.UPDATE_PREVIEW, payload: { preview: newPreview } });
     expect(output).toStrictEqual({ ...initialState, preview: newPreview });
