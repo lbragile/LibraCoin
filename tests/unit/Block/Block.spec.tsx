@@ -2,38 +2,18 @@
  * @group unit
  */
 
-import React, { useReducer } from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import React from "react";
+import { fireEvent, screen } from "@testing-library/react";
 
-import { AppContext } from "../../../src/context/AppContext";
 import Block from "../../../src/components/Block/Block";
-import { IAction, IState } from "../../../src/typings/AppTypes";
-import { AppReducer } from "../../../src/reducers/AppReducer";
 import { ACTIONS } from "../../../src/enums/AppDispatchActions";
+import { customRender } from "../../utils/testUtils";
 
 const { initialState } = global;
 
-interface IBlockWrapper {
-  chain: boolean;
-  index: number;
-  stateMock?: IState;
-  dispatchMock?: React.Dispatch<IAction>;
-}
-
-const BlockWrapper = ({ chain, index, stateMock, dispatchMock }: IBlockWrapper) => {
-  const [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
-
-  return (
-    <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
-      <Block chain={chain} index={index} />
-    </AppContext.Provider>
-  );
-};
-
 describe("in preview mode", () => {
   it("renders correctly", () => {
-    const { asFragment } = render(<BlockWrapper chain={false} index={initialState.preview.index} />);
+    const { asFragment } = customRender(<Block chain={false} index={initialState.preview.index} />);
 
     const block = screen.getByRole("form", { name: /Block Form/i });
     expect(block).toHaveClass("invalid-block");
@@ -71,13 +51,9 @@ describe("in preview mode", () => {
 
   describe("valid State", () => {
     it("Shows 'Add Block' button", () => {
-      const { asFragment } = render(
-        <BlockWrapper
-          chain={false}
-          index={initialState.preview.index}
-          stateMock={{ ...initialState, preview: { ...initialState.preview, valid: true } }}
-        />
-      );
+      const { asFragment } = customRender(<Block chain={false} index={initialState.preview.index} />, {
+        stateMock: { ...initialState, preview: { ...initialState.preview, valid: true } }
+      });
 
       expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("valid-block");
       expect(screen.getByRole("button", { name: /Add Block/i })).toHaveTextContent("Add Block");
@@ -105,14 +81,10 @@ describe("in preview mode", () => {
       Date.now = jest.fn().mockReturnValueOnce(initialState.preview.timestamp);
 
       const dispatchMock = jest.fn();
-      render(
-        <BlockWrapper
-          chain={false}
-          index={initialState.preview.index}
-          stateMock={{ ...initialState, preview: { ...initialState.preview, valid: true } }}
-          dispatchMock={dispatchMock}
-        />
-      );
+      customRender(<Block chain={false} index={initialState.preview.index} />, {
+        stateMock: { ...initialState, preview: { ...initialState.preview, valid: true } },
+        dispatchMock
+      });
 
       fireEvent.click(screen.getByRole("button", { name: /Add Block/i }));
 
@@ -134,7 +106,7 @@ describe("in preview mode", () => {
 describe("in blockchain mode", () => {
   describe("renders correctly", () => {
     test("index === 0", () => {
-      const { asFragment } = render(<BlockWrapper chain={true} index={0} />);
+      const { asFragment } = customRender(<Block chain={true} index={0} />);
 
       const block = screen.getByRole("form", { name: /Block Form/i });
       expect(block).toHaveClass("valid-block");
@@ -180,7 +152,7 @@ describe("in blockchain mode", () => {
         ${1} | ${"valid-block"}
         ${2} | ${"invalid-block"}
       `("index → $i, class → $expectedClass", ({ i, expectedClass }) => {
-        const { asFragment } = render(<BlockWrapper chain={true} index={i} />);
+        const { asFragment } = customRender(<Block chain={true} index={i} />);
 
         const block = screen.getByRole("form", { name: /Block Form/i });
         expect(block).toHaveClass(expectedClass);
@@ -226,7 +198,7 @@ describe("in blockchain mode", () => {
 
   describe("'Add Block' button", () => {
     it("is not present when block is valid", () => {
-      const { asFragment } = render(<BlockWrapper chain={true} index={1} />);
+      const { asFragment } = customRender(<Block chain={true} index={1} />);
 
       expect(screen.queryByRole("button", { name: /Add Block/i })).not.toBeInTheDocument();
 
@@ -234,7 +206,7 @@ describe("in blockchain mode", () => {
     });
 
     it("is not present when block is invalid", () => {
-      const { asFragment } = render(<BlockWrapper chain={true} index={2} />);
+      const { asFragment } = customRender(<Block chain={true} index={2} />);
 
       expect(screen.queryByRole("button", { name: /Add Block/i })).not.toBeInTheDocument();
 
@@ -245,7 +217,7 @@ describe("in blockchain mode", () => {
   describe("handleViewTransactions", () => {
     it("calls dispatch correctly", () => {
       const dispatchMock = jest.fn();
-      render(<BlockWrapper chain={true} index={1} dispatchMock={dispatchMock} />);
+      customRender(<Block chain={true} index={1} />, { dispatchMock });
 
       fireEvent.click(screen.getByText("🙉"));
 
@@ -257,7 +229,7 @@ describe("in blockchain mode", () => {
     });
 
     it("changes emoji when show transactions is clicked", async () => {
-      const { asFragment } = render(<BlockWrapper chain={true} index={1} />);
+      const { asFragment } = customRender(<Block chain={true} index={1} />);
 
       expect(screen.getByText("🙉")).toBeInTheDocument();
       fireEvent.click(screen.getByText("🙉"));

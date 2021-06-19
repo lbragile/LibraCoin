@@ -2,35 +2,15 @@
  * @group unit
  */
 
-import React, { useReducer } from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import React from "react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 
 import KeyGeneration from "../../../src/components/User/KeyGeneration";
-import { AppContext } from "../../../src/context/AppContext";
+import { customRender } from "../../utils/testUtils";
 import * as CopyInputUtil from "../../../src/utils/copyInput";
 import * as ConversionUtil from "../../../src/utils/conversion";
-import { IAction, IState } from "../../../src/typings/AppTypes";
-import { AppReducer } from "../../../src/reducers/AppReducer";
 
 const { initialState, exportKeyMock, generateKeyMock } = global;
-
-interface IKeyGenerationWrapper {
-  stateMock?: IState;
-  dispatchMock?: React.Dispatch<IAction>;
-}
-
-let state: IState, dispatch: React.Dispatch<IAction>;
-
-const KeyGenerationWrapper = ({ stateMock, dispatchMock }: IKeyGenerationWrapper) => {
-  [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
-
-  return (
-    <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
-      <KeyGeneration />
-    </AppContext.Provider>
-  );
-};
 
 beforeAll(() => {
   Object.defineProperty(window, "crypto", {
@@ -46,7 +26,7 @@ afterAll(() => {
 });
 
 it("renders correctly", async () => {
-  const { asFragment } = render(<KeyGenerationWrapper />);
+  const { asFragment } = customRender(<KeyGeneration />);
 
   expect(await screen.findByRole("textbox", { name: /publicKey/i })).toBeInTheDocument();
   expect(await screen.findByRole("textbox", { name: /privateKey/i })).toBeInTheDocument();
@@ -66,9 +46,9 @@ describe("input field text", () => {
   );
 
   it("has no user in localStorage", async () => {
-    render(
-      <KeyGenerationWrapper stateMock={{ ...initialState, user: { privateKey: "", publicKey: "", balance: 1000 } }} />
-    );
+    customRender(<KeyGeneration />, {
+      stateMock: { ...initialState, user: { privateKey: "", publicKey: "", balance: 1000 } }
+    });
 
     await waitFor(() =>
       expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(initialState.user.publicKey)
@@ -78,7 +58,7 @@ describe("input field text", () => {
   });
 
   it("has user in localStorage", async () => {
-    render(<KeyGenerationWrapper />);
+    customRender(<KeyGeneration />);
 
     await waitFor(() =>
       expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(initialState.user.publicKey)
@@ -88,7 +68,7 @@ describe("input field text", () => {
   });
 
   it("reveals private key on eye click", async () => {
-    render(<KeyGenerationWrapper />);
+    customRender(<KeyGeneration />);
 
     await waitFor(() => expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKeyHidden));
 
@@ -101,8 +81,7 @@ describe("input field text", () => {
 
 describe("copy input of key fields", () => {
   document.execCommand = jest.fn();
-  beforeEach(() => render(<KeyGenerationWrapper />));
-  afterEach(() => jest.clearAllMocks());
+  beforeEach(() => customRender(<KeyGeneration />));
 
   test("public key copy", () => {
     const copyInputSpy = jest.spyOn(CopyInputUtil, "copyInput");
@@ -118,7 +97,7 @@ describe("copy input of key fields", () => {
     expect(screen.getByRole("textbox", { name: /privateKey/i })).not.toHaveClass("is-valid");
 
     expect(copyInputSpy).toHaveBeenCalledTimes(1);
-    expect(copyInputSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement), "walletPK", dispatch);
+    expect(copyInputSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement), "walletPK", expect.any(Function));
 
     fireEvent.blur(screen.getByRole("textbox", { name: /publicKey/i }));
 
@@ -159,7 +138,7 @@ describe("copy input of key fields", () => {
       expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveClass("is-valid");
 
       expect(copyInputSpy).toHaveBeenCalledTimes(1);
-      expect(copyInputSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement), "walletSK", dispatch);
+      expect(copyInputSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement), "walletSK", expect.any(Function));
 
       fireEvent.blur(screen.getByRole("textbox", { name: /privateKey/i }));
 

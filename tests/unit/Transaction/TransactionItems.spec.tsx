@@ -2,36 +2,19 @@
  * @group unit
  */
 
-import React, { useReducer } from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import React from "react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 
 import TransactionItems from "../../../src/components/Transaction/TransactionItems";
-import { AppContext } from "../../../src/context/AppContext";
 import { ACTIONS } from "../../../src/enums/AppDispatchActions";
-import { IAction, IState } from "../../../src/typings/AppTypes";
-import { AppReducer } from "../../../src/reducers/AppReducer";
+
 import * as TreeUtils from "../../../src/utils/merkleTree";
+import { customRender } from "../../utils/testUtils";
 
 const { initialState } = global;
 
-interface ITransactionItemsWrapper {
-  stateMock?: IState;
-  dispatchMock?: React.Dispatch<IAction>;
-}
-
-const TransactionItemsWrapper = ({ stateMock, dispatchMock }: ITransactionItemsWrapper) => {
-  const [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
-
-  return (
-    <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
-      <TransactionItems />
-    </AppContext.Provider>
-  );
-};
-
 it("renders correctly", () => {
-  const { asFragment } = render(<TransactionItemsWrapper />);
+  const { asFragment } = customRender(<TransactionItems />);
 
   const transactions = screen.getAllByRole("form", { name: /Transaction Information/i });
   const fromFields = screen.getAllByRole("textbox", { name: /Transaction From/i });
@@ -69,7 +52,7 @@ describe("Select Transaction", () => {
   const dispatchMock = jest.fn();
 
   describe("Less than 4 already selected", () => {
-    beforeEach(() => render(<TransactionItemsWrapper dispatchMock={dispatchMock} />));
+    beforeEach(() => customRender(<TransactionItems />, { dispatchMock }));
     afterEach(() => jest.clearAllMocks());
 
     it("adds selected transaction if not already selected", async () => {
@@ -90,23 +73,19 @@ describe("Select Transaction", () => {
 
       // new merkleRoot will be just the transaction signature since only 1 selected
       jest.spyOn(TreeUtils, "calculateMerkleTreeFormation").mockResolvedValueOnce([[sigFields[0].value]]);
-      const newPreview = {
-        ...initialState.preview,
-        merkleRoot: sigFields[0].value,
-        valid: false
-      };
+      const newPreview = { ...initialState.preview, merkleRoot: sigFields[0].value, valid: false };
 
       const selectedTrans = [...initialState.selectedTrans, newSelected]; // expected
 
       fireEvent.click(transactions[0]);
 
-      await waitFor(() => {
-        expect(dispatchMock).toHaveBeenCalledTimes(2);
-      });
+      await waitFor(() => expect(dispatchMock).toHaveBeenCalledTimes(2));
+
       expect(dispatchMock).toHaveBeenNthCalledWith(1, {
         type: ACTIONS.UPDATE_SELECTED_TRANS,
         payload: { selectedTrans }
       });
+
       expect(dispatchMock).toHaveBeenNthCalledWith(2, {
         type: ACTIONS.UPDATE_PREVIEW,
         payload: { preview: newPreview }
@@ -117,21 +96,17 @@ describe("Select Transaction", () => {
       const transactions = screen.getAllByRole("form", { name: /Transaction Information/i });
 
       jest.spyOn(TreeUtils, "calculateMerkleTreeFormation").mockResolvedValueOnce([[""]]);
-      const newPreview = {
-        ...initialState.preview,
-        merkleRoot: "",
-        valid: false
-      };
+      const newPreview = { ...initialState.preview, merkleRoot: "", valid: false };
 
       fireEvent.click(transactions[1]);
 
-      await waitFor(() => {
-        expect(dispatchMock).toHaveBeenCalledTimes(2);
-      });
+      await waitFor(() => expect(dispatchMock).toHaveBeenCalledTimes(2));
+
       expect(dispatchMock).toHaveBeenNthCalledWith(1, {
         type: ACTIONS.UPDATE_SELECTED_TRANS,
         payload: { selectedTrans: [] }
       });
+
       expect(dispatchMock).toHaveBeenNthCalledWith(2, {
         type: ACTIONS.UPDATE_PREVIEW,
         payload: { preview: newPreview }
@@ -140,16 +115,11 @@ describe("Select Transaction", () => {
   });
 
   describe("4 or more already selected", () => {
-    let ogState: IState;
-
     const dispatchMock = jest.fn();
+    const ogState = JSON.parse(JSON.stringify(initialState));
+    ogState.selectedTrans.push(...ogState.verifiedTrans.slice(2));
 
-    beforeAll(() => {
-      ogState = JSON.parse(JSON.stringify(initialState));
-      ogState.selectedTrans.push(...ogState.verifiedTrans.slice(2));
-    });
-
-    beforeEach(() => render(<TransactionItemsWrapper stateMock={ogState} dispatchMock={dispatchMock} />));
+    beforeEach(() => customRender(<TransactionItems />, { stateMock: ogState, dispatchMock }));
     afterEach(() => jest.clearAllMocks());
 
     it("alerts", () => {
@@ -169,21 +139,17 @@ describe("Select Transaction", () => {
       const selectedTrans = ogState.selectedTrans.slice(0, ogState.selectedTrans.length - 1); // expected
 
       jest.spyOn(TreeUtils, "calculateMerkleTreeFormation").mockResolvedValueOnce([["randomRoot"]]);
-      const newPreview = {
-        ...initialState.preview,
-        merkleRoot: "randomRoot",
-        valid: false
-      };
+      const newPreview = { ...initialState.preview, merkleRoot: "randomRoot", valid: false };
 
       fireEvent.click(transactions[transactions.length - 1]);
 
-      await waitFor(() => {
-        expect(dispatchMock).toHaveBeenCalledTimes(2);
-      });
+      await waitFor(() => expect(dispatchMock).toHaveBeenCalledTimes(2));
+
       expect(dispatchMock).toHaveBeenNthCalledWith(1, {
         type: ACTIONS.UPDATE_SELECTED_TRANS,
         payload: { selectedTrans }
       });
+
       expect(dispatchMock).toHaveBeenNthCalledWith(2, {
         type: ACTIONS.UPDATE_PREVIEW,
         payload: { preview: newPreview }

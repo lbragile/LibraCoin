@@ -12,7 +12,7 @@ export interface IBlockProps {
   index: number;
 }
 
-export default function Block(props: IBlockProps): JSX.Element {
+export default function Block({ chain, index }: IBlockProps): JSX.Element {
   const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
   function handleAddBlock() {
@@ -42,7 +42,7 @@ export default function Block(props: IBlockProps): JSX.Element {
   }
 
   function handleViewTransactions(): void {
-    const block = state.chain[props.index];
+    const block = state.chain[index];
     dispatch({ type: ACTIONS.UPDATE_BLOCK, payload: { block: { ...block, showTrans: !block.showTrans } } });
   }
 
@@ -50,11 +50,9 @@ export default function Block(props: IBlockProps): JSX.Element {
     <Form
       aria-label="Block Form"
       className={
-        (props.chain ? "" : "col-10 col-lg-5 ") +
+        (chain ? "" : "col-10 col-lg-5 ") +
         "my-4 my-lg-0 p-2 rounded " +
-        ((props.chain && state.chain[props.index].valid) || (!props.chain && state.preview.valid)
-          ? "valid-block"
-          : "invalid-block")
+        ((chain && state.chain[index].valid) || (!chain && state.preview.valid) ? "valid-block" : "invalid-block")
       }
     >
       <InputGroup className="mb-2">
@@ -65,7 +63,7 @@ export default function Block(props: IBlockProps): JSX.Element {
           aria-label="Block Index"
           name="index"
           type="number"
-          value={props.chain ? props.index : state.preview.index}
+          value={chain ? index : state.preview.index}
           disabled
         />
       </InputGroup>
@@ -78,7 +76,7 @@ export default function Block(props: IBlockProps): JSX.Element {
           aria-label="Block Timestamp"
           name="timestamp"
           type="number"
-          value={props.chain ? state.chain[props.index].timestamp : state.preview.timestamp}
+          value={chain ? state.chain[index].timestamp : state.preview.timestamp}
           disabled
         />
       </InputGroup>
@@ -92,13 +90,7 @@ export default function Block(props: IBlockProps): JSX.Element {
           name="prevHash"
           className="text-truncate"
           type="text"
-          value={
-            props.chain && props.index > 0
-              ? state.chain[props.index - 1].currHash
-              : props.chain
-              ? ""
-              : state.preview.prevHash
-          }
+          value={chain && index > 0 ? state.chain[index - 1].currHash : chain ? "" : state.preview.prevHash}
           readOnly
         />
       </InputGroup>
@@ -112,7 +104,7 @@ export default function Block(props: IBlockProps): JSX.Element {
           name="currHash"
           className="text-truncate"
           type="text"
-          value={props.chain ? state.chain[props.index].currHash : state.preview.currHash}
+          value={chain ? state.chain[index].currHash : state.preview.currHash}
           readOnly
         />
       </InputGroup>
@@ -121,7 +113,7 @@ export default function Block(props: IBlockProps): JSX.Element {
         <InputGroup.Prepend>
           <InputGroup.Text>Merkle #</InputGroup.Text>
         </InputGroup.Prepend>
-        {props.chain && props.index === 0 ? (
+        {chain && index === 0 ? (
           <Form.Control aria-label="Block Merkle Genesis" name="merkleRoot" type="text" defaultValue={""} disabled />
         ) : (
           <React.Fragment>
@@ -130,17 +122,17 @@ export default function Block(props: IBlockProps): JSX.Element {
               name="merkleRoot"
               className="text-truncate"
               type="text"
-              value={props.chain ? state.chain[props.index].merkleRoot : state.preview.merkleRoot}
+              value={chain ? state.chain[index].merkleRoot : state.preview.merkleRoot}
               readOnly
             />
-            {props.chain && (
+            {chain && (
               <InputGroup.Append>
                 <InputGroup.Text
                   aria-label="Show Trans"
                   className="show-trans-eye"
                   onClick={() => handleViewTransactions()}
                 >
-                  {state.chain[props.index].showTrans ? "🙈" : "🙉"}
+                  {state.chain[index].showTrans ? "🙈" : "🙉"}
                 </InputGroup.Text>
               </InputGroup.Append>
             )}
@@ -148,7 +140,7 @@ export default function Block(props: IBlockProps): JSX.Element {
         )}
       </InputGroup>
 
-      {!props.chain && state.preview.valid && (
+      {!chain && state.preview.valid && (
         <Button aria-label="Add Block" className="mt-2" variant="success" block onClick={() => handleAddBlock()}>
           <h4 className="my-0">Add Block</h4>
         </Button>

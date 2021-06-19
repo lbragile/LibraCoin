@@ -132,7 +132,7 @@ describe("in preview mode", () => {
 
     await waitFor(() =>
       expect(screen.getByRole("form", { name: /Block Form/i })).toHaveFormValues({
-        index: state.preview.index,
+        index: initialState.preview.index + 1,
         timestamp: 67890,
         prevHash: solution,
         currHash: "",
@@ -220,7 +220,7 @@ describe("in blockchain mode", () => {
         block: {
           ...newState.chain[index],
           timestamp: 12345,
-          prevHash: state.chain[index - 1].currHash,
+          prevHash: initialState.chain[index - 1].currHash,
           currHash: solution,
           valid: type === "valid"
         }
@@ -291,7 +291,7 @@ describe("in blockchain mode", () => {
         block: {
           ...newState.chain[index],
           timestamp: 12345,
-          prevHash: state.chain[index - 1].currHash,
+          prevHash: initialState.chain[index - 1].currHash,
           currHash: solution,
           valid: type === "valid"
         }

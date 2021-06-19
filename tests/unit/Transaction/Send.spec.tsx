@@ -2,29 +2,16 @@
  * @group unit
  */
 
-import React, { useReducer } from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import React from "react";
+import { fireEvent, screen } from "@testing-library/react";
 
 import Send from "../../../src/components/Transaction/Send";
-import { AppContext } from "../../../src/context/AppContext";
-import { IAction, IState } from "../../../src/typings/AppTypes";
-import { AppReducer } from "../../../src/reducers/AppReducer";
+import { customRender } from "../../utils/testUtils";
 
 const { initialState } = global;
 
-const SendWrapper = ({ stateMock, dispatchMock }: { stateMock?: IState; dispatchMock?: React.Dispatch<IAction> }) => {
-  const [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
-
-  return (
-    <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
-      <Send />
-    </AppContext.Provider>
-  );
-};
-
 it("renders correctly", () => {
-  const { asFragment } = render(<SendWrapper />);
+  const { asFragment } = customRender(<Send />);
 
   expect(screen.getByRole("form", { name: /Send Form/i })).toHaveFormValues({
     "receiver-pk": "",
@@ -61,7 +48,7 @@ it("renders correctly", () => {
 
 describe("send button state", () => {
   it("is disabled when not signed", () => {
-    render(<SendWrapper />);
+    customRender(<Send />);
 
     expect(screen.getByRole("button", { name: /Send Button/i })).toBeDisabled();
     expect(screen.getByRole("button", { name: /Send Button/i })).toHaveTextContent("Send");
@@ -69,7 +56,7 @@ describe("send button state", () => {
   });
 
   it("is enabled when signed", () => {
-    render(<SendWrapper stateMock={{ ...initialState, wallet: { ...initialState.wallet, signed: true } }} />);
+    customRender(<Send />, { stateMock: { ...initialState, wallet: { ...initialState.wallet, signed: true } } });
 
     expect(screen.getByRole("button", { name: /Send Button/i })).toBeEnabled();
     expect(screen.getByRole("button", { name: /Send Button/i })).toHaveTextContent("Send");
@@ -77,7 +64,7 @@ describe("send button state", () => {
   });
 
   it("is disabled when sent", () => {
-    render(<SendWrapper stateMock={{ ...initialState, wallet: { ...initialState.wallet, signed: true } }} />);
+    customRender(<Send />, { stateMock: { ...initialState, wallet: { ...initialState.wallet, signed: true } } });
 
     fireEvent.click(screen.getByRole("button", { name: /Send Button/i }));
 

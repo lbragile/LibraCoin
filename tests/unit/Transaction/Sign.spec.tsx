@@ -2,30 +2,17 @@
  * @group unit
  */
 
-import React, { useReducer } from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import React from "react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 
 import Sign from "../../../src/components/Transaction/Sign";
-import { AppContext } from "../../../src/context/AppContext";
-import { AppReducer } from "../../../src/reducers/AppReducer";
-import { IAction, IState } from "../../../src/typings/AppTypes";
 import * as conversionUtils from "../../../src/utils/conversion";
+import { customRender } from "../../utils/testUtils";
 
 const { initialState } = global;
 
-const SignWrapper = ({ stateMock, dispatchMock }: { stateMock?: IState; dispatchMock?: React.Dispatch<IAction> }) => {
-  const [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
-
-  return (
-    <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
-      <Sign />
-    </AppContext.Provider>
-  );
-};
-
 it("renders correctly", () => {
-  const { asFragment } = render(<SignWrapper />);
+  const { asFragment } = customRender(<Sign />);
 
   expect(screen.getByRole("form", { name: /Sign Form/i })).toHaveFormValues({
     "sender-pk": initialState.user.publicKey,
@@ -66,7 +53,7 @@ it("renders correctly", () => {
 
 describe("sign button state", () => {
   it("is enabled when not signed", () => {
-    render(<SignWrapper />);
+    customRender(<Sign />);
 
     expect(screen.getByRole("button", { name: /Sign Button/i })).toBeEnabled();
     expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveTextContent("Sign");
@@ -75,7 +62,7 @@ describe("sign button state", () => {
 
   it("is disabled when signed", async () => {
     jest.spyOn(conversionUtils, "digestMessage").mockResolvedValueOnce("random digest");
-    render(<SignWrapper />);
+    customRender(<Sign />);
 
     // fill out the form
     fireEvent.change(screen.getByRole("textbox", { name: /Receiver Public Key/i }), {
@@ -99,7 +86,7 @@ describe("sign button state", () => {
 });
 
 describe("Amount checking", () => {
-  beforeEach(() => render(<SignWrapper />));
+  beforeEach(() => customRender(<Sign />));
 
   it("clamps when below minimum (0.10)", () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
@@ -139,14 +126,16 @@ describe("Amount checking", () => {
 });
 
 describe("form validation", () => {
+  beforeEach(() =>
+    customRender(<Sign />, { stateMock: { ...initialState, wallet: { ...initialState.wallet, validated: true } } })
+  );
+
   test("invalid receiver public key length", async () => {
-    render(<SignWrapper stateMock={{ ...initialState, wallet: { ...initialState.wallet, validated: true } }} />);
     fireEvent.change(screen.getByRole("textbox", { name: /Receiver Public Key/i }), { target: { value: "tooShort" } });
     expect(screen.getByText("Length or format are incorrect!")).toBeVisible();
   });
 
   test("valid receiver public key length", async () => {
-    render(<SignWrapper stateMock={{ ...initialState, wallet: { ...initialState.wallet, validated: true } }} />);
     expect(screen.getByRole("alert", { name: /Receiver PK Feedback/i })).toBeVisible();
 
     fireEvent.change(screen.getByRole("textbox", { name: /Receiver Public Key/i }), {
