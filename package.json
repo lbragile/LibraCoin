@@ -50,7 +50,7 @@
     "test": "jest --coverage --maxWorkers 50% --config ./config/jest.config.js",
     "test:unit": "npm test -- --group=unit --group=utils --group=reducers",
     "test:integration": "npm test -- --group=integration --group=utils --group=reducers",
-    "lint": "npx eslint src -c config/.eslintrc.js && npx stylelint src --config config/.stylelintrc.json",
+    "lint": "npx eslint src tests -c config/.eslintrc.js && npx stylelint src --config config/.stylelintrc.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "gh-pages -d build",
