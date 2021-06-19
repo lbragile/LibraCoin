@@ -3,7 +3,8 @@
  */
 
 import React from "react";
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Sign from "../../../src/components/Transaction/Sign";
 import * as conversionUtils from "../../../src/utils/conversion";
@@ -65,19 +66,11 @@ describe("sign button state", () => {
     customRender(<Sign />);
 
     // fill out the form
-    fireEvent.change(screen.getByRole("textbox", { name: /Receiver Public Key/i }), {
-      target: { value: new Array(182).fill("A").join("") }
-    });
+    userEvent.type(screen.getByRole("textbox", { name: /Receiver Public Key/i }), new Array(182).fill("A").join(""));
+    userEvent.type(screen.getByRole("spinbutton", { name: /Sign Amount/i }), Number(320.12).toFixed(2));
+    userEvent.type(screen.getByRole("textbox", { name: /Sign Message/i }), "random{space}message");
 
-    fireEvent.change(screen.getByRole("spinbutton", { name: /Sign Amount/i }), {
-      target: { value: Number(320.12).toFixed(2) }
-    });
-
-    fireEvent.change(screen.getByRole("textbox", { name: /Sign Message/i }), {
-      target: { value: "random message" }
-    });
-
-    fireEvent.click(screen.getByRole("button", { name: /Sign Button/i }));
+    userEvent.click(screen.getByRole("button", { name: /Sign Button/i }));
 
     await waitFor(() => expect(screen.getByRole("button", { name: /Sign Button/i })).toBeDisabled());
     expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveTextContent("Signed");
@@ -91,7 +84,7 @@ describe("Amount checking", () => {
   it("clamps when below minimum (0.10)", () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
     signAmount.focus();
-    fireEvent.change(signAmount, { target: { value: "0.01" } });
+    userEvent.type(signAmount, "0.01");
     signAmount.blur();
 
     expect(signAmount).toHaveValue(0.1);
@@ -100,7 +93,7 @@ describe("Amount checking", () => {
   it("clamps when above maximum (1000.00)", () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
     signAmount.focus();
-    fireEvent.change(signAmount, { target: { value: "1000.01" } });
+    userEvent.type(signAmount, "1000.01");
     signAmount.blur();
 
     expect(signAmount).toHaveValue(1000.0);
@@ -109,7 +102,7 @@ describe("Amount checking", () => {
   it("does not clamp when value is between min and max", () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
     signAmount.focus();
-    fireEvent.change(signAmount, { target: { value: "123.45" } });
+    userEvent.type(signAmount, "123.45");
     signAmount.blur();
 
     expect(signAmount).toHaveValue(123.45);
@@ -118,7 +111,7 @@ describe("Amount checking", () => {
   it("maintains 2 decimal places", () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
     signAmount.focus();
-    fireEvent.change(signAmount, { target: { value: "123.456" } });
+    userEvent.type(signAmount, "123.456");
     signAmount.blur();
 
     expect(signAmount).toHaveValue(123.46);
@@ -131,18 +124,15 @@ describe("form validation", () => {
   );
 
   test("invalid receiver public key length", async () => {
-    fireEvent.change(screen.getByRole("textbox", { name: /Receiver Public Key/i }), { target: { value: "tooShort" } });
+    userEvent.type(screen.getByRole("textbox", { name: /Receiver Public Key/i }), "tooShort");
     expect(screen.getByText("Length or format are incorrect!")).toBeVisible();
   });
 
   test("valid receiver public key length", async () => {
     expect(screen.getByRole("alert", { name: /Receiver PK Feedback/i })).toBeVisible();
 
-    fireEvent.change(screen.getByRole("textbox", { name: /Receiver Public Key/i }), {
-      target: { value: new Array(182).fill("A").join("") }
-    });
-
-    fireEvent.click(screen.getByRole("button", { name: /Sign Button/i }));
+    userEvent.type(screen.getByRole("textbox", { name: /Receiver Public Key/i }), new Array(182).fill("A").join(""));
+    userEvent.click(screen.getByRole("button", { name: /Sign Button/i }));
 
     await waitFor(() => expect(screen.queryByText("Length or format are incorrect!")).not.toBeVisible());
   });

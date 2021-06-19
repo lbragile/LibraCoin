@@ -3,7 +3,8 @@
  */
 
 import React from "react";
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Block from "../../../src/components/Block/Block";
 import { ACTIONS } from "../../../src/enums/AppDispatchActions";
@@ -86,7 +87,7 @@ describe("in preview mode", () => {
         dispatchMock
       });
 
-      fireEvent.click(screen.getByRole("button", { name: /Add Block/i }));
+      userEvent.click(screen.getByRole("button", { name: /Add Block/i }));
 
       expect(dispatchMock).toHaveBeenCalledTimes(4);
       expect(dispatchMock).toHaveBeenNthCalledWith(1, { type: ACTIONS.ADD_BLOCK, payload: { block: blockPayload } });
@@ -219,7 +220,7 @@ describe("in blockchain mode", () => {
       const dispatchMock = jest.fn();
       customRender(<Block chain={true} index={1} />, { dispatchMock });
 
-      fireEvent.click(screen.getByText("🙉"));
+      userEvent.click(screen.getByText("🙉"));
 
       expect(dispatchMock).toHaveBeenCalledTimes(1);
       expect(dispatchMock).toHaveBeenCalledWith({
@@ -232,7 +233,7 @@ describe("in blockchain mode", () => {
       const { asFragment } = customRender(<Block chain={true} index={1} />);
 
       expect(screen.getByText("🙉")).toBeInTheDocument();
-      fireEvent.click(screen.getByText("🙉"));
+      userEvent.click(screen.getByText("🙉"));
       expect(await screen.findByText("🙈")).toBeInTheDocument();
       expect(screen.queryByText("🙉")).not.toBeInTheDocument();
 

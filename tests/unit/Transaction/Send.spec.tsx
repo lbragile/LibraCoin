@@ -3,7 +3,8 @@
  */
 
 import React from "react";
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Send from "../../../src/components/Transaction/Send";
 import { customRender } from "../../utils/testUtils";
@@ -66,7 +67,7 @@ describe("send button state", () => {
   it("is disabled when sent", () => {
     customRender(<Send />, { stateMock: { ...initialState, wallet: { ...initialState.wallet, signed: true } } });
 
-    fireEvent.click(screen.getByRole("button", { name: /Send Button/i }));
+    userEvent.click(screen.getByRole("button", { name: /Send Button/i }));
 
     expect(screen.getByRole("button", { name: /Send Button/i })).toBeDisabled();
     expect(screen.getByRole("button", { name: /Send Button/i })).toHaveTextContent("Sent");

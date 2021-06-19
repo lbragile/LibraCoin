@@ -3,7 +3,8 @@
  */
 
 import React from "react";
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import KeyGeneration from "../../../src/components/User/KeyGeneration";
 import { customRender } from "../../utils/testUtils";
@@ -72,7 +73,7 @@ describe("input field text", () => {
 
     await waitFor(() => expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKeyHidden));
 
-    fireEvent.click(screen.getByText("👀"));
+    userEvent.click(screen.getByText("👀"));
 
     expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKey);
     expect(screen.getByText("👀")).toBeInTheDocument();
@@ -90,7 +91,8 @@ describe("copy input of key fields", () => {
     expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");
     expect(screen.getByRole("textbox", { name: /privateKey/i })).not.toHaveClass("is-valid");
 
-    fireEvent.focus(screen.getByRole("textbox", { name: /publicKey/i }));
+    // why element.focus() instead of fireEvent.focus()? https://testing-library.com/docs/guide-events/#focusblur
+    screen.getByRole("textbox", { name: /publicKey/i }).focus();
 
     // public has feedback while private doesn't
     expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveClass("is-valid");
@@ -99,7 +101,7 @@ describe("copy input of key fields", () => {
     expect(copyInputSpy).toHaveBeenCalledTimes(1);
     expect(copyInputSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement), "walletPK", expect.any(Function));
 
-    fireEvent.blur(screen.getByRole("textbox", { name: /publicKey/i }));
+    screen.getByRole("textbox", { name: /publicKey/i }).blur();
 
     // after blur, both do not have feedback
     expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");
@@ -112,7 +114,7 @@ describe("copy input of key fields", () => {
       expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");
       expect(screen.getByRole("textbox", { name: /privateKey/i })).not.toHaveClass("is-valid");
 
-      fireEvent.focus(screen.getByRole("textbox", { name: /privateKey/i }));
+      screen.getByRole("textbox", { name: /privateKey/i }).focus();
 
       // both don't have feedback
       expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");
@@ -127,11 +129,11 @@ describe("copy input of key fields", () => {
       expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");
       expect(screen.getByRole("textbox", { name: /privateKey/i })).not.toHaveClass("is-valid");
 
-      fireEvent.click(screen.getByText("👀"));
+      userEvent.click(screen.getByText("👀"));
 
       expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(initialState.user.privateKey);
 
-      fireEvent.focus(screen.getByRole("textbox", { name: /privateKey/i }));
+      screen.getByRole("textbox", { name: /privateKey/i }).focus();
 
       // private has feedback while public doesn't
       expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");
@@ -140,7 +142,7 @@ describe("copy input of key fields", () => {
       expect(copyInputSpy).toHaveBeenCalledTimes(1);
       expect(copyInputSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement), "walletSK", expect.any(Function));
 
-      fireEvent.blur(screen.getByRole("textbox", { name: /privateKey/i }));
+      screen.getByRole("textbox", { name: /privateKey/i }).blur();
 
       // after blur, both do not have feedback
       expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");

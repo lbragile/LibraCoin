@@ -3,7 +3,8 @@
  */
 
 import React from "react";
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import TransactionItems from "../../../src/components/Transaction/TransactionItems";
 import { ACTIONS } from "../../../src/enums/AppDispatchActions";
@@ -77,7 +78,7 @@ describe("Select Transaction", () => {
 
       const selectedTrans = [...initialState.selectedTrans, newSelected]; // expected
 
-      fireEvent.click(transactions[0]);
+      userEvent.click(transactions[0]);
 
       await waitFor(() => expect(dispatchMock).toHaveBeenCalledTimes(2));
 
@@ -98,7 +99,7 @@ describe("Select Transaction", () => {
       jest.spyOn(TreeUtils, "calculateMerkleTreeFormation").mockResolvedValueOnce([[""]]);
       const newPreview = { ...initialState.preview, merkleRoot: "", valid: false };
 
-      fireEvent.click(transactions[1]);
+      userEvent.click(transactions[1]);
 
       await waitFor(() => expect(dispatchMock).toHaveBeenCalledTimes(2));
 
@@ -126,7 +127,7 @@ describe("Select Transaction", () => {
       const alertSpy = jest.spyOn(window, "alert").mockImplementation(() => undefined);
 
       const transactions = screen.getAllByRole("form", { name: /Transaction Information/i });
-      fireEvent.click(transactions[0]);
+      userEvent.click(transactions[0]);
 
       expect(alertSpy).toHaveBeenCalledTimes(1);
       expect(alertSpy).toHaveBeenCalledWith("You can mine at most 4 transactions at a time!");
@@ -141,7 +142,7 @@ describe("Select Transaction", () => {
       jest.spyOn(TreeUtils, "calculateMerkleTreeFormation").mockResolvedValueOnce([["randomRoot"]]);
       const newPreview = { ...initialState.preview, merkleRoot: "randomRoot", valid: false };
 
-      fireEvent.click(transactions[transactions.length - 1]);
+      userEvent.click(transactions[transactions.length - 1]);
 
       await waitFor(() => expect(dispatchMock).toHaveBeenCalledTimes(2));
 

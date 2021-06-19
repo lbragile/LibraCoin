@@ -3,7 +3,8 @@
  */
 
 import React from "react";
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Statistics from "../../../src/components/Block/Statistics";
 import { customRender } from "../../utils/testUtils";
@@ -83,7 +84,7 @@ describe("in preview mode", () => {
         customRender(<Statistics chain={false} index={initialState.preview.index} />, { dispatchMock });
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
-        fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+        userEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
 
         expect(screen.getByRole("textbox", { name: /Block Target/i })).toHaveValue(target);
@@ -115,7 +116,7 @@ describe("in preview mode", () => {
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
 
         // mining is async so setting mine button to disabled happens outside React's call stack
-        fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+        userEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
 
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
 
@@ -134,7 +135,7 @@ describe("in preview mode", () => {
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
 
-        fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+        userEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
 
         // need to await state changes
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
@@ -208,7 +209,7 @@ describe("in blockchain mode", () => {
         customRender(<Statistics chain={true} index={index} />, { dispatchMock });
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
-        fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+        userEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
 
         expect(screen.getByRole("textbox", { name: /Block Target/i })).toHaveValue(target);
@@ -240,7 +241,7 @@ describe("in blockchain mode", () => {
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
 
         // mining is async so setting mine button to disabled happens outside React's call stack
-        fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+        userEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
 
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
 
@@ -259,7 +260,7 @@ describe("in blockchain mode", () => {
 
         expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
 
-        fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+        userEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
 
         // need to await state changes
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
@@ -289,7 +290,7 @@ describe("in blockchain mode", () => {
       customRender(<Statistics chain={true} index={index} />, { stateMock: { ...initialState, chain }, dispatchMock });
 
       expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
-      fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+      userEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
       await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
 
       expect(dispatchMock).toHaveBeenCalledTimes(1); // first call is the block itself
@@ -317,7 +318,7 @@ describe("in blockchain mode", () => {
       customRender(<Statistics chain={true} index={index} />, { stateMock: { ...initialState, chain }, dispatchMock });
 
       expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled();
-      fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+      userEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
       await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
 
       expect(dispatchMock).toHaveBeenCalledTimes(2);
