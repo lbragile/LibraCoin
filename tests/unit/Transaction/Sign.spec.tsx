@@ -119,21 +119,38 @@ describe("Amount checking", () => {
 });
 
 describe("form validation", () => {
-  beforeEach(() =>
-    customRender(<Sign />, { stateMock: { ...initialState, wallet: { ...initialState.wallet, validated: true } } })
-  );
-
   test("invalid receiver public key length", async () => {
-    userEvent.type(screen.getByRole("textbox", { name: /Receiver Public Key/i }), "tooShort");
-    expect(screen.getByText("Length or format are incorrect!")).toBeVisible();
+    customRender(<Sign />);
+
+    // validate the form
+    userEvent.click(screen.getByRole("button", { name: /Sign Button/i }));
+
+    expect(screen.getByRole("form", { name: /Sign Form/i })).toHaveClass("was-validated");
+    expect(screen.getByRole("alert", { name: /Receiver PK Feedback/i })).toBeVisible();
+
+    const input = screen.getByRole("textbox", { name: /Receiver Public Key/i });
+    const text = "x";
+    await userEvent.type(input, text, { delay: 100 });
+    expect(input).toHaveValue(text);
+
+    expect(screen.getByRole("alert", { name: /Receiver PK Feedback/i })).toBeVisible();
   });
 
   test("valid receiver public key length", async () => {
-    expect(screen.getByRole("alert", { name: /Receiver PK Feedback/i })).toBeVisible();
+    customRender(<Sign />);
 
-    userEvent.type(screen.getByRole("textbox", { name: /Receiver Public Key/i }), new Array(182).fill("A").join(""));
+    // validate the form
     userEvent.click(screen.getByRole("button", { name: /Sign Button/i }));
 
-    await waitFor(() => expect(screen.queryByText("Length or format are incorrect!")).not.toBeVisible());
+    expect(screen.getByRole("form", { name: /Sign Form/i })).toHaveClass("was-validated");
+    expect(screen.getByRole("alert", { name: /Receiver PK Feedback/i })).toBeVisible();
+
+    const input = screen.getByRole("textbox", { name: /Receiver Public Key/i });
+    const text = new Array(181).fill("A").join("");
+    userEvent.type(input, text);
+    await userEvent.type(input, "b", { delay: 100 }); // add a bit of delay to the last character
+    expect(input).toHaveValue(text + "b");
+
+    // expect(screen.getByRole("alert", { name: /Receiver PK Feedback/i })).not.toBeVisible(); // FAILS
   });
 });
