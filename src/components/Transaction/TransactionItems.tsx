@@ -81,9 +81,9 @@ export default function TransactionItems(): JSX.Element {
                 </InputGroup.Prepend>
                 <Form.Control
                   aria-label="Transaction Message"
-                  name="message"
+                  name="msg"
                   as="textarea"
-                  defaultValue={transaction.message}
+                  defaultValue={transaction.msg}
                   readOnly
                 />
               </InputGroup>

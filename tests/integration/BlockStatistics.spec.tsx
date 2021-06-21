@@ -154,7 +154,7 @@ describe("in blockchain mode", () => {
         to: "Z",
         from: "Y",
         amount: 123.45,
-        message: "Fifth Transaction",
+        msg: "Fifth Transaction",
         signature: "ZY123.45"
       }
     ],

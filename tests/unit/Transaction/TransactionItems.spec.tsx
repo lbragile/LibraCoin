@@ -67,7 +67,7 @@ describe("Select Transaction", () => {
       const newSelected = {
         amount: +balances[0].value,
         from: fromFields[0].value,
-        message: msgFields[0].value,
+        msg: msgFields[0].value,
         signature: sigFields[0].value,
         to: toFields[0].value
       };

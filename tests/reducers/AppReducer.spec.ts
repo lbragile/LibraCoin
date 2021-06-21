@@ -12,7 +12,7 @@ const trans: ITransaction = {
   to: "B",
   from: "C",
   amount: 4.56,
-  message: "Sixth Transaction",
+  msg: "Sixth Transaction",
   signature: "BC4.56"
 };
 

@@ -42,7 +42,7 @@ export default function App(): JSX.Element {
       sent: false,
       signed: false,
       validated: false,
-      details: { from: "", to: "", amount: (0).toFixed(2), message: "", signature: "" }
+      details: { from: "", to: "", amount: (0).toFixed(2), msg: "", signature: "" }
     }
   });
 

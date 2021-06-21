@@ -3,7 +3,7 @@ import { ACTIONS } from "../enums/AppDispatchActions";
 export interface ITransaction {
   amount: number;
   from: string;
-  message: string;
+  msg: string;
   to: string;
   signature: string;
 }

@@ -16,7 +16,7 @@ export default function Send(): JSX.Element {
     dispatch({ type: ACTIONS.ADD_VERIFIED_TRANS, payload: { trans: state.wallet.details } });
     dispatch({
       type: ACTIONS.SET_DETAILS,
-      payload: { details: { from: "", to: "", amount: (0).toFixed(2), message: "", signature: "" } }
+      payload: { details: { from: "", to: "", amount: (0).toFixed(2), msg: "", signature: "" } }
     });
   };
 
@@ -59,7 +59,7 @@ export default function Send(): JSX.Element {
           aria-label="Send Message"
           name="msg"
           as="textarea"
-          value={state.wallet.details.message}
+          value={state.wallet.details.msg}
           rows={4}
           placeholder="optional message..."
           readOnly

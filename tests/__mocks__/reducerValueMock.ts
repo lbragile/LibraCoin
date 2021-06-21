@@ -9,35 +9,35 @@ const initialState: IState = {
       to: "A",
       from: "B",
       amount: 1.23,
-      message: "First Transaction",
+      msg: "First Transaction",
       signature: "AB1.23"
     },
     {
       to: "A",
       from: "C",
       amount: 456.78,
-      message: "Second Transaction",
+      msg: "Second Transaction",
       signature: "AC456.78"
     },
     {
       to: "A",
       from: "D",
       amount: 999.99,
-      message: "Third Transaction",
+      msg: "Third Transaction",
       signature: "AD999.99"
     },
     {
       to: "A",
       from: "E",
       amount: 987.65,
-      message: "Forth Transaction",
+      msg: "Forth Transaction",
       signature: "AE987.65"
     },
     {
       to: "A",
       from: "F",
       amount: 1.01,
-      message: "Fifth Transaction",
+      msg: "Fifth Transaction",
       signature: "AF1.01"
     }
   ],
@@ -46,7 +46,7 @@ const initialState: IState = {
       to: "A",
       from: "C",
       amount: 456.78,
-      message: "Second Transaction",
+      msg: "Second Transaction",
       signature: "AC456.78"
     }
   ],
@@ -76,7 +76,7 @@ const initialState: IState = {
           to: "A",
           from: "E",
           amount: 987.65,
-          message: "Forth Transaction",
+          msg: "Forth Transaction",
           signature: "AE987.65"
         }
       ],
@@ -94,7 +94,7 @@ const initialState: IState = {
           to: "A",
           from: "Z",
           amount: 567.89,
-          message: "Forth Transaction",
+          msg: "Forth Transaction",
           signature: "AZ567.89"
         }
       ],
@@ -118,7 +118,7 @@ const initialState: IState = {
     sent: false,
     signed: false,
     validated: false,
-    details: { from: "", to: "", amount: 0, message: "", signature: "" }
+    details: { from: "", to: "", amount: 0, msg: "", signature: "" }
   }
 };
 
