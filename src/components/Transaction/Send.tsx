@@ -27,7 +27,7 @@ export default function Send(): JSX.Element {
           <InputGroup.Text>Receiver Public Key</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control
-          aria-label="Receiver Public Key"
+          aria-label="Receiver PK"
           name="receiver-pk"
           className="text-truncate"
           type="text"

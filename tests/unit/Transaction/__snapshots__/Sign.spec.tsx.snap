@@ -46,7 +46,7 @@ exports[`renders correctly 1`] = `
         </span>
       </div>
       <input
-        aria-label="Receiver Public Key"
+        aria-label="Receiver PK"
         class="text-truncate rounded-right form-control"
         name="to"
         required=""
@@ -89,13 +89,12 @@ exports[`renders correctly 1`] = `
           Message
         </span>
       </div>
-      <input
+      <textarea
         aria-label="Sign Message"
         class="form-control"
         name="msg"
         placeholder="optional message..."
         rows="2"
-        value=""
       />
     </div>
     <div

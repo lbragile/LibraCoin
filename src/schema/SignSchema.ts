@@ -2,27 +2,26 @@ import * as yup from "yup";
 import { StringSchema } from "yup";
 import { RequiredNumberSchema } from "yup/lib/number";
 import { RequiredStringSchema } from "yup/lib/string";
-
-function numberWithCommas(x: number): string {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+import { numberWithCommas } from "../utils/numberManipulation";
 
 type reqStrSchema = RequiredStringSchema<string | undefined, Record<string, unknown>>;
 type optStrSchema = StringSchema<string | undefined, Record<string, unknown>>;
 type reqNumSchema = RequiredNumberSchema<number | undefined, Record<string, unknown>>;
 
-export const SignSchema = (
-  lenPK: number,
-  balance: number
-): yup.ObjectSchema<{
-  from: reqStrSchema;
+type TSignSchema = {
   to: reqStrSchema;
   amount: reqNumSchema;
   msg: optStrSchema;
-  fromSK: reqStrSchema;
-}> => {
+};
+
+const minVal = (min: number, value?: number): boolean => (value === undefined ? true : value >= min);
+const decimalFormat = (value?: number): boolean => {
+  const num = Number(value);
+  return Math.floor(num) === num || !value ? true : value.toString().split(".")[1].length <= 2;
+};
+
+export const SignSchema = (lenPK: number, balance: number): yup.ObjectSchema<TSignSchema> => {
   return yup.object().shape({
-    from: yup.string().required(),
     to: yup
       .string()
       .min(lenPK, (obj) => {
@@ -37,11 +36,11 @@ export const SignSchema = (
       .required("Receiver Public Key is required!"),
     amount: yup
       .number()
-      .min(0)
+      .test("negative", "Cannot be a negative value", (value) => minVal(0, value))
+      .test("min", "Must be at least $0.10 LC", (value) => minVal(0.1, value))
+      .test("format", "Allowed at most 2 decimal places", decimalFormat)
       .max(balance, `Must be at most $${numberWithCommas(balance)} LC`)
-      .positive("Cannot use negative values!")
       .required("Amount is required!"),
-    msg: yup.string().optional(),
-    fromSK: yup.string().required()
+    msg: yup.string().optional()
   });
 };

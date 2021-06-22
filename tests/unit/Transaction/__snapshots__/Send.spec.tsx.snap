@@ -20,7 +20,7 @@ exports[`renders correctly 1`] = `
         </span>
       </div>
       <input
-        aria-label="Receiver Public Key"
+        aria-label="Receiver PK"
         class="text-truncate form-control"
         name="receiver-pk"
         readonly=""

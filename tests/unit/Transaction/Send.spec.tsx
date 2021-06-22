@@ -21,7 +21,7 @@ it("renders correctly", () => {
     sig: ""
   });
 
-  const receiverPublicKey = screen.getByRole("textbox", { name: /Receiver Public Key/i });
+  const receiverPublicKey = screen.getByRole("textbox", { name: /Receiver PK/i });
   expect(receiverPublicKey).toHaveAttribute("readOnly");
   expect(receiverPublicKey).not.toBeRequired();
 

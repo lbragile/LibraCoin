@@ -9,6 +9,7 @@ import userEvent from "@testing-library/user-event";
 import Sign from "../../../src/components/Transaction/Sign";
 import * as conversionUtils from "../../../src/utils/conversion";
 import { customRender } from "../../utils/testUtils";
+import { numberWithCommas } from "../../../src/utils/numberManipulation";
 
 const { initialState } = global;
 
@@ -29,7 +30,7 @@ it("renders correctly", () => {
 
   expect(screen.getByText(/Used to verify/i)).toBeInTheDocument();
 
-  const receiverPublicKey = screen.getByRole("textbox", { name: /Receiver Public Key/i });
+  const receiverPublicKey = screen.getByRole("textbox", { name: /Receiver PK/i });
   expect(receiverPublicKey).toBeEnabled();
   expect(receiverPublicKey).toBeRequired();
 
@@ -58,7 +59,7 @@ describe("sign button state", () => {
 
     // fill out the form
     userEvent.type(
-      screen.getByRole("textbox", { name: /Receiver Public Key/i }),
+      screen.getByRole("textbox", { name: /Receiver PK/i }),
       new Array(initialState.user.publicKey.length).fill("A").join("")
     );
 
@@ -75,7 +76,7 @@ describe("sign button state", () => {
 
     // fill out the form
     userEvent.type(
-      screen.getByRole("textbox", { name: /Receiver Public Key/i }),
+      screen.getByRole("textbox", { name: /Receiver PK/i }),
       new Array(initialState.user.publicKey.length).fill("A").join("")
     );
     userEvent.type(screen.getByRole("spinbutton", { name: /Sign Amount/i }), Number(320.12).toFixed(2));
@@ -89,43 +90,73 @@ describe("sign button state", () => {
   });
 });
 
-describe.skip("Amount checking", () => {
+describe("Amount checking", () => {
   beforeEach(() => customRender(<Sign />));
 
-  it("clamps when below minimum (0.10)", () => {
+  it("shows error when empty", async () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
     signAmount.focus();
-    userEvent.type(signAmount, "0.01");
-    signAmount.blur();
+    signAmount.blur(); // cause an error
 
-    expect(signAmount).toHaveValue(0.1);
+    const alert = await screen.findByRole("alert", { name: /Amount Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Amount is required!");
   });
 
-  it("clamps when above maximum (1000.00)", () => {
+  it("shows error when negative", async () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
-    signAmount.focus();
-    userEvent.type(signAmount, "1000.01");
-    signAmount.blur();
+    userEvent.type(signAmount, "-0.1");
+    signAmount.blur(); // cause an error
 
-    expect(signAmount).toHaveValue(1000.0);
+    const alert = await screen.findByRole("alert", { name: /Amount Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Cannot be a negative value");
   });
 
-  it("does not clamp when value is between min and max", () => {
+  it("shows error when below minimum (0.10)", async () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
-    signAmount.focus();
+    userEvent.type(signAmount, "0.09");
+    signAmount.blur(); // cause an error
+
+    const alert = await screen.findByRole("alert", { name: /Amount Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Must be at least $0.10 LC");
+  });
+
+  it("shows error when above maximum", async () => {
+    const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
+    userEvent.type(signAmount, (initialState.user.balance + 0.01).toString());
+    signAmount.blur(); // cause an error
+
+    const alert = await screen.findByRole("alert", { name: /Amount Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent(`Must be at most $${numberWithCommas(initialState.user.balance)} LC`);
+  });
+
+  it("does not show error when between", () => {
+    const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
+    userEvent.type(signAmount, "123.4");
+    signAmount.blur();
+
+    expect(screen.queryByRole("alert", { name: /Amount Feedback/i })).not.toBeInTheDocument();
+  });
+
+  it("shows error when more than 2 decimal places", async () => {
+    const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
+    userEvent.type(signAmount, "123.456");
+    signAmount.blur(); // cause an error
+
+    const alert = await screen.findByRole("alert", { name: /Amount Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Allowed at most 2 decimal places");
+  });
+
+  it("does not show error for 2 decimal places", () => {
+    const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
     userEvent.type(signAmount, "123.45");
     signAmount.blur();
 
-    expect(signAmount).toHaveValue(123.45);
-  });
-
-  it("maintains 2 decimal places", () => {
-    const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
-    signAmount.focus();
-    userEvent.type(signAmount, "123.456");
-    signAmount.blur();
-
-    expect(signAmount).toHaveValue(123.46);
+    expect(screen.queryByRole("alert", { name: /Amount Feedback/i })).not.toBeInTheDocument();
   });
 });
 
@@ -133,7 +164,7 @@ describe("form validation", () => {
   test("invalid receiver public key length - empty", async () => {
     customRender(<Sign />);
 
-    const input = screen.getByRole("textbox", { name: /Receiver Public Key/i });
+    const input = screen.getByRole("textbox", { name: /Receiver PK/i });
     input.focus();
     input.blur(); // cause an error
 
@@ -145,7 +176,7 @@ describe("form validation", () => {
   test("invalid receiver public key length - short", async () => {
     customRender(<Sign />);
 
-    const input = screen.getByRole("textbox", { name: /Receiver Public Key/i });
+    const input = screen.getByRole("textbox", { name: /Receiver PK/i });
     const text = new Array(initialState.user.publicKey.length - 1).fill("A").join("");
     userEvent.type(input, text);
     input.blur(); // cause an error
@@ -159,7 +190,7 @@ describe("form validation", () => {
   test("invalid receiver public key length - long", async () => {
     customRender(<Sign />);
 
-    const input = screen.getByRole("textbox", { name: /Receiver Public Key/i });
+    const input = screen.getByRole("textbox", { name: /Receiver PK/i });
     const text = new Array(initialState.user.publicKey.length + 1).fill("A").join("");
     userEvent.type(input, text);
     input.blur(); // cause an error
@@ -174,7 +205,7 @@ describe("form validation", () => {
   test("invalid receiver public key length - alphanumeric", async () => {
     customRender(<Sign />);
 
-    const input = screen.getByRole("textbox", { name: /Receiver Public Key/i });
+    const input = screen.getByRole("textbox", { name: /Receiver PK/i });
     const text = new Array(initialState.user.publicKey.length - 1).fill("A").join("");
     userEvent.type(input, text + "@");
     input.blur(); // cause an error
@@ -189,7 +220,7 @@ describe("form validation", () => {
   test("valid receiver public key length", async () => {
     customRender(<Sign />);
 
-    const input = screen.getByRole("textbox", { name: /Receiver Public Key/i });
+    const input = screen.getByRole("textbox", { name: /Receiver PK/i });
     const text = new Array(initialState.user.publicKey.length).fill("A").join("");
     userEvent.type(input, text);
     input.blur(); // cause an error
