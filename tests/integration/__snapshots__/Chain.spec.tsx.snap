@@ -1,0 +1,4609 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`starts off invalid, after mining it stays invalid, does not propagate since last 1`] = `
+<DocumentFragment>
+  <div>
+    <nav
+      class="mb-3 navbar navbar-expand-lg navbar-light"
+    >
+      <a
+        aria-label="LibraCoin Logo"
+        class="navbar-brand"
+        href="https://github.com/lbragile/LibraCoin"
+      >
+        <img
+          alt="LibraCoin Logo"
+          src="./assets/libracoin-logo-256.png"
+          width="64"
+        />
+      </a>
+      <button
+        aria-controls="basic-navbar-nav"
+        aria-label="Toggle navigation"
+        class="navbar-toggler collapsed"
+        type="button"
+      >
+        <span
+          class="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        class="navbar-collapse collapse"
+        id="basic-navbar-nav"
+      >
+        <div
+          class="ml-auto navbar-nav"
+        >
+          <a
+            class="nav-link"
+            data-rb-event-key="/LibraCoin/wallet"
+            href="/LibraCoin/wallet"
+          >
+            Wallet
+          </a>
+          <a
+            class="nav-link"
+            data-rb-event-key="/LibraCoin/mine"
+            href="/LibraCoin/mine"
+          >
+            Mine
+          </a>
+          <a
+            class="nav-link"
+            data-rb-event-key="/LibraCoin/blockchain"
+            href="/LibraCoin/blockchain"
+          >
+            Blockchain
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="mx-3 row flex-nowrap overflow-auto"
+    >
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded valid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="0000000000000000000000000000000000000000000000000000000000000000"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle Genesis"
+              class="form-control"
+              disabled=""
+              name="merkleRoot"
+              type="text"
+              value=""
+            />
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate valid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            disabled=""
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+      </div>
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded valid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="1"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value="0000000000000000000000000000000000000000000000000000000000000000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle"
+              class="text-truncate form-control"
+              name="merkleRoot"
+              readonly=""
+              type="text"
+              value="987.65EForthTransactionAE987.65A"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                aria-label="Show Trans"
+                class="show-trans-eye input-group-text"
+              >
+                🙉
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate valid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            disabled=""
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+      </div>
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded invalid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="2"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle"
+              class="text-truncate form-control"
+              name="merkleRoot"
+              readonly=""
+              type="text"
+              value="567.89ZForthTransactionAZ567.89A"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                aria-label="Show Trans"
+                class="show-trans-eye input-group-text"
+              >
+                🙈
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate invalid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+        <div
+          class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+        >
+          <div
+            class="col-12 bg-light border border-dark p-1 rounded"
+          >
+            <div
+              class="mb-2 text-center form-group"
+            >
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="Z"
+              />
+              <h3
+                class="my-0"
+              >
+                ↓
+              </h3>
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="A"
+              />
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Msg
+                </span>
+              </div>
+              <textarea
+                class="form-control"
+                rows="3"
+              >
+                Forth Transaction
+              </textarea>
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <input
+                class="form-control"
+                type="number"
+                value="567.89"
+              />
+              <div
+                class="input-group-append"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  LC
+                </span>
+              </div>
+            </div>
+            <div
+              class="input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Sig
+                </span>
+              </div>
+              <input
+                class="text-truncate form-control"
+                readonly=""
+                type="text"
+                value="Forth Transaction"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded invalid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="3"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle"
+              class="text-truncate form-control"
+              name="merkleRoot"
+              readonly=""
+              type="text"
+              value="123.45ZFifthTransactionY123.45Z"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                aria-label="Show Trans"
+                class="show-trans-eye input-group-text"
+              >
+                🙈
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate invalid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+        <div
+          class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+        >
+          <div
+            class="col-12 bg-light border border-dark p-1 rounded"
+          >
+            <div
+              class="mb-2 text-center form-group"
+            >
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="Y"
+              />
+              <h3
+                class="my-0"
+              >
+                ↓
+              </h3>
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="Z"
+              />
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Msg
+                </span>
+              </div>
+              <textarea
+                class="form-control"
+                rows="3"
+              >
+                Fifth Transaction
+              </textarea>
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <input
+                class="form-control"
+                type="number"
+                value="123.45"
+              />
+              <div
+                class="input-group-append"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  LC
+                </span>
+              </div>
+            </div>
+            <div
+              class="input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Sig
+                </span>
+              </div>
+              <input
+                class="text-truncate form-control"
+                readonly=""
+                type="text"
+                value="Fifth Transaction"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`starts off invalid, after mining it stays invalid, propagates to future blocks 1`] = `
+<DocumentFragment>
+  <div>
+    <nav
+      class="mb-3 navbar navbar-expand-lg navbar-light"
+    >
+      <a
+        aria-label="LibraCoin Logo"
+        class="navbar-brand"
+        href="https://github.com/lbragile/LibraCoin"
+      >
+        <img
+          alt="LibraCoin Logo"
+          src="./assets/libracoin-logo-256.png"
+          width="64"
+        />
+      </a>
+      <button
+        aria-controls="basic-navbar-nav"
+        aria-label="Toggle navigation"
+        class="navbar-toggler collapsed"
+        type="button"
+      >
+        <span
+          class="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        class="navbar-collapse collapse"
+        id="basic-navbar-nav"
+      >
+        <div
+          class="ml-auto navbar-nav"
+        >
+          <a
+            class="nav-link"
+            data-rb-event-key="/LibraCoin/wallet"
+            href="/LibraCoin/wallet"
+          >
+            Wallet
+          </a>
+          <a
+            class="nav-link"
+            data-rb-event-key="/LibraCoin/mine"
+            href="/LibraCoin/mine"
+          >
+            Mine
+          </a>
+          <a
+            class="nav-link"
+            data-rb-event-key="/LibraCoin/blockchain"
+            href="/LibraCoin/blockchain"
+          >
+            Blockchain
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="mx-3 row flex-nowrap overflow-auto"
+    >
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded valid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="0000000000000000000000000000000000000000000000000000000000000000"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle Genesis"
+              class="form-control"
+              disabled=""
+              name="merkleRoot"
+              type="text"
+              value=""
+            />
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate valid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            disabled=""
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+      </div>
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded valid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="1"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value="0000000000000000000000000000000000000000000000000000000000000000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle"
+              class="text-truncate form-control"
+              name="merkleRoot"
+              readonly=""
+              type="text"
+              value="987.65EForthTransactionAE987.65A"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                aria-label="Show Trans"
+                class="show-trans-eye input-group-text"
+              >
+                🙉
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate valid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            disabled=""
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+      </div>
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded invalid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="2"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle"
+              class="text-truncate form-control"
+              name="merkleRoot"
+              readonly=""
+              type="text"
+              value="567.89ZForthTransactionAZ567.89A"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                aria-label="Show Trans"
+                class="show-trans-eye input-group-text"
+              >
+                🙈
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate invalid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+        <div
+          class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+        >
+          <div
+            class="col-12 bg-light border border-dark p-1 rounded"
+          >
+            <div
+              class="mb-2 text-center form-group"
+            >
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="Z"
+              />
+              <h3
+                class="my-0"
+              >
+                ↓
+              </h3>
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="A"
+              />
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Msg
+                </span>
+              </div>
+              <textarea
+                class="form-control"
+                rows="3"
+              >
+                Forth Transaction
+              </textarea>
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <input
+                class="form-control"
+                type="number"
+                value="567.89"
+              />
+              <div
+                class="input-group-append"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  LC
+                </span>
+              </div>
+            </div>
+            <div
+              class="input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Sig
+                </span>
+              </div>
+              <input
+                class="text-truncate form-control"
+                readonly=""
+                type="text"
+                value="Forth Transaction"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded invalid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="3"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle"
+              class="text-truncate form-control"
+              name="merkleRoot"
+              readonly=""
+              type="text"
+              value="123.45ZFifthTransactionY123.45Z"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                aria-label="Show Trans"
+                class="show-trans-eye input-group-text"
+              >
+                🙈
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate invalid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+        <div
+          class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+        >
+          <div
+            class="col-12 bg-light border border-dark p-1 rounded"
+          >
+            <div
+              class="mb-2 text-center form-group"
+            >
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="Y"
+              />
+              <h3
+                class="my-0"
+              >
+                ↓
+              </h3>
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="Z"
+              />
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Msg
+                </span>
+              </div>
+              <textarea
+                class="form-control"
+                rows="3"
+              >
+                Fifth Transaction
+              </textarea>
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <input
+                class="form-control"
+                type="number"
+                value="123.45"
+              />
+              <div
+                class="input-group-append"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  LC
+                </span>
+              </div>
+            </div>
+            <div
+              class="input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Sig
+                </span>
+              </div>
+              <input
+                class="text-truncate form-control"
+                readonly=""
+                type="text"
+                value="Fifth Transaction"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`starts off invalid, after mining it stays valid, does not propagate since last 1`] = `
+<DocumentFragment>
+  <div>
+    <nav
+      class="mb-3 navbar navbar-expand-lg navbar-light"
+    >
+      <a
+        aria-label="LibraCoin Logo"
+        class="navbar-brand"
+        href="https://github.com/lbragile/LibraCoin"
+      >
+        <img
+          alt="LibraCoin Logo"
+          src="./assets/libracoin-logo-256.png"
+          width="64"
+        />
+      </a>
+      <button
+        aria-controls="basic-navbar-nav"
+        aria-label="Toggle navigation"
+        class="navbar-toggler collapsed"
+        type="button"
+      >
+        <span
+          class="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        class="navbar-collapse collapse"
+        id="basic-navbar-nav"
+      >
+        <div
+          class="ml-auto navbar-nav"
+        >
+          <a
+            class="nav-link"
+            data-rb-event-key="/LibraCoin/wallet"
+            href="/LibraCoin/wallet"
+          >
+            Wallet
+          </a>
+          <a
+            class="nav-link"
+            data-rb-event-key="/LibraCoin/mine"
+            href="/LibraCoin/mine"
+          >
+            Mine
+          </a>
+          <a
+            class="nav-link"
+            data-rb-event-key="/LibraCoin/blockchain"
+            href="/LibraCoin/blockchain"
+          >
+            Blockchain
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="mx-3 row flex-nowrap overflow-auto"
+    >
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded valid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="0000000000000000000000000000000000000000000000000000000000000000"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle Genesis"
+              class="form-control"
+              disabled=""
+              name="merkleRoot"
+              type="text"
+              value=""
+            />
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate valid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            disabled=""
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+      </div>
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded valid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="1"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value="0000000000000000000000000000000000000000000000000000000000000000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle"
+              class="text-truncate form-control"
+              name="merkleRoot"
+              readonly=""
+              type="text"
+              value="987.65EForthTransactionAE987.65A"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                aria-label="Show Trans"
+                class="show-trans-eye input-group-text"
+              >
+                🙉
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate valid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            disabled=""
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+      </div>
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded invalid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="2"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle"
+              class="text-truncate form-control"
+              name="merkleRoot"
+              readonly=""
+              type="text"
+              value="567.89ZForthTransactionAZ567.89A"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                aria-label="Show Trans"
+                class="show-trans-eye input-group-text"
+              >
+                🙈
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate invalid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+        <div
+          class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+        >
+          <div
+            class="col-12 bg-light border border-dark p-1 rounded"
+          >
+            <div
+              class="mb-2 text-center form-group"
+            >
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="Z"
+              />
+              <h3
+                class="my-0"
+              >
+                ↓
+              </h3>
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="A"
+              />
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Msg
+                </span>
+              </div>
+              <textarea
+                class="form-control"
+                rows="3"
+              >
+                Forth Transaction
+              </textarea>
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <input
+                class="form-control"
+                type="number"
+                value="567.89"
+              />
+              <div
+                class="input-group-append"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  LC
+                </span>
+              </div>
+            </div>
+            <div
+              class="input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Sig
+                </span>
+              </div>
+              <input
+                class="text-truncate form-control"
+                readonly=""
+                type="text"
+                value="Forth Transaction"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded invalid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="3"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle"
+              class="text-truncate form-control"
+              name="merkleRoot"
+              readonly=""
+              type="text"
+              value="123.45ZFifthTransactionY123.45Z"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                aria-label="Show Trans"
+                class="show-trans-eye input-group-text"
+              >
+                🙈
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate invalid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+        <div
+          class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+        >
+          <div
+            class="col-12 bg-light border border-dark p-1 rounded"
+          >
+            <div
+              class="mb-2 text-center form-group"
+            >
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="Y"
+              />
+              <h3
+                class="my-0"
+              >
+                ↓
+              </h3>
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="Z"
+              />
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Msg
+                </span>
+              </div>
+              <textarea
+                class="form-control"
+                rows="3"
+              >
+                Fifth Transaction
+              </textarea>
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <input
+                class="form-control"
+                type="number"
+                value="123.45"
+              />
+              <div
+                class="input-group-append"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  LC
+                </span>
+              </div>
+            </div>
+            <div
+              class="input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Sig
+                </span>
+              </div>
+              <input
+                class="text-truncate form-control"
+                readonly=""
+                type="text"
+                value="Fifth Transaction"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`starts off invalid, after mining it stays valid, propagates to future blocks 1`] = `
+<DocumentFragment>
+  <div>
+    <nav
+      class="mb-3 navbar navbar-expand-lg navbar-light"
+    >
+      <a
+        aria-label="LibraCoin Logo"
+        class="navbar-brand"
+        href="https://github.com/lbragile/LibraCoin"
+      >
+        <img
+          alt="LibraCoin Logo"
+          src="./assets/libracoin-logo-256.png"
+          width="64"
+        />
+      </a>
+      <button
+        aria-controls="basic-navbar-nav"
+        aria-label="Toggle navigation"
+        class="navbar-toggler collapsed"
+        type="button"
+      >
+        <span
+          class="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        class="navbar-collapse collapse"
+        id="basic-navbar-nav"
+      >
+        <div
+          class="ml-auto navbar-nav"
+        >
+          <a
+            class="nav-link"
+            data-rb-event-key="/LibraCoin/wallet"
+            href="/LibraCoin/wallet"
+          >
+            Wallet
+          </a>
+          <a
+            class="nav-link"
+            data-rb-event-key="/LibraCoin/mine"
+            href="/LibraCoin/mine"
+          >
+            Mine
+          </a>
+          <a
+            class="nav-link"
+            data-rb-event-key="/LibraCoin/blockchain"
+            href="/LibraCoin/blockchain"
+          >
+            Blockchain
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="mx-3 row flex-nowrap overflow-auto"
+    >
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded valid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="0000000000000000000000000000000000000000000000000000000000000000"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle Genesis"
+              class="form-control"
+              disabled=""
+              name="merkleRoot"
+              type="text"
+              value=""
+            />
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate valid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            disabled=""
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+      </div>
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded valid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="1"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value="0000000000000000000000000000000000000000000000000000000000000000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle"
+              class="text-truncate form-control"
+              name="merkleRoot"
+              readonly=""
+              type="text"
+              value="987.65EForthTransactionAE987.65A"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                aria-label="Show Trans"
+                class="show-trans-eye input-group-text"
+              >
+                🙉
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate valid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            disabled=""
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+      </div>
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded invalid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="2"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle"
+              class="text-truncate form-control"
+              name="merkleRoot"
+              readonly=""
+              type="text"
+              value="567.89ZForthTransactionAZ567.89A"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                aria-label="Show Trans"
+                class="show-trans-eye input-group-text"
+              >
+                🙈
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate invalid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+        <div
+          class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+        >
+          <div
+            class="col-12 bg-light border border-dark p-1 rounded"
+          >
+            <div
+              class="mb-2 text-center form-group"
+            >
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="Z"
+              />
+              <h3
+                class="my-0"
+              >
+                ↓
+              </h3>
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="A"
+              />
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Msg
+                </span>
+              </div>
+              <textarea
+                class="form-control"
+                rows="3"
+              >
+                Forth Transaction
+              </textarea>
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <input
+                class="form-control"
+                type="number"
+                value="567.89"
+              />
+              <div
+                class="input-group-append"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  LC
+                </span>
+              </div>
+            </div>
+            <div
+              class="input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Sig
+                </span>
+              </div>
+              <input
+                class="text-truncate form-control"
+                readonly=""
+                type="text"
+                value="Forth Transaction"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="block mx-2 flex-column flex-shrink-0"
+      >
+        <form
+          aria-label="Block Form"
+          class="my-4 my-lg-0 p-2 rounded invalid-block"
+        >
+          <div
+            class="mb-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Index
+              </span>
+            </div>
+            <input
+              aria-label="Block Index"
+              class="form-control"
+              disabled=""
+              name="index"
+              type="number"
+              value="3"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Timestamp
+              </span>
+            </div>
+            <input
+              aria-label="Block Timestamp"
+              class="form-control"
+              disabled=""
+              name="timestamp"
+              type="number"
+              value="1619827200000"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Previous #
+              </span>
+            </div>
+            <input
+              aria-label="Block PrevHash"
+              class="text-truncate form-control"
+              name="prevHash"
+              readonly=""
+              type="text"
+              value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Current #
+              </span>
+            </div>
+            <input
+              aria-label="Block CurrHash"
+              class="text-truncate form-control"
+              name="currHash"
+              readonly=""
+              type="text"
+              value="YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"
+            />
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Merkle #
+              </span>
+            </div>
+            <input
+              aria-label="Block Merkle"
+              class="text-truncate form-control"
+              name="merkleRoot"
+              readonly=""
+              type="text"
+              value="123.45ZFifthTransactionY123.45Z"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                aria-label="Show Trans"
+                class="show-trans-eye input-group-text"
+              >
+                🙈
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          aria-label="Block Statistics"
+          class="my-3"
+        >
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Nonce
+              </span>
+            </div>
+            <input
+              aria-label="Block Nonce"
+              class="form-control"
+              disabled=""
+              name="nonce"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Header
+              </span>
+            </div>
+            <input
+              aria-label="Block Header"
+              class="form-control"
+              disabled=""
+              name="header"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Target
+              </span>
+            </div>
+            <input
+              aria-label="Block Target"
+              class="text-truncate form-control"
+              name="target"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <div
+            class="my-2 input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="input-group-text"
+              >
+                Sol'n
+              </span>
+            </div>
+            <input
+              aria-label="Block Solution"
+              class="text-truncate invalid-solution form-control"
+              name="solution"
+              readonly=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            aria-label="Block Mine"
+            class="btn-block mt-2 py-2 btn btn-primary"
+            type="button"
+          >
+            <h4
+              class="my-0 row justify-content-end align-items-center flex-nowrap"
+            >
+              <span
+                class="col-10 pl-5"
+              >
+                Mine
+              </span>
+              <span
+                class="spinner-border spinner-border-md mr-3 invisible"
+                role="status"
+              />
+            </h4>
+          </button>
+        </form>
+        <div
+          class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+        >
+          <div
+            class="col-12 bg-light border border-dark p-1 rounded"
+          >
+            <div
+              class="mb-2 text-center form-group"
+            >
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="Y"
+              />
+              <h3
+                class="my-0"
+              >
+                ↓
+              </h3>
+              <input
+                class="text-truncate form-control"
+                type="text"
+                value="Z"
+              />
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Msg
+                </span>
+              </div>
+              <textarea
+                class="form-control"
+                rows="3"
+              >
+                Fifth Transaction
+              </textarea>
+            </div>
+            <div
+              class="mb-2 input-group"
+            >
+              <input
+                class="form-control"
+                type="number"
+                value="123.45"
+              />
+              <div
+                class="input-group-append"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  LC
+                </span>
+              </div>
+            </div>
+            <div
+              class="input-group"
+            >
+              <div
+                class="input-group-prepend"
+              >
+                <span
+                  class="input-group-text"
+                >
+                  Sig
+                </span>
+              </div>
+              <input
+                class="text-truncate form-control"
+                readonly=""
+                type="text"
+                value="Fifth Transaction"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
