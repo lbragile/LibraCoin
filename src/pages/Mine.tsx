@@ -3,7 +3,7 @@ import React from "react";
 import NavMenu from "../components/NavMenu/NavMenu";
 import Block from "../components/Block/Block";
 import TransactionItems from "../components/Transaction/TransactionItems";
-import PreviewTree from "../components/Transaction/PreviewTree";
+import PreviewTree from "../components/Block/PreviewTree";
 import Statistics from "../components/Block/Statistics";
 
 export default function Mine(): JSX.Element {
