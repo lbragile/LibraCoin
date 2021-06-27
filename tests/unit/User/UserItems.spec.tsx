@@ -2,34 +2,16 @@
  * @group unit
  */
 
-import React, { useReducer } from "react";
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import React from "react";
+import { screen } from "@testing-library/react";
 
 import UserItems from "../../../src/components/User/UserItems";
-import { AppContext } from "../../../src/context/AppContext";
-import { IAction, IState } from "../../../src/typings/AppTypes";
-import { AppReducer } from "../../../src/reducers/AppReducer";
+import { customRender } from "../../utils/testUtils";
 
 const { initialState } = global;
 
-interface IUserItemsWrapper {
-  stateMock?: IState;
-  dispatchMock?: React.Dispatch<IAction>;
-}
-
-const UserItemsWrapper = ({ stateMock, dispatchMock }: IUserItemsWrapper) => {
-  const [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
-
-  return (
-    <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
-      <UserItems />
-    </AppContext.Provider>
-  );
-};
-
 it("renders correctly", () => {
-  const { asFragment } = render(<UserItemsWrapper />);
+  const { asFragment } = customRender(<UserItems />);
 
   const publicKeys = screen.getAllByRole("textbox", { name: /User Public Key/i });
   const balances = screen.getAllByRole("spinbutton", { name: /balance/i });
@@ -56,11 +38,7 @@ it("renders correctly", () => {
 describe("public key of user - copy/blur", () => {
   beforeEach(() => {
     document.execCommand = jest.fn();
-    render(<UserItemsWrapper />);
-  });
-
-  afterEach(() => {
-    jest.restoreAllMocks();
+    customRender(<UserItems />);
   });
 
   it("shows 'copied to clipboard' on the correct key when public key field is focused", () => {

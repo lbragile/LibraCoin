@@ -3,8 +3,8 @@
  */
 
 import React, { useReducer } from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { AppContext } from "../../src/context/AppContext";
 import Block from "../../src/components/Block/Block";
@@ -69,7 +69,7 @@ describe("in preview mode", () => {
 
     expect(asFragment()).toMatchSnapshot();
 
-    fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+    userEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
 
     // once mining is complete
     await waitFor(() => expect(screen.getByRole("status")).toHaveClass("invisible"));
@@ -110,7 +110,7 @@ describe("in preview mode", () => {
 
     expect(asFragment()).toMatchSnapshot();
 
-    fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+    userEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
 
     // once mining is complete
     await waitFor(() => expect(screen.getByRole("status")).toHaveClass("invisible"));
@@ -121,7 +121,7 @@ describe("in preview mode", () => {
     expect(state.verifiedTrans).toHaveLength(initialState.verifiedTrans.length);
     expect(state.chain).toHaveLength(initialState.chain.length);
 
-    fireEvent.click(screen.getByRole("button", { name: /Add Block/i }));
+    userEvent.click(screen.getByRole("button", { name: /Add Block/i }));
 
     // once block is added to blockchain
     await waitFor(() => expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("invalid-block"));
@@ -132,7 +132,7 @@ describe("in preview mode", () => {
 
     await waitFor(() =>
       expect(screen.getByRole("form", { name: /Block Form/i })).toHaveFormValues({
-        index: state.preview.index,
+        index: initialState.preview.index + 1,
         timestamp: 67890,
         prevHash: solution,
         currHash: "",
@@ -154,7 +154,7 @@ describe("in blockchain mode", () => {
         to: "Z",
         from: "Y",
         amount: 123.45,
-        message: "Fifth Transaction",
+        msg: "Fifth Transaction",
         signature: "ZY123.45"
       }
     ],
@@ -208,7 +208,7 @@ describe("in blockchain mode", () => {
 
     expect(asFragment()).toMatchSnapshot();
 
-    fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+    userEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
 
     // once mining is complete
     await waitFor(() => expect(screen.getByRole("status")).toHaveClass("invisible"));
@@ -220,7 +220,7 @@ describe("in blockchain mode", () => {
         block: {
           ...newState.chain[index],
           timestamp: 12345,
-          prevHash: state.chain[index - 1].currHash,
+          prevHash: initialState.chain[index - 1].currHash,
           currHash: solution,
           valid: type === "valid"
         }
@@ -280,7 +280,7 @@ describe("in blockchain mode", () => {
 
     expect(asFragment()).toMatchSnapshot();
 
-    fireEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
+    userEvent.click(screen.getByRole("button", { name: /Block Mine/i }));
 
     // once mining is complete
     await waitFor(() => expect(screen.getByRole("status")).toHaveClass("invisible"));
@@ -291,7 +291,7 @@ describe("in blockchain mode", () => {
         block: {
           ...newState.chain[index],
           timestamp: 12345,
-          prevHash: state.chain[index - 1].currHash,
+          prevHash: initialState.chain[index - 1].currHash,
           currHash: solution,
           valid: type === "valid"
         }

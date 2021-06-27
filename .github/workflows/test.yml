@@ -2,7 +2,9 @@ name: Testing
 
 on:
   push:
-    branches: ["master", "develop", "test"]
+    branches: ["develop", "test"]
+  pull_request:
+    branches: ["master"]
 
 jobs:
   unit:
@@ -23,8 +25,16 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
+      - name: Test Using Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+
       - name: Install Dependencies
         run: npm i
+
+      - name: Lint Code & Styles
+        run: npm run lint
 
       - name: Run Tests
         run: npm run test:unit
@@ -52,8 +62,16 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
+      - name: Test Using Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+
       - name: Install Dependencies
         run: npm i
+
+      - name: Lint Code & Styles
+        run: npm run lint
 
       - name: Run Tests
         run: npm run test:integration

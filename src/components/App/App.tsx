@@ -1,5 +1,6 @@
 import React, { useMemo, useReducer } from "react";
 import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
+import logger from "use-reducer-logger";
 
 import Wallet from "../../pages/Wallet";
 import Chain from "../../pages/Chain";
@@ -11,7 +12,7 @@ import { AppContext } from "../../context/AppContext";
 import "./App.scss";
 
 export default function App(): JSX.Element {
-  const [state, dispatch] = useReducer(AppReducer, {
+  const [state, dispatch] = useReducer(process.env.NODE_ENV === "development" ? logger(AppReducer) : AppReducer, {
     verifiedTrans: JSON.parse(localStorage.getItem("verTrans") as string) ?? [],
     selectedTrans: JSON.parse(localStorage.getItem("selTrans") as string) ?? [],
     users: JSON.parse(localStorage.getItem("users") as string) ?? [],
@@ -36,6 +37,12 @@ export default function App(): JSX.Element {
       timestamp: Date.parse("31 Apr 2021 00:00:00 UTC"),
       merkleRoot: "",
       valid: false
+    },
+    wallet: JSON.parse(localStorage.getItem("wallet") as string) ?? {
+      sent: false,
+      signed: false,
+      validated: false,
+      details: { from: "", to: "", amount: (0).toFixed(2), msg: "", signature: "" }
     }
   });
 

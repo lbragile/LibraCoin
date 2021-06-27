@@ -6,12 +6,14 @@
   "homepage": "https://lbragile.github.io/LibraCoin/",
   "dependencies": {
     "bootstrap": "^4.6.0",
+    "formik": "^2.2.9",
     "node-sass": "^5.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^4.0.3",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
@@ -19,12 +21,14 @@
     "@babel/preset-react": "^7.13.13",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^13.1.9",
     "@types/jest": "^26.0.23",
     "@types/node": "^14.14.37",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "@types/react-router-dom": "^5.1.7",
     "@types/text-encoding": "0.0.35",
+    "@types/yup": "^0.29.11",
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
     "eslint": "^7.23.0",
@@ -40,7 +44,8 @@
     "stylelint-scss": "^3.19.0",
     "text-encoding": "^0.7.0",
     "ts-jest": "^26.5.6",
-    "typescript": "^4.2.4"
+    "typescript": "^4.2.4",
+    "use-reducer-logger": "^1.0.2"
   },
   "scripts": {
     "clean": "tsc -b --clean",
@@ -48,7 +53,7 @@
     "test": "jest --coverage --maxWorkers 50% --config ./config/jest.config.js",
     "test:unit": "npm test -- --group=unit --group=utils --group=reducers",
     "test:integration": "npm test -- --group=integration --group=utils --group=reducers",
-    "lint": "npx eslint src -c config/.eslintrc.js && npx stylelint src --config config/.stylelintrc.json",
+    "lint": "npx eslint src tests -c config/.eslintrc.js && npx stylelint src --config config/.stylelintrc.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "gh-pages -d build",

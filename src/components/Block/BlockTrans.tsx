@@ -8,7 +8,7 @@ import { IAction, IBlock, IState, ITransaction } from "../../typings/AppTypes";
 import { digestMessage } from "../../utils/conversion";
 import { calculateMerkleTreeFormation, getMerkleRoot } from "../../utils/merkleTree";
 
-type TChangeType = "from" | "to" | "message" | "amount";
+type TChangeType = "from" | "to" | "msg" | "amount";
 type TInputChange<T = HTMLInputElement> = React.ChangeEvent<T>;
 
 export default function BlockTrans({ index }: { index: number }): JSX.Element {
@@ -21,7 +21,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
 
     // update the changed value & signature
     newTrans[i] = { ...newTrans[i], [type]: newVal };
-    const message = newTrans[i].to + newTrans[i].from + newTrans[i].amount + newTrans[i].message;
+    const message = newTrans[i].to + newTrans[i].from + newTrans[i].amount + newTrans[i].msg;
     newTrans[i].signature = await digestMessage(message);
     setTransDetails(newTrans);
 
@@ -79,10 +79,8 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
               <Form.Control
                 as="textarea"
                 rows={3}
-                value={transaction.message}
-                onChange={(e: TInputChange<HTMLTextAreaElement>) =>
-                  calculateNewMerkleRoot(e.target.value, i, "message")
-                }
+                value={transaction.msg}
+                onChange={(e: TInputChange<HTMLTextAreaElement>) => calculateNewMerkleRoot(e.target.value, i, "msg")}
               />
             </InputGroup>
 
@@ -105,7 +103,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
                 key={transaction.signature}
                 className="text-truncate"
                 type="text"
-                defaultValue={transaction.signature}
+                value={transaction.msg}
                 readOnly
               />
             </InputGroup>

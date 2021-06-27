@@ -1,9 +1,9 @@
 import { ACTIONS } from "../enums/AppDispatchActions";
 
 export interface ITransaction {
-  amount?: number;
+  amount: number;
   from: string;
-  message: string;
+  msg: string;
   to: string;
   signature: string;
 }
@@ -35,6 +35,7 @@ export interface IState {
   chain: IBlock[];
   copied: string;
   preview: IBlock;
+  wallet: { sent: boolean; signed: boolean; validated: boolean; details: ITransaction };
 }
 
 export interface IAction {

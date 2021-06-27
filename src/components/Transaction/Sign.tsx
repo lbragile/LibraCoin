@@ -1,104 +1,171 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
+import { Formik, ErrorMessage, Field } from "formik";
 import { Form, Button, InputGroup } from "react-bootstrap";
+
 import { AppContext } from "../../context/AppContext";
-import { IState } from "../../typings/AppTypes";
+import { ACTIONS } from "../../enums/AppDispatchActions";
+import { IAction, IState } from "../../typings/AppTypes";
+import { digestMessage } from "../../utils/conversion";
+import { SignSchema } from "../../schema/SignSchema";
 
-export interface ISign {
-  validated: boolean;
-  signed: boolean;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-}
+export default function Sign(): JSX.Element {
+  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
 
-export default function Sign({ validated, signed, handleSubmit }: ISign): JSX.Element {
-  const { state } = useContext(AppContext) as { state: IState };
+  useEffect(() => {
+    dispatch({ type: ACTIONS.SET_VALIDATED, payload: { validated: false } });
+    dispatch({ type: ACTIONS.SET_SIGNED, payload: { signed: false, sent: false } });
+    dispatch({
+      type: ACTIONS.SET_DETAILS,
+      payload: {
+        details: { from: state.user.publicKey, to: "", amount: Number(0).toFixed(2), msg: "", signature: "" }
+      }
+    });
+  }, [dispatch, state.user.publicKey]);
 
-  function checkAmount(e: React.FocusEvent<HTMLInputElement>): void {
-    e.target.value = Math.min(Math.max(0.1, +e.target.value), state.user.balance).toFixed(2);
-  }
+  const TextAreaFormControl = (props: unknown): JSX.Element => {
+    return <Form.Control as="textarea" {...props} />;
+  };
 
   return (
-    <Form
-      aria-label="Sign Form"
-      noValidate
-      validated={validated}
-      className="col-12 col-lg-5 trans-form"
-      onSubmit={handleSubmit}
+    <Formik
+      validationSchema={SignSchema(state.user.publicKey.length, state.user.balance)}
+      onSubmit={async (data, { setSubmitting }) => {
+        setSubmitting(true);
+        const message = Object.values(data).reduce((total, curr) => total + curr, "");
+        const currentDetails = { ...data, from: state.user.publicKey, signature: await digestMessage(message) };
+
+        dispatch({ type: ACTIONS.SET_SIGNED, payload: { signed: true } });
+        dispatch({ type: ACTIONS.SET_DETAILS, payload: { details: currentDetails } });
+        setSubmitting(false);
+      }}
+      initialValues={{ to: "", amount: "", msg: "" }}
     >
-      <InputGroup>
-        <InputGroup.Prepend>
-          <InputGroup.Text>Sender Public Key</InputGroup.Text>
-        </InputGroup.Prepend>
-        <Form.Control
-          aria-label="Sender Public Key"
-          name="sender-pk"
-          className="text-truncate rounded-right"
-          type="text"
-          defaultValue={state.user.publicKey}
-          readOnly
-        />
-      </InputGroup>
+      {({ handleSubmit, isSubmitting, touched, errors }) => (
+        <Form aria-label="Sign Form" noValidate className="col-12 col-lg-5 trans-form" onSubmit={handleSubmit}>
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text>Sender Public Key</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              aria-label="Sender Public Key"
+              name="from"
+              className="text-truncate rounded-right"
+              type="text"
+              value={state.user.publicKey}
+              readOnly
+            />
+          </InputGroup>
 
-      <Form.Text className="text-muted">Used to verify transaction was signed using your private key</Form.Text>
+          <Form.Text className="text-muted">Used to verify transaction was signed using your private key</Form.Text>
 
-      <InputGroup className="my-2">
-        <InputGroup.Prepend>
-          <InputGroup.Text>Receiver Public Key</InputGroup.Text>
-        </InputGroup.Prepend>
-        <Form.Control
-          aria-label="Receiver Public Key"
-          name="receiver-pk"
-          className="text-truncate rounded-right"
-          type="text"
-          pattern="[A-Za-z0-9]{182,182}"
-          required
-        />
-        <Form.Control.Feedback type="invalid">
-          <b>Length or format are incorrect!</b>
-        </Form.Control.Feedback>
-      </InputGroup>
+          <InputGroup className="my-2">
+            <InputGroup.Prepend>
+              <InputGroup.Text>Receiver Public Key</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Field
+              as={Form.Control}
+              aria-label="Receiver PK"
+              name="to"
+              className="text-truncate rounded-right"
+              type="text"
+              required
+              readOnly={state.wallet.signed}
+              isInvalid={!!touched.to && !!errors.to}
+              isValid={!!touched.to && !errors.to}
+            />
 
-      <InputGroup className="mb-2">
-        <Form.Control
-          aria-label="Sign Amount"
-          name="amount"
-          type="number"
-          step="any"
-          placeholder={Number(1).toFixed(2)}
-          onBlur={(e: React.FocusEvent<HTMLInputElement>) => checkAmount(e)}
-          required
-        />
-        <InputGroup.Prepend>
-          <InputGroup.Text className="rounded-right border-left-0">LC</InputGroup.Text>
-        </InputGroup.Prepend>
-      </InputGroup>
+            <ErrorMessage
+              name="to"
+              render={(errorMessage) => (
+                <Form.Control.Feedback
+                  className="font-weight-bold"
+                  type="invalid"
+                  role="alert"
+                  aria-label="Receiver PK Feedback"
+                >
+                  {errorMessage}
+                </Form.Control.Feedback>
+              )}
+            />
+          </InputGroup>
 
-      <InputGroup className="mb-2">
-        <InputGroup.Prepend>
-          <InputGroup.Text>Message</InputGroup.Text>
-        </InputGroup.Prepend>
-        <Form.Control aria-label="Sign Message" name="msg" as="textarea" rows={2} placeholder="optional message..." />
-      </InputGroup>
+          <InputGroup className="mb-2">
+            <Field
+              as={Form.Control}
+              aria-label="Sign Amount"
+              name="amount"
+              type="number"
+              step="any"
+              placeholder={(1).toFixed(2)}
+              required
+              readOnly={state.wallet.signed}
+              isInvalid={!!touched.amount && !!errors.amount}
+              isValid={!!touched.amount && !errors.amount}
+            />
 
-      <InputGroup>
-        <InputGroup.Prepend>
-          <InputGroup.Text>Sender Private Key</InputGroup.Text>
-        </InputGroup.Prepend>
-        <Form.Control
-          aria-label="Sender Private Key"
-          name="sender-sk"
-          className="text-truncate"
-          type="text"
-          defaultValue={state.user.privateKey}
-          readOnly
-        />
-      </InputGroup>
+            <InputGroup.Append>
+              <InputGroup.Text className="rounded-right border-left-0">LC</InputGroup.Text>
+            </InputGroup.Append>
 
-      <Form.Text className="text-muted">Not shared with anyone, keep this secret!</Form.Text>
+            <ErrorMessage
+              name="amount"
+              render={(errorMessage) => (
+                <Form.Control.Feedback
+                  className="font-weight-bold"
+                  type="invalid"
+                  role="alert"
+                  aria-label="Amount Feedback"
+                >
+                  {errorMessage}
+                </Form.Control.Feedback>
+              )}
+            />
+          </InputGroup>
 
-      <Button aria-label="Sign Button" className="mt-2" variant="primary" type="submit" disabled={signed} block>
-        <b>Sign</b>
-      </Button>
-    </Form>
+          <InputGroup className="mb-2">
+            <InputGroup.Prepend>
+              <InputGroup.Text>Message</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Field
+              as={TextAreaFormControl}
+              aria-label="Sign Message"
+              name="msg"
+              rows={2}
+              placeholder="optional message..."
+              readOnly={state.wallet.signed}
+              isValid={!!touched.msg && !errors.msg}
+            />
+          </InputGroup>
+
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text>Sender Private Key</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              aria-label="Sender Private Key"
+              name="fromSK"
+              className="text-truncate"
+              type="text"
+              value={state.user.privateKey}
+              readOnly
+            />
+          </InputGroup>
+
+          <Form.Text className="text-muted">Not shared with anyone, keep this secret!</Form.Text>
+
+          <Button
+            aria-label="Sign Button"
+            className="mt-2"
+            variant={state.wallet.signed ? "success" : "primary"}
+            type="submit"
+            disabled={state.wallet.signed || isSubmitting}
+            block
+          >
+            <b>{state.wallet.signed ? "Signed" : "Sign"}</b>
+          </Button>
+        </Form>
+      )}
+    </Formik>
   );
 }

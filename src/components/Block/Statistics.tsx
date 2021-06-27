@@ -145,7 +145,7 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
         }
         onClick={() => handleMine()}
       >
-        <h4 className="my-0 row justify-content-end flex-nowrap">
+        <h4 className="my-0 row justify-content-end align-items-center flex-nowrap">
           <span className="col-10 pl-5">Mine</span>
           <span
             className={"spinner-border spinner-border-md mr-3 " + (disableMineBtn ? "visible" : "invisible")}

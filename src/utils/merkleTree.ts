@@ -1,4 +1,3 @@
-import { Tree } from "./Tree";
 import { ITransaction } from "../typings/AppTypes";
 import { digestMessage } from "./conversion";
 
@@ -41,13 +40,4 @@ export function flattenTree(tree: string[][]): string[] {
   }
 
   return flatTree;
-}
-
-export function drawTreeDiagramOnCanvas(merkleTree: string[][], canvasTree: Tree): void {
-  canvasTree.clear();
-  const flatTree = flattenTree(merkleTree);
-  for (let i = flatTree.length - 1; i >= 0; i--) {
-    canvasTree.addNode(flatTree[i]);
-  }
-  canvasTree.drawTree();
 }

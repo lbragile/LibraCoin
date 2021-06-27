@@ -22,7 +22,7 @@ exports[`renders correctly 1`] = `
       <input
         aria-label="Sender Public Key"
         class="text-truncate rounded-right form-control"
-        name="sender-pk"
+        name="from"
         readonly=""
         type="text"
         value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
@@ -46,20 +46,13 @@ exports[`renders correctly 1`] = `
         </span>
       </div>
       <input
-        aria-label="Receiver Public Key"
+        aria-label="Receiver PK"
         class="text-truncate rounded-right form-control"
-        name="receiver-pk"
-        pattern="[A-Za-z0-9]{182,182}"
+        name="to"
         required=""
         type="text"
+        value=""
       />
-      <div
-        class="invalid-feedback"
-      >
-        <b>
-          Length or format are incorrect!
-        </b>
-      </div>
     </div>
     <div
       class="mb-2 input-group"
@@ -72,9 +65,10 @@ exports[`renders correctly 1`] = `
         required=""
         step="any"
         type="number"
+        value=""
       />
       <div
-        class="input-group-prepend"
+        class="input-group-append"
       >
         <span
           class="rounded-right border-left-0 input-group-text"
@@ -118,7 +112,7 @@ exports[`renders correctly 1`] = `
       <input
         aria-label="Sender Private Key"
         class="text-truncate form-control"
-        name="sender-sk"
+        name="fromSK"
         readonly=""
         type="text"
         value="308187020100301306072a8648ce3d020106082a8648ce3d030107046d306b020101042047979df7cebe59dd7bf901"

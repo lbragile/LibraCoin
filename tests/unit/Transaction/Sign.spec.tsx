@@ -2,44 +2,26 @@
  * @group unit
  */
 
-import React, { useReducer } from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import React from "react";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Sign from "../../../src/components/Transaction/Sign";
-import { AppContext } from "../../../src/context/AppContext";
-import { AppReducer } from "../../../src/reducers/AppReducer";
-import { IAction, IState } from "../../../src/typings/AppTypes";
+import * as conversionUtils from "../../../src/utils/conversion";
+import { customRender } from "../../utils/testUtils";
+import { numberWithCommas } from "../../../src/utils/numberManipulation";
 
 const { initialState } = global;
 
-interface ISendWrapper {
-  validated: boolean;
-  signed: boolean;
-  handleSubmit?: () => void;
-  stateMock?: IState;
-  dispatchMock?: React.Dispatch<IAction>;
-}
-
-const SignWrapper = ({ validated, signed, handleSubmit, stateMock, dispatchMock }: ISendWrapper) => {
-  const [state, dispatch] = useReducer(AppReducer, stateMock ?? initialState);
-
-  return (
-    <AppContext.Provider value={{ state, dispatch: dispatchMock ?? dispatch }}>
-      <Sign validated={validated} signed={signed} handleSubmit={handleSubmit ?? jest.fn()} />
-    </AppContext.Provider>
-  );
-};
-
 it("renders correctly", () => {
-  const { asFragment } = render(<SignWrapper validated={false} signed={false} />);
+  const { asFragment } = customRender(<Sign />);
 
   expect(screen.getByRole("form", { name: /Sign Form/i })).toHaveFormValues({
-    "sender-pk": initialState.user.publicKey,
-    "receiver-pk": "",
+    from: initialState.user.publicKey,
+    to: "",
     amount: null,
     msg: "",
-    "sender-sk": initialState.user.privateKey
+    fromSK: initialState.user.privateKey
   });
 
   const senderPublicKey = screen.getByRole("textbox", { name: /Sender Public Key/i });
@@ -48,7 +30,7 @@ it("renders correctly", () => {
 
   expect(screen.getByText(/Used to verify/i)).toBeInTheDocument();
 
-  const receiverPublicKey = screen.getByRole("textbox", { name: /Receiver Public Key/i });
+  const receiverPublicKey = screen.getByRole("textbox", { name: /Receiver PK/i });
   expect(receiverPublicKey).toBeEnabled();
   expect(receiverPublicKey).toBeRequired();
 
@@ -73,68 +55,178 @@ it("renders correctly", () => {
 
 describe("sign button state", () => {
   it("is enabled when not signed", () => {
-    render(<SignWrapper validated={false} signed={false} />);
+    customRender(<Sign />);
+
+    // fill out the form
+    userEvent.type(
+      screen.getByRole("textbox", { name: /Receiver PK/i }),
+      new Array(initialState.user.publicKey.length).fill("A").join("")
+    );
+
+    userEvent.type(screen.getByRole("spinbutton", { name: /Sign Amount/i }), Number(12.31).toFixed(2));
 
     expect(screen.getByRole("button", { name: /Sign Button/i })).toBeEnabled();
     expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveTextContent("Sign");
+    expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveClass("btn-primary");
   });
 
-  it("is disabled when signed", () => {
-    render(<SignWrapper validated={false} signed={true} />);
+  it("is disabled when signed", async () => {
+    jest.spyOn(conversionUtils, "digestMessage").mockResolvedValueOnce("random digest");
+    customRender(<Sign />);
 
-    expect(screen.getByRole("button", { name: /Sign Button/i })).toBeDisabled();
-    expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveTextContent("Sign");
+    // fill out the form
+    userEvent.type(
+      screen.getByRole("textbox", { name: /Receiver PK/i }),
+      new Array(initialState.user.publicKey.length).fill("A").join("")
+    );
+    userEvent.type(screen.getByRole("spinbutton", { name: /Sign Amount/i }), Number(320.12).toFixed(2));
+    userEvent.type(screen.getByRole("textbox", { name: /Sign Message/i }), "random{space}message");
+
+    userEvent.click(screen.getByRole("button", { name: /Sign Button/i }));
+
+    await waitFor(() => expect(screen.getByRole("button", { name: /Sign Button/i })).toBeDisabled());
+    expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveTextContent("Signed");
+    expect(screen.getByRole("button", { name: /Sign Button/i })).toHaveClass("btn-success");
   });
 });
 
 describe("Amount checking", () => {
-  beforeEach(() => {
-    render(<SignWrapper validated={false} signed={false} />);
-  });
+  beforeEach(() => customRender(<Sign />));
 
-  it("clamps when below minimum (0.10)", () => {
+  it("shows error when empty", async () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
     signAmount.focus();
-    fireEvent.change(signAmount, { target: { value: "0.01" } });
-    signAmount.blur();
+    signAmount.blur(); // cause an error
 
-    expect(signAmount).toHaveValue(0.1);
+    const alert = await screen.findByRole("alert", { name: /Amount Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Amount is required!");
   });
 
-  it("clamps when above maximum (1000.00)", () => {
+  it("shows error when negative", async () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
-    signAmount.focus();
-    fireEvent.change(signAmount, { target: { value: "1000.01" } });
-    signAmount.blur();
+    userEvent.type(signAmount, "-0.1");
+    signAmount.blur(); // cause an error
 
-    expect(signAmount).toHaveValue(1000.0);
+    const alert = await screen.findByRole("alert", { name: /Amount Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Cannot be a negative value");
   });
 
-  it("does not clamp when value is between min and max", () => {
+  it("shows error when below minimum (0.10)", async () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
-    signAmount.focus();
-    fireEvent.change(signAmount, { target: { value: "123.45" } });
-    signAmount.blur();
+    userEvent.type(signAmount, "0.09");
+    signAmount.blur(); // cause an error
 
-    expect(signAmount).toHaveValue(123.45);
+    const alert = await screen.findByRole("alert", { name: /Amount Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Must be at least $0.10 LC");
   });
 
-  it("maintains 2 decimal places", () => {
+  it("shows error when above maximum", async () => {
     const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
-    signAmount.focus();
-    fireEvent.change(signAmount, { target: { value: "123.456" } });
+    userEvent.type(signAmount, (initialState.user.balance + 0.01).toString());
+    signAmount.blur(); // cause an error
+
+    const alert = await screen.findByRole("alert", { name: /Amount Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent(`Must be at most $${numberWithCommas(initialState.user.balance)} LC`);
+  });
+
+  it("does not show error when between", () => {
+    const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
+    userEvent.type(signAmount, "123.4");
     signAmount.blur();
 
-    expect(signAmount).toHaveValue(123.46);
+    expect(screen.queryByRole("alert", { name: /Amount Feedback/i })).not.toBeInTheDocument();
+  });
+
+  it("shows error when more than 2 decimal places", async () => {
+    const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
+    userEvent.type(signAmount, "123.456");
+    signAmount.blur(); // cause an error
+
+    const alert = await screen.findByRole("alert", { name: /Amount Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Allowed at most 2 decimal places");
+  });
+
+  it("does not show error for 2 decimal places", () => {
+    const signAmount = screen.getByRole("spinbutton", { name: /Sign Amount/i });
+    userEvent.type(signAmount, "123.45");
+    signAmount.blur();
+
+    expect(screen.queryByRole("alert", { name: /Amount Feedback/i })).not.toBeInTheDocument();
   });
 });
 
-it("submits form when send button is pressed", () => {
-  const handleSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
+describe("form validation", () => {
+  test("invalid receiver public key length - empty", async () => {
+    customRender(<Sign />);
 
-  render(<SignWrapper validated={false} signed={false} handleSubmit={handleSubmit} />);
+    const input = screen.getByRole("textbox", { name: /Receiver PK/i });
+    input.focus();
+    input.blur(); // cause an error
 
-  fireEvent.click(screen.getByRole("button"));
+    const alert = await screen.findByRole("alert", { name: /Receiver PK Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Receiver Public Key is required!");
+  });
 
-  expect(handleSubmit).toHaveBeenCalledTimes(1);
+  test("invalid receiver public key length - short", async () => {
+    customRender(<Sign />);
+
+    const input = screen.getByRole("textbox", { name: /Receiver PK/i });
+    const text = new Array(initialState.user.publicKey.length - 1).fill("A").join("");
+    userEvent.type(input, text);
+    input.blur(); // cause an error
+    expect(input).toHaveValue(text);
+
+    const alert = await screen.findByRole("alert", { name: /Receiver PK Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Length is too short");
+  });
+
+  test("invalid receiver public key length - long", async () => {
+    customRender(<Sign />);
+
+    const input = screen.getByRole("textbox", { name: /Receiver PK/i });
+    const text = new Array(initialState.user.publicKey.length + 1).fill("A").join("");
+    userEvent.type(input, text);
+    input.blur(); // cause an error
+
+    expect(input).toHaveValue(text);
+
+    const alert = await screen.findByRole("alert", { name: /Receiver PK Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Length is too long");
+  });
+
+  test("invalid receiver public key length - alphanumeric", async () => {
+    customRender(<Sign />);
+
+    const input = screen.getByRole("textbox", { name: /Receiver PK/i });
+    const text = new Array(initialState.user.publicKey.length - 1).fill("A").join("");
+    userEvent.type(input, text + "@");
+    input.blur(); // cause an error
+
+    expect(input).toHaveValue(text + "@");
+
+    const alert = await screen.findByRole("alert", { name: /Receiver PK Feedback/i });
+    expect(alert).toBeInTheDocument();
+    expect(alert).toHaveTextContent("Format is invalid, characters must be alphanumeric");
+  });
+
+  test("valid receiver public key length", async () => {
+    customRender(<Sign />);
+
+    const input = screen.getByRole("textbox", { name: /Receiver PK/i });
+    const text = new Array(initialState.user.publicKey.length).fill("A").join("");
+    userEvent.type(input, text);
+    input.blur(); // cause an error
+
+    expect(input).toHaveValue(text);
+
+    expect(screen.queryByRole("alert", { name: /Receiver PK Feedback/i })).not.toBeInTheDocument();
+  });
 });

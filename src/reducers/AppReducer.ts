@@ -65,6 +65,26 @@ export const AppReducer = (state: IState, action: IAction): IState => {
       return { ...state, copied };
     }
 
+    case ACTIONS.SET_SIGNED: {
+      const { signed, sent } = action.payload as { signed: boolean; sent?: boolean };
+      const newSent = sent !== undefined ? sent : !signed;
+      const wallet = { ...state.wallet, signed, sent: newSent };
+      localStorage.setItem("wallet", JSON.stringify(wallet, null, 2));
+      return { ...state, wallet };
+    }
+
+    case ACTIONS.SET_VALIDATED: {
+      const { validated } = action.payload as { validated: boolean };
+      localStorage.setItem("wallet", JSON.stringify({ ...state.wallet, validated }, null, 2));
+      return { ...state, wallet: { ...state.wallet, validated } };
+    }
+
+    case ACTIONS.SET_DETAILS: {
+      const { details } = action.payload as { details: ITransaction };
+      localStorage.setItem("wallet", JSON.stringify({ ...state.wallet, details }, null, 2));
+      return { ...state, wallet: { ...state.wallet, details } };
+    }
+
     default:
       return state;
   }
