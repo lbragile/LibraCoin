@@ -177,3 +177,83 @@ it.each`
 
   expect(mineButtons[index + 1]).toBeUndefined();
 });
+
+describe("block transactions", () => {
+  it("shows transactions when reveal icon is clicked", () => {
+    const { asFragment } = customRender(<Chain />, { stateMock: newState });
+
+    const visibleGroups = newState.chain.filter((block) => block.showTrans);
+
+    const numTransVisible = visibleGroups
+      .map((block) => block.transactions.length)
+      .reduce((total, curr) => total + curr, 0);
+
+    expect(screen.getAllByRole("list", { name: /Block Transactions Group/i })).toHaveLength(visibleGroups.length);
+    expect(screen.getAllByRole("listitem", { name: /Block Transactions Item/i })).toHaveLength(numTransVisible);
+
+    userEvent.click(screen.getAllByText("🙉")[0]); // genesis block does not have the reveal icon
+
+    expect(screen.getAllByRole("list", { name: /Block Transactions Group/i })).toHaveLength(visibleGroups.length + 1);
+    expect(screen.getAllByRole("listitem", { name: /Block Transactions Item/i })).toHaveLength(numTransVisible + 1);
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it("hides transactions when reveal icon is clicked", () => {
+    const { asFragment } = customRender(<Chain />, { stateMock: newState });
+
+    const visibleGroups = newState.chain.filter((block) => block.showTrans);
+
+    const numTransVisible = visibleGroups
+      .map((block) => block.transactions.length)
+      .reduce((total, curr) => total + curr, 0);
+
+    expect(screen.getAllByRole("list", { name: /Block Transactions Group/i })).toHaveLength(visibleGroups.length);
+    expect(screen.getAllByRole("listitem", { name: /Block Transactions Item/i })).toHaveLength(numTransVisible);
+
+    userEvent.click(screen.getAllByText("🙈")[0]); // genesis block does not have the reveal icon
+
+    expect(screen.getAllByRole("list", { name: /Block Transactions Group/i })).toHaveLength(visibleGroups.length - 1);
+    expect(screen.getAllByRole("listitem", { name: /Block Transactions Item/i })).toHaveLength(numTransVisible - 1);
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+});
+
+// TODO - this needs to be tested better, currently just a starting point
+describe("change of transaction details causes a change in merkle root and propagation", () => {
+  beforeAll(() => (Date.now = jest.fn().mockReturnValue(12345)));
+  beforeEach(() => jest.spyOn(ConversionUtil, "digestMessage").mockResolvedValue("some message"));
+
+  test.each`
+    field
+    ${"From"}
+    ${"To"}
+    ${"Amount"}
+    ${"Message"}
+  `("change in $field input", async ({ field }) => {
+    const { asFragment } = customRender(<Chain />, { stateMock: newState });
+    const originalSignature = screen.getAllByRole("textbox", { name: /Block Transactions Signature/i })[0].textContent; // genesis has no transactions
+    const originalMerkle = screen.getAllByRole("textbox", { name: /Block Merkle/i })[2].textContent;
+
+    userEvent.type(
+      screen.getAllByRole(field === "Amount" ? "spinbutton" : "textbox", {
+        name: new RegExp(`Block Transactions ${field}`, "i")
+      })[0],
+      field === "Amount" ? "123.02" : "new " + field
+    );
+
+    // check that signature changes
+    await waitFor(() =>
+      expect(screen.getAllByRole("textbox", { name: /Block Transactions Signature/i })[0]).not.toHaveValue(
+        originalSignature
+      )
+    );
+
+    // check that merkle root for block changed
+    expect(screen.getAllByRole("textbox", { name: /Block Merkle/i })[2]).not.toHaveValue(originalMerkle);
+    expect(screen.getAllByRole("form", { name: /Block Form/i })[2]).toHaveClass("invalid-block");
+
+    expect(asFragment()).toMatchSnapshot();
+  });
+});

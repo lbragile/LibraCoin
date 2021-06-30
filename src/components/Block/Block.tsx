@@ -114,7 +114,7 @@ export default function Block({ chain, index }: IBlockProps): JSX.Element {
           <InputGroup.Text>Merkle #</InputGroup.Text>
         </InputGroup.Prepend>
         {chain && index === 0 ? (
-          <Form.Control aria-label="Block Merkle Genesis" name="merkleRoot" type="text" defaultValue={""} disabled />
+          <Form.Control aria-label="Block Merkle Genesis" name="merkleRoot" type="text" defaultValue="" disabled />
         ) : (
           <React.Fragment>
             <Form.Control

@@ -60,8 +60,7 @@ export default function PreviewTree(): JSX.Element {
         break;
       }
 
-      default:
-        break;
+      // no default
     }
 
     return text;
@@ -117,8 +116,7 @@ export default function PreviewTree(): JSX.Element {
         break;
       }
 
-      default:
-        break;
+      // no default
     }
 
     return className;
@@ -128,8 +126,14 @@ export default function PreviewTree(): JSX.Element {
     <div className="w-100 my-3 text-center">
       <h3 className="font-weight-bold">Merkle Tree Visualization</h3>
       {tree[tree.length - 1][0] !== "" ? (
-        <Table className="w-75 mx-auto my-1 text-center border" responsive size="sm">
-          <tbody>
+        <Table
+          role="grid"
+          aria-label="Preview Table"
+          className="w-75 mx-auto my-1 text-center border"
+          responsive
+          size="sm"
+        >
+          <tbody role="presentation">
             <tr>
               {Array.from({ length: numCells.current }).map((_, i) => (
                 <td key={"first-data-row-" + i} className={getClassName(0, i)} title={getText(0, i, true)}>

@@ -57,13 +57,13 @@ td {
 }
 
 .diag-line-right {
-  background: linear-gradient(to top right, #fff calc(50% - 1px), #000, #fff calc(50% + 1px));
+  background: linear-gradient(to top right, transparent calc(50% - 1px), #777, transparent calc(50% + 1px));
 }
 
 .diag-line-left {
-  background: linear-gradient(to top left, #fff calc(50% - 1px), #000, #fff calc(50% + 1px));
+  background: linear-gradient(to top left, transparent calc(50% - 1px), #777, transparent calc(50% + 1px));
 }
 
 .normal-line {
-  background: linear-gradient(to left, #fff calc(50% - 1px), #000, #fff calc(50% + 1px));
+  background: linear-gradient(to left, transparent calc(50% - 1px), #777, transparent calc(50% + 1px));
 }

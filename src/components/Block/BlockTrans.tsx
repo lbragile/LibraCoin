@@ -46,37 +46,46 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
   }
 
   return (
-    <div className="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark">
+    <div
+      className="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+      aria-label="Block Transactions Group"
+      role="list"
+    >
       {transDetails.map((transaction, i) => {
         return (
-          <div
+          <Form
+            aria-label="Block Transactions Item"
+            role="listitem"
             className={
               (transDetails.length > 1 && i !== transDetails.length - 1 ? "mr-2 " : "") +
               "col-12 bg-light border border-dark p-1 rounded"
             }
             key={`sig:${i}`}
           >
-            <Form.Group className="mb-2 text-center">
+            <InputGroup className="mb-2 text-center">
               <Form.Control
-                className="text-truncate"
+                aria-label="Block Transactions From"
+                className="text-truncate rounded w-100"
                 type="text"
                 value={transaction.from}
                 onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "from")}
               />
-              <h3 className="my-0">↓</h3>
+              <h3 className="my-0 w-100">↓</h3>
               <Form.Control
-                className="text-truncate"
+                aria-label="Block Transactions To"
+                className="text-truncate rounded w-100"
                 type="text"
                 value={transaction.to}
                 onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "to")}
               />
-            </Form.Group>
+            </InputGroup>
 
             <InputGroup className="mb-2">
               <InputGroup.Prepend>
                 <InputGroup.Text>Msg</InputGroup.Text>
               </InputGroup.Prepend>
               <Form.Control
+                aria-label="Block Transactions Message"
                 as="textarea"
                 rows={3}
                 value={transaction.msg}
@@ -86,8 +95,9 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
 
             <InputGroup className="mb-2">
               <Form.Control
+                aria-label="Block Transactions Amount"
                 type="number"
-                value={transaction.amount ?? 0}
+                value={transaction.amount}
                 onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "amount")}
               />
               <InputGroup.Append>
@@ -100,14 +110,14 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
                 <InputGroup.Text>Sig</InputGroup.Text>
               </InputGroup.Prepend>
               <Form.Control
-                key={transaction.signature}
+                aria-label="Block Transactions Signature"
                 className="text-truncate"
                 type="text"
-                value={transaction.msg}
+                value={transaction.signature}
                 readOnly
               />
             </InputGroup>
-          </div>
+          </Form>
         );
       })}
     </div>
