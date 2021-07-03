@@ -1,0 +1,919 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`last block change of Amount input attempts propagation 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Block Transactions Group"
+    class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+    role="list"
+  >
+    <form
+      aria-label="Block Transactions Item"
+      class="col-12 bg-light border border-dark p-1 rounded"
+      role="listitem"
+    >
+      <div
+        class="mb-2 text-center input-group"
+      >
+        <input
+          aria-label="Block Transactions From"
+          class="text-truncate rounded w-100 form-control"
+          name="btFrom"
+          type="text"
+          value="Z"
+        />
+        <h3
+          class="my-0 w-100"
+        >
+          ↓
+        </h3>
+        <input
+          aria-label="Block Transactions To"
+          class="text-truncate rounded w-100 form-control"
+          name="btTo"
+          type="text"
+          value="A"
+        />
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Msg
+          </span>
+        </div>
+        <textarea
+          aria-label="Block Transactions Message"
+          class="form-control"
+          name="btMsg"
+          rows="3"
+        >
+          Forth Transaction
+        </textarea>
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <input
+          aria-label="Block Transactions Amount"
+          class="form-control"
+          name="btAmount"
+          type="number"
+          value="567.89"
+        />
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="input-group-text"
+          >
+            LC
+          </span>
+        </div>
+      </div>
+      <div
+        class="input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Sig
+          </span>
+        </div>
+        <input
+          aria-label="Block Transactions Signature"
+          class="text-truncate form-control"
+          name="btSignature"
+          readonly=""
+          type="text"
+          value="some message"
+        />
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`last block change of From input attempts propagation 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Block Transactions Group"
+    class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+    role="list"
+  >
+    <form
+      aria-label="Block Transactions Item"
+      class="col-12 bg-light border border-dark p-1 rounded"
+      role="listitem"
+    >
+      <div
+        class="mb-2 text-center input-group"
+      >
+        <input
+          aria-label="Block Transactions From"
+          class="text-truncate rounded w-100 form-control"
+          name="btFrom"
+          type="text"
+          value="Z1"
+        />
+        <h3
+          class="my-0 w-100"
+        >
+          ↓
+        </h3>
+        <input
+          aria-label="Block Transactions To"
+          class="text-truncate rounded w-100 form-control"
+          name="btTo"
+          type="text"
+          value="A"
+        />
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Msg
+          </span>
+        </div>
+        <textarea
+          aria-label="Block Transactions Message"
+          class="form-control"
+          name="btMsg"
+          rows="3"
+        >
+          Forth Transaction
+        </textarea>
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <input
+          aria-label="Block Transactions Amount"
+          class="form-control"
+          name="btAmount"
+          type="number"
+          value="567.89"
+        />
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="input-group-text"
+          >
+            LC
+          </span>
+        </div>
+      </div>
+      <div
+        class="input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Sig
+          </span>
+        </div>
+        <input
+          aria-label="Block Transactions Signature"
+          class="text-truncate form-control"
+          name="btSignature"
+          readonly=""
+          type="text"
+          value="some message"
+        />
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`last block change of Message input attempts propagation 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Block Transactions Group"
+    class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+    role="list"
+  >
+    <form
+      aria-label="Block Transactions Item"
+      class="col-12 bg-light border border-dark p-1 rounded"
+      role="listitem"
+    >
+      <div
+        class="mb-2 text-center input-group"
+      >
+        <input
+          aria-label="Block Transactions From"
+          class="text-truncate rounded w-100 form-control"
+          name="btFrom"
+          type="text"
+          value="Z"
+        />
+        <h3
+          class="my-0 w-100"
+        >
+          ↓
+        </h3>
+        <input
+          aria-label="Block Transactions To"
+          class="text-truncate rounded w-100 form-control"
+          name="btTo"
+          type="text"
+          value="A"
+        />
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Msg
+          </span>
+        </div>
+        <textarea
+          aria-label="Block Transactions Message"
+          class="form-control"
+          name="btMsg"
+          rows="3"
+        >
+          Forth Transaction1
+        </textarea>
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <input
+          aria-label="Block Transactions Amount"
+          class="form-control"
+          name="btAmount"
+          type="number"
+          value="567.89"
+        />
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="input-group-text"
+          >
+            LC
+          </span>
+        </div>
+      </div>
+      <div
+        class="input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Sig
+          </span>
+        </div>
+        <input
+          aria-label="Block Transactions Signature"
+          class="text-truncate form-control"
+          name="btSignature"
+          readonly=""
+          type="text"
+          value="some message"
+        />
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`last block change of To input attempts propagation 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Block Transactions Group"
+    class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+    role="list"
+  >
+    <form
+      aria-label="Block Transactions Item"
+      class="col-12 bg-light border border-dark p-1 rounded"
+      role="listitem"
+    >
+      <div
+        class="mb-2 text-center input-group"
+      >
+        <input
+          aria-label="Block Transactions From"
+          class="text-truncate rounded w-100 form-control"
+          name="btFrom"
+          type="text"
+          value="Z"
+        />
+        <h3
+          class="my-0 w-100"
+        >
+          ↓
+        </h3>
+        <input
+          aria-label="Block Transactions To"
+          class="text-truncate rounded w-100 form-control"
+          name="btTo"
+          type="text"
+          value="A1"
+        />
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Msg
+          </span>
+        </div>
+        <textarea
+          aria-label="Block Transactions Message"
+          class="form-control"
+          name="btMsg"
+          rows="3"
+        >
+          Forth Transaction
+        </textarea>
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <input
+          aria-label="Block Transactions Amount"
+          class="form-control"
+          name="btAmount"
+          type="number"
+          value="567.89"
+        />
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="input-group-text"
+          >
+            LC
+          </span>
+        </div>
+      </div>
+      <div
+        class="input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Sig
+          </span>
+        </div>
+        <input
+          aria-label="Block Transactions Signature"
+          class="text-truncate form-control"
+          name="btSignature"
+          readonly=""
+          type="text"
+          value="some message"
+        />
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`middle block change of Amount input causes propagation 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Block Transactions Group"
+    class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+    role="list"
+  >
+    <form
+      aria-label="Block Transactions Item"
+      class="col-12 bg-light border border-dark p-1 rounded"
+      role="listitem"
+    >
+      <div
+        class="mb-2 text-center input-group"
+      >
+        <input
+          aria-label="Block Transactions From"
+          class="text-truncate rounded w-100 form-control"
+          name="btFrom"
+          type="text"
+          value="E"
+        />
+        <h3
+          class="my-0 w-100"
+        >
+          ↓
+        </h3>
+        <input
+          aria-label="Block Transactions To"
+          class="text-truncate rounded w-100 form-control"
+          name="btTo"
+          type="text"
+          value="A"
+        />
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Msg
+          </span>
+        </div>
+        <textarea
+          aria-label="Block Transactions Message"
+          class="form-control"
+          name="btMsg"
+          rows="3"
+        >
+          Forth Transaction
+        </textarea>
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <input
+          aria-label="Block Transactions Amount"
+          class="form-control"
+          name="btAmount"
+          type="number"
+          value="987.65"
+        />
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="input-group-text"
+          >
+            LC
+          </span>
+        </div>
+      </div>
+      <div
+        class="input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Sig
+          </span>
+        </div>
+        <input
+          aria-label="Block Transactions Signature"
+          class="text-truncate form-control"
+          name="btSignature"
+          readonly=""
+          type="text"
+          value="some message"
+        />
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`middle block change of From input causes propagation 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Block Transactions Group"
+    class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+    role="list"
+  >
+    <form
+      aria-label="Block Transactions Item"
+      class="col-12 bg-light border border-dark p-1 rounded"
+      role="listitem"
+    >
+      <div
+        class="mb-2 text-center input-group"
+      >
+        <input
+          aria-label="Block Transactions From"
+          class="text-truncate rounded w-100 form-control"
+          name="btFrom"
+          type="text"
+          value="E1"
+        />
+        <h3
+          class="my-0 w-100"
+        >
+          ↓
+        </h3>
+        <input
+          aria-label="Block Transactions To"
+          class="text-truncate rounded w-100 form-control"
+          name="btTo"
+          type="text"
+          value="A"
+        />
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Msg
+          </span>
+        </div>
+        <textarea
+          aria-label="Block Transactions Message"
+          class="form-control"
+          name="btMsg"
+          rows="3"
+        >
+          Forth Transaction
+        </textarea>
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <input
+          aria-label="Block Transactions Amount"
+          class="form-control"
+          name="btAmount"
+          type="number"
+          value="987.65"
+        />
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="input-group-text"
+          >
+            LC
+          </span>
+        </div>
+      </div>
+      <div
+        class="input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Sig
+          </span>
+        </div>
+        <input
+          aria-label="Block Transactions Signature"
+          class="text-truncate form-control"
+          name="btSignature"
+          readonly=""
+          type="text"
+          value="some message"
+        />
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`middle block change of Message input causes propagation 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Block Transactions Group"
+    class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+    role="list"
+  >
+    <form
+      aria-label="Block Transactions Item"
+      class="col-12 bg-light border border-dark p-1 rounded"
+      role="listitem"
+    >
+      <div
+        class="mb-2 text-center input-group"
+      >
+        <input
+          aria-label="Block Transactions From"
+          class="text-truncate rounded w-100 form-control"
+          name="btFrom"
+          type="text"
+          value="E"
+        />
+        <h3
+          class="my-0 w-100"
+        >
+          ↓
+        </h3>
+        <input
+          aria-label="Block Transactions To"
+          class="text-truncate rounded w-100 form-control"
+          name="btTo"
+          type="text"
+          value="A"
+        />
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Msg
+          </span>
+        </div>
+        <textarea
+          aria-label="Block Transactions Message"
+          class="form-control"
+          name="btMsg"
+          rows="3"
+        >
+          Forth Transaction1
+        </textarea>
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <input
+          aria-label="Block Transactions Amount"
+          class="form-control"
+          name="btAmount"
+          type="number"
+          value="987.65"
+        />
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="input-group-text"
+          >
+            LC
+          </span>
+        </div>
+      </div>
+      <div
+        class="input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Sig
+          </span>
+        </div>
+        <input
+          aria-label="Block Transactions Signature"
+          class="text-truncate form-control"
+          name="btSignature"
+          readonly=""
+          type="text"
+          value="some message"
+        />
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`middle block change of To input causes propagation 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Block Transactions Group"
+    class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+    role="list"
+  >
+    <form
+      aria-label="Block Transactions Item"
+      class="col-12 bg-light border border-dark p-1 rounded"
+      role="listitem"
+    >
+      <div
+        class="mb-2 text-center input-group"
+      >
+        <input
+          aria-label="Block Transactions From"
+          class="text-truncate rounded w-100 form-control"
+          name="btFrom"
+          type="text"
+          value="E"
+        />
+        <h3
+          class="my-0 w-100"
+        >
+          ↓
+        </h3>
+        <input
+          aria-label="Block Transactions To"
+          class="text-truncate rounded w-100 form-control"
+          name="btTo"
+          type="text"
+          value="A1"
+        />
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Msg
+          </span>
+        </div>
+        <textarea
+          aria-label="Block Transactions Message"
+          class="form-control"
+          name="btMsg"
+          rows="3"
+        >
+          Forth Transaction
+        </textarea>
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <input
+          aria-label="Block Transactions Amount"
+          class="form-control"
+          name="btAmount"
+          type="number"
+          value="987.65"
+        />
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="input-group-text"
+          >
+            LC
+          </span>
+        </div>
+      </div>
+      <div
+        class="input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Sig
+          </span>
+        </div>
+        <input
+          aria-label="Block Transactions Signature"
+          class="text-truncate form-control"
+          name="btSignature"
+          readonly=""
+          type="text"
+          value="some message"
+        />
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="Block Transactions Group"
+    class="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+    role="list"
+  >
+    <form
+      aria-label="Block Transactions Item"
+      class="col-12 bg-light border border-dark p-1 rounded"
+      role="listitem"
+    >
+      <div
+        class="mb-2 text-center input-group"
+      >
+        <input
+          aria-label="Block Transactions From"
+          class="text-truncate rounded w-100 form-control"
+          name="btFrom"
+          type="text"
+          value="Z"
+        />
+        <h3
+          class="my-0 w-100"
+        >
+          ↓
+        </h3>
+        <input
+          aria-label="Block Transactions To"
+          class="text-truncate rounded w-100 form-control"
+          name="btTo"
+          type="text"
+          value="A"
+        />
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Msg
+          </span>
+        </div>
+        <textarea
+          aria-label="Block Transactions Message"
+          class="form-control"
+          name="btMsg"
+          rows="3"
+        >
+          Forth Transaction
+        </textarea>
+      </div>
+      <div
+        class="mb-2 input-group"
+      >
+        <input
+          aria-label="Block Transactions Amount"
+          class="form-control"
+          name="btAmount"
+          type="number"
+          value="567.89"
+        />
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="input-group-text"
+          >
+            LC
+          </span>
+        </div>
+      </div>
+      <div
+        class="input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="input-group-text"
+          >
+            Sig
+          </span>
+        </div>
+        <input
+          aria-label="Block Transactions Signature"
+          class="text-truncate form-control"
+          name="btSignature"
+          readonly=""
+          type="text"
+          value="AZ567.89"
+        />
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;

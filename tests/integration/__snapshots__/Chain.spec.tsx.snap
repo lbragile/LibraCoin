@@ -996,6 +996,7 @@ exports[`block transactions hides transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Y"
               />
@@ -1007,6 +1008,7 @@ exports[`block transactions hides transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="Z"
               />
@@ -1026,6 +1028,7 @@ exports[`block transactions hides transactions when reveal icon is clicked 1`] =
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Fifth Transaction
@@ -1037,6 +1040,7 @@ exports[`block transactions hides transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="123.45"
               />
@@ -1065,6 +1069,7 @@ exports[`block transactions hides transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="ZY123.45"
@@ -1610,6 +1615,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="E"
               />
@@ -1621,6 +1627,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="A"
               />
@@ -1640,6 +1647,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Forth Transaction
@@ -1651,6 +1659,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="987.65"
               />
@@ -1679,6 +1688,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="AE987.65"
@@ -1934,6 +1944,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Z"
               />
@@ -1945,6 +1956,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="A"
               />
@@ -1964,6 +1976,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Forth Transaction
@@ -1975,6 +1988,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="567.89"
               />
@@ -2003,6 +2017,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="AZ567.89"
@@ -2258,6 +2273,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Y"
               />
@@ -2269,6 +2285,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="Z"
               />
@@ -2288,6 +2305,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Fifth Transaction
@@ -2299,6 +2317,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="123.45"
               />
@@ -2327,6 +2346,7 @@ exports[`block transactions shows transactions when reveal icon is clicked 1`] =
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="ZY123.45"
@@ -3104,6 +3124,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Z"
               />
@@ -3115,6 +3136,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="A"
               />
@@ -3134,6 +3156,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Forth Transaction
@@ -3145,6 +3168,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="567.89"
               />
@@ -3173,6 +3197,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="some message"
@@ -3428,6 +3453,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Y"
               />
@@ -3439,6 +3465,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="Z"
               />
@@ -3458,6 +3485,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Fifth Transaction
@@ -3469,6 +3497,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="123.45"
               />
@@ -3497,6 +3526,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="ZY123.45"
@@ -4274,6 +4304,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Zm"
               />
@@ -4285,6 +4316,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="A"
               />
@@ -4304,6 +4336,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Forth Transaction
@@ -4315,6 +4348,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="567.89"
               />
@@ -4343,6 +4377,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="some message"
@@ -4598,6 +4633,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Y"
               />
@@ -4609,6 +4645,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="Z"
               />
@@ -4628,6 +4665,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Fifth Transaction
@@ -4639,6 +4677,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="123.45"
               />
@@ -4667,6 +4706,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="ZY123.45"
@@ -5444,6 +5484,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Z"
               />
@@ -5455,6 +5496,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="A"
               />
@@ -5474,6 +5516,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Forth Transactione
@@ -5485,6 +5528,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="567.89"
               />
@@ -5513,6 +5557,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="some message"
@@ -5768,6 +5813,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Y"
               />
@@ -5779,6 +5825,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="Z"
               />
@@ -5798,6 +5845,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Fifth Transaction
@@ -5809,6 +5857,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="123.45"
               />
@@ -5837,6 +5886,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="ZY123.45"
@@ -6614,6 +6664,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Z"
               />
@@ -6625,6 +6676,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="Ao"
               />
@@ -6644,6 +6696,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Forth Transaction
@@ -6655,6 +6708,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="567.89"
               />
@@ -6683,6 +6737,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="some message"
@@ -6938,6 +6993,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Y"
               />
@@ -6949,6 +7005,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="Z"
               />
@@ -6968,6 +7025,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Fifth Transaction
@@ -6979,6 +7037,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="123.45"
               />
@@ -7007,6 +7066,7 @@ exports[`change of transaction details causes a change in merkle root and propag
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="ZY123.45"
@@ -7784,6 +7844,7 @@ exports[`starts off invalid, after mining it stays invalid, does not propagate s
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Z"
               />
@@ -7795,6 +7856,7 @@ exports[`starts off invalid, after mining it stays invalid, does not propagate s
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="A"
               />
@@ -7814,6 +7876,7 @@ exports[`starts off invalid, after mining it stays invalid, does not propagate s
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Forth Transaction
@@ -7825,6 +7888,7 @@ exports[`starts off invalid, after mining it stays invalid, does not propagate s
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="567.89"
               />
@@ -7853,6 +7917,7 @@ exports[`starts off invalid, after mining it stays invalid, does not propagate s
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="AZ567.89"
@@ -8108,6 +8173,7 @@ exports[`starts off invalid, after mining it stays invalid, does not propagate s
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Y"
               />
@@ -8119,6 +8185,7 @@ exports[`starts off invalid, after mining it stays invalid, does not propagate s
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="Z"
               />
@@ -8138,6 +8205,7 @@ exports[`starts off invalid, after mining it stays invalid, does not propagate s
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Fifth Transaction
@@ -8149,6 +8217,7 @@ exports[`starts off invalid, after mining it stays invalid, does not propagate s
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="123.45"
               />
@@ -8177,6 +8246,7 @@ exports[`starts off invalid, after mining it stays invalid, does not propagate s
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="ZY123.45"
@@ -8954,6 +9024,7 @@ exports[`starts off invalid, after mining it stays invalid, propagates to future
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Z"
               />
@@ -8965,6 +9036,7 @@ exports[`starts off invalid, after mining it stays invalid, propagates to future
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="A"
               />
@@ -8984,6 +9056,7 @@ exports[`starts off invalid, after mining it stays invalid, propagates to future
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Forth Transaction
@@ -8995,6 +9068,7 @@ exports[`starts off invalid, after mining it stays invalid, propagates to future
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="567.89"
               />
@@ -9023,6 +9097,7 @@ exports[`starts off invalid, after mining it stays invalid, propagates to future
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="AZ567.89"
@@ -9278,6 +9353,7 @@ exports[`starts off invalid, after mining it stays invalid, propagates to future
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Y"
               />
@@ -9289,6 +9365,7 @@ exports[`starts off invalid, after mining it stays invalid, propagates to future
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="Z"
               />
@@ -9308,6 +9385,7 @@ exports[`starts off invalid, after mining it stays invalid, propagates to future
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Fifth Transaction
@@ -9319,6 +9397,7 @@ exports[`starts off invalid, after mining it stays invalid, propagates to future
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="123.45"
               />
@@ -9347,6 +9426,7 @@ exports[`starts off invalid, after mining it stays invalid, propagates to future
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="ZY123.45"
@@ -10124,6 +10204,7 @@ exports[`starts off invalid, after mining it stays valid, does not propagate sin
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Z"
               />
@@ -10135,6 +10216,7 @@ exports[`starts off invalid, after mining it stays valid, does not propagate sin
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="A"
               />
@@ -10154,6 +10236,7 @@ exports[`starts off invalid, after mining it stays valid, does not propagate sin
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Forth Transaction
@@ -10165,6 +10248,7 @@ exports[`starts off invalid, after mining it stays valid, does not propagate sin
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="567.89"
               />
@@ -10193,6 +10277,7 @@ exports[`starts off invalid, after mining it stays valid, does not propagate sin
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="AZ567.89"
@@ -10448,6 +10533,7 @@ exports[`starts off invalid, after mining it stays valid, does not propagate sin
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Y"
               />
@@ -10459,6 +10545,7 @@ exports[`starts off invalid, after mining it stays valid, does not propagate sin
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="Z"
               />
@@ -10478,6 +10565,7 @@ exports[`starts off invalid, after mining it stays valid, does not propagate sin
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Fifth Transaction
@@ -10489,6 +10577,7 @@ exports[`starts off invalid, after mining it stays valid, does not propagate sin
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="123.45"
               />
@@ -10517,6 +10606,7 @@ exports[`starts off invalid, after mining it stays valid, does not propagate sin
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="ZY123.45"
@@ -11294,6 +11384,7 @@ exports[`starts off invalid, after mining it stays valid, propagates to future b
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Z"
               />
@@ -11305,6 +11396,7 @@ exports[`starts off invalid, after mining it stays valid, propagates to future b
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="A"
               />
@@ -11324,6 +11416,7 @@ exports[`starts off invalid, after mining it stays valid, propagates to future b
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Forth Transaction
@@ -11335,6 +11428,7 @@ exports[`starts off invalid, after mining it stays valid, propagates to future b
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="567.89"
               />
@@ -11363,6 +11457,7 @@ exports[`starts off invalid, after mining it stays valid, propagates to future b
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="AZ567.89"
@@ -11618,6 +11713,7 @@ exports[`starts off invalid, after mining it stays valid, propagates to future b
               <input
                 aria-label="Block Transactions From"
                 class="text-truncate rounded w-100 form-control"
+                name="btFrom"
                 type="text"
                 value="Y"
               />
@@ -11629,6 +11725,7 @@ exports[`starts off invalid, after mining it stays valid, propagates to future b
               <input
                 aria-label="Block Transactions To"
                 class="text-truncate rounded w-100 form-control"
+                name="btTo"
                 type="text"
                 value="Z"
               />
@@ -11648,6 +11745,7 @@ exports[`starts off invalid, after mining it stays valid, propagates to future b
               <textarea
                 aria-label="Block Transactions Message"
                 class="form-control"
+                name="btMsg"
                 rows="3"
               >
                 Fifth Transaction
@@ -11659,6 +11757,7 @@ exports[`starts off invalid, after mining it stays valid, propagates to future b
               <input
                 aria-label="Block Transactions Amount"
                 class="form-control"
+                name="btAmount"
                 type="number"
                 value="123.45"
               />
@@ -11687,6 +11786,7 @@ exports[`starts off invalid, after mining it stays valid, propagates to future b
               <input
                 aria-label="Block Transactions Signature"
                 class="text-truncate form-control"
+                name="btSignature"
                 readonly=""
                 type="text"
                 value="ZY123.45"

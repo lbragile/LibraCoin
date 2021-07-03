@@ -17,7 +17,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
   const [transDetails, setTransDetails] = useState<ITransaction[]>(state.chain[index].transactions);
 
   async function calculateNewMerkleRoot(newVal: number | string, i: number, type: TChangeType): Promise<void> {
-    const newTrans: ITransaction[] = JSON.parse(JSON.stringify(transDetails)); // deep copy
+    const newTrans: ITransaction[] = [...transDetails];
 
     // update the changed value & signature
     newTrans[i] = { ...newTrans[i], [type]: newVal };
@@ -65,6 +65,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
             <InputGroup className="mb-2 text-center">
               <Form.Control
                 aria-label="Block Transactions From"
+                name="btFrom"
                 className="text-truncate rounded w-100"
                 type="text"
                 value={transaction.from}
@@ -73,6 +74,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
               <h3 className="my-0 w-100">↓</h3>
               <Form.Control
                 aria-label="Block Transactions To"
+                name="btTo"
                 className="text-truncate rounded w-100"
                 type="text"
                 value={transaction.to}
@@ -86,6 +88,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
               </InputGroup.Prepend>
               <Form.Control
                 aria-label="Block Transactions Message"
+                name="btMsg"
                 as="textarea"
                 rows={3}
                 value={transaction.msg}
@@ -96,6 +99,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
             <InputGroup className="mb-2">
               <Form.Control
                 aria-label="Block Transactions Amount"
+                name="btAmount"
                 type="number"
                 value={transaction.amount}
                 onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "amount")}
@@ -111,6 +115,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
               </InputGroup.Prepend>
               <Form.Control
                 aria-label="Block Transactions Signature"
+                name="btSignature"
                 className="text-truncate"
                 type="text"
                 value={transaction.signature}
