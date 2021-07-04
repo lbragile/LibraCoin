@@ -1,26 +1,16 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Table } from "react-bootstrap";
-import { AppContext } from "../../context/AppContext";
-import { IState } from "../../typings/AppTypes";
-import { calculateMerkleTreeFormation } from "../../utils/merkleTree";
+import { useAppContext } from "../../hooks/useAppContext";
+import { useDrawPreviewTree } from "../../hooks/useDrawPreviewTree";
 
 import "./Block.scss";
 
 export default function PreviewTree(): JSX.Element {
-  const { state } = useContext(AppContext) as { state: IState };
+  const { state } = useAppContext();
 
   const numCells = useRef<number>(9);
   const strLen = useRef<number>(20);
-  const [tree, setTree] = useState<string[][]>([[""]]);
-
-  useEffect(() => {
-    async function drawTree() {
-      const newTree = await calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans);
-      setTree(newTree);
-    }
-
-    drawTree();
-  }, [state.selectedTrans, state.verifiedTrans]);
+  const tree = useDrawPreviewTree(state.verifiedTrans, state.selectedTrans);
 
   // https://stackoverflow.com/a/1199420/4298115
   function truncate(str: string, n = strLen.current): string {

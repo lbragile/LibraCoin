@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 
-import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import { IAction, IBlock, IState, ITransaction } from "../../typings/AppTypes";
+import { useAppContext } from "../../hooks/useAppContext";
+import { IBlock, ITransaction } from "../../typings/AppTypes";
 
 import { digestMessage } from "../../utils/conversion";
 import { calculateMerkleTreeFormation, getMerkleRoot } from "../../utils/merkleTree";
@@ -12,7 +12,7 @@ type TChangeType = "from" | "to" | "msg" | "amount";
 type TInputChange<T = HTMLInputElement> = React.ChangeEvent<T>;
 
 export default function BlockTrans({ index }: { index: number }): JSX.Element {
-  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { state, dispatch } = useAppContext();
 
   const [transDetails, setTransDetails] = useState<ITransaction[]>(state.chain[index].transactions);
 

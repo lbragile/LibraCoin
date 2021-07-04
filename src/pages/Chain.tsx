@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import Block from "../components/Block/Block";
 import BlockTrans from "../components/Block/BlockTrans";
 import Statistics from "../components/Block/Statistics";
 import NavMenu from "../components/NavMenu/NavMenu";
-import { AppContext } from "../context/AppContext";
-import { IState } from "../typings/AppTypes";
+import { useAppContext } from "../hooks/useAppContext";
 
 export default function Chain(): JSX.Element {
-  const { state } = useContext(AppContext) as { state: IState };
+  const { state } = useAppContext();
 
   return (
     <div>

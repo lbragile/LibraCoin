@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import { Form, Button, InputGroup } from "react-bootstrap";
-import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import { IAction, IState } from "../../typings/AppTypes";
+import { useAppContext } from "../../hooks/useAppContext";
 
 export default function Send(): JSX.Element {
-  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { state, dispatch } = useAppContext();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

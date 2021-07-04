@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Form, InputGroup } from "react-bootstrap";
-import { AppContext } from "../../context/AppContext";
-import { IAction, IState, IUser } from "../../typings/AppTypes";
+import { useAppContext } from "../../hooks/useAppContext";
+import { IUser } from "../../typings/AppTypes";
 import { copyInput, removeCopied } from "../../utils/copyInput";
 
 import "./User.scss";
 
 export default function UserItems(): JSX.Element {
-  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { state, dispatch } = useAppContext();
 
   return (
     <div className="container-fluid mb-2">

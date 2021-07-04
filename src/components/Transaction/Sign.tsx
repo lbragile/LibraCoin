@@ -1,27 +1,18 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 
 import { Formik, ErrorMessage, Field } from "formik";
 import { Form, Button, InputGroup } from "react-bootstrap";
 
-import { AppContext } from "../../context/AppContext";
+import { useAppContext } from "../../hooks/useAppContext";
+import { useResetTransactionDetails } from "../../hooks/useResetTransactionDetails";
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import { IAction, IState } from "../../typings/AppTypes";
-import { digestMessage } from "../../utils/conversion";
 import { SignSchema } from "../../schema/SignSchema";
+import { digestMessage } from "../../utils/conversion";
 
 export default function Sign(): JSX.Element {
-  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { state, dispatch } = useAppContext();
 
-  useEffect(() => {
-    dispatch({ type: ACTIONS.SET_VALIDATED, payload: { validated: false } });
-    dispatch({ type: ACTIONS.SET_SIGNED, payload: { signed: false, sent: false } });
-    dispatch({
-      type: ACTIONS.SET_DETAILS,
-      payload: {
-        details: { from: state.user.publicKey, to: "", amount: Number(0).toFixed(2), msg: "", signature: "" }
-      }
-    });
-  }, [dispatch, state.user.publicKey]);
+  useResetTransactionDetails(state.user.publicKey);
 
   const TextAreaFormControl = (props: unknown): JSX.Element => {
     return <Form.Control as="textarea" {...props} />;

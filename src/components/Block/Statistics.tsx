@@ -1,8 +1,8 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
-import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import { IAction, IBlock, IState } from "../../typings/AppTypes";
+import { useAppContext } from "../../hooks/useAppContext";
+import { IBlock } from "../../typings/AppTypes";
 import { digestMessage, randomHash } from "../../utils/conversion";
 
 import "./Block.scss";
@@ -12,7 +12,7 @@ interface IStatisticsProps {
 }
 
 export default function Statistics(props: IStatisticsProps): JSX.Element {
-  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { state, dispatch } = useAppContext();
 
   const nonce = useRef<number>(0);
   const [header, setHeader] = useState<number>(0);

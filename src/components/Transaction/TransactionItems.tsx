@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Form, InputGroup } from "react-bootstrap";
-import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import { IAction, IState, ITransaction } from "../../typings/AppTypes";
+import { useAppContext } from "../../hooks/useAppContext";
+import { ITransaction } from "../../typings/AppTypes";
 import { calculateMerkleTreeFormation, getMerkleRoot } from "../../utils/merkleTree";
 
 import "./Transaction.scss";
 
 export default function TransactionItems(): JSX.Element {
-  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { state, dispatch } = useAppContext();
 
   async function selectTransaction(transaction: ITransaction): Promise<void> {
     let selectedTrans: ITransaction[] = JSON.parse(JSON.stringify(state.selectedTrans));

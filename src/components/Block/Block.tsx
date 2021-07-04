@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 
-import { AppContext } from "../../context/AppContext";
-import { IAction, IState } from "../../typings/AppTypes";
+import { useAppContext } from "../../hooks/useAppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 
 import "./Block.scss";
@@ -13,7 +12,7 @@ export interface IBlockProps {
 }
 
 export default function Block({ chain, index }: IBlockProps): JSX.Element {
-  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { state, dispatch } = useAppContext();
 
   function handleAddBlock() {
     // this only happens on the mining page so can use state.preview.index here
