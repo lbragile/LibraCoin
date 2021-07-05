@@ -1,28 +1,29 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import { StyledNav, StyledNavLink } from "../../styles/NavMenuStyles";
 
-import "./NavMenu.scss";
+const NavLinkWrapper = ({ text }: { text: string }) => {
+  return (
+    <StyledNavLink href={"/LibraCoin/" + text} active={location.href.includes("/" + text)}>
+      {text[0].toUpperCase() + text.slice(1)}
+    </StyledNavLink>
+  );
+};
 
 export default function NavMenu(): JSX.Element {
   return (
-    <Navbar expand="lg" className="mb-3">
+    <StyledNav expand="lg" className="mb-3">
       <Navbar.Brand aria-label="LibraCoin Logo" href="https://github.com/lbragile/LibraCoin">
-        <img src="./assets/libracoin-logo-256.png" alt="LibraCoin Logo" width="64" />
+        <img src="./assets/libracoin-logo-256.png" alt="LibraCoin Logo" width="64" height="64" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <Nav.Link href="/LibraCoin/wallet" active={location.href.includes("/wallet")}>
-            Wallet
-          </Nav.Link>
-          <Nav.Link href="/LibraCoin/mine" active={location.href.includes("/mine")}>
-            Mine
-          </Nav.Link>
-          <Nav.Link href="/LibraCoin/blockchain" active={location.href.includes("/blockchain")}>
-            Blockchain
-          </Nav.Link>
+          <NavLinkWrapper text="wallet" />
+          <NavLinkWrapper text="mine" />
+          <NavLinkWrapper text="blockchain" />
         </Nav>
       </Navbar.Collapse>
-    </Navbar>
+    </StyledNav>
   );
 }

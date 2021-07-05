@@ -1,10 +1,10 @@
 import React from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { useAppContext } from "../../hooks/useAppContext";
+import { StyledInputGroupText } from "../../styles/GlobalStyles";
+import { UserItem } from "../../styles/UserStyles";
 import { IUser } from "../../typings/AppTypes";
 import { copyInput, removeCopied } from "../../utils/copyInput";
-
-import "./User.scss";
 
 export default function UserItems(): JSX.Element {
   const { state, dispatch } = useAppContext();
@@ -15,10 +15,10 @@ export default function UserItems(): JSX.Element {
       <div className="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
         {state.users.map((user: IUser, i: number) => {
           return (
-            <Form className="user-item rounded flex-shrink-0" key={`user-${user.publicKey}`}>
+            <UserItem className="rounded flex-shrink-0" key={`user-${user.publicKey}`}>
               <InputGroup>
                 <InputGroup.Prepend>
-                  <InputGroup.Text>🔑</InputGroup.Text>
+                  <StyledInputGroupText>🔑</StyledInputGroupText>
                 </InputGroup.Prepend>
                 <Form.Control
                   aria-label="User Public Key"
@@ -36,10 +36,10 @@ export default function UserItems(): JSX.Element {
               <InputGroup className="mt-2">
                 <Form.Control aria-label="balance" type="number" defaultValue={user.balance} disabled />
                 <InputGroup.Append>
-                  <InputGroup.Text>LC</InputGroup.Text>
+                  <StyledInputGroupText>LC</StyledInputGroupText>
                 </InputGroup.Append>
               </InputGroup>
-            </Form>
+            </UserItem>
           );
         })}
       </div>

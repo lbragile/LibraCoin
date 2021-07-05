@@ -3,6 +3,8 @@ import React from "react";
 import { Form, Button, InputGroup } from "react-bootstrap";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { useAppContext } from "../../hooks/useAppContext";
+import { StyledInputGroupText } from "../../styles/GlobalStyles";
+import { TransForm } from "../../styles/TransactionStyles";
 
 export default function Send(): JSX.Element {
   const { state, dispatch } = useAppContext();
@@ -20,10 +22,10 @@ export default function Send(): JSX.Element {
   };
 
   return (
-    <Form aria-label="Send Form" noValidate className="col-12 col-lg-5 my-2 my-lg-0 trans-form" onSubmit={handleSubmit}>
+    <TransForm aria-label="Send Form" noValidate className="col-12 col-lg-5 my-2 my-lg-0" onSubmit={handleSubmit}>
       <InputGroup>
         <InputGroup.Prepend>
-          <InputGroup.Text>Receiver Public Key</InputGroup.Text>
+          <StyledInputGroupText>Receiver Public Key</StyledInputGroupText>
         </InputGroup.Prepend>
         <Form.Control
           aria-label="Receiver PK"
@@ -46,13 +48,13 @@ export default function Send(): JSX.Element {
           readOnly
         />
         <InputGroup.Append>
-          <InputGroup.Text className="rounded-right border-left-0">LC</InputGroup.Text>
+          <StyledInputGroupText className="rounded-right border-left-0">LC</StyledInputGroupText>
         </InputGroup.Append>
       </InputGroup>
 
       <InputGroup className="mb-2">
         <InputGroup.Prepend>
-          <InputGroup.Text>Message</InputGroup.Text>
+          <StyledInputGroupText>Message</StyledInputGroupText>
         </InputGroup.Prepend>
         <Form.Control
           aria-label="Send Message"
@@ -67,7 +69,7 @@ export default function Send(): JSX.Element {
 
       <InputGroup>
         <InputGroup.Prepend>
-          <InputGroup.Text>Transaction Signature</InputGroup.Text>
+          <StyledInputGroupText>Transaction Signature</StyledInputGroupText>
         </InputGroup.Prepend>
         <Form.Control
           aria-label="Transaction Signature"
@@ -91,6 +93,6 @@ export default function Send(): JSX.Element {
       >
         <b>{state.wallet.sent ? "Sent" : "Send"}</b>
       </Button>
-    </Form>
+    </TransForm>
   );
 }

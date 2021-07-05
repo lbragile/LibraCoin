@@ -3,12 +3,14 @@
  */
 
 import React from "react";
-import { screen, waitFor } from "@testing-library/react";
+import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Chain from "../../src/pages/Chain";
 import * as ConversionUtil from "../../src/utils/conversion";
 import { customRender } from "../utils/testUtils";
+import { COLORS } from "../../src/enums/ColorPallet";
+import { IState } from "../../src/typings/AppTypes";
 
 const { initialState } = global;
 
@@ -69,8 +71,12 @@ it.each`
   });
 
   expect(screen.queryByRole("button", { name: /Add Block/i })).not.toBeInTheDocument();
-  expect(screen.getAllByRole("form", { name: /Block Form/i })[index]).toHaveClass("invalid-block");
-  expect(screen.getAllByRole("textbox", { name: /Block Solution/i })[index]).toHaveClass("invalid-solution");
+  expect(screen.getAllByRole("form", { name: /Block Form/i })[index]).toHaveStyle({
+    background: COLORS.INVALID_BACKGROUND
+  });
+  expect(screen.getAllByRole("textbox", { name: /Block Solution/i })[index]).toHaveStyle({
+    color: COLORS.INVALID_SOLUTION
+  });
 
   expect(asFragment()).toMatchSnapshot();
 
@@ -89,7 +95,9 @@ it.each`
     currHash: solution
   });
 
-  expect(blocks[index]).toHaveClass(type + "-block");
+  expect(blocks[index]).toHaveStyle(
+    `background: ${type === "valid" ? COLORS.VALID_BACKGROUND : COLORS.INVALID_BACKGROUND}`
+  );
 
   // next block assertions
   expect(blocks[index + 1]).toHaveFormValues({
@@ -99,7 +107,7 @@ it.each`
     currHash: "currHash"
   });
 
-  expect(blocks[index + 1]).toHaveClass("invalid-block");
+  expect(blocks[index + 1]).toHaveStyle({ background: COLORS.INVALID_BACKGROUND });
 
   // mine button assertions
   const mineButtons = screen.getAllByRole("button", { name: /Block Mine/i });
@@ -144,8 +152,12 @@ it.each`
   });
 
   expect(screen.queryByRole("button", { name: /Add Block/i })).not.toBeInTheDocument();
-  expect(screen.getAllByRole("form", { name: /Block Form/i })[index]).toHaveClass("invalid-block");
-  expect(screen.getAllByRole("textbox", { name: /Block Solution/i })[index]).toHaveClass("invalid-solution");
+  expect(screen.getAllByRole("form", { name: /Block Form/i })[index]).toHaveStyle({
+    background: COLORS.INVALID_BACKGROUND
+  });
+  expect(screen.getAllByRole("textbox", { name: /Block Solution/i })[index]).toHaveStyle({
+    color: COLORS.INVALID_SOLUTION
+  });
 
   expect(asFragment()).toMatchSnapshot();
 
@@ -164,7 +176,9 @@ it.each`
     currHash: solution
   });
 
-  expect(blocks[index]).toHaveClass(type + "-block");
+  expect(blocks[index]).toHaveStyle(
+    `background: ${type === "valid" ? COLORS.VALID_BACKGROUND : COLORS.INVALID_BACKGROUND}`
+  );
 
   expect(blocks[index + 1]).toBeUndefined();
 
@@ -232,27 +246,36 @@ describe("change of transaction details causes a change in merkle root and propa
     ${"Amount"}
     ${"Message"}
   `("change in $field input", async ({ field }) => {
-    const { asFragment } = customRender(<Chain />, { stateMock: newState });
-    const originalSignature = screen.getAllByRole("textbox", { name: /Block Transactions Signature/i })[0].textContent; // genesis has no transactions
-    const originalMerkle = screen.getAllByRole("textbox", { name: /Block Merkle/i })[2].textContent;
+    const showAllTrans: IState = JSON.parse(JSON.stringify(initialState));
+    showAllTrans.chain = showAllTrans.chain.map((block) => ({ ...block, showTrans: true }));
+
+    const { asFragment } = customRender(<Chain />, { stateMock: showAllTrans });
+
+    const blockContainer = screen.getAllByRole("list", { name: /Block Container/i })[1];
+    const originalSignature = within(blockContainer).getByRole("textbox", {
+      name: /Block Transactions Signature/i
+    }).textContent;
+    const originalMerkle = within(blockContainer).getByRole("textbox", { name: /Block Merkle/i }).textContent;
 
     userEvent.type(
-      screen.getAllByRole(field === "Amount" ? "spinbutton" : "textbox", {
+      within(blockContainer).getByRole(field === "Amount" ? "spinbutton" : "textbox", {
         name: new RegExp(`Block Transactions ${field}`, "i")
-      })[0],
+      }),
       field === "Amount" ? "123.02" : "new " + field
     );
 
     // check that signature changes
     await waitFor(() =>
-      expect(screen.getAllByRole("textbox", { name: /Block Transactions Signature/i })[0]).not.toHaveValue(
+      expect(within(blockContainer).getByRole("textbox", { name: /Block Transactions Signature/i })).not.toHaveValue(
         originalSignature
       )
     );
 
     // check that merkle root for block changed
-    expect(screen.getAllByRole("textbox", { name: /Block Merkle/i })[2]).not.toHaveValue(originalMerkle);
-    expect(screen.getAllByRole("form", { name: /Block Form/i })[2]).toHaveClass("invalid-block");
+    expect(within(blockContainer).getByRole("textbox", { name: /Block Merkle/i })).not.toHaveValue(originalMerkle);
+    expect(screen.getAllByRole("form", { name: /Block Form Invalid/i })).toHaveLength(
+      showAllTrans.chain.slice(1).length
+    );
 
     expect(asFragment()).toMatchSnapshot();
   });

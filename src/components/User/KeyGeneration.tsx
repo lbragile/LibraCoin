@@ -3,9 +3,9 @@ import { Form, InputGroup } from "react-bootstrap";
 
 import { useAddUser } from "../../hooks/useAddUser";
 import { useAppContext } from "../../hooks/useAppContext";
+import { StyledInputGroupText } from "../../styles/GlobalStyles";
+import { RevealEyes, UserKey } from "../../styles/UserStyles";
 import { copyInput, removeCopied } from "../../utils/copyInput";
-
-import "./User.scss";
 
 export default function KeyGeneration(): JSX.Element {
   const { state, dispatch } = useAppContext();
@@ -17,9 +17,9 @@ export default function KeyGeneration(): JSX.Element {
 
   return (
     <div className="container-fluid d-flex justify-content-center mx-auto row my-5">
-      <InputGroup className="user-key col-12 col-lg-5 pl-3 pl-lg-0">
+      <UserKey className="col-12 col-lg-5 pl-3 pl-lg-0">
         <InputGroup.Prepend>
-          <InputGroup.Text>Public</InputGroup.Text>
+          <StyledInputGroupText>Public</StyledInputGroupText>
         </InputGroup.Prepend>
 
         <Form.Control
@@ -35,11 +35,11 @@ export default function KeyGeneration(): JSX.Element {
         />
 
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
-      </InputGroup>
+      </UserKey>
 
-      <InputGroup className="user-key col-12 col-lg-5 pl-3">
+      <UserKey className="col-12 col-lg-5 pl-3">
         <InputGroup.Prepend>
-          <InputGroup.Text>Private</InputGroup.Text>
+          <StyledInputGroupText>Private</StyledInputGroupText>
         </InputGroup.Prepend>
 
         <Form.Control
@@ -54,15 +54,13 @@ export default function KeyGeneration(): JSX.Element {
         />
 
         <InputGroup.Append>
-          <InputGroup.Text className="rounded-right">
-            <span id="private-reveal-eyes" onClick={() => setShow(!show)}>
-              👀
-            </span>
-          </InputGroup.Text>
+          <StyledInputGroupText className="rounded-right">
+            <RevealEyes onClick={() => setShow(!show)}>👀</RevealEyes>
+          </StyledInputGroupText>
         </InputGroup.Append>
 
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
-      </InputGroup>
+      </UserKey>
     </div>
   );
 }

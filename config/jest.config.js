@@ -12,7 +12,8 @@ module.exports = {
     "<rootDir>/tests/__mocks__/reducerValueMock.ts",
     "<rootDir>/tests/__mocks__/cryptoKeyMock.ts",
     "<rootDir>/tests/__mocks__/subtleMock.ts",
-    "@testing-library/jest-dom"
+    "@testing-library/jest-dom",
+    "jest-styled-components"
   ], // test specific setup
   runner: "groups", // since jest-runner-groups is used
   restoreMocks: true, // restore mock state before each state

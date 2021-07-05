@@ -9,6 +9,7 @@ import userEvent from "@testing-library/user-event";
 import Mine from "../../src/pages/Mine";
 import * as ConversionUtil from "../../src/utils/conversion";
 import { customRender } from "../utils/testUtils";
+import { COLORS } from "../../src/enums/ColorPallet";
 
 const { initialState } = global;
 
@@ -36,11 +37,11 @@ it("starts off invalid, and after mining it stays invalid (cannot be added to bl
   });
 
   expect(screen.queryByRole("button", { name: /Add Block/i })).not.toBeInTheDocument();
-  expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("invalid-block");
-  expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("invalid-solution");
+  expect(screen.getByRole("form", { name: /Block Form/i })).toHaveStyle({ background: COLORS.INVALID_BACKGROUND });
+  expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveStyle({ color: COLORS.INVALID_SOLUTION });
 
   const verifiedTrans = screen.getAllByRole("form", { name: /Transaction Information/i });
-  const selectedTrans = verifiedTrans.filter((trans) => trans.classList.contains("selected"));
+  const selectedTrans = screen.getAllByRole("form", { name: /Transaction Information Selected/i });
   expect(verifiedTrans).toHaveLength(initialState.verifiedTrans.length);
   expect(selectedTrans).toHaveLength(initialState.selectedTrans.length);
 
@@ -50,14 +51,12 @@ it("starts off invalid, and after mining it stays invalid (cannot be added to bl
 
   // once mining is complete
   await waitFor(() => expect(screen.getByRole("status")).toHaveClass("invisible"));
-  expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("invalid-block");
-  expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("invalid-solution");
+  expect(screen.getByRole("form", { name: /Block Form/i })).toHaveStyle({ background: COLORS.INVALID_BACKGROUND });
+  expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveStyle({ color: COLORS.INVALID_SOLUTION });
   expect(screen.queryByRole("button", { name: /Add Block/i })).not.toBeInTheDocument();
 
-  const newVerifiedTrans = screen.getAllByRole("form", { name: /Transaction Information/i });
-  const newSelectedTrans = newVerifiedTrans.filter((trans) => trans.classList.contains("selected"));
-  expect(newVerifiedTrans).toStrictEqual(verifiedTrans);
-  expect(newSelectedTrans).toStrictEqual(selectedTrans);
+  expect(screen.getAllByRole("form", { name: /Transaction Information/i })).toStrictEqual(verifiedTrans);
+  expect(screen.getAllByRole("form", { name: /Transaction Information Selected/i })).toStrictEqual(selectedTrans);
 });
 
 it("starts off invalid, but after mining turns valid, and is added to blockchain", async () => {
@@ -84,11 +83,11 @@ it("starts off invalid, but after mining turns valid, and is added to blockchain
   });
 
   expect(screen.queryByRole("button", { name: /Add Block/i })).not.toBeInTheDocument();
-  expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("invalid-block");
-  expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("invalid-solution");
+  expect(screen.getByRole("form", { name: /Block Form/i })).toHaveStyle({ background: COLORS.INVALID_BACKGROUND });
+  expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveStyle({ color: COLORS.INVALID_SOLUTION });
 
   const verifiedTrans = screen.getAllByRole("form", { name: /Transaction Information/i });
-  const selectedTrans = verifiedTrans.filter((trans) => trans.classList.contains("selected"));
+  const selectedTrans = screen.getAllByRole("form", { name: /Transaction Information Selected/i });
   expect(verifiedTrans).toHaveLength(initialState.verifiedTrans.length);
   expect(selectedTrans).toHaveLength(initialState.selectedTrans.length);
 
@@ -98,30 +97,27 @@ it("starts off invalid, but after mining turns valid, and is added to blockchain
 
   // once mining is complete
   await waitFor(() => expect(screen.getByRole("status")).toHaveClass("invisible"));
-  expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("valid-block");
-  expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("valid-solution");
+  expect(screen.getByRole("form", { name: /Block Form/i })).toHaveStyle({ background: COLORS.VALID_BACKGROUND });
+  expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveStyle({ color: COLORS.VALID_SOLUTION });
   expect(screen.getByRole("button", { name: /Add Block/i })).toBeInTheDocument();
 
-  const afterMiningVerifiedTrans = screen.getAllByRole("form", { name: /Transaction Information/i });
-  const afterMiningSelectedTrans = afterMiningVerifiedTrans.filter((trans) => trans.classList.contains("selected"));
-  expect(afterMiningVerifiedTrans).toStrictEqual(verifiedTrans);
-  expect(afterMiningSelectedTrans).toStrictEqual(selectedTrans);
+  expect(screen.getAllByRole("form", { name: /Transaction Information/i })).toStrictEqual(verifiedTrans);
+  expect(screen.getAllByRole("form", { name: /Transaction Information Selected/i })).toStrictEqual(selectedTrans);
 
   userEvent.click(screen.getByRole("button", { name: /Add Block/i }));
 
   // once block is added to blockchain
-  await waitFor(() => expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("invalid-block"));
-  expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("invalid-solution");
+  await waitFor(() =>
+    expect(screen.getByRole("form", { name: /Block Form/i })).toHaveStyle({ background: COLORS.INVALID_BACKGROUND })
+  );
+  expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveStyle({ color: COLORS.INVALID_SOLUTION });
 
+  expect(screen.queryAllByRole("form", { name: /Transaction Information Selected/i })).toEqual([]);
   expect(screen.getAllByRole("form", { name: /Transaction Information/i })).toHaveLength(
     verifiedTrans.length - initialState.selectedTrans.length
   );
-
-  const afterAddVerifiedTrans = screen.getAllByRole("form", { name: /Transaction Information/i });
-  const afterAddSelectedTrans = afterAddVerifiedTrans.filter((trans) => trans.classList.contains("selected"));
-  expect(afterAddSelectedTrans).toEqual([]);
-  expect(afterAddVerifiedTrans).toStrictEqual(
-    verifiedTrans.filter((trans) => trans.classList.contains("not-selected"))
+  expect(screen.getAllByRole("form", { name: /Transaction Information/i })).toStrictEqual(
+    verifiedTrans.filter((trans) => !selectedTrans.includes(trans))
   );
 
   await waitFor(() =>

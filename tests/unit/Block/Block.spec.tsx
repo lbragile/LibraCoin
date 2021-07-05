@@ -9,6 +9,7 @@ import userEvent from "@testing-library/user-event";
 import Block from "../../../src/components/Block/Block";
 import { ACTIONS } from "../../../src/enums/AppDispatchActions";
 import { customRender } from "../../utils/testUtils";
+import { COLORS } from "../../../src/enums/ColorPallet";
 
 const { initialState } = global;
 
@@ -17,7 +18,7 @@ describe("in preview mode", () => {
     const { asFragment } = customRender(<Block chain={false} index={initialState.preview.index} />);
 
     const block = screen.getByRole("form", { name: /Block Form/i });
-    expect(block).toHaveClass("invalid-block");
+    expect(block).toHaveStyle({ background: COLORS.INVALID_BACKGROUND });
     expect(block).toHaveFormValues({
       ...initialState.preview,
       valid: undefined,
@@ -56,7 +57,7 @@ describe("in preview mode", () => {
         stateMock: { ...initialState, preview: { ...initialState.preview, valid: true } }
       });
 
-      expect(screen.getByRole("form", { name: /Block Form/i })).toHaveClass("valid-block");
+      expect(screen.getByRole("form", { name: /Block Form/i })).toHaveStyle({ background: COLORS.VALID_BACKGROUND });
       expect(screen.getByRole("button", { name: /Add Block/i })).toHaveTextContent("Add Block");
 
       expect(asFragment()).toMatchSnapshot();
@@ -110,7 +111,7 @@ describe("in blockchain mode", () => {
       const { asFragment } = customRender(<Block chain={true} index={0} />);
 
       const block = screen.getByRole("form", { name: /Block Form/i });
-      expect(block).toHaveClass("valid-block");
+      expect(block).toHaveStyle({ background: COLORS.VALID_BACKGROUND });
       expect(block).toHaveFormValues({
         ...initialState.chain[0],
         prevHash: "",
@@ -149,14 +150,14 @@ describe("in blockchain mode", () => {
 
     describe("index > 0", () => {
       test.each`
-        i    | expectedClass
-        ${1} | ${"valid-block"}
-        ${2} | ${"invalid-block"}
-      `("index → $i, class → $expectedClass", ({ i, expectedClass }) => {
+        i    | expectedStyle
+        ${1} | ${{ background: COLORS.VALID_BACKGROUND }}
+        ${2} | ${{ background: COLORS.INVALID_BACKGROUND }}
+      `("index → $i, class → $expectedClass", ({ i, expectedStyle }) => {
         const { asFragment } = customRender(<Block chain={true} index={i} />);
 
         const block = screen.getByRole("form", { name: /Block Form/i });
-        expect(block).toHaveClass(expectedClass);
+        expect(block).toHaveStyle(expectedStyle);
         expect(block).toHaveFormValues({
           ...initialState.chain[i],
           prevHash: initialState.chain[i - 1].currHash,

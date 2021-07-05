@@ -21,7 +21,29 @@ exports[`0 selected transactions 1`] = `
 
 exports[`1 selected transactions 1`] = `
 <DocumentFragment>
-  <div
+  .c0 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #fff;
+}
+
+.c0.c0.c0 {
+  border-top: none;
+}
+
+.c1 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #4f9249;
+}
+
+.c1.c1.c1 {
+  border-top: none;
+}
+
+<div
     class="w-100 my-3 text-center"
   >
     <h3
@@ -42,42 +64,51 @@ exports[`1 selected transactions 1`] = `
         >
           <tr>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="root-cell"
+              class="c1"
               title="AB1.23"
+              type="[object Object]"
             >
               AB1.23
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
           </tr>
         </tbody>
@@ -89,7 +120,62 @@ exports[`1 selected transactions 1`] = `
 
 exports[`2 selected transactions 1`] = `
 <DocumentFragment>
-  <div
+  .c0 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #fff;
+}
+
+.c0.c0.c0 {
+  border-top: none;
+}
+
+.c1 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #4f9249;
+}
+
+.c1.c1.c1 {
+  border-top: none;
+}
+
+.c2 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: linear-gradient(to top left,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+}
+
+.c2.c2.c2 {
+  border-top: none;
+}
+
+.c3 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: linear-gradient(to top right,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+}
+
+.c3.c3.c3 {
+  border-top: none;
+}
+
+.c4 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #7d95ff;
+}
+
+.c4.c4.c4 {
+  border-top: none;
+}
+
+<div
     class="w-100 my-3 text-center"
   >
     <h3
@@ -110,113 +196,140 @@ exports[`2 selected transactions 1`] = `
         >
           <tr>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="root-cell"
+              class="c1"
               title="random message"
+              type="[object Object]"
             >
               random message
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
           </tr>
           <tr>
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class="diag-line-left"
+              class="c2"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class="diag-line-right"
+              class="c3"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
           </tr>
           <tr>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="data-cells"
+              class="c4"
               title="AB1.23"
+              type="[object Object]"
             >
               AB1.23
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="data-cells"
+              class="c4"
               title="AC456.78"
+              type="[object Object]"
             >
               AC456.78
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
           </tr>
         </tbody>
@@ -228,7 +341,84 @@ exports[`2 selected transactions 1`] = `
 
 exports[`3 selected transactions 1`] = `
 <DocumentFragment>
-  <div
+  .c0 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #fff;
+}
+
+.c0.c0.c0 {
+  border-top: none;
+}
+
+.c1 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #4f9249;
+}
+
+.c1.c1.c1 {
+  border-top: none;
+}
+
+.c2 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: linear-gradient(to top left,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+}
+
+.c2.c2.c2 {
+  border-top: none;
+}
+
+.c3 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: linear-gradient(to top right,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+}
+
+.c3.c3.c3 {
+  border-top: none;
+}
+
+.c4 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #cf8b31;
+}
+
+.c4.c4.c4 {
+  border-top: none;
+}
+
+.c5 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: linear-gradient(to left,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+}
+
+.c5.c5.c5 {
+  border-top: none;
+}
+
+.c6 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #7d95ff;
+}
+
+.c6.c6.c6 {
+  border-top: none;
+}
+
+<div
     class="w-100 my-3 text-center"
   >
     <h3
@@ -249,185 +439,230 @@ exports[`3 selected transactions 1`] = `
         >
           <tr>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="root-cell"
+              class="c1"
               title="random message"
+              type="[object Object]"
             >
               random message
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
           </tr>
           <tr>
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class="diag-line-left"
+              class="c2"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class="diag-line-right"
+              class="c3"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
           </tr>
           <tr>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="middle-cells"
+              class="c4"
               title="random message"
+              type="[object Object]"
             >
               random message
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="middle-cells"
+              class="c4"
               title="AD999.99"
+              type="[object Object]"
             >
               AD999.99
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
           </tr>
           <tr>
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class="diag-line-left"
+              class="c2"
+              type="[object Object]"
             />
             <td
-              class="normal-line"
+              class="c5"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class="normal-line"
+              class="c5"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
           </tr>
           <tr>
             <td
-              class="data-cells"
+              class="c6"
               title="AB1.23"
+              type="[object Object]"
             >
               AB1.23
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="data-cells"
+              class="c6"
               title="AC456.78"
+              type="[object Object]"
             >
               AC456.78
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="data-cells"
+              class="c6"
               title="AD999.99"
+              type="[object Object]"
             >
               AD999.99
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
           </tr>
         </tbody>
@@ -439,7 +674,84 @@ exports[`3 selected transactions 1`] = `
 
 exports[`4 selected transactions 1`] = `
 <DocumentFragment>
-  <div
+  .c0 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #fff;
+}
+
+.c0.c0.c0 {
+  border-top: none;
+}
+
+.c1 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #4f9249;
+}
+
+.c1.c1.c1 {
+  border-top: none;
+}
+
+.c2 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: linear-gradient(to top left,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+}
+
+.c2.c2.c2 {
+  border-top: none;
+}
+
+.c3 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: linear-gradient(to top right,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+}
+
+.c3.c3.c3 {
+  border-top: none;
+}
+
+.c4 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #cf8b31;
+}
+
+.c4.c4.c4 {
+  border-top: none;
+}
+
+.c5 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: linear-gradient(to left,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+}
+
+.c5.c5.c5 {
+  border-top: none;
+}
+
+.c6 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #7d95ff;
+}
+
+.c6.c6.c6 {
+  border-top: none;
+}
+
+<div
     class="w-100 my-3 text-center"
   >
     <h3
@@ -460,186 +772,231 @@ exports[`4 selected transactions 1`] = `
         >
           <tr>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="root-cell"
+              class="c1"
               title="random message"
+              type="[object Object]"
             >
               random message
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
           </tr>
           <tr>
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class="diag-line-left"
+              class="c2"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class="diag-line-right"
+              class="c3"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
           </tr>
           <tr>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="middle-cells"
+              class="c4"
               title="random message"
+              type="[object Object]"
             >
               random message
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="middle-cells"
+              class="c4"
               title="random message"
+              type="[object Object]"
             >
               random message
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
           </tr>
           <tr>
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class="diag-line-left"
+              class="c2"
+              type="[object Object]"
             />
             <td
-              class="normal-line"
+              class="c5"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
             <td
-              class="normal-line"
+              class="c5"
+              type="[object Object]"
             />
             <td
-              class="diag-line-right"
+              class="c3"
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
+              type="[object Object]"
             />
           </tr>
           <tr>
             <td
-              class="data-cells"
+              class="c6"
               title="AB1.23"
+              type="[object Object]"
             >
               AB1.23
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="data-cells"
+              class="c6"
               title="AC456.78"
+              type="[object Object]"
             >
               AC456.78
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="data-cells"
+              class="c6"
               title="AD999.99"
+              type="[object Object]"
             >
               AD999.99
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="data-cells"
+              class="c6"
               title="AE987.65"
+              type="[object Object]"
             >
               AE987.65
             </td>
@@ -653,7 +1010,29 @@ exports[`4 selected transactions 1`] = `
 
 exports[`renders correctly 1`] = `
 <DocumentFragment>
-  <div
+  .c0 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #fff;
+}
+
+.c0.c0.c0 {
+  border-top: none;
+}
+
+.c1 {
+  width: 11%;
+  height: 35px;
+  color: #fff;
+  background: #4f9249;
+}
+
+.c1.c1.c1 {
+  border-top: none;
+}
+
+<div
     class="w-100 my-3 text-center"
   >
     <h3
@@ -674,42 +1053,51 @@ exports[`renders correctly 1`] = `
         >
           <tr>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class="root-cell"
+              class="c1"
               title="AC456.78"
+              type="[object Object]"
             >
               AC456.78
             </td>
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
             <td
-              class=""
+              class="c0"
               title=""
+              type="[object Object]"
             />
           </tr>
         </tbody>
