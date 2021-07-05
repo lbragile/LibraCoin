@@ -1,26 +1,15 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Table } from "react-bootstrap";
-import { AppContext } from "../../context/AppContext";
-import { IState } from "../../typings/AppTypes";
-import { calculateMerkleTreeFormation } from "../../utils/merkleTree";
-
-import "./Block.scss";
+import { useAppContext } from "../../hooks/useAppContext";
+import { useDrawPreviewTree } from "../../hooks/useDrawPreviewTree";
+import { IStyledTableDataProps, StyledTableData } from "../../styles/BlockStyles";
 
 export default function PreviewTree(): JSX.Element {
-  const { state } = useContext(AppContext) as { state: IState };
+  const { state } = useAppContext();
 
   const numCells = useRef<number>(9);
   const strLen = useRef<number>(20);
-  const [tree, setTree] = useState<string[][]>([[""]]);
-
-  useEffect(() => {
-    async function drawTree() {
-      const newTree = await calculateMerkleTreeFormation(state.verifiedTrans, state.selectedTrans);
-      setTree(newTree);
-    }
-
-    drawTree();
-  }, [state.selectedTrans, state.verifiedTrans]);
+  const tree = useDrawPreviewTree(state.verifiedTrans, state.selectedTrans);
 
   // https://stackoverflow.com/a/1199420/4298115
   function truncate(str: string, n = strLen.current): string {
@@ -60,95 +49,90 @@ export default function PreviewTree(): JSX.Element {
         break;
       }
 
-      default:
-        break;
+      // no default
     }
 
     return text;
   }
 
-  function getClassName(rowNum: number, index: number): string {
-    let className = "";
+  function getClassName(rowNum: number, index: number): IStyledTableDataProps {
+    let type = {
+      rootCell: false,
+      middleCells: false,
+      dataCells: false,
+      diagRightLine: false,
+      diagLeftLine: false,
+      normalLine: false
+    };
 
     switch (rowNum) {
       case 0:
-        className = index === Math.floor(numCells.current / 2) ? "root-cell" : "";
+        type = { ...type, rootCell: index === Math.floor(numCells.current / 2) };
         break;
 
       case 1: {
-        if (index === numCells.current / 3) {
-          className = "diag-line-left";
-        } else if (index === (2 * numCells.current) / 3 - 1) {
-          className = "diag-line-right";
-        }
-
+        type = { ...type, diagLeftLine: index === numCells.current / 3 };
+        type = { ...type, diagRightLine: index === (2 * numCells.current) / 3 - 1 };
         break;
       }
 
       case 2: {
         const isCorrectColumn = [numCells.current / 3 - 1, (2 * numCells.current) / 3].includes(index);
-        if (isCorrectColumn && tree.length <= 2) {
-          className = "data-cells";
-        } else if (isCorrectColumn) {
-          className = "middle-cells";
-        }
-
+        type = { ...type, dataCells: isCorrectColumn && tree.length <= 2 };
+        type = { ...type, middleCells: isCorrectColumn && tree.length > 2 };
         break;
       }
 
       case 3: {
-        if (index === 1) {
-          className = "diag-line-left";
-        } else if (index === numCells.current - 2 && tree[0].length === 4) {
-          className = "diag-line-right";
-        } else if ([numCells.current / 3 - 1, (numCells.current / 3) * 2].includes(index)) {
-          className = "normal-line";
-        }
-
+        type = { ...type, diagLeftLine: index === 1 };
+        type = { ...type, diagRightLine: index === numCells.current - 2 && tree[0].length === 4 };
+        type = { ...type, normalLine: [numCells.current / 3 - 1, (numCells.current / 3) * 2].includes(index) };
         break;
       }
 
       case 4: {
         const isCorrectColumn = [0, numCells.current / 3 - 1, (numCells.current / 3) * 2].includes(index);
-        if (isCorrectColumn || (numCells.current - 1 === index && tree[0].length === 4)) {
-          className = "data-cells";
-        }
-
+        type = { ...type, dataCells: isCorrectColumn || (numCells.current - 1 === index && tree[0].length === 4) };
         break;
       }
 
-      default:
-        break;
+      // no default
     }
 
-    return className;
+    return type;
   }
 
   return (
     <div className="w-100 my-3 text-center">
       <h3 className="font-weight-bold">Merkle Tree Visualization</h3>
       {tree[tree.length - 1][0] !== "" ? (
-        <Table className="w-75 mx-auto my-1 text-center border" responsive size="sm">
-          <tbody>
+        <Table
+          role="grid"
+          aria-label="Preview Table"
+          className="w-75 mx-auto my-1 text-center border"
+          responsive
+          size="sm"
+        >
+          <tbody role="presentation">
             <tr>
               {Array.from({ length: numCells.current }).map((_, i) => (
-                <td key={"first-data-row-" + i} className={getClassName(0, i)} title={getText(0, i, true)}>
+                <StyledTableData key={"first-data-row-" + i} type={getClassName(0, i)} title={getText(0, i, true)}>
                   {getText(0, i, false)}
-                </td>
+                </StyledTableData>
               ))}
             </tr>
             {tree.length >= 2 && (
               <>
                 <tr>
                   {Array.from({ length: numCells.current }).map((_, i) => (
-                    <td key={"first-break-row-" + i} className={getClassName(1, i)} />
+                    <StyledTableData key={"first-break-row-" + i} type={getClassName(1, i)} />
                   ))}
                 </tr>
                 <tr>
                   {Array.from({ length: numCells.current }).map((_, i) => (
-                    <td key={"second-data-row-" + i} className={getClassName(2, i)} title={getText(1, i, true)}>
+                    <StyledTableData key={"second-data-row-" + i} type={getClassName(2, i)} title={getText(1, i, true)}>
                       {getText(1, i, false)}
-                    </td>
+                    </StyledTableData>
                   ))}
                 </tr>
               </>
@@ -157,14 +141,14 @@ export default function PreviewTree(): JSX.Element {
               <>
                 <tr>
                   {Array.from({ length: numCells.current }).map((_, i) => (
-                    <td key={"second-break-row-" + i} className={getClassName(3, i)} />
+                    <StyledTableData key={"second-break-row-" + i} type={getClassName(3, i)} />
                   ))}
                 </tr>
                 <tr>
                   {Array.from({ length: numCells.current }).map((_, i) => (
-                    <td key={"third-data-row-" + i} className={getClassName(4, i)} title={getText(2, i, true)}>
+                    <StyledTableData key={"third-data-row-" + i} type={getClassName(4, i)} title={getText(2, i, true)}>
                       {getText(2, i, false)}
-                    </td>
+                    </StyledTableData>
                   ))}
                 </tr>
               </>

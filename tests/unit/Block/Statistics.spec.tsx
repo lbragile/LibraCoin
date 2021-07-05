@@ -10,6 +10,7 @@ import Statistics from "../../../src/components/Block/Statistics";
 import { customRender } from "../../utils/testUtils";
 import * as ConversionUtil from "../../../src/utils/conversion";
 import { ACTIONS } from "../../../src/enums/AppDispatchActions";
+import { COLORS } from "../../../src/enums/ColorPallet";
 
 const { initialState } = global;
 
@@ -39,7 +40,7 @@ describe("in preview mode", () => {
     const solution = screen.getByRole("textbox", { name: /Block Solution/i });
     expect(solution).toHaveAttribute("readOnly");
     expect(solution).not.toBeRequired();
-    expect(solution).toHaveClass("invalid-solution");
+    expect(solution).toHaveStyle({ color: COLORS.INVALID_SOLUTION });
 
     const mineBtn = screen.getByRole("button", { name: /Block Mine/i });
     expect(mineBtn).toHaveTextContent("Mine");
@@ -122,7 +123,9 @@ describe("in preview mode", () => {
 
         // solution is invalid, so it will re-enable
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled());
-        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("invalid-solution");
+        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveStyle({
+          color: COLORS.INVALID_SOLUTION
+        });
       });
 
       it("keeps mining button disabled after mining due to valid solution", async () => {
@@ -139,7 +142,7 @@ describe("in preview mode", () => {
 
         // need to await state changes
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
-        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("valid-solution");
+        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveStyle({ color: COLORS.VALID_SOLUTION });
       });
     });
   });
@@ -148,10 +151,10 @@ describe("in preview mode", () => {
 describe("in blockchain mode", () => {
   describe("renders correctly", () => {
     test.each`
-      desc         | index | solutionClass         | isDisabled
-      ${"valid"}   | ${0}  | ${"valid-solution"}   | ${true}
-      ${"invalid"} | ${2}  | ${"invalid-solution"} | ${false}
-    `("block is $desc (index: $index)", ({ index, solutionClass, isDisabled }) => {
+      desc         | index | solutionColorStyle                    | isDisabled
+      ${"valid"}   | ${0}  | ${{ color: COLORS.VALID_SOLUTION }}   | ${true}
+      ${"invalid"} | ${2}  | ${{ color: COLORS.INVALID_SOLUTION }} | ${false}
+    `("block is $desc (index: $index)", ({ index, solutionColorStyle, isDisabled }) => {
       const { asFragment } = customRender(<Statistics chain={true} index={index} />);
 
       expect(screen.getByRole("form", { name: /Block Statistics/i })).toHaveFormValues({
@@ -176,7 +179,7 @@ describe("in blockchain mode", () => {
       const solution = screen.getByRole("textbox", { name: /Block Solution/i });
       expect(solution).toHaveAttribute("readOnly");
       expect(solution).not.toBeRequired();
-      expect(solution).toHaveClass(solutionClass);
+      expect(solution).toHaveStyle(solutionColorStyle);
 
       const mineBtn = screen.getByRole("button", { name: /Block Mine/i });
       expect(mineBtn).toHaveTextContent("Mine");
@@ -247,7 +250,9 @@ describe("in blockchain mode", () => {
 
         // solution is invalid, so it will re-enable
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeEnabled());
-        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("invalid-solution");
+        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveStyle({
+          color: COLORS.INVALID_SOLUTION
+        });
       });
 
       it("keeps mining button disabled after mining due to valid solution", async () => {
@@ -264,7 +269,9 @@ describe("in blockchain mode", () => {
 
         // need to await state changes
         await waitFor(() => expect(screen.getByRole("button", { name: /Block Mine/i })).toBeDisabled());
-        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveClass("valid-solution");
+        expect(screen.getByRole("textbox", { name: /Block Solution/i })).toHaveStyle({
+          color: COLORS.VALID_SOLUTION
+        });
       });
     });
   });

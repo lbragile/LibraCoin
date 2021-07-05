@@ -9,7 +9,7 @@ import Mine from "../../pages/Mine";
 import { AppReducer } from "../../reducers/AppReducer";
 import { AppContext } from "../../context/AppContext";
 
-import "./App.scss";
+import { GlobalStyle } from "../../styles/GlobalStyles";
 
 export default function App(): JSX.Element {
   const [state, dispatch] = useReducer(process.env.NODE_ENV === "development" ? logger(AppReducer) : AppReducer, {
@@ -50,15 +50,18 @@ export default function App(): JSX.Element {
   const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
 
   return (
-    <Router basename={"/LibraCoin"}>
-      <AppContext.Provider value={value}>
-        <Route exact path="/">
-          <Redirect to="/wallet" />
-        </Route>
-        <Route path="/wallet" component={Wallet} />
-        <Route path="/mine" component={Mine} />
-        <Route path="/blockchain" component={Chain} />
-      </AppContext.Provider>
-    </Router>
+    <React.Fragment>
+      <GlobalStyle />
+      <Router basename={"/LibraCoin"}>
+        <AppContext.Provider value={value}>
+          <Route exact path="/">
+            <Redirect to="/wallet" />
+          </Route>
+          <Route path="/wallet" component={Wallet} />
+          <Route path="/mine" component={Mine} />
+          <Route path="/blockchain" component={Chain} />
+        </AppContext.Provider>
+      </Router>
+    </React.Fragment>
   );
 }

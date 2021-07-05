@@ -1,6 +1,6 @@
 import { IState } from "./AppTypes";
 
-export declare global {
+declare global {
   namespace NodeJS {
     interface Global {
       initialState: IState;

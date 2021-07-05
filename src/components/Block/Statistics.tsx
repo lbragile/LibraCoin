@@ -1,18 +1,21 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
-import { AppContext } from "../../context/AppContext";
+
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import { IAction, IBlock, IState } from "../../typings/AppTypes";
+import { useAppContext } from "../../hooks/useAppContext";
+import { IBlock } from "../../typings/AppTypes";
 import { digestMessage, randomHash } from "../../utils/conversion";
 
-import "./Block.scss";
+import { ThemeProvider } from "styled-components";
+import { StyledInput } from "../../styles/BlockStyles";
+import { StyledInputGroupText } from "../../styles/GlobalStyles";
 interface IStatisticsProps {
   chain: boolean;
   index: number;
 }
 
 export default function Statistics(props: IStatisticsProps): JSX.Element {
-  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { state, dispatch } = useAppContext();
 
   const nonce = useRef<number>(0);
   const [header, setHeader] = useState<number>(0);
@@ -78,11 +81,13 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
     }
   }
 
+  const isValidSolution = (props.chain && state.chain[props.index].valid) || (!props.chain && state.preview.valid);
+
   return (
     <Form aria-label="Block Statistics" className={props.chain ? "my-3" : "col-11 col-lg-5 mx-3"}>
       <InputGroup className="my-2">
         <InputGroup.Prepend>
-          <InputGroup.Text>Nonce</InputGroup.Text>
+          <StyledInputGroupText>Nonce</StyledInputGroupText>
         </InputGroup.Prepend>
         <Form.Control
           aria-label="Block Nonce"
@@ -96,14 +101,14 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
 
       <InputGroup className="my-2">
         <InputGroup.Prepend>
-          <InputGroup.Text>Header</InputGroup.Text>
+          <StyledInputGroupText>Header</StyledInputGroupText>
         </InputGroup.Prepend>
         <Form.Control aria-label="Block Header" name="header" type="number" value={header} disabled />
       </InputGroup>
 
       <InputGroup className="my-2">
         <InputGroup.Prepend>
-          <InputGroup.Text>Target</InputGroup.Text>
+          <StyledInputGroupText>Target</StyledInputGroupText>
         </InputGroup.Prepend>
         <Form.Control
           aria-label="Block Target"
@@ -117,21 +122,18 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
 
       <InputGroup className="my-2">
         <InputGroup.Prepend>
-          <InputGroup.Text>Sol&apos;n</InputGroup.Text>
+          <StyledInputGroupText>Sol&apos;n</StyledInputGroupText>
         </InputGroup.Prepend>
-        <Form.Control
-          aria-label="Block Solution"
-          name="solution"
-          className={
-            "text-truncate " +
-            ((props.chain && state.chain[props.index].valid) || (!props.chain && state.preview.valid)
-              ? "valid-solution"
-              : "invalid-solution")
-          }
-          type="text"
-          value={solution}
-          readOnly
-        />
+        <ThemeProvider theme={{ valid: isValidSolution }}>
+          <StyledInput
+            aria-label={"Block Solution" + (isValidSolution ? "" : " Invalid")}
+            name="solution"
+            className="text-truncate"
+            type="text"
+            value={solution}
+            readOnly
+          />
+        </ThemeProvider>
       </InputGroup>
 
       <Button

@@ -2,7 +2,43 @@
 
 exports[`renders correctly 1`] = `
 <DocumentFragment>
-  <div
+  .c0 {
+  min-height: 18rem;
+}
+
+.c1 {
+  margin: 0.5rem;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  min-width: 14rem;
+  background-color: #fff;
+}
+
+.c1:hover {
+  cursor: pointer;
+  border: 2px solid #090;
+}
+
+.c3 {
+  margin: 0.5rem;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  min-width: 14rem;
+  background-color: #dfd;
+}
+
+.c3:hover {
+  cursor: pointer;
+  border: 2px solid #090;
+}
+
+.c2.c2.c2 {
+  font-weight: bold;
+}
+
+<div
     class="container-fluid"
   >
     <h3
@@ -12,11 +48,11 @@ exports[`renders correctly 1`] = `
       Verified Transactions
     </h3>
     <div
-      class="trans-list row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded"
+      class="c0 row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded"
     >
       <form
         aria-label="Transaction Information"
-        class="trans-item not-selected"
+        class="c1"
       >
         <div
           class="mb-2 text-center form-group"
@@ -50,7 +86,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               Msg
             </span>
@@ -79,7 +115,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               LC
             </span>
@@ -92,7 +128,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               Sig
             </span>
@@ -108,8 +144,8 @@ exports[`renders correctly 1`] = `
         </div>
       </form>
       <form
-        aria-label="Transaction Information"
-        class="trans-item selected"
+        aria-label="Transaction Information Selected"
+        class="c3"
       >
         <div
           class="mb-2 text-center form-group"
@@ -143,7 +179,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               Msg
             </span>
@@ -172,7 +208,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               LC
             </span>
@@ -185,7 +221,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               Sig
             </span>
@@ -202,7 +238,7 @@ exports[`renders correctly 1`] = `
       </form>
       <form
         aria-label="Transaction Information"
-        class="trans-item not-selected"
+        class="c1"
       >
         <div
           class="mb-2 text-center form-group"
@@ -236,7 +272,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               Msg
             </span>
@@ -265,7 +301,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               LC
             </span>
@@ -278,7 +314,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               Sig
             </span>
@@ -295,7 +331,7 @@ exports[`renders correctly 1`] = `
       </form>
       <form
         aria-label="Transaction Information"
-        class="trans-item not-selected"
+        class="c1"
       >
         <div
           class="mb-2 text-center form-group"
@@ -329,7 +365,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               Msg
             </span>
@@ -358,7 +394,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               LC
             </span>
@@ -371,7 +407,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               Sig
             </span>
@@ -388,7 +424,7 @@ exports[`renders correctly 1`] = `
       </form>
       <form
         aria-label="Transaction Information"
-        class="trans-item not-selected"
+        class="c1"
       >
         <div
           class="mb-2 text-center form-group"
@@ -422,7 +458,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               Msg
             </span>
@@ -451,7 +487,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               LC
             </span>
@@ -464,7 +500,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="input-group-text"
+              class="c2 input-group-text"
             >
               Sig
             </span>

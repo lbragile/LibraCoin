@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 
-import { AppContext } from "../../context/AppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
-import { IAction, IBlock, IState, ITransaction } from "../../typings/AppTypes";
+import { useAppContext } from "../../hooks/useAppContext";
+import { StyledInputGroupText } from "../../styles/GlobalStyles";
+import { IBlock, ITransaction } from "../../typings/AppTypes";
 
 import { digestMessage } from "../../utils/conversion";
 import { calculateMerkleTreeFormation, getMerkleRoot } from "../../utils/merkleTree";
@@ -12,12 +13,12 @@ type TChangeType = "from" | "to" | "msg" | "amount";
 type TInputChange<T = HTMLInputElement> = React.ChangeEvent<T>;
 
 export default function BlockTrans({ index }: { index: number }): JSX.Element {
-  const { state, dispatch } = useContext(AppContext) as { state: IState; dispatch: React.Dispatch<IAction> };
+  const { state, dispatch } = useAppContext();
 
   const [transDetails, setTransDetails] = useState<ITransaction[]>(state.chain[index].transactions);
 
   async function calculateNewMerkleRoot(newVal: number | string, i: number, type: TChangeType): Promise<void> {
-    const newTrans: ITransaction[] = JSON.parse(JSON.stringify(transDetails)); // deep copy
+    const newTrans: ITransaction[] = [...transDetails];
 
     // update the changed value & signature
     newTrans[i] = { ...newTrans[i], [type]: newVal };
@@ -46,37 +47,49 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
   }
 
   return (
-    <div className="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark">
+    <div
+      className="row flex-nowrap overflow-auto mx-1 p-2 rounded bg-dark"
+      aria-label="Block Transactions Group"
+      role="list"
+    >
       {transDetails.map((transaction, i) => {
         return (
-          <div
+          <Form
+            aria-label="Block Transactions Item"
+            role="listitem"
             className={
               (transDetails.length > 1 && i !== transDetails.length - 1 ? "mr-2 " : "") +
               "col-12 bg-light border border-dark p-1 rounded"
             }
             key={`sig:${i}`}
           >
-            <Form.Group className="mb-2 text-center">
+            <InputGroup className="mb-2 text-center">
               <Form.Control
-                className="text-truncate"
+                aria-label="Block Transactions From"
+                name="btFrom"
+                className="text-truncate rounded w-100"
                 type="text"
                 value={transaction.from}
                 onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "from")}
               />
-              <h3 className="my-0">↓</h3>
+              <h3 className="my-0 w-100">↓</h3>
               <Form.Control
-                className="text-truncate"
+                aria-label="Block Transactions To"
+                name="btTo"
+                className="text-truncate rounded w-100"
                 type="text"
                 value={transaction.to}
                 onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "to")}
               />
-            </Form.Group>
+            </InputGroup>
 
             <InputGroup className="mb-2">
               <InputGroup.Prepend>
-                <InputGroup.Text>Msg</InputGroup.Text>
+                <StyledInputGroupText>Msg</StyledInputGroupText>
               </InputGroup.Prepend>
               <Form.Control
+                aria-label="Block Transactions Message"
+                name="btMsg"
                 as="textarea"
                 rows={3}
                 value={transaction.msg}
@@ -86,28 +99,31 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
 
             <InputGroup className="mb-2">
               <Form.Control
+                aria-label="Block Transactions Amount"
+                name="btAmount"
                 type="number"
-                value={transaction.amount ?? 0}
+                value={transaction.amount}
                 onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "amount")}
               />
               <InputGroup.Append>
-                <InputGroup.Text>LC</InputGroup.Text>
+                <StyledInputGroupText>LC</StyledInputGroupText>
               </InputGroup.Append>
             </InputGroup>
 
             <InputGroup>
               <InputGroup.Prepend>
-                <InputGroup.Text>Sig</InputGroup.Text>
+                <StyledInputGroupText>Sig</StyledInputGroupText>
               </InputGroup.Prepend>
               <Form.Control
-                key={transaction.signature}
+                aria-label="Block Transactions Signature"
+                name="btSignature"
                 className="text-truncate"
                 type="text"
-                value={transaction.msg}
+                value={transaction.signature}
                 readOnly
               />
             </InputGroup>
-          </div>
+          </Form>
         );
       })}
     </div>

@@ -1,0 +1,2962 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`copies public key on focus, pages and fills out sign form, signs, sends 1`] = `
+<DocumentFragment>
+  .c0 {
+  background-color: #eee;
+}
+
+.c1 {
+  font-size: larger;
+  text-align: right;
+  color: #000;
+  font-weight: bolder;
+}
+
+.c1:hover,
+.c1.active {
+  font-weight: bolder;
+}
+
+.c1:hover {
+  border-bottom: #8ac0ff 1px solid;
+}
+
+.c3.c3.c3 {
+  font-weight: bold;
+}
+
+.c2 {
+  margin: 0.25em 0.5em;
+  word-wrap: break-word;
+}
+
+.c6 {
+  background-color: #fff;
+  margin: 1em 0.5em;
+  padding: 1em;
+  width: 14rem;
+}
+
+.c4:hover {
+  cursor: pointer;
+}
+
+.c5 {
+  margin: 0 1rem;
+  padding: 1em;
+  border-radius: 6px;
+  border: 1px solid black;
+}
+
+@media only screen and (max-width:600px) {
+  .c1:hover {
+    border-bottom: none;
+  }
+}
+
+<div>
+    <nav
+      class="c0 mb-3 navbar navbar-expand-lg navbar-light"
+    >
+      <a
+        aria-label="LibraCoin Logo"
+        class="navbar-brand"
+        href="https://github.com/lbragile/LibraCoin"
+      >
+        <img
+          alt="LibraCoin Logo"
+          height="64"
+          src="./assets/libracoin-logo-256.png"
+          width="64"
+        />
+      </a>
+      <button
+        aria-controls="basic-navbar-nav"
+        aria-label="Toggle navigation"
+        class="navbar-toggler collapsed"
+        type="button"
+      >
+        <span
+          class="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        class="navbar-collapse collapse"
+        id="basic-navbar-nav"
+      >
+        <div
+          class="ml-auto navbar-nav"
+        >
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/wallet"
+            href="/LibraCoin/wallet"
+          >
+            Wallet
+          </a>
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/mine"
+            href="/LibraCoin/mine"
+          >
+            Mine
+          </a>
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/blockchain"
+            href="/LibraCoin/blockchain"
+          >
+            Blockchain
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="container-fluid d-flex justify-content-center mx-auto row my-5"
+    >
+      <div
+        class="c2 col-12 col-lg-5 pl-3 pl-lg-0 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="c3 input-group-text"
+          >
+            Public
+          </span>
+        </div>
+        <textarea
+          aria-label="publicKey"
+          class="rounded-right form-control is-valid"
+          readonly=""
+          rows="4"
+        >
+          3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb
+        </textarea>
+        <div
+          class="valid-feedback"
+        >
+          Copied to clipboard!
+        </div>
+      </div>
+      <div
+        class="c2 col-12 col-lg-5 pl-3 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="c3 input-group-text"
+          >
+            Private
+          </span>
+        </div>
+        <textarea
+          aria-label="privateKey"
+          class="form-control"
+          readonly=""
+          rows="4"
+        >
+          ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
+        </textarea>
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="c3 rounded-right input-group-text"
+          >
+            <span
+              class="c4"
+            >
+              👀
+            </span>
+          </span>
+        </div>
+        <div
+          class="valid-feedback"
+        >
+          Copied to clipboard!
+        </div>
+      </div>
+    </div>
+    <div
+      class="container-fluid d-flex justify-content-center mx-auto row my-4"
+    >
+      <form
+        aria-label="Sign Form"
+        class="c5 col-12 col-lg-5"
+        novalidate=""
+      >
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Sender Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Sender Public Key"
+            class="text-truncate rounded-right form-control"
+            name="from"
+            readonly=""
+            type="text"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Used to verify transaction was signed using your private key
+        </small>
+        <div
+          class="my-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Receiver Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Receiver PK"
+            class="text-truncate rounded-right form-control"
+            name="to"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <input
+            aria-label="Sign Amount"
+            class="form-control"
+            name="amount"
+            placeholder="1.00"
+            required=""
+            step="any"
+            type="number"
+            value=""
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="c3 rounded-right border-left-0 input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Message
+            </span>
+          </div>
+          <textarea
+            aria-label="Sign Message"
+            class="form-control"
+            name="msg"
+            placeholder="optional message..."
+            rows="2"
+          />
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Sender Private Key
+            </span>
+          </div>
+          <input
+            aria-label="Sender Private Key"
+            class="text-truncate form-control"
+            name="fromSK"
+            readonly=""
+            type="text"
+            value="308187020100301306072a8648ce3d020106082a8648ce3d030107046d306b020101042047979df7cebe59dd7bf901"
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Not shared with anyone, keep this secret!
+        </small>
+        <button
+          aria-label="Sign Button"
+          class="mt-2 btn btn-primary btn-block"
+          type="submit"
+        >
+          <b>
+            Sign
+          </b>
+        </button>
+      </form>
+      <form
+        aria-label="Send Form"
+        class="c5 col-12 col-lg-5 my-2 my-lg-0"
+        novalidate=""
+      >
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Receiver Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Receiver PK"
+            class="text-truncate form-control"
+            name="receiver-pk"
+            readonly=""
+            type="text"
+            value=""
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Make sure this matches the value used when signing
+        </small>
+        <div
+          class="my-2 input-group"
+        >
+          <input
+            aria-label="Send Amount"
+            class="form-control"
+            name="amount"
+            readonly=""
+            type="number"
+            value="0.00"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="c3 rounded-right border-left-0 input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Message
+            </span>
+          </div>
+          <textarea
+            aria-label="Send Message"
+            class="form-control"
+            name="msg"
+            placeholder="optional message..."
+            readonly=""
+            rows="4"
+          />
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Transaction Signature
+            </span>
+          </div>
+          <input
+            aria-label="Transaction Signature"
+            class="text-truncate form-control"
+            name="sig"
+            readonly=""
+            type="text"
+            value=""
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Receiver uses this along with your public key to verify transaction
+        </small>
+        <button
+          aria-label="Send Button"
+          class="mt-2 btn btn-primary btn-block"
+          disabled=""
+          type="submit"
+        >
+          <b>
+            Send
+          </b>
+        </button>
+      </form>
+    </div>
+    <div
+      class="container-fluid mb-2"
+    >
+      <h3
+        class="font-weight-bold"
+      >
+        Users
+      </h3>
+      <div
+        class="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded"
+      >
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="1000"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599bacd"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="111.11"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599baef"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="222.22"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`copies public key on focus, pages and fills out sign form, signs, sends 2`] = `
+<DocumentFragment>
+  .c0 {
+  background-color: #eee;
+}
+
+.c1 {
+  font-size: larger;
+  text-align: right;
+  color: #000;
+  font-weight: bolder;
+}
+
+.c1:hover,
+.c1.active {
+  font-weight: bolder;
+}
+
+.c1:hover {
+  border-bottom: #8ac0ff 1px solid;
+}
+
+.c3.c3.c3 {
+  font-weight: bold;
+}
+
+.c2 {
+  margin: 0.25em 0.5em;
+  word-wrap: break-word;
+}
+
+.c6 {
+  background-color: #fff;
+  margin: 1em 0.5em;
+  padding: 1em;
+  width: 14rem;
+}
+
+.c4:hover {
+  cursor: pointer;
+}
+
+.c5 {
+  margin: 0 1rem;
+  padding: 1em;
+  border-radius: 6px;
+  border: 1px solid black;
+}
+
+@media only screen and (max-width:600px) {
+  .c1:hover {
+    border-bottom: none;
+  }
+}
+
+<div>
+    <nav
+      class="c0 mb-3 navbar navbar-expand-lg navbar-light"
+    >
+      <a
+        aria-label="LibraCoin Logo"
+        class="navbar-brand"
+        href="https://github.com/lbragile/LibraCoin"
+      >
+        <img
+          alt="LibraCoin Logo"
+          height="64"
+          src="./assets/libracoin-logo-256.png"
+          width="64"
+        />
+      </a>
+      <button
+        aria-controls="basic-navbar-nav"
+        aria-label="Toggle navigation"
+        class="navbar-toggler collapsed"
+        type="button"
+      >
+        <span
+          class="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        class="navbar-collapse collapse"
+        id="basic-navbar-nav"
+      >
+        <div
+          class="ml-auto navbar-nav"
+        >
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/wallet"
+            href="/LibraCoin/wallet"
+          >
+            Wallet
+          </a>
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/mine"
+            href="/LibraCoin/mine"
+          >
+            Mine
+          </a>
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/blockchain"
+            href="/LibraCoin/blockchain"
+          >
+            Blockchain
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="container-fluid d-flex justify-content-center mx-auto row my-5"
+    >
+      <div
+        class="c2 col-12 col-lg-5 pl-3 pl-lg-0 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="c3 input-group-text"
+          >
+            Public
+          </span>
+        </div>
+        <textarea
+          aria-label="publicKey"
+          class="rounded-right form-control"
+          readonly=""
+          rows="4"
+        >
+          3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb
+        </textarea>
+        <div
+          class="valid-feedback"
+        >
+          Copied to clipboard!
+        </div>
+      </div>
+      <div
+        class="c2 col-12 col-lg-5 pl-3 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="c3 input-group-text"
+          >
+            Private
+          </span>
+        </div>
+        <textarea
+          aria-label="privateKey"
+          class="form-control"
+          readonly=""
+          rows="4"
+        >
+          ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
+        </textarea>
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="c3 rounded-right input-group-text"
+          >
+            <span
+              class="c4"
+            >
+              👀
+            </span>
+          </span>
+        </div>
+        <div
+          class="valid-feedback"
+        >
+          Copied to clipboard!
+        </div>
+      </div>
+    </div>
+    <div
+      class="container-fluid d-flex justify-content-center mx-auto row my-4"
+    >
+      <form
+        aria-label="Sign Form"
+        class="c5 col-12 col-lg-5"
+        novalidate=""
+      >
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Sender Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Sender Public Key"
+            class="text-truncate rounded-right form-control"
+            name="from"
+            readonly=""
+            type="text"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Used to verify transaction was signed using your private key
+        </small>
+        <div
+          class="my-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Receiver Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Receiver PK"
+            class="text-truncate rounded-right form-control is-valid"
+            name="to"
+            required=""
+            type="text"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599bacd"
+          />
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <input
+            aria-label="Sign Amount"
+            class="form-control is-valid"
+            name="amount"
+            placeholder="1.00"
+            required=""
+            step="any"
+            type="number"
+            value="111"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="c3 rounded-right border-left-0 input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Message
+            </span>
+          </div>
+          <textarea
+            aria-label="Sign Message"
+            class="form-control"
+            name="msg"
+            placeholder="optional message..."
+            rows="2"
+          >
+            aaa
+          </textarea>
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Sender Private Key
+            </span>
+          </div>
+          <input
+            aria-label="Sender Private Key"
+            class="text-truncate form-control"
+            name="fromSK"
+            readonly=""
+            type="text"
+            value="308187020100301306072a8648ce3d020106082a8648ce3d030107046d306b020101042047979df7cebe59dd7bf901"
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Not shared with anyone, keep this secret!
+        </small>
+        <button
+          aria-label="Sign Button"
+          class="mt-2 btn btn-primary btn-block"
+          type="submit"
+        >
+          <b>
+            Sign
+          </b>
+        </button>
+      </form>
+      <form
+        aria-label="Send Form"
+        class="c5 col-12 col-lg-5 my-2 my-lg-0"
+        novalidate=""
+      >
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Receiver Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Receiver PK"
+            class="text-truncate form-control"
+            name="receiver-pk"
+            readonly=""
+            type="text"
+            value=""
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Make sure this matches the value used when signing
+        </small>
+        <div
+          class="my-2 input-group"
+        >
+          <input
+            aria-label="Send Amount"
+            class="form-control"
+            name="amount"
+            readonly=""
+            type="number"
+            value="0.00"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="c3 rounded-right border-left-0 input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Message
+            </span>
+          </div>
+          <textarea
+            aria-label="Send Message"
+            class="form-control"
+            name="msg"
+            placeholder="optional message..."
+            readonly=""
+            rows="4"
+          />
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Transaction Signature
+            </span>
+          </div>
+          <input
+            aria-label="Transaction Signature"
+            class="text-truncate form-control"
+            name="sig"
+            readonly=""
+            type="text"
+            value=""
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Receiver uses this along with your public key to verify transaction
+        </small>
+        <button
+          aria-label="Send Button"
+          class="mt-2 btn btn-primary btn-block"
+          disabled=""
+          type="submit"
+        >
+          <b>
+            Send
+          </b>
+        </button>
+      </form>
+    </div>
+    <div
+      class="container-fluid mb-2"
+    >
+      <h3
+        class="font-weight-bold"
+      >
+        Users
+      </h3>
+      <div
+        class="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded"
+      >
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="1000"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599bacd"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="111.11"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599baef"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="222.22"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`copies public key on focus, pages and fills out sign form, signs, sends 3`] = `
+<DocumentFragment>
+  .c0 {
+  background-color: #eee;
+}
+
+.c1 {
+  font-size: larger;
+  text-align: right;
+  color: #000;
+  font-weight: bolder;
+}
+
+.c1:hover,
+.c1.active {
+  font-weight: bolder;
+}
+
+.c1:hover {
+  border-bottom: #8ac0ff 1px solid;
+}
+
+.c3.c3.c3 {
+  font-weight: bold;
+}
+
+.c2 {
+  margin: 0.25em 0.5em;
+  word-wrap: break-word;
+}
+
+.c6 {
+  background-color: #fff;
+  margin: 1em 0.5em;
+  padding: 1em;
+  width: 14rem;
+}
+
+.c4:hover {
+  cursor: pointer;
+}
+
+.c5 {
+  margin: 0 1rem;
+  padding: 1em;
+  border-radius: 6px;
+  border: 1px solid black;
+}
+
+@media only screen and (max-width:600px) {
+  .c1:hover {
+    border-bottom: none;
+  }
+}
+
+<div>
+    <nav
+      class="c0 mb-3 navbar navbar-expand-lg navbar-light"
+    >
+      <a
+        aria-label="LibraCoin Logo"
+        class="navbar-brand"
+        href="https://github.com/lbragile/LibraCoin"
+      >
+        <img
+          alt="LibraCoin Logo"
+          height="64"
+          src="./assets/libracoin-logo-256.png"
+          width="64"
+        />
+      </a>
+      <button
+        aria-controls="basic-navbar-nav"
+        aria-label="Toggle navigation"
+        class="navbar-toggler collapsed"
+        type="button"
+      >
+        <span
+          class="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        class="navbar-collapse collapse"
+        id="basic-navbar-nav"
+      >
+        <div
+          class="ml-auto navbar-nav"
+        >
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/wallet"
+            href="/LibraCoin/wallet"
+          >
+            Wallet
+          </a>
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/mine"
+            href="/LibraCoin/mine"
+          >
+            Mine
+          </a>
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/blockchain"
+            href="/LibraCoin/blockchain"
+          >
+            Blockchain
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="container-fluid d-flex justify-content-center mx-auto row my-5"
+    >
+      <div
+        class="c2 col-12 col-lg-5 pl-3 pl-lg-0 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="c3 input-group-text"
+          >
+            Public
+          </span>
+        </div>
+        <textarea
+          aria-label="publicKey"
+          class="rounded-right form-control"
+          readonly=""
+          rows="4"
+        >
+          3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb
+        </textarea>
+        <div
+          class="valid-feedback"
+        >
+          Copied to clipboard!
+        </div>
+      </div>
+      <div
+        class="c2 col-12 col-lg-5 pl-3 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="c3 input-group-text"
+          >
+            Private
+          </span>
+        </div>
+        <textarea
+          aria-label="privateKey"
+          class="form-control"
+          readonly=""
+          rows="4"
+        >
+          ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
+        </textarea>
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="c3 rounded-right input-group-text"
+          >
+            <span
+              class="c4"
+            >
+              👀
+            </span>
+          </span>
+        </div>
+        <div
+          class="valid-feedback"
+        >
+          Copied to clipboard!
+        </div>
+      </div>
+    </div>
+    <div
+      class="container-fluid d-flex justify-content-center mx-auto row my-4"
+    >
+      <form
+        aria-label="Sign Form"
+        class="c5 col-12 col-lg-5"
+        novalidate=""
+      >
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Sender Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Sender Public Key"
+            class="text-truncate rounded-right form-control"
+            name="from"
+            readonly=""
+            type="text"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Used to verify transaction was signed using your private key
+        </small>
+        <div
+          class="my-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Receiver Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Receiver PK"
+            class="text-truncate rounded-right form-control is-valid"
+            name="to"
+            readonly=""
+            required=""
+            type="text"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599bacd"
+          />
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <input
+            aria-label="Sign Amount"
+            class="form-control is-valid"
+            name="amount"
+            placeholder="1.00"
+            readonly=""
+            required=""
+            step="any"
+            type="number"
+            value="111"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="c3 rounded-right border-left-0 input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Message
+            </span>
+          </div>
+          <textarea
+            aria-label="Sign Message"
+            class="form-control is-valid"
+            name="msg"
+            placeholder="optional message..."
+            readonly=""
+            rows="2"
+          >
+            aaa
+          </textarea>
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Sender Private Key
+            </span>
+          </div>
+          <input
+            aria-label="Sender Private Key"
+            class="text-truncate form-control"
+            name="fromSK"
+            readonly=""
+            type="text"
+            value="308187020100301306072a8648ce3d020106082a8648ce3d030107046d306b020101042047979df7cebe59dd7bf901"
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Not shared with anyone, keep this secret!
+        </small>
+        <button
+          aria-label="Sign Button"
+          class="mt-2 btn btn-success btn-block"
+          disabled=""
+          type="submit"
+        >
+          <b>
+            Signed
+          </b>
+        </button>
+      </form>
+      <form
+        aria-label="Send Form"
+        class="c5 col-12 col-lg-5 my-2 my-lg-0"
+        novalidate=""
+      >
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Receiver Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Receiver PK"
+            class="text-truncate form-control"
+            name="receiver-pk"
+            readonly=""
+            type="text"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599bacd"
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Make sure this matches the value used when signing
+        </small>
+        <div
+          class="my-2 input-group"
+        >
+          <input
+            aria-label="Send Amount"
+            class="form-control"
+            name="amount"
+            readonly=""
+            type="number"
+            value="111"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="c3 rounded-right border-left-0 input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Message
+            </span>
+          </div>
+          <textarea
+            aria-label="Send Message"
+            class="form-control"
+            name="msg"
+            placeholder="optional message..."
+            readonly=""
+            rows="4"
+          >
+            aaa
+          </textarea>
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Transaction Signature
+            </span>
+          </div>
+          <input
+            aria-label="Transaction Signature"
+            class="text-truncate form-control"
+            name="sig"
+            readonly=""
+            type="text"
+            value="random message"
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Receiver uses this along with your public key to verify transaction
+        </small>
+        <button
+          aria-label="Send Button"
+          class="mt-2 btn btn-primary btn-block"
+          type="submit"
+        >
+          <b>
+            Send
+          </b>
+        </button>
+      </form>
+    </div>
+    <div
+      class="container-fluid mb-2"
+    >
+      <h3
+        class="font-weight-bold"
+      >
+        Users
+      </h3>
+      <div
+        class="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded"
+      >
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="1000"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599bacd"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="111.11"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599baef"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="222.22"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`copies public key on focus, pages and fills out sign form, signs, sends 4`] = `
+<DocumentFragment>
+  .c0 {
+  background-color: #eee;
+}
+
+.c1 {
+  font-size: larger;
+  text-align: right;
+  color: #000;
+  font-weight: bolder;
+}
+
+.c1:hover,
+.c1.active {
+  font-weight: bolder;
+}
+
+.c1:hover {
+  border-bottom: #8ac0ff 1px solid;
+}
+
+.c3.c3.c3 {
+  font-weight: bold;
+}
+
+.c2 {
+  margin: 0.25em 0.5em;
+  word-wrap: break-word;
+}
+
+.c6 {
+  background-color: #fff;
+  margin: 1em 0.5em;
+  padding: 1em;
+  width: 14rem;
+}
+
+.c4:hover {
+  cursor: pointer;
+}
+
+.c5 {
+  margin: 0 1rem;
+  padding: 1em;
+  border-radius: 6px;
+  border: 1px solid black;
+}
+
+@media only screen and (max-width:600px) {
+  .c1:hover {
+    border-bottom: none;
+  }
+}
+
+<div>
+    <nav
+      class="c0 mb-3 navbar navbar-expand-lg navbar-light"
+    >
+      <a
+        aria-label="LibraCoin Logo"
+        class="navbar-brand"
+        href="https://github.com/lbragile/LibraCoin"
+      >
+        <img
+          alt="LibraCoin Logo"
+          height="64"
+          src="./assets/libracoin-logo-256.png"
+          width="64"
+        />
+      </a>
+      <button
+        aria-controls="basic-navbar-nav"
+        aria-label="Toggle navigation"
+        class="navbar-toggler collapsed"
+        type="button"
+      >
+        <span
+          class="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        class="navbar-collapse collapse"
+        id="basic-navbar-nav"
+      >
+        <div
+          class="ml-auto navbar-nav"
+        >
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/wallet"
+            href="/LibraCoin/wallet"
+          >
+            Wallet
+          </a>
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/mine"
+            href="/LibraCoin/mine"
+          >
+            Mine
+          </a>
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/blockchain"
+            href="/LibraCoin/blockchain"
+          >
+            Blockchain
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="container-fluid d-flex justify-content-center mx-auto row my-5"
+    >
+      <div
+        class="c2 col-12 col-lg-5 pl-3 pl-lg-0 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="c3 input-group-text"
+          >
+            Public
+          </span>
+        </div>
+        <textarea
+          aria-label="publicKey"
+          class="rounded-right form-control"
+          readonly=""
+          rows="4"
+        >
+          3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb
+        </textarea>
+        <div
+          class="valid-feedback"
+        >
+          Copied to clipboard!
+        </div>
+      </div>
+      <div
+        class="c2 col-12 col-lg-5 pl-3 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="c3 input-group-text"
+          >
+            Private
+          </span>
+        </div>
+        <textarea
+          aria-label="privateKey"
+          class="form-control"
+          readonly=""
+          rows="4"
+        >
+          ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
+        </textarea>
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="c3 rounded-right input-group-text"
+          >
+            <span
+              class="c4"
+            >
+              👀
+            </span>
+          </span>
+        </div>
+        <div
+          class="valid-feedback"
+        >
+          Copied to clipboard!
+        </div>
+      </div>
+    </div>
+    <div
+      class="container-fluid d-flex justify-content-center mx-auto row my-4"
+    >
+      <form
+        aria-label="Sign Form"
+        class="c5 col-12 col-lg-5"
+        novalidate=""
+      >
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Sender Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Sender Public Key"
+            class="text-truncate rounded-right form-control"
+            name="from"
+            readonly=""
+            type="text"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Used to verify transaction was signed using your private key
+        </small>
+        <div
+          class="my-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Receiver Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Receiver PK"
+            class="text-truncate rounded-right form-control is-valid"
+            name="to"
+            required=""
+            type="text"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599bacd"
+          />
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <input
+            aria-label="Sign Amount"
+            class="form-control is-valid"
+            name="amount"
+            placeholder="1.00"
+            required=""
+            step="any"
+            type="number"
+            value="111"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="c3 rounded-right border-left-0 input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Message
+            </span>
+          </div>
+          <textarea
+            aria-label="Sign Message"
+            class="form-control is-valid"
+            name="msg"
+            placeholder="optional message..."
+            rows="2"
+          >
+            aaa
+          </textarea>
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Sender Private Key
+            </span>
+          </div>
+          <input
+            aria-label="Sender Private Key"
+            class="text-truncate form-control"
+            name="fromSK"
+            readonly=""
+            type="text"
+            value="308187020100301306072a8648ce3d020106082a8648ce3d030107046d306b020101042047979df7cebe59dd7bf901"
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Not shared with anyone, keep this secret!
+        </small>
+        <button
+          aria-label="Sign Button"
+          class="mt-2 btn btn-primary btn-block"
+          type="submit"
+        >
+          <b>
+            Sign
+          </b>
+        </button>
+      </form>
+      <form
+        aria-label="Send Form"
+        class="c5 col-12 col-lg-5 my-2 my-lg-0"
+        novalidate=""
+      >
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Receiver Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Receiver PK"
+            class="text-truncate form-control"
+            name="receiver-pk"
+            readonly=""
+            type="text"
+            value=""
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Make sure this matches the value used when signing
+        </small>
+        <div
+          class="my-2 input-group"
+        >
+          <input
+            aria-label="Send Amount"
+            class="form-control"
+            name="amount"
+            readonly=""
+            type="number"
+            value="0.00"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="c3 rounded-right border-left-0 input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Message
+            </span>
+          </div>
+          <textarea
+            aria-label="Send Message"
+            class="form-control"
+            name="msg"
+            placeholder="optional message..."
+            readonly=""
+            rows="4"
+          />
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Transaction Signature
+            </span>
+          </div>
+          <input
+            aria-label="Transaction Signature"
+            class="text-truncate form-control"
+            name="sig"
+            readonly=""
+            type="text"
+            value=""
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Receiver uses this along with your public key to verify transaction
+        </small>
+        <button
+          aria-label="Send Button"
+          class="mt-2 btn btn-success btn-block"
+          disabled=""
+          type="submit"
+        >
+          <b>
+            Sent
+          </b>
+        </button>
+      </form>
+    </div>
+    <div
+      class="container-fluid mb-2"
+    >
+      <h3
+        class="font-weight-bold"
+      >
+        Users
+      </h3>
+      <div
+        class="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded"
+      >
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="1000"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599bacd"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="111.11"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599baef"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="222.22"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders correctly 1`] = `
+<DocumentFragment>
+  .c0 {
+  background-color: #eee;
+}
+
+.c1 {
+  font-size: larger;
+  text-align: right;
+  color: #000;
+  font-weight: bolder;
+}
+
+.c1:hover,
+.c1.active {
+  font-weight: bolder;
+}
+
+.c1:hover {
+  border-bottom: #8ac0ff 1px solid;
+}
+
+.c3.c3.c3 {
+  font-weight: bold;
+}
+
+.c2 {
+  margin: 0.25em 0.5em;
+  word-wrap: break-word;
+}
+
+.c6 {
+  background-color: #fff;
+  margin: 1em 0.5em;
+  padding: 1em;
+  width: 14rem;
+}
+
+.c4:hover {
+  cursor: pointer;
+}
+
+.c5 {
+  margin: 0 1rem;
+  padding: 1em;
+  border-radius: 6px;
+  border: 1px solid black;
+}
+
+@media only screen and (max-width:600px) {
+  .c1:hover {
+    border-bottom: none;
+  }
+}
+
+<div>
+    <nav
+      class="c0 mb-3 navbar navbar-expand-lg navbar-light"
+    >
+      <a
+        aria-label="LibraCoin Logo"
+        class="navbar-brand"
+        href="https://github.com/lbragile/LibraCoin"
+      >
+        <img
+          alt="LibraCoin Logo"
+          height="64"
+          src="./assets/libracoin-logo-256.png"
+          width="64"
+        />
+      </a>
+      <button
+        aria-controls="basic-navbar-nav"
+        aria-label="Toggle navigation"
+        class="navbar-toggler collapsed"
+        type="button"
+      >
+        <span
+          class="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        class="navbar-collapse collapse"
+        id="basic-navbar-nav"
+      >
+        <div
+          class="ml-auto navbar-nav"
+        >
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/wallet"
+            href="/LibraCoin/wallet"
+          >
+            Wallet
+          </a>
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/mine"
+            href="/LibraCoin/mine"
+          >
+            Mine
+          </a>
+          <a
+            class="c1 nav-link"
+            data-rb-event-key="/LibraCoin/blockchain"
+            href="/LibraCoin/blockchain"
+          >
+            Blockchain
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="container-fluid d-flex justify-content-center mx-auto row my-5"
+    >
+      <div
+        class="c2 col-12 col-lg-5 pl-3 pl-lg-0 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="c3 input-group-text"
+          >
+            Public
+          </span>
+        </div>
+        <textarea
+          aria-label="publicKey"
+          class="rounded-right form-control"
+          readonly=""
+          rows="4"
+        >
+          3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb
+        </textarea>
+        <div
+          class="valid-feedback"
+        >
+          Copied to clipboard!
+        </div>
+      </div>
+      <div
+        class="c2 col-12 col-lg-5 pl-3 input-group"
+      >
+        <div
+          class="input-group-prepend"
+        >
+          <span
+            class="c3 input-group-text"
+          >
+            Private
+          </span>
+        </div>
+        <textarea
+          aria-label="privateKey"
+          class="form-control"
+          readonly=""
+          rows="4"
+        >
+          ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
+        </textarea>
+        <div
+          class="input-group-append"
+        >
+          <span
+            class="c3 rounded-right input-group-text"
+          >
+            <span
+              class="c4"
+            >
+              👀
+            </span>
+          </span>
+        </div>
+        <div
+          class="valid-feedback"
+        >
+          Copied to clipboard!
+        </div>
+      </div>
+    </div>
+    <div
+      class="container-fluid d-flex justify-content-center mx-auto row my-4"
+    >
+      <form
+        aria-label="Sign Form"
+        class="c5 col-12 col-lg-5"
+        novalidate=""
+      >
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Sender Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Sender Public Key"
+            class="text-truncate rounded-right form-control"
+            name="from"
+            readonly=""
+            type="text"
+            value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Used to verify transaction was signed using your private key
+        </small>
+        <div
+          class="my-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Receiver Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Receiver PK"
+            class="text-truncate rounded-right form-control"
+            name="to"
+            required=""
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <input
+            aria-label="Sign Amount"
+            class="form-control"
+            name="amount"
+            placeholder="1.00"
+            required=""
+            step="any"
+            type="number"
+            value=""
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="c3 rounded-right border-left-0 input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Message
+            </span>
+          </div>
+          <textarea
+            aria-label="Sign Message"
+            class="form-control"
+            name="msg"
+            placeholder="optional message..."
+            rows="2"
+          />
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Sender Private Key
+            </span>
+          </div>
+          <input
+            aria-label="Sender Private Key"
+            class="text-truncate form-control"
+            name="fromSK"
+            readonly=""
+            type="text"
+            value="308187020100301306072a8648ce3d020106082a8648ce3d030107046d306b020101042047979df7cebe59dd7bf901"
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Not shared with anyone, keep this secret!
+        </small>
+        <button
+          aria-label="Sign Button"
+          class="mt-2 btn btn-primary btn-block"
+          type="submit"
+        >
+          <b>
+            Sign
+          </b>
+        </button>
+      </form>
+      <form
+        aria-label="Send Form"
+        class="c5 col-12 col-lg-5 my-2 my-lg-0"
+        novalidate=""
+      >
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Receiver Public Key
+            </span>
+          </div>
+          <input
+            aria-label="Receiver PK"
+            class="text-truncate form-control"
+            name="receiver-pk"
+            readonly=""
+            type="text"
+            value=""
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Make sure this matches the value used when signing
+        </small>
+        <div
+          class="my-2 input-group"
+        >
+          <input
+            aria-label="Send Amount"
+            class="form-control"
+            name="amount"
+            readonly=""
+            type="number"
+            value="0.00"
+          />
+          <div
+            class="input-group-append"
+          >
+            <span
+              class="c3 rounded-right border-left-0 input-group-text"
+            >
+              LC
+            </span>
+          </div>
+        </div>
+        <div
+          class="mb-2 input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Message
+            </span>
+          </div>
+          <textarea
+            aria-label="Send Message"
+            class="form-control"
+            name="msg"
+            placeholder="optional message..."
+            readonly=""
+            rows="4"
+          />
+        </div>
+        <div
+          class="input-group"
+        >
+          <div
+            class="input-group-prepend"
+          >
+            <span
+              class="c3 input-group-text"
+            >
+              Transaction Signature
+            </span>
+          </div>
+          <input
+            aria-label="Transaction Signature"
+            class="text-truncate form-control"
+            name="sig"
+            readonly=""
+            type="text"
+            value=""
+          />
+        </div>
+        <small
+          class="text-muted form-text"
+        >
+          Receiver uses this along with your public key to verify transaction
+        </small>
+        <button
+          aria-label="Send Button"
+          class="mt-2 btn btn-primary btn-block"
+          disabled=""
+          type="submit"
+        >
+          <b>
+            Send
+          </b>
+        </button>
+      </form>
+    </div>
+    <div
+      class="container-fluid mb-2"
+    >
+      <h3
+        class="font-weight-bold"
+      >
+        Users
+      </h3>
+      <div
+        class="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded"
+      >
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="1000"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599bacd"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="111.11"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+        <form
+          class="c6 rounded flex-shrink-0"
+        >
+          <div
+            class="input-group"
+          >
+            <div
+              class="input-group-prepend"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                🔑
+              </span>
+            </div>
+            <input
+              aria-label="User Public Key"
+              class="text-truncate rounded-right form-control"
+              readonly=""
+              type="text"
+              value="3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599baef"
+            />
+            <div
+              class="valid-feedback"
+            >
+              Copied to clipboard
+            </div>
+          </div>
+          <div
+            class="mt-2 input-group"
+          >
+            <input
+              aria-label="balance"
+              class="form-control"
+              disabled=""
+              type="number"
+              value="222.22"
+            />
+            <div
+              class="input-group-append"
+            >
+              <span
+                class="c3 input-group-text"
+              >
+                LC
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -2,17 +2,30 @@
 
 exports[`renders correctly 1`] = `
 <DocumentFragment>
-  <div
+  .c1.c1.c1 {
+  font-weight: bold;
+}
+
+.c0 {
+  margin: 0.25em 0.5em;
+  word-wrap: break-word;
+}
+
+.c2:hover {
+  cursor: pointer;
+}
+
+<div
     class="container-fluid d-flex justify-content-center mx-auto row my-5"
   >
     <div
-      class="user-key col-12 col-lg-5 pl-3 pl-lg-0 input-group"
+      class="c0 col-12 col-lg-5 pl-3 pl-lg-0 input-group"
     >
       <div
         class="input-group-prepend"
       >
         <span
-          class="input-group-text"
+          class="c1 input-group-text"
         >
           Public
         </span>
@@ -32,13 +45,13 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="user-key col-12 col-lg-5 pl-3 input-group"
+      class="c0 col-12 col-lg-5 pl-3 input-group"
     >
       <div
         class="input-group-prepend"
       >
         <span
-          class="input-group-text"
+          class="c1 input-group-text"
         >
           Private
         </span>
@@ -55,10 +68,10 @@ exports[`renders correctly 1`] = `
         class="input-group-append"
       >
         <span
-          class="rounded-right input-group-text"
+          class="c1 rounded-right input-group-text"
         >
           <span
-            id="private-reveal-eyes"
+            class="c2"
           >
             👀
           </span>
