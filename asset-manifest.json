@@ -1,23 +1,20 @@
 {
   "files": {
-    "main.css": "/LibraCoin/static/css/main.eee09965.chunk.css",
-    "main.js": "/LibraCoin/static/js/main.272641a7.chunk.js",
-    "main.js.map": "/LibraCoin/static/js/main.272641a7.chunk.js.map",
-    "runtime-main.js": "/LibraCoin/static/js/runtime-main.caf26be7.js",
-    "runtime-main.js.map": "/LibraCoin/static/js/runtime-main.caf26be7.js.map",
-    "static/css/2.aeaa2a60.chunk.css": "/LibraCoin/static/css/2.aeaa2a60.chunk.css",
-    "static/js/2.366979cb.chunk.js": "/LibraCoin/static/js/2.366979cb.chunk.js",
-    "static/js/2.366979cb.chunk.js.map": "/LibraCoin/static/js/2.366979cb.chunk.js.map",
+    "main.js": "/LibraCoin/static/js/main.21747dfc.chunk.js",
+    "main.js.map": "/LibraCoin/static/js/main.21747dfc.chunk.js.map",
+    "runtime-main.js": "/LibraCoin/static/js/runtime-main.71165fa1.js",
+    "runtime-main.js.map": "/LibraCoin/static/js/runtime-main.71165fa1.js.map",
+    "static/css/2.7ab6f613.chunk.css": "/LibraCoin/static/css/2.7ab6f613.chunk.css",
+    "static/js/2.d3d57096.chunk.js": "/LibraCoin/static/js/2.d3d57096.chunk.js",
+    "static/js/2.d3d57096.chunk.js.map": "/LibraCoin/static/js/2.d3d57096.chunk.js.map",
     "index.html": "/LibraCoin/index.html",
-    "static/css/2.aeaa2a60.chunk.css.map": "/LibraCoin/static/css/2.aeaa2a60.chunk.css.map",
-    "static/css/main.eee09965.chunk.css.map": "/LibraCoin/static/css/main.eee09965.chunk.css.map",
-    "static/js/2.366979cb.chunk.js.LICENSE.txt": "/LibraCoin/static/js/2.366979cb.chunk.js.LICENSE.txt"
+    "static/css/2.7ab6f613.chunk.css.map": "/LibraCoin/static/css/2.7ab6f613.chunk.css.map",
+    "static/js/2.d3d57096.chunk.js.LICENSE.txt": "/LibraCoin/static/js/2.d3d57096.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.caf26be7.js",
-    "static/css/2.aeaa2a60.chunk.css",
-    "static/js/2.366979cb.chunk.js",
-    "static/css/main.eee09965.chunk.css",
-    "static/js/main.272641a7.chunk.js"
+    "static/js/runtime-main.71165fa1.js",
+    "static/css/2.7ab6f613.chunk.css",
+    "static/js/2.d3d57096.chunk.js",
+    "static/js/main.21747dfc.chunk.js"
   ]
 }
