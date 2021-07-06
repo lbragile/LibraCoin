@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Button, Form, InputGroup, Spinner } from "react-bootstrap";
 
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { useAppContext } from "../../hooks/useAppContext";
@@ -149,10 +149,9 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
       >
         <h4 className="my-0 row justify-content-end align-items-center flex-nowrap">
           <span className="col-10 pl-5">Mine</span>
-          <span
-            className={"spinner-border spinner-border-md mr-3 " + (disableMineBtn ? "visible" : "invisible")}
-            role="status"
-          />
+          <Spinner className={"mr-3 " + (disableMineBtn ? "visible" : "invisible")} animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
         </h4>
       </Button>
     </Form>

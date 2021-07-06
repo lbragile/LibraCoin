@@ -14,7 +14,12 @@ export default function NavMenu(): JSX.Element {
   return (
     <StyledNav expand="lg" className="mb-3">
       <Navbar.Brand aria-label="LibraCoin Logo" href="https://github.com/lbragile/LibraCoin">
-        <img src="./assets/libracoin-logo-256.png" alt="LibraCoin Logo" width="64" height="64" />
+        <img
+          src={process.env.PUBLIC_URL + "/images/libracoin-logo-256.png"}
+          alt="LibraCoin Logo"
+          width="64"
+          height="64"
+        />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

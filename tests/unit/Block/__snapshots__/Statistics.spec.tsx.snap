@@ -111,10 +111,16 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
         >
           Mine
         </span>
-        <span
-          class="spinner-border spinner-border-md mr-3 invisible"
+        <div
+          class="mr-3 invisible spinner-border"
           role="status"
-        />
+        >
+          <span
+            class="sr-only"
+          >
+            Loading...
+          </span>
+        </div>
       </h4>
     </button>
   </form>
@@ -233,10 +239,16 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
         >
           Mine
         </span>
-        <span
-          class="spinner-border spinner-border-md mr-3 invisible"
+        <div
+          class="mr-3 invisible spinner-border"
           role="status"
-        />
+        >
+          <span
+            class="sr-only"
+          >
+            Loading...
+          </span>
+        </div>
       </h4>
     </button>
   </form>
@@ -354,10 +366,16 @@ exports[`in preview mode renders correctly 1`] = `
         >
           Mine
         </span>
-        <span
-          class="spinner-border spinner-border-md mr-3 invisible"
+        <div
+          class="mr-3 invisible spinner-border"
           role="status"
-        />
+        >
+          <span
+            class="sr-only"
+          >
+            Loading...
+          </span>
+        </div>
       </h4>
     </button>
   </form>

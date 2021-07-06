@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "A cryptocurrency platform that uses fake currency to allow users to learn while competing to be the top trader.",
   "private": true,
-  "homepage": "https://lbragile.github.io/LibraCoin/",
   "dependencies": {
     "bootstrap": "^4.6.0",
     "formik": "^2.2.9",
