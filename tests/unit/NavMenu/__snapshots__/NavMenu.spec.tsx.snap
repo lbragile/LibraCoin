@@ -39,7 +39,7 @@ exports[`renders correctly 1`] = `
       <img
         alt="LibraCoin Logo"
         height="64"
-        src="undefined/images/libracoin-logo-256.png"
+        src="undefined/images/lc-192.png"
         width="64"
       />
     </a>

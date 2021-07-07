@@ -50,7 +50,9 @@
     "text-encoding": "^0.7.0",
     "ts-jest": "^26.5.6",
     "typescript": "^4.2.4",
-    "use-reducer-logger": "^1.0.2"
+    "use-reducer-logger": "^1.0.2",
+    "web-vitals": "^2.1.0",
+    "workbox-cli": "^6.1.5"
   },
   "scripts": {
     "clean": "tsc -b --clean",
@@ -60,7 +62,7 @@
     "test:integration": "npm test -- --group=integration --group=utils --group=reducers",
     "lint": "npx eslint src tests -c config/.eslintrc.js && npx stylelint src --config config/.stylelintrc.json",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "workbox generateSW ./config/workbox-config.js && react-scripts build",
     "deploy": "gh-pages -d build",
     "deploy:local": "serve -s build -l 5000",
     "build:deploy": "npm run build && npm run deploy",
