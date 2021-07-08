@@ -19,7 +19,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     class="container-fluid d-flex justify-content-center mx-auto row my-5"
   >
     <div
-      class="c0 col-12 col-lg-5 pl-3 pl-lg-0 input-group"
+      class="c0 col-12 col-lg-8 input-group"
     >
       <div
         class="input-group-prepend"
@@ -27,14 +27,14 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         <span
           class="c1 input-group-text"
         >
-          Public
+          Public Key (PK)
         </span>
       </div>
       <textarea
         aria-label="publicKey"
         class="rounded-right form-control is-valid"
         readonly=""
-        rows="4"
+        rows="3"
       >
         3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb
       </textarea>
@@ -45,7 +45,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </div>
     </div>
     <div
-      class="c0 col-12 col-lg-5 pl-3 input-group"
+      class="c0 col-12 col-lg-8 input-group"
     >
       <div
         class="input-group-prepend"
@@ -53,14 +53,14 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         <span
           class="c1 input-group-text"
         >
-          Private
+          Private Key (SK)
         </span>
       </div>
       <textarea
         aria-label="privateKey"
         class="form-control"
         readonly=""
-        rows="4"
+        rows="3"
       >
         ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
       </textarea>
@@ -93,6 +93,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
   padding: 1em;
   border-radius: 6px;
   border: 1px solid black;
+  background-color: #1f1f1f;
 }
 
 <div
@@ -125,7 +126,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Used to verify transaction was signed using your private key
       </small>
@@ -215,7 +216,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Not shared with anyone, keep this secret!
       </small>
@@ -256,7 +257,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Make sure this matches the value used when signing
       </small>
@@ -324,7 +325,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Receiver uses this along with your public key to verify transaction
       </small>
@@ -533,7 +534,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     class="container-fluid d-flex justify-content-center mx-auto row my-5"
   >
     <div
-      class="c0 col-12 col-lg-5 pl-3 pl-lg-0 input-group"
+      class="c0 col-12 col-lg-8 input-group"
     >
       <div
         class="input-group-prepend"
@@ -541,14 +542,14 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         <span
           class="c1 input-group-text"
         >
-          Public
+          Public Key (PK)
         </span>
       </div>
       <textarea
         aria-label="publicKey"
         class="rounded-right form-control"
         readonly=""
-        rows="4"
+        rows="3"
       >
         3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb
       </textarea>
@@ -559,7 +560,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </div>
     </div>
     <div
-      class="c0 col-12 col-lg-5 pl-3 input-group"
+      class="c0 col-12 col-lg-8 input-group"
     >
       <div
         class="input-group-prepend"
@@ -567,14 +568,14 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         <span
           class="c1 input-group-text"
         >
-          Private
+          Private Key (SK)
         </span>
       </div>
       <textarea
         aria-label="privateKey"
         class="form-control"
         readonly=""
-        rows="4"
+        rows="3"
       >
         ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
       </textarea>
@@ -607,6 +608,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
   padding: 1em;
   border-radius: 6px;
   border: 1px solid black;
+  background-color: #1f1f1f;
 }
 
 <div
@@ -639,7 +641,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Used to verify transaction was signed using your private key
       </small>
@@ -731,7 +733,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Not shared with anyone, keep this secret!
       </small>
@@ -772,7 +774,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Make sure this matches the value used when signing
       </small>
@@ -840,7 +842,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Receiver uses this along with your public key to verify transaction
       </small>
@@ -1049,7 +1051,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     class="container-fluid d-flex justify-content-center mx-auto row my-5"
   >
     <div
-      class="c0 col-12 col-lg-5 pl-3 pl-lg-0 input-group"
+      class="c0 col-12 col-lg-8 input-group"
     >
       <div
         class="input-group-prepend"
@@ -1057,14 +1059,14 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         <span
           class="c1 input-group-text"
         >
-          Public
+          Public Key (PK)
         </span>
       </div>
       <textarea
         aria-label="publicKey"
         class="rounded-right form-control"
         readonly=""
-        rows="4"
+        rows="3"
       >
         3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb
       </textarea>
@@ -1075,7 +1077,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </div>
     </div>
     <div
-      class="c0 col-12 col-lg-5 pl-3 input-group"
+      class="c0 col-12 col-lg-8 input-group"
     >
       <div
         class="input-group-prepend"
@@ -1083,14 +1085,14 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         <span
           class="c1 input-group-text"
         >
-          Private
+          Private Key (SK)
         </span>
       </div>
       <textarea
         aria-label="privateKey"
         class="form-control"
         readonly=""
-        rows="4"
+        rows="3"
       >
         ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
       </textarea>
@@ -1123,6 +1125,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
   padding: 1em;
   border-radius: 6px;
   border: 1px solid black;
+  background-color: #1f1f1f;
 }
 
 <div
@@ -1155,7 +1158,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Used to verify transaction was signed using your private key
       </small>
@@ -1250,7 +1253,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Not shared with anyone, keep this secret!
       </small>
@@ -1292,7 +1295,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Make sure this matches the value used when signing
       </small>
@@ -1362,7 +1365,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Receiver uses this along with your public key to verify transaction
       </small>
@@ -1570,7 +1573,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     class="container-fluid d-flex justify-content-center mx-auto row my-5"
   >
     <div
-      class="c0 col-12 col-lg-5 pl-3 pl-lg-0 input-group"
+      class="c0 col-12 col-lg-8 input-group"
     >
       <div
         class="input-group-prepend"
@@ -1578,14 +1581,14 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         <span
           class="c1 input-group-text"
         >
-          Public
+          Public Key (PK)
         </span>
       </div>
       <textarea
         aria-label="publicKey"
         class="rounded-right form-control"
         readonly=""
-        rows="4"
+        rows="3"
       >
         3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb
       </textarea>
@@ -1596,7 +1599,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </div>
     </div>
     <div
-      class="c0 col-12 col-lg-5 pl-3 input-group"
+      class="c0 col-12 col-lg-8 input-group"
     >
       <div
         class="input-group-prepend"
@@ -1604,14 +1607,14 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         <span
           class="c1 input-group-text"
         >
-          Private
+          Private Key (SK)
         </span>
       </div>
       <textarea
         aria-label="privateKey"
         class="form-control"
         readonly=""
-        rows="4"
+        rows="3"
       >
         ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
       </textarea>
@@ -1644,6 +1647,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
   padding: 1em;
   border-radius: 6px;
   border: 1px solid black;
+  background-color: #1f1f1f;
 }
 
 <div
@@ -1676,7 +1680,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Used to verify transaction was signed using your private key
       </small>
@@ -1768,7 +1772,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Not shared with anyone, keep this secret!
       </small>
@@ -1809,7 +1813,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Make sure this matches the value used when signing
       </small>
@@ -1877,7 +1881,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Receiver uses this along with your public key to verify transaction
       </small>
@@ -2086,7 +2090,7 @@ exports[`renders correctly 1`] = `
     class="container-fluid d-flex justify-content-center mx-auto row my-5"
   >
     <div
-      class="c0 col-12 col-lg-5 pl-3 pl-lg-0 input-group"
+      class="c0 col-12 col-lg-8 input-group"
     >
       <div
         class="input-group-prepend"
@@ -2094,14 +2098,14 @@ exports[`renders correctly 1`] = `
         <span
           class="c1 input-group-text"
         >
-          Public
+          Public Key (PK)
         </span>
       </div>
       <textarea
         aria-label="publicKey"
         class="rounded-right form-control"
         readonly=""
-        rows="4"
+        rows="3"
       >
         3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb
       </textarea>
@@ -2112,7 +2116,7 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="c0 col-12 col-lg-5 pl-3 input-group"
+      class="c0 col-12 col-lg-8 input-group"
     >
       <div
         class="input-group-prepend"
@@ -2120,14 +2124,14 @@ exports[`renders correctly 1`] = `
         <span
           class="c1 input-group-text"
         >
-          Private
+          Private Key (SK)
         </span>
       </div>
       <textarea
         aria-label="privateKey"
         class="form-control"
         readonly=""
-        rows="4"
+        rows="3"
       >
         ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
       </textarea>
@@ -2160,6 +2164,7 @@ exports[`renders correctly 1`] = `
   padding: 1em;
   border-radius: 6px;
   border: 1px solid black;
+  background-color: #1f1f1f;
 }
 
 <div
@@ -2192,7 +2197,7 @@ exports[`renders correctly 1`] = `
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Used to verify transaction was signed using your private key
       </small>
@@ -2282,7 +2287,7 @@ exports[`renders correctly 1`] = `
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Not shared with anyone, keep this secret!
       </small>
@@ -2323,7 +2328,7 @@ exports[`renders correctly 1`] = `
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Make sure this matches the value used when signing
       </small>
@@ -2391,7 +2396,7 @@ exports[`renders correctly 1`] = `
         />
       </div>
       <small
-        class="text-muted form-text"
+        class="text-light form-text"
       >
         Receiver uses this along with your public key to verify transaction
       </small>

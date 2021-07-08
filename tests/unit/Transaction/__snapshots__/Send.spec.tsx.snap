@@ -11,6 +11,7 @@ exports[`renders correctly 1`] = `
   padding: 1em;
   border-radius: 6px;
   border: 1px solid black;
+  background-color: #1f1f1f;
 }
 
 <form
@@ -40,7 +41,7 @@ exports[`renders correctly 1`] = `
       />
     </div>
     <small
-      class="text-muted form-text"
+      class="text-light form-text"
     >
       Make sure this matches the value used when signing
     </small>
@@ -108,7 +109,7 @@ exports[`renders correctly 1`] = `
       />
     </div>
     <small
-      class="text-muted form-text"
+      class="text-light form-text"
     >
       Receiver uses this along with your public key to verify transaction
     </small>

@@ -1,6 +1,8 @@
 export enum COLORS {
   DEFAULT_BACKGROUND = "#fff",
 
+  DARK_BACKGROUND = "#1f1f1f",
+
   VALID_BACKGROUND = "#b4ff9a",
   INVALID_BACKGROUND = "#ff9a9a",
   VALID_SOLUTION = "#008000",

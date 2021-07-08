@@ -19,7 +19,7 @@ exports[`renders correctly 1`] = `
     class="container-fluid d-flex justify-content-center mx-auto row my-5"
   >
     <div
-      class="c0 col-12 col-lg-5 pl-3 pl-lg-0 input-group"
+      class="c0 col-12 col-lg-8 input-group"
     >
       <div
         class="input-group-prepend"
@@ -27,14 +27,14 @@ exports[`renders correctly 1`] = `
         <span
           class="c1 input-group-text"
         >
-          Public
+          Public Key (PK)
         </span>
       </div>
       <textarea
         aria-label="publicKey"
         class="rounded-right form-control"
         readonly=""
-        rows="4"
+        rows="3"
       >
         3059301306072a8648ce3d020106082a8648ce3d030107034200048fa7d69599babb
       </textarea>
@@ -45,7 +45,7 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="c0 col-12 col-lg-5 pl-3 input-group"
+      class="c0 col-12 col-lg-8 input-group"
     >
       <div
         class="input-group-prepend"
@@ -53,14 +53,14 @@ exports[`renders correctly 1`] = `
         <span
           class="c1 input-group-text"
         >
-          Private
+          Private Key (SK)
         </span>
       </div>
       <textarea
         aria-label="privateKey"
         class="form-control"
         readonly=""
-        rows="4"
+        rows="3"
       >
         ◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦
       </textarea>

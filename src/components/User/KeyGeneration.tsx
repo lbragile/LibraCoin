@@ -10,16 +10,16 @@ import { copyInput, removeCopied } from "../../utils/copyInput";
 export default function KeyGeneration(): JSX.Element {
   const { state, dispatch } = useAppContext();
 
-  const numRows = useRef(4);
+  const numRows = useRef(3);
   const [show, setShow] = useState<boolean>(false);
 
   useAddUser(state.user.publicKey, state.users);
 
   return (
     <div className="container-fluid d-flex justify-content-center mx-auto row my-5">
-      <UserKey className="col-12 col-lg-5 pl-3 pl-lg-0">
+      <UserKey className="col-12 col-lg-8">
         <InputGroup.Prepend>
-          <StyledInputGroupText>Public</StyledInputGroupText>
+          <StyledInputGroupText>Public Key (PK)</StyledInputGroupText>
         </InputGroup.Prepend>
 
         <Form.Control
@@ -37,9 +37,9 @@ export default function KeyGeneration(): JSX.Element {
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
       </UserKey>
 
-      <UserKey className="col-12 col-lg-5 pl-3">
+      <UserKey className="col-12 col-lg-8">
         <InputGroup.Prepend>
-          <StyledInputGroupText>Private</StyledInputGroupText>
+          <StyledInputGroupText>Private Key (SK)</StyledInputGroupText>
         </InputGroup.Prepend>
 
         <Form.Control

@@ -10,9 +10,9 @@ export const StyledNav = styled(Navbar)`
 
 export const StyledNavLink = styled(Nav.Link)`
   font-size: larger;
-  text-align: right;
   color: ${COLORS.NAV_TEXT};
   font-weight: bolder;
+  text-align: right;
 
   &:hover,
   &.active {
@@ -20,12 +20,14 @@ export const StyledNavLink = styled(Nav.Link)`
   }
 
   &:hover {
-    border-bottom: ${COLORS.NAV_LINK_UNDERSCORE} 1px solid;
+    text-decoration: underline;
+    text-decoration-color: ${COLORS.NAV_LINK_UNDERSCORE};
+    text-underline-offset: 8px;
   }
 
   @media only screen and (${DEVICES.xs}) {
     &:hover {
-      border-bottom: none;
+      text-decoration: none;
     }
   }
 `;

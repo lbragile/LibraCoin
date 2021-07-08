@@ -1,7 +1,13 @@
 {
   "short_name": "LibraCoin",
-  "name": "LibraCoin - A cryptocurrency platform that uses fake currency to allow users to learn while competing to be the top trader.",
+  "name": "LibraCoin",
+  "description": "A cryptocurrency platform that uses fake currency to allow users to learn while competing to be the top trader.",
   "icons": [
+    {
+      "src": "images/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
     {
       "src": "images/lc-192.png",
       "type": "image/png",
@@ -14,9 +20,9 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "/LibraCoin/wallet",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "prefer_related_applications": true
+  "prefer_related_applications": false
 }

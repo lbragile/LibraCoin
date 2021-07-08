@@ -7,6 +7,7 @@ exports[`renders correctly 1`] = `
   padding: 1em;
   border-radius: 6px;
   border: 1px solid black;
+  background-color: #1f1f1f;
 }
 
 .c1.c1.c1 {
@@ -40,7 +41,7 @@ exports[`renders correctly 1`] = `
       />
     </div>
     <small
-      class="text-muted form-text"
+      class="text-light form-text"
     >
       Used to verify transaction was signed using your private key
     </small>
@@ -130,7 +131,7 @@ exports[`renders correctly 1`] = `
       />
     </div>
     <small
-      class="text-muted form-text"
+      class="text-light form-text"
     >
       Not shared with anyone, keep this secret!
     </small>

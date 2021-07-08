@@ -8,9 +8,9 @@ exports[`renders correctly 1`] = `
 
 .c1 {
   font-size: larger;
-  text-align: right;
   color: #000;
   font-weight: bolder;
+  text-align: right;
 }
 
 .c1:hover,
@@ -19,12 +19,17 @@ exports[`renders correctly 1`] = `
 }
 
 .c1:hover {
-  border-bottom: #8ac0ff 1px solid;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  -webkit-text-decoration-color: #8ac0ff;
+  text-decoration-color: #8ac0ff;
+  text-underline-offset: 8px;
 }
 
 @media only screen and (max-width:600px) {
   .c1:hover {
-    border-bottom: none;
+    -webkit-text-decoration: none;
+    text-decoration: none;
   }
 }
 

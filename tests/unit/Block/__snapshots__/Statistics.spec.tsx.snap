@@ -12,7 +12,7 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
 
 <form
     aria-label="Block Statistics"
-    class="my-3"
+    class="mt-3"
   >
     <div
       class="my-2 input-group"
@@ -100,7 +100,7 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
     </div>
     <button
       aria-label="Block Mine"
-      class="btn-block mt-2 py-2 btn btn-primary"
+      class="btn-block p-1 btn btn-primary"
       type="button"
     >
       <h4
@@ -139,7 +139,7 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
 
 <form
     aria-label="Block Statistics"
-    class="my-3"
+    class="mt-3"
   >
     <div
       class="my-2 input-group"
@@ -227,7 +227,7 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
     </div>
     <button
       aria-label="Block Mine"
-      class="btn-block mt-2 py-2 btn btn-primary"
+      class="btn-block p-1 btn btn-primary"
       disabled=""
       type="button"
     >
@@ -267,7 +267,7 @@ exports[`in preview mode renders correctly 1`] = `
 
 <form
     aria-label="Block Statistics"
-    class="col-11 col-lg-5 mx-3"
+    class="col-11 col-lg-5 mx-3 mb-2 mb-lg-0 bg-dark px-2 pb-2 rounded"
   >
     <div
       class="my-2 input-group"
@@ -355,7 +355,7 @@ exports[`in preview mode renders correctly 1`] = `
     </div>
     <button
       aria-label="Block Mine"
-      class="btn-block mt-2 py-2 btn btn-primary"
+      class="btn-block p-1 btn btn-primary"
       type="button"
     >
       <h4
