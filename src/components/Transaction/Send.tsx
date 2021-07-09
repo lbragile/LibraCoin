@@ -37,7 +37,7 @@ export default function Send(): JSX.Element {
         />
       </InputGroup>
 
-      <Form.Text className="text-muted">Make sure this matches the value used when signing</Form.Text>
+      <Form.Text className="text-light">Make sure this matches the value used when signing</Form.Text>
 
       <InputGroup className="my-2">
         <Form.Control
@@ -81,7 +81,7 @@ export default function Send(): JSX.Element {
         />
       </InputGroup>
 
-      <Form.Text className="text-muted">Receiver uses this along with your public key to verify transaction</Form.Text>
+      <Form.Text className="text-light">Receiver uses this along with your public key to verify transaction</Form.Text>
 
       <Button
         aria-label="Send Button"

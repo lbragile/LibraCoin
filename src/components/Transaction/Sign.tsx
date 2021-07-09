@@ -50,7 +50,7 @@ export default function Sign(): JSX.Element {
             />
           </InputGroup>
 
-          <Form.Text className="text-muted">Used to verify transaction was signed using your private key</Form.Text>
+          <Form.Text className="text-light">Used to verify transaction was signed using your private key</Form.Text>
 
           <InputGroup className="my-2">
             <InputGroup.Prepend>
@@ -145,7 +145,7 @@ export default function Sign(): JSX.Element {
             />
           </InputGroup>
 
-          <Form.Text className="text-muted">Not shared with anyone, keep this secret!</Form.Text>
+          <Form.Text className="text-light">Not shared with anyone, keep this secret!</Form.Text>
 
           <Button
             aria-label="Sign Button"

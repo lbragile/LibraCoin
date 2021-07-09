@@ -1,15 +1,18 @@
-import React, { useMemo, useReducer } from "react";
-import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
+import React, { useMemo, useReducer, Suspense, lazy } from "react";
+import { Route, BrowserRouter as Router, Redirect, Switch } from "react-router-dom";
 import logger from "use-reducer-logger";
-
-import Wallet from "../../pages/Wallet";
-import Chain from "../../pages/Chain";
-import Mine from "../../pages/Mine";
 
 import { AppReducer } from "../../reducers/AppReducer";
 import { AppContext } from "../../context/AppContext";
 
 import { GlobalStyle } from "../../styles/GlobalStyles";
+import Loading from "./Loading";
+
+// Code Splitting & Lazy Loading
+const NavMenu = lazy(() => import("../NavMenu/NavMenu"));
+const Wallet = lazy(() => import("../../pages/Wallet"));
+const Mine = lazy(() => import("../../pages/Mine"));
+const Chain = lazy(() => import("../../pages/Chain"));
 
 export default function App(): JSX.Element {
   const [state, dispatch] = useReducer(process.env.NODE_ENV === "development" ? logger(AppReducer) : AppReducer, {
@@ -52,16 +55,25 @@ export default function App(): JSX.Element {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <Router basename={"/LibraCoin"}>
-        <AppContext.Provider value={value}>
-          <Route exact path="/">
-            <Redirect to="/wallet" />
-          </Route>
-          <Route path="/wallet" component={Wallet} />
-          <Route path="/mine" component={Mine} />
-          <Route path="/blockchain" component={Chain} />
-        </AppContext.Provider>
-      </Router>
+
+      <Suspense fallback={<Loading />}>
+        <NavMenu />
+      </Suspense>
+
+      <AppContext.Provider value={value}>
+        <Router basename={"/LibraCoin"}>
+          <Suspense fallback={<Loading />}>
+            <Switch>
+              <Route exact path="/">
+                <Redirect to="/wallet" />
+              </Route>
+              <Route path="/wallet" component={Wallet} />
+              <Route path="/mine" component={Mine} />
+              <Route path="/blockchain" component={Chain} />
+            </Switch>
+          </Suspense>
+        </Router>
+      </AppContext.Provider>
     </React.Fragment>
   );
 }

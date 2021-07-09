@@ -251,7 +251,7 @@ describe("change of transaction details causes a change in merkle root and propa
 
     const { asFragment } = customRender(<Chain />, { stateMock: showAllTrans });
 
-    const blockContainer = screen.getAllByRole("list", { name: /Block Container/i })[1];
+    const blockContainer = screen.getAllByRole("listitem", { name: /Block Container/i })[1];
     const originalSignature = within(blockContainer).getByRole("textbox", {
       name: /Block Transactions Signature/i
     }).textContent;

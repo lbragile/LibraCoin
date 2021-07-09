@@ -28,4 +28,5 @@ export const TransItem = styled(Form)`
 
 export const TransForm = styled(Form)`
   ${Transaction("0 1rem", "1em", "6px", "1px solid black")}; /* stylelint-disable-line */
+  background-color: ${COLORS.DARK_BACKGROUND};
 `;

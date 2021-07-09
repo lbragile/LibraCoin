@@ -1,7 +1,8 @@
-import { Form, InputGroup } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 import styled from "styled-components";
 
 import { COLORS } from "../enums/ColorPallet";
+import { DEVICES } from "../enums/Breakpoints";
 
 export interface IStyledTableDataProps {
   rootCell: boolean;
@@ -60,4 +61,16 @@ export const RevealBlockTransText = styled(InputGroup.Text)`
 
 export const BlockContainer = styled.div`
   width: 20rem;
+  height: fit-content;
+  padding: 8px;
+  border-radius: 4px;
+  background: ${COLORS.DARK_BACKGROUND};
+`;
+
+export const StyledButton = styled(Button)`
+  height: 100%;
+
+  @media only screen and (${DEVICES.xs}) {
+    height: 85%;
+  }
 `;

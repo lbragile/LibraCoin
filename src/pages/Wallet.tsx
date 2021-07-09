@@ -1,16 +1,13 @@
 import React from "react";
 
-import NavMenu from "../components/NavMenu/NavMenu";
 import KeyGeneration from "../components/User/KeyGeneration";
-import UserItems from "../components/User/UserItems";
 import Sign from "../components/Transaction/Sign";
 import Send from "../components/Transaction/Send";
+import UserItems from "../components/User/UserItems";
 
 export default function Wallet(): JSX.Element {
   return (
-    <div>
-      <NavMenu />
-
+    <React.Fragment>
       <KeyGeneration />
 
       <div className="container-fluid d-flex justify-content-center mx-auto row my-4">
@@ -19,6 +16,6 @@ export default function Wallet(): JSX.Element {
       </div>
 
       <UserItems />
-    </div>
+    </React.Fragment>
   );
 }
