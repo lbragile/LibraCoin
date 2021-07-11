@@ -6,6 +6,7 @@ import { useAppContext } from "../../hooks/useAppContext";
 import { StyledInputGroupText } from "../../styles/GlobalStyles";
 import { RevealEyes, UserKey } from "../../styles/UserStyles";
 import { copyInput, removeCopied } from "../../utils/copyInput";
+import { EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 
 export default function KeyGeneration(): JSX.Element {
   const { state, dispatch } = useAppContext();
@@ -55,7 +56,9 @@ export default function KeyGeneration(): JSX.Element {
 
         <InputGroup.Append>
           <StyledInputGroupText className="rounded-right">
-            <RevealEyes onClick={() => setShow(!show)}>👀</RevealEyes>
+            <RevealEyes role="img" aria-label="Key Reveal Eye" onClick={() => setShow(!show)}>
+              {show ? <EyeSlashFill /> : <EyeFill />}{" "}
+            </RevealEyes>
           </StyledInputGroupText>
         </InputGroup.Append>
 

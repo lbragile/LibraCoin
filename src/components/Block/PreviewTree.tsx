@@ -103,8 +103,8 @@ export default function PreviewTree(): JSX.Element {
   }
 
   return (
-    <div className="w-100 my-3 text-center">
-      <h3 className="font-weight-bold">Merkle Tree Visualization</h3>
+    <div className="w-100 mb-2 text-center">
+      <h3 className="font-weight-bold w-25 mx-auto">Merkle Tree Visualization</h3>
       {tree[tree.length - 1][0] !== "" ? (
         <Table
           role="grid"

@@ -4,7 +4,7 @@ import { StyledNav, StyledNavLink } from "../../styles/NavMenuStyles";
 
 const NavLinkWrapper = ({ text }: { text: string }) => {
   return (
-    <StyledNavLink href={"/LibraCoin/" + text} active={location.href.includes("/" + text)}>
+    <StyledNavLink href={"/" + text} active={location.href.includes("/" + text)}>
       {text[0].toUpperCase() + text.slice(1)}
     </StyledNavLink>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Form, InputGroup, Row } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 
 import { useAppContext } from "../../hooks/useAppContext";
 import { ACTIONS } from "../../enums/AppDispatchActions";
@@ -7,6 +7,7 @@ import { ACTIONS } from "../../enums/AppDispatchActions";
 import { ThemeProvider } from "styled-components";
 import { RevealBlockTransText, StyledBlockForm, StyledButton } from "../../styles/BlockStyles";
 import { StyledInputGroupText } from "../../styles/GlobalStyles";
+import { ArrowsAngleContract, ArrowsAngleExpand, PlusSquareFill } from "react-bootstrap-icons";
 
 export interface IBlockProps {
   chain: boolean;
@@ -52,111 +53,97 @@ export default function Block({ chain, index }: IBlockProps): JSX.Element {
     <ThemeProvider theme={{ valid: isValid }}>
       <StyledBlockForm
         aria-label={"Block Form" + (isValid ? "" : " Invalid")}
-        className={(chain ? "" : "col-11 col-lg-5 ") + "p-2 rounded"}
+        className={(chain ? "" : "col-12 col-lg-5 ") + "p-2 rounded"}
       >
-        <Row>
-          <Col lg={!chain && state.preview.valid ? 9 : 12}>
-            <InputGroup className="mb-2">
-              <InputGroup.Prepend>
-                <StyledInputGroupText>Index</StyledInputGroupText>
-              </InputGroup.Prepend>
-              <Form.Control
-                aria-label="Block Index"
-                name="index"
-                type="number"
-                value={chain ? index : state.preview.index}
-                disabled
-              />
-            </InputGroup>
+        <InputGroup className="mb-2">
+          <InputGroup.Prepend>
+            <StyledInputGroupText>Index</StyledInputGroupText>
+          </InputGroup.Prepend>
+          <Form.Control
+            aria-label="Block Index"
+            name="index"
+            type="number"
+            value={chain ? index : state.preview.index}
+            disabled
+          />
+        </InputGroup>
 
-            <InputGroup className="my-2">
-              <InputGroup.Prepend>
-                <StyledInputGroupText>Timestamp</StyledInputGroupText>
-              </InputGroup.Prepend>
-              <Form.Control
-                aria-label="Block Timestamp"
-                name="timestamp"
-                type="number"
-                value={chain ? state.chain[index].timestamp : state.preview.timestamp}
-                disabled
-              />
-            </InputGroup>
+        <InputGroup className="my-2">
+          <InputGroup.Prepend>
+            <StyledInputGroupText>Timestamp</StyledInputGroupText>
+          </InputGroup.Prepend>
+          <Form.Control
+            aria-label="Block Timestamp"
+            name="timestamp"
+            type="number"
+            value={chain ? state.chain[index].timestamp : state.preview.timestamp}
+            disabled
+          />
+        </InputGroup>
 
-            <InputGroup className="my-2">
-              <InputGroup.Prepend>
-                <StyledInputGroupText>Previous #</StyledInputGroupText>
-              </InputGroup.Prepend>
+        <InputGroup className="my-2">
+          <InputGroup.Prepend>
+            <StyledInputGroupText>Previous #</StyledInputGroupText>
+          </InputGroup.Prepend>
+          <Form.Control
+            aria-label="Block PrevHash"
+            name="prevHash"
+            className="text-truncate"
+            type="text"
+            value={chain && index > 0 ? state.chain[index - 1].currHash : chain ? "" : state.preview.prevHash}
+            readOnly
+          />
+        </InputGroup>
+
+        <InputGroup className="my-2">
+          <InputGroup.Prepend>
+            <StyledInputGroupText>Current #</StyledInputGroupText>
+          </InputGroup.Prepend>
+          <Form.Control
+            aria-label="Block CurrHash"
+            name="currHash"
+            className="text-truncate"
+            type="text"
+            value={chain ? state.chain[index].currHash : state.preview.currHash}
+            readOnly
+          />
+        </InputGroup>
+
+        <InputGroup className="mt-2">
+          <InputGroup.Prepend>
+            <StyledInputGroupText>Merkle #</StyledInputGroupText>
+          </InputGroup.Prepend>
+          {chain && index === 0 ? (
+            <Form.Control aria-label="Block Merkle Genesis" name="merkleRoot" type="text" defaultValue="" disabled />
+          ) : (
+            <React.Fragment>
               <Form.Control
-                aria-label="Block PrevHash"
-                name="prevHash"
+                aria-label="Block Merkle"
+                name="merkleRoot"
                 className="text-truncate"
                 type="text"
-                value={chain && index > 0 ? state.chain[index - 1].currHash : chain ? "" : state.preview.prevHash}
+                value={chain ? state.chain[index].merkleRoot : state.preview.merkleRoot}
                 readOnly
               />
-            </InputGroup>
-
-            <InputGroup className="my-2">
-              <InputGroup.Prepend>
-                <StyledInputGroupText>Current #</StyledInputGroupText>
-              </InputGroup.Prepend>
-              <Form.Control
-                aria-label="Block CurrHash"
-                name="currHash"
-                className="text-truncate"
-                type="text"
-                value={chain ? state.chain[index].currHash : state.preview.currHash}
-                readOnly
-              />
-            </InputGroup>
-
-            <InputGroup className="mt-2">
-              <InputGroup.Prepend>
-                <StyledInputGroupText>Merkle #</StyledInputGroupText>
-              </InputGroup.Prepend>
-              {chain && index === 0 ? (
-                <Form.Control
-                  aria-label="Block Merkle Genesis"
-                  name="merkleRoot"
-                  type="text"
-                  defaultValue=""
-                  disabled
-                />
-              ) : (
-                <React.Fragment>
-                  <Form.Control
-                    aria-label="Block Merkle"
-                    name="merkleRoot"
-                    className="text-truncate"
-                    type="text"
-                    value={chain ? state.chain[index].merkleRoot : state.preview.merkleRoot}
-                    readOnly
-                  />
-                  {chain && (
-                    <InputGroup.Append>
-                      <RevealBlockTransText aria-label="Show Trans" onClick={() => handleViewTransactions()}>
-                        {state.chain[index].showTrans ? "🙈" : "🙉"}
-                      </RevealBlockTransText>
-                    </InputGroup.Append>
-                  )}
-                </React.Fragment>
+              {chain && (
+                <InputGroup.Append>
+                  <RevealBlockTransText aria-label="Show Trans" onClick={() => handleViewTransactions()}>
+                    {state.chain[index].showTrans ? (
+                      <ArrowsAngleContract role="img" aria-label="Contract Icon" />
+                    ) : (
+                      <ArrowsAngleExpand role="img" aria-label="Expand Icon" />
+                    )}
+                  </RevealBlockTransText>
+                </InputGroup.Append>
               )}
-            </InputGroup>
-          </Col>
-          <Col lg={!chain && state.preview.valid ? 3 : 0}>
-            {!chain && state.preview.valid && (
-              <StyledButton
-                aria-label="Add Block"
-                className="mt-2 mt-lg-0"
-                variant="success"
-                block
-                onClick={() => handleAddBlock()}
-              >
-                <h4 className="my-0">Add Block</h4>
-              </StyledButton>
-            )}
-          </Col>
-        </Row>
+            </React.Fragment>
+          )}
+        </InputGroup>
+        {!chain && state.preview.valid && (
+          <StyledButton aria-label="Add Block" variant="success" block onClick={() => handleAddBlock()}>
+            <PlusSquareFill />
+          </StyledButton>
+        )}
       </StyledBlockForm>
     </ThemeProvider>
   );

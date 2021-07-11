@@ -3,10 +3,10 @@
 exports[`0 selected transactions 1`] = `
 <DocumentFragment>
   <div
-    class="w-100 my-3 text-center"
+    class="w-100 mb-2 text-center"
   >
     <h3
-      class="font-weight-bold"
+      class="font-weight-bold w-25 mx-auto"
     >
       Merkle Tree Visualization
     </h3>
@@ -44,10 +44,10 @@ exports[`1 selected transactions 1`] = `
 }
 
 <div
-    class="w-100 my-3 text-center"
+    class="w-100 mb-2 text-center"
   >
     <h3
-      class="font-weight-bold"
+      class="font-weight-bold w-25 mx-auto"
     >
       Merkle Tree Visualization
     </h3>
@@ -176,10 +176,10 @@ exports[`2 selected transactions 1`] = `
 }
 
 <div
-    class="w-100 my-3 text-center"
+    class="w-100 mb-2 text-center"
   >
     <h3
-      class="font-weight-bold"
+      class="font-weight-bold w-25 mx-auto"
     >
       Merkle Tree Visualization
     </h3>
@@ -419,10 +419,10 @@ exports[`3 selected transactions 1`] = `
 }
 
 <div
-    class="w-100 my-3 text-center"
+    class="w-100 mb-2 text-center"
   >
     <h3
-      class="font-weight-bold"
+      class="font-weight-bold w-25 mx-auto"
     >
       Merkle Tree Visualization
     </h3>
@@ -752,10 +752,10 @@ exports[`4 selected transactions 1`] = `
 }
 
 <div
-    class="w-100 my-3 text-center"
+    class="w-100 mb-2 text-center"
   >
     <h3
-      class="font-weight-bold"
+      class="font-weight-bold w-25 mx-auto"
     >
       Merkle Tree Visualization
     </h3>
@@ -1033,10 +1033,10 @@ exports[`renders correctly 1`] = `
 }
 
 <div
-    class="w-100 my-3 text-center"
+    class="w-100 mb-2 text-center"
   >
     <h3
-      class="font-weight-bold"
+      class="font-weight-bold w-25 mx-auto"
     >
       Merkle Tree Visualization
     </h3>

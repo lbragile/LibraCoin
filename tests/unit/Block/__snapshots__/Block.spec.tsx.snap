@@ -8,6 +8,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is inva
 
 .c2:hover {
   cursor: pointer;
+  background-color: #c7e4ff;
 }
 
 .c1.c1.c1 {
@@ -19,130 +20,132 @@ exports[`in blockchain mode 'Add Block' button is not present when block is inva
     class="c0 p-2 rounded"
   >
     <div
-      class="row"
+      class="mb-2 input-group"
     >
       <div
-        class="col-lg-12"
+        class="input-group-prepend"
       >
-        <div
-          class="mb-2 input-group"
+        <span
+          class="c1 input-group-text"
         >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Index
-            </span>
-          </div>
-          <input
-            aria-label="Block Index"
-            class="form-control"
-            disabled=""
-            name="index"
-            type="number"
-            value="2"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Timestamp
-            </span>
-          </div>
-          <input
-            aria-label="Block Timestamp"
-            class="form-control"
-            disabled=""
-            name="timestamp"
-            type="number"
-            value="1619827200000"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Previous #
-            </span>
-          </div>
-          <input
-            aria-label="Block PrevHash"
-            class="text-truncate form-control"
-            name="prevHash"
-            readonly=""
-            type="text"
-            value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Current #
-            </span>
-          </div>
-          <input
-            aria-label="Block CurrHash"
-            class="text-truncate form-control"
-            name="currHash"
-            readonly=""
-            type="text"
-            value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
-          />
-        </div>
-        <div
-          class="mt-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Merkle #
-            </span>
-          </div>
-          <input
-            aria-label="Block Merkle"
-            class="text-truncate form-control"
-            name="merkleRoot"
-            readonly=""
-            type="text"
-            value="567.89ZForthTransactionAZ567.89A"
-          />
-          <div
-            class="input-group-append"
-          >
-            <span
-              aria-label="Show Trans"
-              class="c2 input-group-text"
-            >
-              🙈
-            </span>
-          </div>
-        </div>
+          Index
+        </span>
       </div>
-      <div
-        class="col"
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="2"
       />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619827200000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="567.89ZForthTransactionAZ567.89A"
+      />
+      <div
+        class="input-group-append"
+      >
+        <span
+          aria-label="Show Trans"
+          class="c2 input-group-text"
+        >
+          <svg
+            aria-label="Contract Icon"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            viewBox="0 0 16 16"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M.172 15.828a.5.5 0 0 0 .707 0l4.096-4.096V14.5a.5.5 0 1 0 1 0v-3.975a.5.5 0 0 0-.5-.5H1.5a.5.5 0 0 0 0 1h2.768L.172 15.121a.5.5 0 0 0 0 .707zM15.828.172a.5.5 0 0 0-.707 0l-4.096 4.096V1.5a.5.5 0 1 0-1 0v3.975a.5.5 0 0 0 .5.5H14.5a.5.5 0 0 0 0-1h-2.768L15.828.879a.5.5 0 0 0 0-.707z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </div>
     </div>
   </form>
 </DocumentFragment>
@@ -156,6 +159,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is vali
 
 .c2:hover {
   cursor: pointer;
+  background-color: #c7e4ff;
 }
 
 .c1.c1.c1 {
@@ -167,130 +171,132 @@ exports[`in blockchain mode 'Add Block' button is not present when block is vali
     class="c0 p-2 rounded"
   >
     <div
-      class="row"
+      class="mb-2 input-group"
     >
       <div
-        class="col-lg-12"
+        class="input-group-prepend"
       >
-        <div
-          class="mb-2 input-group"
+        <span
+          class="c1 input-group-text"
         >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Index
-            </span>
-          </div>
-          <input
-            aria-label="Block Index"
-            class="form-control"
-            disabled=""
-            name="index"
-            type="number"
-            value="1"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Timestamp
-            </span>
-          </div>
-          <input
-            aria-label="Block Timestamp"
-            class="form-control"
-            disabled=""
-            name="timestamp"
-            type="number"
-            value="1619827200000"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Previous #
-            </span>
-          </div>
-          <input
-            aria-label="Block PrevHash"
-            class="text-truncate form-control"
-            name="prevHash"
-            readonly=""
-            type="text"
-            value="0000000000000000000000000000000000000000000000000000000000000000"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Current #
-            </span>
-          </div>
-          <input
-            aria-label="Block CurrHash"
-            class="text-truncate form-control"
-            name="currHash"
-            readonly=""
-            type="text"
-            value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          />
-        </div>
-        <div
-          class="mt-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Merkle #
-            </span>
-          </div>
-          <input
-            aria-label="Block Merkle"
-            class="text-truncate form-control"
-            name="merkleRoot"
-            readonly=""
-            type="text"
-            value="987.65EForthTransactionAE987.65A"
-          />
-          <div
-            class="input-group-append"
-          >
-            <span
-              aria-label="Show Trans"
-              class="c2 input-group-text"
-            >
-              🙉
-            </span>
-          </div>
-        </div>
+          Index
+        </span>
       </div>
-      <div
-        class="col"
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="1"
       />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619827200000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="0000000000000000000000000000000000000000000000000000000000000000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="987.65EForthTransactionAE987.65A"
+      />
+      <div
+        class="input-group-append"
+      >
+        <span
+          aria-label="Show Trans"
+          class="c2 input-group-text"
+        >
+          <svg
+            aria-label="Expand Icon"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            viewBox="0 0 16 16"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </div>
     </div>
   </form>
 </DocumentFragment>
@@ -304,6 +310,7 @@ exports[`in blockchain mode handleViewTransactions changes emoji when show trans
 
 .c2:hover {
   cursor: pointer;
+  background-color: #c7e4ff;
 }
 
 .c1.c1.c1 {
@@ -315,130 +322,132 @@ exports[`in blockchain mode handleViewTransactions changes emoji when show trans
     class="c0 p-2 rounded"
   >
     <div
-      class="row"
+      class="mb-2 input-group"
     >
       <div
-        class="col-lg-12"
+        class="input-group-prepend"
       >
-        <div
-          class="mb-2 input-group"
+        <span
+          class="c1 input-group-text"
         >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Index
-            </span>
-          </div>
-          <input
-            aria-label="Block Index"
-            class="form-control"
-            disabled=""
-            name="index"
-            type="number"
-            value="1"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Timestamp
-            </span>
-          </div>
-          <input
-            aria-label="Block Timestamp"
-            class="form-control"
-            disabled=""
-            name="timestamp"
-            type="number"
-            value="1619827200000"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Previous #
-            </span>
-          </div>
-          <input
-            aria-label="Block PrevHash"
-            class="text-truncate form-control"
-            name="prevHash"
-            readonly=""
-            type="text"
-            value="0000000000000000000000000000000000000000000000000000000000000000"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Current #
-            </span>
-          </div>
-          <input
-            aria-label="Block CurrHash"
-            class="text-truncate form-control"
-            name="currHash"
-            readonly=""
-            type="text"
-            value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          />
-        </div>
-        <div
-          class="mt-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Merkle #
-            </span>
-          </div>
-          <input
-            aria-label="Block Merkle"
-            class="text-truncate form-control"
-            name="merkleRoot"
-            readonly=""
-            type="text"
-            value="987.65EForthTransactionAE987.65A"
-          />
-          <div
-            class="input-group-append"
-          >
-            <span
-              aria-label="Show Trans"
-              class="c2 input-group-text"
-            >
-              🙈
-            </span>
-          </div>
-        </div>
+          Index
+        </span>
       </div>
-      <div
-        class="col"
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="1"
       />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619827200000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="0000000000000000000000000000000000000000000000000000000000000000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="987.65EForthTransactionAE987.65A"
+      />
+      <div
+        class="input-group-append"
+      >
+        <span
+          aria-label="Show Trans"
+          class="c2 input-group-text"
+        >
+          <svg
+            aria-label="Contract Icon"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            viewBox="0 0 16 16"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M.172 15.828a.5.5 0 0 0 .707 0l4.096-4.096V14.5a.5.5 0 1 0 1 0v-3.975a.5.5 0 0 0-.5-.5H1.5a.5.5 0 0 0 0 1h2.768L.172 15.121a.5.5 0 0 0 0 .707zM15.828.172a.5.5 0 0 0-.707 0l-4.096 4.096V1.5a.5.5 0 1 0-1 0v3.975a.5.5 0 0 0 .5.5H14.5a.5.5 0 0 0 0-1h-2.768L15.828.879a.5.5 0 0 0 0-.707z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </div>
     </div>
   </form>
 </DocumentFragment>
@@ -459,126 +468,115 @@ exports[`in blockchain mode renders correctly index === 0 1`] = `
     class="c0 p-2 rounded"
   >
     <div
-      class="row"
+      class="mb-2 input-group"
     >
       <div
-        class="col-lg-12"
+        class="input-group-prepend"
       >
-        <div
-          class="mb-2 input-group"
+        <span
+          class="c1 input-group-text"
         >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Index
-            </span>
-          </div>
-          <input
-            aria-label="Block Index"
-            class="form-control"
-            disabled=""
-            name="index"
-            type="number"
-            value="0"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Timestamp
-            </span>
-          </div>
-          <input
-            aria-label="Block Timestamp"
-            class="form-control"
-            disabled=""
-            name="timestamp"
-            type="number"
-            value="1619827200000"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Previous #
-            </span>
-          </div>
-          <input
-            aria-label="Block PrevHash"
-            class="text-truncate form-control"
-            name="prevHash"
-            readonly=""
-            type="text"
-            value=""
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Current #
-            </span>
-          </div>
-          <input
-            aria-label="Block CurrHash"
-            class="text-truncate form-control"
-            name="currHash"
-            readonly=""
-            type="text"
-            value="0000000000000000000000000000000000000000000000000000000000000000"
-          />
-        </div>
-        <div
-          class="mt-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Merkle #
-            </span>
-          </div>
-          <input
-            aria-label="Block Merkle Genesis"
-            class="form-control"
-            disabled=""
-            name="merkleRoot"
-            type="text"
-            value=""
-          />
-        </div>
+          Index
+        </span>
       </div>
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="0"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
       <div
-        class="col"
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619827200000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="0000000000000000000000000000000000000000000000000000000000000000"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle Genesis"
+        class="form-control"
+        disabled=""
+        name="merkleRoot"
+        type="text"
+        value=""
       />
     </div>
   </form>
 </DocumentFragment>
 `;
 
-exports[`in blockchain mode renders correctly index > 0 index → 1, class → $expectedClass 1`] = `
+exports[`in blockchain mode renders correctly index > 0 index → 1, class → {"background": "#b4ff9a"} 1`] = `
 <DocumentFragment>
   .c0 {
   background-color: #b4ff9a;
@@ -586,6 +584,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 1, class → $
 
 .c2:hover {
   cursor: pointer;
+  background-color: #c7e4ff;
 }
 
 .c1.c1.c1 {
@@ -597,136 +596,138 @@ exports[`in blockchain mode renders correctly index > 0 index → 1, class → $
     class="c0 p-2 rounded"
   >
     <div
-      class="row"
+      class="mb-2 input-group"
     >
       <div
-        class="col-lg-12"
+        class="input-group-prepend"
       >
-        <div
-          class="mb-2 input-group"
+        <span
+          class="c1 input-group-text"
         >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Index
-            </span>
-          </div>
-          <input
-            aria-label="Block Index"
-            class="form-control"
-            disabled=""
-            name="index"
-            type="number"
-            value="1"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Timestamp
-            </span>
-          </div>
-          <input
-            aria-label="Block Timestamp"
-            class="form-control"
-            disabled=""
-            name="timestamp"
-            type="number"
-            value="1619827200000"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Previous #
-            </span>
-          </div>
-          <input
-            aria-label="Block PrevHash"
-            class="text-truncate form-control"
-            name="prevHash"
-            readonly=""
-            type="text"
-            value="0000000000000000000000000000000000000000000000000000000000000000"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Current #
-            </span>
-          </div>
-          <input
-            aria-label="Block CurrHash"
-            class="text-truncate form-control"
-            name="currHash"
-            readonly=""
-            type="text"
-            value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          />
-        </div>
-        <div
-          class="mt-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Merkle #
-            </span>
-          </div>
-          <input
-            aria-label="Block Merkle"
-            class="text-truncate form-control"
-            name="merkleRoot"
-            readonly=""
-            type="text"
-            value="987.65EForthTransactionAE987.65A"
-          />
-          <div
-            class="input-group-append"
-          >
-            <span
-              aria-label="Show Trans"
-              class="c2 input-group-text"
-            >
-              🙉
-            </span>
-          </div>
-        </div>
+          Index
+        </span>
       </div>
-      <div
-        class="col"
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="1"
       />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619827200000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="0000000000000000000000000000000000000000000000000000000000000000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="987.65EForthTransactionAE987.65A"
+      />
+      <div
+        class="input-group-append"
+      >
+        <span
+          aria-label="Show Trans"
+          class="c2 input-group-text"
+        >
+          <svg
+            aria-label="Expand Icon"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            viewBox="0 0 16 16"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </div>
     </div>
   </form>
 </DocumentFragment>
 `;
 
-exports[`in blockchain mode renders correctly index > 0 index → 2, class → $expectedClass 1`] = `
+exports[`in blockchain mode renders correctly index > 0 index → 2, class → {"background": "#ff9a9a"} 1`] = `
 <DocumentFragment>
   .c0 {
   background-color: #ff9a9a;
@@ -734,6 +735,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 2, class → $
 
 .c2:hover {
   cursor: pointer;
+  background-color: #c7e4ff;
 }
 
 .c1.c1.c1 {
@@ -745,130 +747,132 @@ exports[`in blockchain mode renders correctly index > 0 index → 2, class → $
     class="c0 p-2 rounded"
   >
     <div
-      class="row"
+      class="mb-2 input-group"
     >
       <div
-        class="col-lg-12"
+        class="input-group-prepend"
       >
-        <div
-          class="mb-2 input-group"
+        <span
+          class="c1 input-group-text"
         >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Index
-            </span>
-          </div>
-          <input
-            aria-label="Block Index"
-            class="form-control"
-            disabled=""
-            name="index"
-            type="number"
-            value="2"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Timestamp
-            </span>
-          </div>
-          <input
-            aria-label="Block Timestamp"
-            class="form-control"
-            disabled=""
-            name="timestamp"
-            type="number"
-            value="1619827200000"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Previous #
-            </span>
-          </div>
-          <input
-            aria-label="Block PrevHash"
-            class="text-truncate form-control"
-            name="prevHash"
-            readonly=""
-            type="text"
-            value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Current #
-            </span>
-          </div>
-          <input
-            aria-label="Block CurrHash"
-            class="text-truncate form-control"
-            name="currHash"
-            readonly=""
-            type="text"
-            value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
-          />
-        </div>
-        <div
-          class="mt-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Merkle #
-            </span>
-          </div>
-          <input
-            aria-label="Block Merkle"
-            class="text-truncate form-control"
-            name="merkleRoot"
-            readonly=""
-            type="text"
-            value="567.89ZForthTransactionAZ567.89A"
-          />
-          <div
-            class="input-group-append"
-          >
-            <span
-              aria-label="Show Trans"
-              class="c2 input-group-text"
-            >
-              🙈
-            </span>
-          </div>
-        </div>
+          Index
+        </span>
       </div>
-      <div
-        class="col"
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="2"
       />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619827200000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="567.89ZForthTransactionAZ567.89A"
+      />
+      <div
+        class="input-group-append"
+      >
+        <span
+          aria-label="Show Trans"
+          class="c2 input-group-text"
+        >
+          <svg
+            aria-label="Contract Icon"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            viewBox="0 0 16 16"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M.172 15.828a.5.5 0 0 0 .707 0l4.096-4.096V14.5a.5.5 0 1 0 1 0v-3.975a.5.5 0 0 0-.5-.5H1.5a.5.5 0 0 0 0 1h2.768L.172 15.121a.5.5 0 0 0 0 .707zM15.828.172a.5.5 0 0 0-.707 0l-4.096 4.096V1.5a.5.5 0 1 0-1 0v3.975a.5.5 0 0 0 .5.5H14.5a.5.5 0 0 0 0-1h-2.768L15.828.879a.5.5 0 0 0 0-.707z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </div>
     </div>
   </form>
 </DocumentFragment>
@@ -886,122 +890,111 @@ exports[`in preview mode renders correctly 1`] = `
 
 <form
     aria-label="Block Form Invalid"
-    class="c0 col-11 col-lg-5 p-2 rounded"
+    class="c0 col-12 col-lg-5 p-2 rounded"
   >
     <div
-      class="row"
+      class="mb-2 input-group"
     >
       <div
-        class="col-lg-12"
+        class="input-group-prepend"
       >
-        <div
-          class="mb-2 input-group"
+        <span
+          class="c1 input-group-text"
         >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Index
-            </span>
-          </div>
-          <input
-            aria-label="Block Index"
-            class="form-control"
-            disabled=""
-            name="index"
-            type="number"
-            value="3"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Timestamp
-            </span>
-          </div>
-          <input
-            aria-label="Block Timestamp"
-            class="form-control"
-            disabled=""
-            name="timestamp"
-            type="number"
-            value="1619913600000"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Previous #
-            </span>
-          </div>
-          <input
-            aria-label="Block PrevHash"
-            class="text-truncate form-control"
-            name="prevHash"
-            readonly=""
-            type="text"
-            value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Current #
-            </span>
-          </div>
-          <input
-            aria-label="Block CurrHash"
-            class="text-truncate form-control"
-            name="currHash"
-            readonly=""
-            type="text"
-            value="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-          />
-        </div>
-        <div
-          class="mt-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Merkle #
-            </span>
-          </div>
-          <input
-            aria-label="Block Merkle"
-            class="text-truncate form-control"
-            name="merkleRoot"
-            readonly=""
-            type="text"
-            value="previewMerkle"
-          />
-        </div>
+          Index
+        </span>
       </div>
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="3"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
       <div
-        class="col"
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619913600000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="previewMerkle"
       />
     </div>
   </form>
@@ -1015,151 +1008,149 @@ exports[`in preview mode valid State Shows 'Add Block' button 1`] = `
 }
 
 .c2 {
-  height: 100%;
+  padding: 4px 0;
+  margin-top: 8px;
+  font-size: 2rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .c1.c1.c1 {
   font-weight: bold;
 }
 
-@media only screen and (max-width:600px) {
-  .c2 {
-    height: 85%;
-  }
-}
-
 <form
     aria-label="Block Form"
-    class="c0 col-11 col-lg-5 p-2 rounded"
+    class="c0 col-12 col-lg-5 p-2 rounded"
   >
     <div
-      class="row"
+      class="mb-2 input-group"
     >
       <div
-        class="col-lg-9"
+        class="input-group-prepend"
       >
-        <div
-          class="mb-2 input-group"
+        <span
+          class="c1 input-group-text"
         >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Index
-            </span>
-          </div>
-          <input
-            aria-label="Block Index"
-            class="form-control"
-            disabled=""
-            name="index"
-            type="number"
-            value="3"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Timestamp
-            </span>
-          </div>
-          <input
-            aria-label="Block Timestamp"
-            class="form-control"
-            disabled=""
-            name="timestamp"
-            type="number"
-            value="1619913600000"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Previous #
-            </span>
-          </div>
-          <input
-            aria-label="Block PrevHash"
-            class="text-truncate form-control"
-            name="prevHash"
-            readonly=""
-            type="text"
-            value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          />
-        </div>
-        <div
-          class="my-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Current #
-            </span>
-          </div>
-          <input
-            aria-label="Block CurrHash"
-            class="text-truncate form-control"
-            name="currHash"
-            readonly=""
-            type="text"
-            value="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-          />
-        </div>
-        <div
-          class="mt-2 input-group"
-        >
-          <div
-            class="input-group-prepend"
-          >
-            <span
-              class="c1 input-group-text"
-            >
-              Merkle #
-            </span>
-          </div>
-          <input
-            aria-label="Block Merkle"
-            class="text-truncate form-control"
-            name="merkleRoot"
-            readonly=""
-            type="text"
-            value="previewMerkle"
-          />
-        </div>
+          Index
+        </span>
       </div>
-      <div
-        class="col-lg-3"
-      >
-        <button
-          aria-label="Add Block"
-          class="c2 mt-2 mt-lg-0 btn btn-success btn-block"
-          type="button"
-        >
-          <h4
-            class="my-0"
-          >
-            Add Block
-          </h4>
-        </button>
-      </div>
+      <input
+        aria-label="Block Index"
+        class="form-control"
+        disabled=""
+        name="index"
+        type="number"
+        value="3"
+      />
     </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Timestamp
+        </span>
+      </div>
+      <input
+        aria-label="Block Timestamp"
+        class="form-control"
+        disabled=""
+        name="timestamp"
+        type="number"
+        value="1619913600000"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Previous #
+        </span>
+      </div>
+      <input
+        aria-label="Block PrevHash"
+        class="text-truncate form-control"
+        name="prevHash"
+        readonly=""
+        type="text"
+        value="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      />
+    </div>
+    <div
+      class="my-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Current #
+        </span>
+      </div>
+      <input
+        aria-label="Block CurrHash"
+        class="text-truncate form-control"
+        name="currHash"
+        readonly=""
+        type="text"
+        value="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      />
+    </div>
+    <div
+      class="mt-2 input-group"
+    >
+      <div
+        class="input-group-prepend"
+      >
+        <span
+          class="c1 input-group-text"
+        >
+          Merkle #
+        </span>
+      </div>
+      <input
+        aria-label="Block Merkle"
+        class="text-truncate form-control"
+        name="merkleRoot"
+        readonly=""
+        type="text"
+        value="previewMerkle"
+      />
+    </div>
+    <button
+      aria-label="Add Block"
+      class="c2 btn btn-success btn-block"
+      type="button"
+    >
+      <svg
+        fill="currentColor"
+        height="1em"
+        viewBox="0 0 16 16"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"
+        />
+      </svg>
+    </button>
   </form>
 </DocumentFragment>
 `;

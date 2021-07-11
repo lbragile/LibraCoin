@@ -30,9 +30,9 @@ it("renders correctly", () => {
   });
 
   // links have correct href
-  expect(walletLink).toHaveAttribute("href", "/LibraCoin/wallet");
-  expect(mineLink).toHaveAttribute("href", "/LibraCoin/mine");
-  expect(blockChainLink).toHaveAttribute("href", "/LibraCoin/blockchain");
+  expect(walletLink).toHaveAttribute("href", "/wallet");
+  expect(mineLink).toHaveAttribute("href", "/mine");
+  expect(blockChainLink).toHaveAttribute("href", "/blockchain");
   expect(brandLink).toHaveAttribute("href", "https://github.com/lbragile/LibraCoin");
 
   expect(asFragment()).toMatchSnapshot();

@@ -90,7 +90,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
                 aria-label="Block Transactions Message"
                 name="btMsg"
                 as="textarea"
-                rows={3}
+                rows={2}
                 value={transaction.msg}
                 onChange={(e: TInputChange<HTMLTextAreaElement>) => calculateNewMerkleRoot(e.target.value, i, "msg")}
               />

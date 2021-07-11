@@ -7,7 +7,7 @@ import { IBlock } from "../../typings/AppTypes";
 import { digestMessage, randomHash } from "../../utils/conversion";
 
 import { ThemeProvider } from "styled-components";
-import { StyledInput } from "../../styles/BlockStyles";
+import { StyledInput, StyledStatisticsForm } from "../../styles/BlockStyles";
 import { StyledInputGroupText } from "../../styles/GlobalStyles";
 interface IStatisticsProps {
   chain: boolean;
@@ -84,9 +84,9 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
   const isValidSolution = (props.chain && state.chain[props.index].valid) || (!props.chain && state.preview.valid);
 
   return (
-    <Form
+    <StyledStatisticsForm
       aria-label="Block Statistics"
-      className={props.chain ? "mt-3" : "col-11 col-lg-5 mx-3 mb-2 mb-lg-0 bg-dark px-2 pb-2 rounded"}
+      className={props.chain ? "mt-3" : "col-12 col-lg-5 mx-3 mb-2 mb-lg-0 bg-dark px-2 pb-2 rounded"}
     >
       <InputGroup className="my-2">
         <InputGroup.Prepend>
@@ -157,6 +157,6 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
           </Spinner>
         </h4>
       </Button>
-    </Form>
+    </StyledStatisticsForm>
   );
 }

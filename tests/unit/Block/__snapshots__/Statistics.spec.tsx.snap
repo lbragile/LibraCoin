@@ -2,17 +2,23 @@
 
 exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = `
 <DocumentFragment>
-  .c1 {
+  .c2 {
   color: #f00;
 }
 
-.c0.c0.c0 {
+.c0 {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c1.c1.c1 {
   font-weight: bold;
 }
 
 <form
     aria-label="Block Statistics"
-    class="mt-3"
+    class="c0 mt-3"
   >
     <div
       class="my-2 input-group"
@@ -21,7 +27,7 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
         class="input-group-prepend"
       >
         <span
-          class="c0 input-group-text"
+          class="c1 input-group-text"
         >
           Nonce
         </span>
@@ -42,7 +48,7 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
         class="input-group-prepend"
       >
         <span
-          class="c0 input-group-text"
+          class="c1 input-group-text"
         >
           Header
         </span>
@@ -63,7 +69,7 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
         class="input-group-prepend"
       >
         <span
-          class="c0 input-group-text"
+          class="c1 input-group-text"
         >
           Target
         </span>
@@ -84,14 +90,14 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
         class="input-group-prepend"
       >
         <span
-          class="c0 input-group-text"
+          class="c1 input-group-text"
         >
           Sol'n
         </span>
       </div>
       <input
         aria-label="Block Solution Invalid"
-        class="c1 text-truncate form-control"
+        class="c2 text-truncate form-control"
         name="solution"
         readonly=""
         type="text"
@@ -129,17 +135,23 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
 
 exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
 <DocumentFragment>
-  .c1 {
+  .c2 {
   color: #008000;
 }
 
-.c0.c0.c0 {
+.c0 {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c1.c1.c1 {
   font-weight: bold;
 }
 
 <form
     aria-label="Block Statistics"
-    class="mt-3"
+    class="c0 mt-3"
   >
     <div
       class="my-2 input-group"
@@ -148,7 +160,7 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c0 input-group-text"
+          class="c1 input-group-text"
         >
           Nonce
         </span>
@@ -169,7 +181,7 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c0 input-group-text"
+          class="c1 input-group-text"
         >
           Header
         </span>
@@ -190,7 +202,7 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c0 input-group-text"
+          class="c1 input-group-text"
         >
           Target
         </span>
@@ -211,14 +223,14 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c0 input-group-text"
+          class="c1 input-group-text"
         >
           Sol'n
         </span>
       </div>
       <input
         aria-label="Block Solution"
-        class="c1 text-truncate form-control"
+        class="c2 text-truncate form-control"
         name="solution"
         readonly=""
         type="text"
@@ -257,17 +269,23 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
 
 exports[`in preview mode renders correctly 1`] = `
 <DocumentFragment>
-  .c1 {
+  .c2 {
   color: #f00;
 }
 
-.c0.c0.c0 {
+.c0 {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c1.c1.c1 {
   font-weight: bold;
 }
 
 <form
     aria-label="Block Statistics"
-    class="col-11 col-lg-5 mx-3 mb-2 mb-lg-0 bg-dark px-2 pb-2 rounded"
+    class="c0 col-12 col-lg-5 mx-3 mb-2 mb-lg-0 bg-dark px-2 pb-2 rounded"
   >
     <div
       class="my-2 input-group"
@@ -276,7 +294,7 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c0 input-group-text"
+          class="c1 input-group-text"
         >
           Nonce
         </span>
@@ -297,7 +315,7 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c0 input-group-text"
+          class="c1 input-group-text"
         >
           Header
         </span>
@@ -318,7 +336,7 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c0 input-group-text"
+          class="c1 input-group-text"
         >
           Target
         </span>
@@ -339,14 +357,14 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c0 input-group-text"
+          class="c1 input-group-text"
         >
           Sol'n
         </span>
       </div>
       <input
         aria-label="Block Solution Invalid"
-        class="c1 text-truncate form-control"
+        class="c2 text-truncate form-control"
         name="solution"
         readonly=""
         type="text"

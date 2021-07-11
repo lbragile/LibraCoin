@@ -15,6 +15,8 @@ export enum COLORS {
   SELECTED_TRANS_BACKGROUND = "#dfd",
   SELECTED_TRANS_BORDER = "#090",
 
+  BLOCK_TRANS_BACKGROUND = "#c7e4ff",
+
   ROOT_CELL = "#4f9249",
   MIDDLE_CELLS = "#cf8b31",
   DATA_CELLS = "#7d95ff",

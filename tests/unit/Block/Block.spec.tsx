@@ -52,13 +52,13 @@ describe("in preview mode", () => {
   });
 
   describe("valid State", () => {
-    it("Shows 'Add Block' button", () => {
+    it("Shows 'Add Block' button", async () => {
       const { asFragment } = customRender(<Block chain={false} index={initialState.preview.index} />, {
         stateMock: { ...initialState, preview: { ...initialState.preview, valid: true } }
       });
 
       expect(screen.getByRole("form", { name: /Block Form/i })).toHaveStyle({ background: COLORS.VALID_BACKGROUND });
-      expect(screen.getByRole("button", { name: /Add Block/i })).toHaveTextContent("Add Block");
+      expect(await screen.findByRole("button", { name: /Add Block/i })).toBeInTheDocument();
 
       expect(asFragment()).toMatchSnapshot();
     });
@@ -153,7 +153,7 @@ describe("in blockchain mode", () => {
         i    | expectedStyle
         ${1} | ${{ background: COLORS.VALID_BACKGROUND }}
         ${2} | ${{ background: COLORS.INVALID_BACKGROUND }}
-      `("index → $i, class → $expectedClass", ({ i, expectedStyle }) => {
+      `("index → $i, class → $expectedStyle", async ({ i, expectedStyle }) => {
         const { asFragment } = customRender(<Block chain={true} index={i} />);
 
         const block = screen.getByRole("form", { name: /Block Form/i });
@@ -189,7 +189,8 @@ describe("in blockchain mode", () => {
         expect(screen.queryByRole("textbox", { name: /Block Merkle Genesis/i })).not.toBeInTheDocument();
 
         expect(screen.getByLabelText(/Show Trans/i)).toBeInTheDocument();
-        expect(screen.getByText(i === 1 ? "🙉" : "🙈")).toBeInTheDocument();
+        const iconName = i === 1 ? /Expand Icon/i : /Contract Icon/i;
+        expect(await screen.findByRole("img", { name: iconName })).toBeInTheDocument();
 
         expect(screen.queryByRole("button", { name: /Add Block/i })).not.toBeInTheDocument();
 
@@ -217,11 +218,11 @@ describe("in blockchain mode", () => {
   });
 
   describe("handleViewTransactions", () => {
-    it("calls dispatch correctly", () => {
+    it("calls dispatch correctly", async () => {
       const dispatchMock = jest.fn();
       customRender(<Block chain={true} index={1} />, { dispatchMock });
 
-      userEvent.click(screen.getByText("🙉"));
+      userEvent.click(await screen.findByRole("img", { name: /Expand Icon/i }));
 
       expect(dispatchMock).toHaveBeenCalledTimes(1);
       expect(dispatchMock).toHaveBeenCalledWith({
@@ -233,10 +234,11 @@ describe("in blockchain mode", () => {
     it("changes emoji when show transactions is clicked", async () => {
       const { asFragment } = customRender(<Block chain={true} index={1} />);
 
-      expect(screen.getByText("🙉")).toBeInTheDocument();
-      userEvent.click(screen.getByText("🙉"));
-      expect(await screen.findByText("🙈")).toBeInTheDocument();
-      expect(screen.queryByText("🙉")).not.toBeInTheDocument();
+      const expandIcon = await screen.findByRole("img", { name: /Expand Icon/i });
+      expect(expandIcon).toBeInTheDocument();
+      userEvent.click(expandIcon);
+      expect(await screen.findByRole("img", { name: /Contract Icon/i })).toBeInTheDocument();
+      expect(screen.queryByRole("img", { name: /Expand Icon/i })).not.toBeInTheDocument();
 
       expect(asFragment()).toMatchSnapshot();
     });

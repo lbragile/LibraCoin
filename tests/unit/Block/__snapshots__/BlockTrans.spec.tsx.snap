@@ -55,7 +55,7 @@ exports[`last block change of Amount input attempts propagation 1`] = `
           aria-label="Block Transactions Message"
           class="form-control"
           name="btMsg"
-          rows="3"
+          rows="2"
         >
           Forth Transaction
         </textarea>
@@ -161,7 +161,7 @@ exports[`last block change of From input attempts propagation 1`] = `
           aria-label="Block Transactions Message"
           class="form-control"
           name="btMsg"
-          rows="3"
+          rows="2"
         >
           Forth Transaction
         </textarea>
@@ -267,7 +267,7 @@ exports[`last block change of Message input attempts propagation 1`] = `
           aria-label="Block Transactions Message"
           class="form-control"
           name="btMsg"
-          rows="3"
+          rows="2"
         >
           Forth Transaction1
         </textarea>
@@ -373,7 +373,7 @@ exports[`last block change of To input attempts propagation 1`] = `
           aria-label="Block Transactions Message"
           class="form-control"
           name="btMsg"
-          rows="3"
+          rows="2"
         >
           Forth Transaction
         </textarea>
@@ -479,7 +479,7 @@ exports[`middle block change of Amount input causes propagation 1`] = `
           aria-label="Block Transactions Message"
           class="form-control"
           name="btMsg"
-          rows="3"
+          rows="2"
         >
           Forth Transaction
         </textarea>
@@ -585,7 +585,7 @@ exports[`middle block change of From input causes propagation 1`] = `
           aria-label="Block Transactions Message"
           class="form-control"
           name="btMsg"
-          rows="3"
+          rows="2"
         >
           Forth Transaction
         </textarea>
@@ -691,7 +691,7 @@ exports[`middle block change of Message input causes propagation 1`] = `
           aria-label="Block Transactions Message"
           class="form-control"
           name="btMsg"
-          rows="3"
+          rows="2"
         >
           Forth Transaction1
         </textarea>
@@ -797,7 +797,7 @@ exports[`middle block change of To input causes propagation 1`] = `
           aria-label="Block Transactions Message"
           class="form-control"
           name="btMsg"
-          rows="3"
+          rows="2"
         >
           Forth Transaction
         </textarea>
@@ -903,7 +903,7 @@ exports[`renders correctly 1`] = `
           aria-label="Block Transactions Message"
           class="form-control"
           name="btMsg"
-          rows="3"
+          rows="2"
         >
           Forth Transaction
         </textarea>

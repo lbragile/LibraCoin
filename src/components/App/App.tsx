@@ -1,9 +1,10 @@
-import React, { useMemo, useReducer, Suspense, lazy } from "react";
+import React, { useMemo, useReducer, Suspense, lazy, useEffect } from "react";
 import { Route, BrowserRouter as Router, Redirect, Switch } from "react-router-dom";
 import logger from "use-reducer-logger";
 
 import { AppReducer } from "../../reducers/AppReducer";
 import { AppContext } from "../../context/AppContext";
+import { IState } from "../../typings/AppTypes";
 
 import { GlobalStyle } from "../../styles/GlobalStyles";
 import Loading from "./Loading";
@@ -15,12 +16,8 @@ const Mine = lazy(() => import("../../pages/Mine"));
 const Chain = lazy(() => import("../../pages/Chain"));
 
 export default function App(): JSX.Element {
-  const [state, dispatch] = useReducer(process.env.NODE_ENV === "development" ? logger(AppReducer) : AppReducer, {
-    verifiedTrans: JSON.parse(localStorage.getItem("verTrans") as string) ?? [],
-    selectedTrans: JSON.parse(localStorage.getItem("selTrans") as string) ?? [],
-    users: JSON.parse(localStorage.getItem("users") as string) ?? [],
-    user: JSON.parse(localStorage.getItem("user") as string) ?? { publicKey: "", privateKey: "", balance: 1000.0 },
-    chain: JSON.parse(localStorage.getItem("chain") as string) ?? [
+  const initialState: IState = JSON.parse(localStorage.getItem("state") as string) ?? {
+    chain: [
       {
         index: 0,
         prevHash: "",
@@ -32,7 +29,7 @@ export default function App(): JSX.Element {
       }
     ],
     copied: "",
-    preview: JSON.parse(localStorage.getItem("preview") as string) ?? {
+    preview: {
       index: 1,
       prevHash: new Array(64).fill("0").join(""),
       currHash: "",
@@ -41,13 +38,26 @@ export default function App(): JSX.Element {
       merkleRoot: "",
       valid: false
     },
-    wallet: JSON.parse(localStorage.getItem("wallet") as string) ?? {
+    selectedTrans: [],
+    user: { publicKey: "", privateKey: "", balance: 1000.0 },
+    users: [],
+    verifiedTrans: [],
+    wallet: {
       sent: false,
       signed: false,
       validated: false,
       details: { from: "", to: "", amount: (0).toFixed(2), msg: "", signature: "" }
     }
-  });
+  };
+
+  const [state, dispatch] = useReducer(
+    process.env.NODE_ENV === "development" ? logger(AppReducer) : AppReducer,
+    initialState
+  );
+
+  useEffect(() => {
+    localStorage.setItem("state", JSON.stringify(state, null, 2));
+  }, [state]);
 
   // prevent re-rendering children when App re-renders
   const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
@@ -61,15 +71,14 @@ export default function App(): JSX.Element {
       </Suspense>
 
       <AppContext.Provider value={value}>
-        <Router basename={"/LibraCoin"}>
+        <Router>
           <Suspense fallback={<Loading />}>
             <Switch>
-              <Route exact path="/">
-                <Redirect to="/wallet" />
-              </Route>
+              <Redirect exact from="/" to="/wallet" />
               <Route path="/wallet" component={Wallet} />
               <Route path="/mine" component={Mine} />
               <Route path="/blockchain" component={Chain} />
+              <Redirect from="*" to="/wallet" />
             </Switch>
           </Suspense>
         </Router>

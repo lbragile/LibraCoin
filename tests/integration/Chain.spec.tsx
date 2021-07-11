@@ -205,7 +205,7 @@ describe("block transactions", () => {
     expect(screen.getAllByRole("list", { name: /Block Transactions Group/i })).toHaveLength(visibleGroups.length);
     expect(screen.getAllByRole("listitem", { name: /Block Transactions Item/i })).toHaveLength(numTransVisible);
 
-    userEvent.click(screen.getAllByText("🙉")[0]); // genesis block does not have the reveal icon
+    userEvent.click(screen.getAllByRole("img", { name: /Expand Icon/i })[0]); // genesis block does not have the reveal icon
 
     expect(screen.getAllByRole("list", { name: /Block Transactions Group/i })).toHaveLength(visibleGroups.length + 1);
     expect(screen.getAllByRole("listitem", { name: /Block Transactions Item/i })).toHaveLength(numTransVisible + 1);
@@ -225,7 +225,7 @@ describe("block transactions", () => {
     expect(screen.getAllByRole("list", { name: /Block Transactions Group/i })).toHaveLength(visibleGroups.length);
     expect(screen.getAllByRole("listitem", { name: /Block Transactions Item/i })).toHaveLength(numTransVisible);
 
-    userEvent.click(screen.getAllByText("🙈")[0]); // genesis block does not have the reveal icon
+    userEvent.click(screen.getAllByRole("img", { name: /Contract Icon/i })[0]); // genesis block does not have the reveal icon
 
     expect(screen.getAllByRole("list", { name: /Block Transactions Group/i })).toHaveLength(visibleGroups.length - 1);
     expect(screen.getAllByRole("listitem", { name: /Block Transactions Item/i })).toHaveLength(numTransVisible - 1);

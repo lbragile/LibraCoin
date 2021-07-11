@@ -55,7 +55,7 @@ describe("input field text", () => {
       expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(initialState.user.publicKey)
     );
     expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKeyHidden);
-    expect(screen.getByText("👀")).toBeInTheDocument();
+    expect(await screen.findByRole("img", { name: /Key Reveal Eye/i })).toBeInTheDocument();
   });
 
   it("has user in localStorage", async () => {
@@ -65,7 +65,7 @@ describe("input field text", () => {
       expect(screen.getByRole("textbox", { name: /publicKey/i })).toHaveValue(initialState.user.publicKey)
     );
     expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKeyHidden);
-    expect(screen.getByText("👀")).toBeInTheDocument();
+    expect(await screen.findByRole("img", { name: /Key Reveal Eye/i })).toBeInTheDocument();
   });
 
   it("reveals private key on eye click", async () => {
@@ -73,10 +73,10 @@ describe("input field text", () => {
 
     await waitFor(() => expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKeyHidden));
 
-    userEvent.click(screen.getByText("👀"));
+    userEvent.click(await screen.findByRole("img", { name: /Key Reveal Eye/i }));
 
     expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(privateKey);
-    expect(screen.getByText("👀")).toBeInTheDocument();
+    expect(await screen.findByRole("img", { name: /Key Reveal Eye/i })).toBeInTheDocument();
   });
 });
 
@@ -122,14 +122,14 @@ describe("copy input of key fields", () => {
       expect(screen.getByRole("textbox", { name: /privateKey/i })).not.toHaveFocus();
     });
 
-    test("when visible", () => {
+    test("when visible", async () => {
       const copyInputSpy = jest.spyOn(CopyInputUtil, "copyInput");
 
       // both don't have feedback
       expect(screen.getByRole("textbox", { name: /publicKey/i })).not.toHaveClass("is-valid");
       expect(screen.getByRole("textbox", { name: /privateKey/i })).not.toHaveClass("is-valid");
 
-      userEvent.click(screen.getByText("👀"));
+      userEvent.click(await screen.findByRole("img", { name: /Key Reveal Eye/i }));
 
       expect(screen.getByRole("textbox", { name: /privateKey/i })).toHaveValue(initialState.user.privateKey);
 

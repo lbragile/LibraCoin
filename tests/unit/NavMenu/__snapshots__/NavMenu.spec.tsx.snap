@@ -67,22 +67,22 @@ exports[`renders correctly 1`] = `
       >
         <a
           class="c1 nav-link"
-          data-rb-event-key="/LibraCoin/wallet"
-          href="/LibraCoin/wallet"
+          data-rb-event-key="/wallet"
+          href="/wallet"
         >
           Wallet
         </a>
         <a
           class="c1 nav-link"
-          data-rb-event-key="/LibraCoin/mine"
-          href="/LibraCoin/mine"
+          data-rb-event-key="/mine"
+          href="/mine"
         >
           Mine
         </a>
         <a
           class="c1 nav-link"
-          data-rb-event-key="/LibraCoin/blockchain"
-          href="/LibraCoin/blockchain"
+          data-rb-event-key="/blockchain"
+          href="/blockchain"
         >
           Blockchain
         </a>

@@ -9,6 +9,7 @@
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
+    "react-bootstrap-icons": "^1.5.0",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
@@ -63,9 +64,9 @@
     "lint": "npx eslint src tests -c config/.eslintrc.js && npx stylelint src --config config/.stylelintrc.json",
     "start": "react-scripts start",
     "build": "workbox generateSW ./config/workbox-config.js && react-scripts build",
-    "deploy": "gh-pages -d build",
+    "deploy:github": "gh-pages -d build",
     "deploy:local": "serve -s build -l 5000",
-    "build:deploy": "npm run build && npm run deploy",
+    "build:deploy:github": "npm run build && npm run deploy:github",
     "build:deploy:local": "npm run build && npm run deploy:local"
   },
   "babel": {

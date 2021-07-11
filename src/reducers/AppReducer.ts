@@ -5,41 +5,33 @@ export const AppReducer = (state: IState, action: IAction): IState => {
   switch (action.type) {
     case ACTIONS.ADD_VERIFIED_TRANS: {
       const { trans } = action.payload as { trans: ITransaction };
-      const verifiedTrans = [...state.verifiedTrans, { ...trans }];
-      localStorage.setItem("verTrans", JSON.stringify(verifiedTrans, null, 2));
-      return { ...state, verifiedTrans };
+      return { ...state, verifiedTrans: [...state.verifiedTrans, { ...trans }] };
     }
 
     case ACTIONS.UPDATE_VERIFIED_TRANS: {
       const selectedTransSignatures = state.selectedTrans.map((x) => x.signature);
       const verifiedTrans = state.verifiedTrans.filter((x) => !selectedTransSignatures.includes(x.signature));
-      localStorage.setItem("verTrans", JSON.stringify(verifiedTrans, null, 2));
       return { ...state, verifiedTrans };
     }
 
     case ACTIONS.UPDATE_SELECTED_TRANS: {
       const { selectedTrans } = action.payload as { selectedTrans: ITransaction[] };
-      localStorage.setItem("selTrans", JSON.stringify(selectedTrans, null, 2));
       return { ...state, selectedTrans };
     }
 
     case ACTIONS.UPDATE_USERS: {
       const { users } = action.payload as { users: IUser[] };
-      localStorage.setItem("users", JSON.stringify(users, null, 2));
       return { ...state, users };
     }
 
     case ACTIONS.SET_MAIN_USER: {
       const { user } = action.payload as { user: IMainUser };
-      localStorage.setItem("user", JSON.stringify(user, null, 2));
       return { ...state, user };
     }
 
     case ACTIONS.ADD_BLOCK: {
       const { block } = action.payload as { block: IBlock };
-      const chain = [...state.chain, { ...block }];
-      localStorage.setItem("chain", JSON.stringify(chain, null, 2));
-      return { ...state, chain };
+      return { ...state, chain: [...state.chain, { ...block }] };
     }
 
     case ACTIONS.UPDATE_BLOCK: {
@@ -49,39 +41,32 @@ export const AppReducer = (state: IState, action: IAction): IState => {
 
       blocks.forEach((b) => (chain[b.index] = { ...b }));
 
-      localStorage.setItem("chain", JSON.stringify(chain, null, 2));
       return { ...state, chain };
     }
 
     case ACTIONS.UPDATE_PREVIEW: {
       const { preview } = action.payload as { preview: IBlock };
-      localStorage.setItem("preview", JSON.stringify(preview, null, 2));
       return { ...state, preview: { ...preview } };
     }
 
     case ACTIONS.ASSIGN_COPIED: {
       const { copied } = action.payload as { copied: string };
-      localStorage.setItem("copied", copied);
       return { ...state, copied };
     }
 
     case ACTIONS.SET_SIGNED: {
       const { signed, sent } = action.payload as { signed: boolean; sent?: boolean };
       const newSent = sent !== undefined ? sent : !signed;
-      const wallet = { ...state.wallet, signed, sent: newSent };
-      localStorage.setItem("wallet", JSON.stringify(wallet, null, 2));
-      return { ...state, wallet };
+      return { ...state, wallet: { ...state.wallet, signed, sent: newSent } };
     }
 
     case ACTIONS.SET_VALIDATED: {
       const { validated } = action.payload as { validated: boolean };
-      localStorage.setItem("wallet", JSON.stringify({ ...state.wallet, validated }, null, 2));
       return { ...state, wallet: { ...state.wallet, validated } };
     }
 
     case ACTIONS.SET_DETAILS: {
       const { details } = action.payload as { details: ITransaction };
-      localStorage.setItem("wallet", JSON.stringify({ ...state.wallet, details }, null, 2));
       return { ...state, wallet: { ...state.wallet, details } };
     }
 
