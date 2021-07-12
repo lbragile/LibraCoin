@@ -9,10 +9,10 @@ export const UserKey = styled(InputGroup)`
 `;
 
 export const UserItem = styled(Form)`
-  background-color: ${COLORS.DEFAULT_BACKGROUND};
+  background-color: ${COLORS.ASSOCIATIVE_COLOR};
   margin: 1em 0.5em;
   padding: 1em;
-  width: 14rem;
+  max-width: 14rem;
 `;
 
 export const RevealEyes = styled.span`

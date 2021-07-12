@@ -3,7 +3,6 @@ import { Form, InputGroup } from "react-bootstrap";
 
 import { useAddUser } from "../../hooks/useAddUser";
 import { useAppContext } from "../../hooks/useAppContext";
-import { StyledInputGroupText } from "../../styles/GlobalStyles";
 import { RevealEyes, UserKey } from "../../styles/UserStyles";
 import { copyInput, removeCopied } from "../../utils/copyInput";
 import { EyeFill, EyeSlashFill } from "react-bootstrap-icons";
@@ -17,10 +16,10 @@ export default function KeyGeneration(): JSX.Element {
   useAddUser(state.user.publicKey, state.users);
 
   return (
-    <div className="container-fluid d-flex justify-content-center mx-auto row my-5">
-      <UserKey className="col-12 col-lg-8">
+    <div className="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2">
+      <UserKey className="mx-auto">
         <InputGroup.Prepend>
-          <StyledInputGroupText>Public Key (PK)</StyledInputGroupText>
+          <InputGroup.Text>Public Key (PK)</InputGroup.Text>
         </InputGroup.Prepend>
 
         <Form.Control
@@ -38,9 +37,9 @@ export default function KeyGeneration(): JSX.Element {
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>
       </UserKey>
 
-      <UserKey className="col-12 col-lg-8">
+      <UserKey className="mx-auto">
         <InputGroup.Prepend>
-          <StyledInputGroupText>Private Key (SK)</StyledInputGroupText>
+          <InputGroup.Text>Private Key (SK)</InputGroup.Text>
         </InputGroup.Prepend>
 
         <Form.Control
@@ -55,11 +54,11 @@ export default function KeyGeneration(): JSX.Element {
         />
 
         <InputGroup.Append>
-          <StyledInputGroupText className="rounded-right">
+          <InputGroup.Text className="rounded-right">
             <RevealEyes role="img" aria-label="Key Reveal Eye" onClick={() => setShow(!show)}>
               {show ? <EyeSlashFill /> : <EyeFill />}{" "}
             </RevealEyes>
-          </StyledInputGroupText>
+          </InputGroup.Text>
         </InputGroup.Append>
 
         <Form.Control.Feedback type="valid">Copied to clipboard!</Form.Control.Feedback>

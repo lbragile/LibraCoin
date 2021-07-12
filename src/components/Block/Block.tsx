@@ -6,8 +6,7 @@ import { ACTIONS } from "../../enums/AppDispatchActions";
 
 import { ThemeProvider } from "styled-components";
 import { RevealBlockTransText, StyledBlockForm, StyledButton } from "../../styles/BlockStyles";
-import { StyledInputGroupText } from "../../styles/GlobalStyles";
-import { ArrowsAngleContract, ArrowsAngleExpand, PlusSquareFill } from "react-bootstrap-icons";
+import { ArrowsAngleContract, ArrowsAngleExpand, Plus } from "react-bootstrap-icons";
 
 export interface IBlockProps {
   chain: boolean;
@@ -53,11 +52,11 @@ export default function Block({ chain, index }: IBlockProps): JSX.Element {
     <ThemeProvider theme={{ valid: isValid }}>
       <StyledBlockForm
         aria-label={"Block Form" + (isValid ? "" : " Invalid")}
-        className={(chain ? "" : "col-12 col-lg-5 ") + "p-2 rounded"}
+        className={(chain ? "" : "col-12 col-lg-5 ") + "p-2 mb-4 rounded"}
       >
         <InputGroup className="mb-2">
           <InputGroup.Prepend>
-            <StyledInputGroupText>Index</StyledInputGroupText>
+            <InputGroup.Text>Index</InputGroup.Text>
           </InputGroup.Prepend>
           <Form.Control
             aria-label="Block Index"
@@ -70,7 +69,7 @@ export default function Block({ chain, index }: IBlockProps): JSX.Element {
 
         <InputGroup className="my-2">
           <InputGroup.Prepend>
-            <StyledInputGroupText>Timestamp</StyledInputGroupText>
+            <InputGroup.Text>Timestamp</InputGroup.Text>
           </InputGroup.Prepend>
           <Form.Control
             aria-label="Block Timestamp"
@@ -83,7 +82,7 @@ export default function Block({ chain, index }: IBlockProps): JSX.Element {
 
         <InputGroup className="my-2">
           <InputGroup.Prepend>
-            <StyledInputGroupText>Previous #</StyledInputGroupText>
+            <InputGroup.Text>Previous #</InputGroup.Text>
           </InputGroup.Prepend>
           <Form.Control
             aria-label="Block PrevHash"
@@ -97,7 +96,7 @@ export default function Block({ chain, index }: IBlockProps): JSX.Element {
 
         <InputGroup className="my-2">
           <InputGroup.Prepend>
-            <StyledInputGroupText>Current #</StyledInputGroupText>
+            <InputGroup.Text>Current #</InputGroup.Text>
           </InputGroup.Prepend>
           <Form.Control
             aria-label="Block CurrHash"
@@ -111,7 +110,7 @@ export default function Block({ chain, index }: IBlockProps): JSX.Element {
 
         <InputGroup className="mt-2">
           <InputGroup.Prepend>
-            <StyledInputGroupText>Merkle #</StyledInputGroupText>
+            <InputGroup.Text>Merkle #</InputGroup.Text>
           </InputGroup.Prepend>
           {chain && index === 0 ? (
             <Form.Control aria-label="Block Merkle Genesis" name="merkleRoot" type="text" defaultValue="" disabled />
@@ -141,7 +140,7 @@ export default function Block({ chain, index }: IBlockProps): JSX.Element {
         </InputGroup>
         {!chain && state.preview.valid && (
           <StyledButton aria-label="Add Block" variant="success" block onClick={() => handleAddBlock()}>
-            <PlusSquareFill />
+            <Plus />
           </StyledButton>
         )}
       </StyledBlockForm>

@@ -3,7 +3,6 @@ import { Form, InputGroup } from "react-bootstrap";
 
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { useAppContext } from "../../hooks/useAppContext";
-import { StyledInputGroupText } from "../../styles/GlobalStyles";
 import { IBlock, ITransaction } from "../../typings/AppTypes";
 
 import { digestMessage } from "../../utils/conversion";
@@ -84,7 +83,7 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
 
             <InputGroup className="mb-2">
               <InputGroup.Prepend>
-                <StyledInputGroupText>Msg</StyledInputGroupText>
+                <InputGroup.Text>Msg</InputGroup.Text>
               </InputGroup.Prepend>
               <Form.Control
                 aria-label="Block Transactions Message"
@@ -105,13 +104,13 @@ export default function BlockTrans({ index }: { index: number }): JSX.Element {
                 onChange={(e: TInputChange) => calculateNewMerkleRoot(e.target.value, i, "amount")}
               />
               <InputGroup.Append>
-                <StyledInputGroupText>LC</StyledInputGroupText>
+                <InputGroup.Text>LC</InputGroup.Text>
               </InputGroup.Append>
             </InputGroup>
 
             <InputGroup>
               <InputGroup.Prepend>
-                <StyledInputGroupText>Sig</StyledInputGroupText>
+                <InputGroup.Text>Sig</InputGroup.Text>
               </InputGroup.Prepend>
               <Form.Control
                 aria-label="Block Transactions Signature"

@@ -104,15 +104,9 @@ export default function PreviewTree(): JSX.Element {
 
   return (
     <div className="w-100 mb-2 text-center">
-      <h3 className="font-weight-bold w-25 mx-auto">Merkle Tree Visualization</h3>
+      <h3 className="font-weight-bold w-25 mx-auto text-light">Merkle Tree Visualization</h3>
       {tree[tree.length - 1][0] !== "" ? (
-        <Table
-          role="grid"
-          aria-label="Preview Table"
-          className="w-75 mx-auto my-1 text-center border"
-          responsive
-          size="sm"
-        >
+        <Table role="grid" aria-label="Preview Table" className="w-75 mx-auto my-1 text-center" responsive size="sm">
           <tbody role="presentation">
             <tr>
               {Array.from({ length: numCells.current }).map((_, i) => (
@@ -156,7 +150,7 @@ export default function PreviewTree(): JSX.Element {
           </tbody>
         </Table>
       ) : (
-        <p className="my-3 border w-75 mx-auto">Please select a verified transaction from above...</p>
+        <p className="my-3 w-75 mx-auto text-light">Please select a verified transaction from above...</p>
       )}
     </div>
   );

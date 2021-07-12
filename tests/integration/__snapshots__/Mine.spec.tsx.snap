@@ -12,30 +12,26 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
   border-radius: 5px;
   border: 2px solid transparent;
   min-width: 14rem;
-  background-color: #fff;
+  background-color: #FEFEFE;
 }
 
 .c1:hover {
   cursor: pointer;
-  border: 2px solid #090;
+  box-shadow: 0 0 3px 3px #6490D6;
 }
 
-.c3 {
+.c2 {
   margin: 0.5rem;
   padding: 0.5em;
   border-radius: 5px;
   border: 2px solid transparent;
   min-width: 14rem;
-  background-color: #dfd;
+  background-color: #90F0E3;
 }
 
-.c3:hover {
+.c2:hover {
   cursor: pointer;
-  border: 2px solid #090;
-}
-
-.c2.c2.c2 {
-  font-weight: bold;
+  box-shadow: 0 0 3px 3px #6490D6;
 }
 
 <div
@@ -43,7 +39,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
   >
     <h3
       aria-label="Title"
-      class="font-weight-bold"
+      class="font-weight-bold text-light"
     >
       Verified Transactions
     </h3>
@@ -86,7 +82,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -115,7 +111,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -128,7 +124,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -145,7 +141,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
       </form>
       <form
         aria-label="Transaction Information Selected"
-        class="c3"
+        class="c2"
       >
         <div
           class="mb-2 text-center form-group"
@@ -179,7 +175,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -208,7 +204,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -221,7 +217,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -272,7 +268,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -301,7 +297,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -314,7 +310,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -365,7 +361,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -394,7 +390,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -407,7 +403,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -458,7 +454,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -487,7 +483,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -500,7 +496,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -517,16 +513,12 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
       </form>
     </div>
   </div>
-  .c1.c1.c1 {
-  font-weight: bold;
+  .c1 {
+  color: #F0534A;
 }
 
 .c2 {
-  color: #f00;
-}
-
-.c3 {
-  background-color: #ff9a9a;
+  background-color: #F07571;
 }
 
 .c0 {
@@ -542,12 +534,12 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
       class="w-100 mb-2 text-center"
     >
       <h3
-        class="font-weight-bold w-25 mx-auto"
+        class="font-weight-bold w-25 mx-auto text-light"
       >
         Merkle Tree Visualization
       </h3>
       <p
-        class="my-3 border w-75 mx-auto"
+        class="my-3 w-75 mx-auto text-light"
       >
         Please select a verified transaction from above...
       </p>
@@ -563,7 +555,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Nonce
           </span>
@@ -584,7 +576,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Header
           </span>
@@ -605,7 +597,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Target
           </span>
@@ -626,14 +618,14 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Sol'n
           </span>
         </div>
         <input
           aria-label="Block Solution Invalid"
-          class="c2 text-truncate form-control"
+          class="c1 text-truncate form-control"
           name="solution"
           readonly=""
           type="text"
@@ -651,7 +643,17 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
           <span
             class="col-10 pl-5"
           >
-            Mine
+            <svg
+              fill="#FEFEFE"
+              height="1em"
+              viewBox="0 0 16 16"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z"
+              />
+            </svg>
           </span>
           <div
             class="mr-3 invisible spinner-border"
@@ -668,7 +670,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
     </form>
     <form
       aria-label="Block Form Invalid"
-      class="c3 col-12 col-lg-5 p-2 rounded"
+      class="c2 col-12 col-lg-5 p-2 mb-4 rounded"
     >
       <div
         class="mb-2 input-group"
@@ -677,7 +679,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Index
           </span>
@@ -698,7 +700,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Timestamp
           </span>
@@ -719,7 +721,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Previous #
           </span>
@@ -740,7 +742,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Current #
           </span>
@@ -761,7 +763,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Merkle #
           </span>
@@ -792,30 +794,26 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
   border-radius: 5px;
   border: 2px solid transparent;
   min-width: 14rem;
-  background-color: #fff;
+  background-color: #FEFEFE;
 }
 
 .c1:hover {
   cursor: pointer;
-  border: 2px solid #090;
+  box-shadow: 0 0 3px 3px #6490D6;
 }
 
-.c3 {
+.c2 {
   margin: 0.5rem;
   padding: 0.5em;
   border-radius: 5px;
   border: 2px solid transparent;
   min-width: 14rem;
-  background-color: #dfd;
+  background-color: #90F0E3;
 }
 
-.c3:hover {
+.c2:hover {
   cursor: pointer;
-  border: 2px solid #090;
-}
-
-.c2.c2.c2 {
-  font-weight: bold;
+  box-shadow: 0 0 3px 3px #6490D6;
 }
 
 <div
@@ -823,7 +821,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
   >
     <h3
       aria-label="Title"
-      class="font-weight-bold"
+      class="font-weight-bold text-light"
     >
       Verified Transactions
     </h3>
@@ -866,7 +864,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -895,7 +893,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -908,7 +906,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -925,7 +923,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
       </form>
       <form
         aria-label="Transaction Information Selected"
-        class="c3"
+        class="c2"
       >
         <div
           class="mb-2 text-center form-group"
@@ -959,7 +957,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -988,7 +986,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -1001,7 +999,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -1052,7 +1050,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -1081,7 +1079,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -1094,7 +1092,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -1145,7 +1143,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -1174,7 +1172,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -1187,7 +1185,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -1238,7 +1236,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -1267,7 +1265,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -1280,7 +1278,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -1297,16 +1295,12 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
       </form>
     </div>
   </div>
-  .c1.c1.c1 {
-  font-weight: bold;
+  .c1 {
+  color: #F0534A;
 }
 
 .c2 {
-  color: #f00;
-}
-
-.c3 {
-  background-color: #ff9a9a;
+  background-color: #F07571;
 }
 
 .c0 {
@@ -1322,12 +1316,12 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
       class="w-100 mb-2 text-center"
     >
       <h3
-        class="font-weight-bold w-25 mx-auto"
+        class="font-weight-bold w-25 mx-auto text-light"
       >
         Merkle Tree Visualization
       </h3>
       <p
-        class="my-3 border w-75 mx-auto"
+        class="my-3 w-75 mx-auto text-light"
       >
         Please select a verified transaction from above...
       </p>
@@ -1343,7 +1337,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Nonce
           </span>
@@ -1364,7 +1358,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Header
           </span>
@@ -1385,7 +1379,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Target
           </span>
@@ -1406,14 +1400,14 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Sol'n
           </span>
         </div>
         <input
           aria-label="Block Solution Invalid"
-          class="c2 text-truncate form-control"
+          class="c1 text-truncate form-control"
           name="solution"
           readonly=""
           type="text"
@@ -1431,7 +1425,17 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
           <span
             class="col-10 pl-5"
           >
-            Mine
+            <svg
+              fill="#FEFEFE"
+              height="1em"
+              viewBox="0 0 16 16"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z"
+              />
+            </svg>
           </span>
           <div
             class="mr-3 invisible spinner-border"
@@ -1448,7 +1452,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
     </form>
     <form
       aria-label="Block Form Invalid"
-      class="c3 col-12 col-lg-5 p-2 rounded"
+      class="c2 col-12 col-lg-5 p-2 mb-4 rounded"
     >
       <div
         class="mb-2 input-group"
@@ -1457,7 +1461,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Index
           </span>
@@ -1478,7 +1482,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Timestamp
           </span>
@@ -1499,7 +1503,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Previous #
           </span>
@@ -1520,7 +1524,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Current #
           </span>
@@ -1541,7 +1545,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Merkle #
           </span>

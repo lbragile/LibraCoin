@@ -6,17 +6,12 @@ exports[`renders correctly 1`] = `
   margin: 0 1rem;
   padding: 1em;
   border-radius: 6px;
-  border: 1px solid black;
-  background-color: #1f1f1f;
-}
-
-.c1.c1.c1 {
-  font-weight: bold;
+  border: none;
 }
 
 <form
     aria-label="Sign Form"
-    class="c0 col-12 col-lg-5"
+    class="c0 col-12 col-lg-5 bg-dark"
     novalidate=""
   >
     <div
@@ -26,7 +21,7 @@ exports[`renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Sender Public Key
         </span>
@@ -52,7 +47,7 @@ exports[`renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Receiver Public Key
         </span>
@@ -83,7 +78,7 @@ exports[`renders correctly 1`] = `
         class="input-group-append"
       >
         <span
-          class="c1 rounded-right border-left-0 input-group-text"
+          class="rounded-right border-left-0 input-group-text"
         >
           LC
         </span>
@@ -96,7 +91,7 @@ exports[`renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Message
         </span>
@@ -116,7 +111,7 @@ exports[`renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Sender Private Key
         </span>

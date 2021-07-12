@@ -8,7 +8,8 @@ import { digestMessage, randomHash } from "../../utils/conversion";
 
 import { ThemeProvider } from "styled-components";
 import { StyledInput, StyledStatisticsForm } from "../../styles/BlockStyles";
-import { StyledInputGroupText } from "../../styles/GlobalStyles";
+import { Hammer } from "react-bootstrap-icons";
+import { COLORS } from "../../enums/ColorPallet";
 interface IStatisticsProps {
   chain: boolean;
   index: number;
@@ -90,7 +91,7 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
     >
       <InputGroup className="my-2">
         <InputGroup.Prepend>
-          <StyledInputGroupText>Nonce</StyledInputGroupText>
+          <InputGroup.Text>Nonce</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control
           aria-label="Block Nonce"
@@ -104,14 +105,14 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
 
       <InputGroup className="my-2">
         <InputGroup.Prepend>
-          <StyledInputGroupText>Header</StyledInputGroupText>
+          <InputGroup.Text>Header</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control aria-label="Block Header" name="header" type="number" value={header} disabled />
       </InputGroup>
 
       <InputGroup className="my-2">
         <InputGroup.Prepend>
-          <StyledInputGroupText>Target</StyledInputGroupText>
+          <InputGroup.Text>Target</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control
           aria-label="Block Target"
@@ -125,7 +126,7 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
 
       <InputGroup className="my-2">
         <InputGroup.Prepend>
-          <StyledInputGroupText>Sol&apos;n</StyledInputGroupText>
+          <InputGroup.Text>Sol&apos;n</InputGroup.Text>
         </InputGroup.Prepend>
         <ThemeProvider theme={{ valid: isValidSolution }}>
           <StyledInput
@@ -151,7 +152,9 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
         onClick={() => handleMine()}
       >
         <h4 className="my-0 row justify-content-end align-items-center flex-nowrap">
-          <span className="col-10 pl-5">Mine</span>
+          <span className="col-10 pl-5">
+            <Hammer color={COLORS.ASSOCIATIVE_COLOR} />
+          </span>
           <Spinner className={"mr-3 " + (disableMineBtn ? "visible" : "invisible")} animation="border" role="status">
             <span className="sr-only">Loading...</span>
           </Spinner>

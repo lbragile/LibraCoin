@@ -3,7 +3,6 @@ import React from "react";
 import { Form, Button, InputGroup } from "react-bootstrap";
 import { ACTIONS } from "../../enums/AppDispatchActions";
 import { useAppContext } from "../../hooks/useAppContext";
-import { StyledInputGroupText } from "../../styles/GlobalStyles";
 import { TransForm } from "../../styles/TransactionStyles";
 
 export default function Send(): JSX.Element {
@@ -22,10 +21,15 @@ export default function Send(): JSX.Element {
   };
 
   return (
-    <TransForm aria-label="Send Form" noValidate className="col-12 col-lg-5 my-2 my-lg-0" onSubmit={handleSubmit}>
+    <TransForm
+      aria-label="Send Form"
+      noValidate
+      className="col-12 col-lg-5 my-2 my-lg-0 bg-dark"
+      onSubmit={handleSubmit}
+    >
       <InputGroup>
         <InputGroup.Prepend>
-          <StyledInputGroupText>Receiver Public Key</StyledInputGroupText>
+          <InputGroup.Text>Receiver Public Key</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control
           aria-label="Receiver PK"
@@ -48,13 +52,13 @@ export default function Send(): JSX.Element {
           readOnly
         />
         <InputGroup.Append>
-          <StyledInputGroupText className="rounded-right border-left-0">LC</StyledInputGroupText>
+          <InputGroup.Text className="rounded-right border-left-0">LC</InputGroup.Text>
         </InputGroup.Append>
       </InputGroup>
 
       <InputGroup className="mb-2">
         <InputGroup.Prepend>
-          <StyledInputGroupText>Message</StyledInputGroupText>
+          <InputGroup.Text>Message</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control
           aria-label="Send Message"
@@ -69,7 +73,7 @@ export default function Send(): JSX.Element {
 
       <InputGroup>
         <InputGroup.Prepend>
-          <StyledInputGroupText>Transaction Signature</StyledInputGroupText>
+          <InputGroup.Text>Transaction Signature</InputGroup.Text>
         </InputGroup.Prepend>
         <Form.Control
           aria-label="Transaction Signature"

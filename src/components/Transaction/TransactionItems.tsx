@@ -6,7 +6,6 @@ import { ITransaction } from "../../typings/AppTypes";
 import { calculateMerkleTreeFormation, getMerkleRoot } from "../../utils/merkleTree";
 import { ThemeProvider } from "styled-components";
 import { TransItem, TransList } from "../../styles/TransactionStyles";
-import { StyledInputGroupText } from "../../styles/GlobalStyles";
 
 export default function TransactionItems(): JSX.Element {
   const { state, dispatch } = useAppContext();
@@ -41,7 +40,7 @@ export default function TransactionItems(): JSX.Element {
 
   return (
     <div className="container-fluid">
-      <h3 aria-label="Title" className="font-weight-bold">
+      <h3 aria-label="Title" className="font-weight-bold text-light">
         Verified Transactions
       </h3>
       <TransList className="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
@@ -75,7 +74,7 @@ export default function TransactionItems(): JSX.Element {
 
                 <InputGroup className="mb-2">
                   <InputGroup.Prepend>
-                    <StyledInputGroupText>Msg</StyledInputGroupText>
+                    <InputGroup.Text>Msg</InputGroup.Text>
                   </InputGroup.Prepend>
                   <Form.Control
                     aria-label="Transaction Message"
@@ -95,13 +94,13 @@ export default function TransactionItems(): JSX.Element {
                     disabled
                   />
                   <InputGroup.Append>
-                    <StyledInputGroupText>LC</StyledInputGroupText>
+                    <InputGroup.Text>LC</InputGroup.Text>
                   </InputGroup.Append>
                 </InputGroup>
 
                 <InputGroup>
                   <InputGroup.Prepend>
-                    <StyledInputGroupText>Sig</StyledInputGroupText>
+                    <InputGroup.Text>Sig</InputGroup.Text>
                   </InputGroup.Prepend>
                   <Form.Control
                     aria-label="Transaction Signature"

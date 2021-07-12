@@ -12,30 +12,26 @@ exports[`renders correctly 1`] = `
   border-radius: 5px;
   border: 2px solid transparent;
   min-width: 14rem;
-  background-color: #fff;
+  background-color: #FEFEFE;
 }
 
 .c1:hover {
   cursor: pointer;
-  border: 2px solid #090;
+  box-shadow: 0 0 3px 3px #6490D6;
 }
 
-.c3 {
+.c2 {
   margin: 0.5rem;
   padding: 0.5em;
   border-radius: 5px;
   border: 2px solid transparent;
   min-width: 14rem;
-  background-color: #dfd;
+  background-color: #90F0E3;
 }
 
-.c3:hover {
+.c2:hover {
   cursor: pointer;
-  border: 2px solid #090;
-}
-
-.c2.c2.c2 {
-  font-weight: bold;
+  box-shadow: 0 0 3px 3px #6490D6;
 }
 
 <div
@@ -43,7 +39,7 @@ exports[`renders correctly 1`] = `
   >
     <h3
       aria-label="Title"
-      class="font-weight-bold"
+      class="font-weight-bold text-light"
     >
       Verified Transactions
     </h3>
@@ -86,7 +82,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -115,7 +111,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -128,7 +124,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -145,7 +141,7 @@ exports[`renders correctly 1`] = `
       </form>
       <form
         aria-label="Transaction Information Selected"
-        class="c3"
+        class="c2"
       >
         <div
           class="mb-2 text-center form-group"
@@ -179,7 +175,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -208,7 +204,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -221,7 +217,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -272,7 +268,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -301,7 +297,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -314,7 +310,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -365,7 +361,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -394,7 +390,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -407,7 +403,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>
@@ -458,7 +454,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Msg
             </span>
@@ -487,7 +483,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -500,7 +496,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c2 input-group-text"
+              class="input-group-text"
             >
               Sig
             </span>

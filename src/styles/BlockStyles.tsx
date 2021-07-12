@@ -19,7 +19,7 @@ const GradientLine = (dir: string) => {
 export const StyledTableData = styled.td`
   width: 11%;
   height: 35px;
-  color: ${COLORS.DEFAULT_BACKGROUND};
+  color: ${COLORS.ASSOCIATIVE_COLOR};
 
   /* increase the specificity to avoid using !important */
   &&& {
@@ -40,7 +40,7 @@ export const StyledTableData = styled.td`
       ? GradientLine("to top left")
       : type.normalLine
       ? GradientLine("to left")
-      : COLORS.DEFAULT_BACKGROUND};
+      : "transparent"};
   /* stylelint-enable */
 `;
 
@@ -55,7 +55,6 @@ export const StyledBlockForm = styled(Form)`
 export const RevealBlockTransText = styled(InputGroup.Text)`
   &:hover {
     cursor: pointer;
-    background-color: ${COLORS.BLOCK_TRANS_BACKGROUND};
   }
 `;
 
@@ -64,7 +63,6 @@ export const BlockContainer = styled.div`
   height: fit-content;
   padding: 8px;
   border-radius: 4px;
-  background: ${COLORS.DARK_BACKGROUND};
 `;
 
 export const StyledButton = styled(Button)`

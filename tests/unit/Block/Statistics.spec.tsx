@@ -15,7 +15,7 @@ import { COLORS } from "../../../src/enums/ColorPallet";
 const { initialState } = global;
 
 describe("in preview mode", () => {
-  it("renders correctly", () => {
+  it("renders correctly", async () => {
     const { asFragment } = customRender(<Statistics chain={false} index={initialState.preview.index} />);
 
     expect(screen.getByRole("form", { name: /Block Statistics/i })).toHaveFormValues({
@@ -42,8 +42,8 @@ describe("in preview mode", () => {
     expect(solution).not.toBeRequired();
     expect(solution).toHaveStyle({ color: COLORS.INVALID_SOLUTION });
 
-    const mineBtn = screen.getByRole("button", { name: /Block Mine/i });
-    expect(mineBtn).toHaveTextContent("Mine");
+    const mineBtn = await screen.findByRole("button", { name: /Block Mine/i });
+    expect(mineBtn).toBeInTheDocument();
     expect(mineBtn).toBeEnabled();
 
     expect(asFragment()).toMatchSnapshot();
@@ -154,7 +154,7 @@ describe("in blockchain mode", () => {
       desc         | index | solutionColorStyle                    | isDisabled
       ${"valid"}   | ${0}  | ${{ color: COLORS.VALID_SOLUTION }}   | ${true}
       ${"invalid"} | ${2}  | ${{ color: COLORS.INVALID_SOLUTION }} | ${false}
-    `("block is $desc (index: $index)", ({ index, solutionColorStyle, isDisabled }) => {
+    `("block is $desc (index: $index)", async ({ index, solutionColorStyle, isDisabled }) => {
       const { asFragment } = customRender(<Statistics chain={true} index={index} />);
 
       expect(screen.getByRole("form", { name: /Block Statistics/i })).toHaveFormValues({
@@ -181,8 +181,8 @@ describe("in blockchain mode", () => {
       expect(solution).not.toBeRequired();
       expect(solution).toHaveStyle(solutionColorStyle);
 
-      const mineBtn = screen.getByRole("button", { name: /Block Mine/i });
-      expect(mineBtn).toHaveTextContent("Mine");
+      const mineBtn = await screen.findByRole("button", { name: /Block Mine/i });
+      expect(mineBtn).toBeInTheDocument();
       // eslint-disable-next-line jest/no-conditional-expect
       isDisabled ? expect(mineBtn).toBeDisabled() : expect(mineBtn).toBeEnabled();
 

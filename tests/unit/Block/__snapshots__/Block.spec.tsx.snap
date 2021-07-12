@@ -3,21 +3,16 @@
 exports[`in blockchain mode 'Add Block' button is not present when block is invalid 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #ff9a9a;
+  background-color: #F07571;
 }
 
-.c2:hover {
+.c1:hover {
   cursor: pointer;
-  background-color: #c7e4ff;
-}
-
-.c1.c1.c1 {
-  font-weight: bold;
 }
 
 <form
     aria-label="Block Form Invalid"
-    class="c0 p-2 rounded"
+    class="c0 p-2 mb-4 rounded"
   >
     <div
       class="mb-2 input-group"
@@ -26,7 +21,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is inva
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Index
         </span>
@@ -47,7 +42,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is inva
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Timestamp
         </span>
@@ -68,7 +63,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is inva
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Previous #
         </span>
@@ -89,7 +84,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is inva
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Current #
         </span>
@@ -110,7 +105,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is inva
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Merkle #
         </span>
@@ -128,7 +123,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is inva
       >
         <span
           aria-label="Show Trans"
-          class="c2 input-group-text"
+          class="c1 input-group-text"
         >
           <svg
             aria-label="Contract Icon"
@@ -154,21 +149,16 @@ exports[`in blockchain mode 'Add Block' button is not present when block is inva
 exports[`in blockchain mode 'Add Block' button is not present when block is valid 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #b4ff9a;
+  background-color: #71F09D;
 }
 
-.c2:hover {
+.c1:hover {
   cursor: pointer;
-  background-color: #c7e4ff;
-}
-
-.c1.c1.c1 {
-  font-weight: bold;
 }
 
 <form
     aria-label="Block Form"
-    class="c0 p-2 rounded"
+    class="c0 p-2 mb-4 rounded"
   >
     <div
       class="mb-2 input-group"
@@ -177,7 +167,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is vali
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Index
         </span>
@@ -198,7 +188,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is vali
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Timestamp
         </span>
@@ -219,7 +209,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is vali
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Previous #
         </span>
@@ -240,7 +230,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is vali
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Current #
         </span>
@@ -261,7 +251,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is vali
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Merkle #
         </span>
@@ -279,7 +269,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is vali
       >
         <span
           aria-label="Show Trans"
-          class="c2 input-group-text"
+          class="c1 input-group-text"
         >
           <svg
             aria-label="Expand Icon"
@@ -305,21 +295,16 @@ exports[`in blockchain mode 'Add Block' button is not present when block is vali
 exports[`in blockchain mode handleViewTransactions changes emoji when show transactions is clicked 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #b4ff9a;
+  background-color: #71F09D;
 }
 
-.c2:hover {
+.c1:hover {
   cursor: pointer;
-  background-color: #c7e4ff;
-}
-
-.c1.c1.c1 {
-  font-weight: bold;
 }
 
 <form
     aria-label="Block Form"
-    class="c0 p-2 rounded"
+    class="c0 p-2 mb-4 rounded"
   >
     <div
       class="mb-2 input-group"
@@ -328,7 +313,7 @@ exports[`in blockchain mode handleViewTransactions changes emoji when show trans
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Index
         </span>
@@ -349,7 +334,7 @@ exports[`in blockchain mode handleViewTransactions changes emoji when show trans
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Timestamp
         </span>
@@ -370,7 +355,7 @@ exports[`in blockchain mode handleViewTransactions changes emoji when show trans
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Previous #
         </span>
@@ -391,7 +376,7 @@ exports[`in blockchain mode handleViewTransactions changes emoji when show trans
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Current #
         </span>
@@ -412,7 +397,7 @@ exports[`in blockchain mode handleViewTransactions changes emoji when show trans
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Merkle #
         </span>
@@ -430,7 +415,7 @@ exports[`in blockchain mode handleViewTransactions changes emoji when show trans
       >
         <span
           aria-label="Show Trans"
-          class="c2 input-group-text"
+          class="c1 input-group-text"
         >
           <svg
             aria-label="Contract Icon"
@@ -456,16 +441,12 @@ exports[`in blockchain mode handleViewTransactions changes emoji when show trans
 exports[`in blockchain mode renders correctly index === 0 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #b4ff9a;
-}
-
-.c1.c1.c1 {
-  font-weight: bold;
+  background-color: #71F09D;
 }
 
 <form
     aria-label="Block Form"
-    class="c0 p-2 rounded"
+    class="c0 p-2 mb-4 rounded"
   >
     <div
       class="mb-2 input-group"
@@ -474,7 +455,7 @@ exports[`in blockchain mode renders correctly index === 0 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Index
         </span>
@@ -495,7 +476,7 @@ exports[`in blockchain mode renders correctly index === 0 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Timestamp
         </span>
@@ -516,7 +497,7 @@ exports[`in blockchain mode renders correctly index === 0 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Previous #
         </span>
@@ -537,7 +518,7 @@ exports[`in blockchain mode renders correctly index === 0 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Current #
         </span>
@@ -558,7 +539,7 @@ exports[`in blockchain mode renders correctly index === 0 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Merkle #
         </span>
@@ -576,24 +557,19 @@ exports[`in blockchain mode renders correctly index === 0 1`] = `
 </DocumentFragment>
 `;
 
-exports[`in blockchain mode renders correctly index > 0 index → 1, class → {"background": "#b4ff9a"} 1`] = `
+exports[`in blockchain mode renders correctly index > 0 index → 1, class → {"background": "#71F09D"} 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #b4ff9a;
+  background-color: #71F09D;
 }
 
-.c2:hover {
+.c1:hover {
   cursor: pointer;
-  background-color: #c7e4ff;
-}
-
-.c1.c1.c1 {
-  font-weight: bold;
 }
 
 <form
     aria-label="Block Form"
-    class="c0 p-2 rounded"
+    class="c0 p-2 mb-4 rounded"
   >
     <div
       class="mb-2 input-group"
@@ -602,7 +578,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 1, class → {
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Index
         </span>
@@ -623,7 +599,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 1, class → {
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Timestamp
         </span>
@@ -644,7 +620,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 1, class → {
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Previous #
         </span>
@@ -665,7 +641,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 1, class → {
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Current #
         </span>
@@ -686,7 +662,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 1, class → {
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Merkle #
         </span>
@@ -704,7 +680,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 1, class → {
       >
         <span
           aria-label="Show Trans"
-          class="c2 input-group-text"
+          class="c1 input-group-text"
         >
           <svg
             aria-label="Expand Icon"
@@ -727,24 +703,19 @@ exports[`in blockchain mode renders correctly index > 0 index → 1, class → {
 </DocumentFragment>
 `;
 
-exports[`in blockchain mode renders correctly index > 0 index → 2, class → {"background": "#ff9a9a"} 1`] = `
+exports[`in blockchain mode renders correctly index > 0 index → 2, class → {"background": "#F07571"} 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #ff9a9a;
+  background-color: #F07571;
 }
 
-.c2:hover {
+.c1:hover {
   cursor: pointer;
-  background-color: #c7e4ff;
-}
-
-.c1.c1.c1 {
-  font-weight: bold;
 }
 
 <form
     aria-label="Block Form Invalid"
-    class="c0 p-2 rounded"
+    class="c0 p-2 mb-4 rounded"
   >
     <div
       class="mb-2 input-group"
@@ -753,7 +724,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 2, class → {
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Index
         </span>
@@ -774,7 +745,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 2, class → {
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Timestamp
         </span>
@@ -795,7 +766,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 2, class → {
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Previous #
         </span>
@@ -816,7 +787,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 2, class → {
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Current #
         </span>
@@ -837,7 +808,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 2, class → {
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Merkle #
         </span>
@@ -855,7 +826,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 2, class → {
       >
         <span
           aria-label="Show Trans"
-          class="c2 input-group-text"
+          class="c1 input-group-text"
         >
           <svg
             aria-label="Contract Icon"
@@ -881,16 +852,12 @@ exports[`in blockchain mode renders correctly index > 0 index → 2, class → {
 exports[`in preview mode renders correctly 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #ff9a9a;
-}
-
-.c1.c1.c1 {
-  font-weight: bold;
+  background-color: #F07571;
 }
 
 <form
     aria-label="Block Form Invalid"
-    class="c0 col-12 col-lg-5 p-2 rounded"
+    class="c0 col-12 col-lg-5 p-2 mb-4 rounded"
   >
     <div
       class="mb-2 input-group"
@@ -899,7 +866,7 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Index
         </span>
@@ -920,7 +887,7 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Timestamp
         </span>
@@ -941,7 +908,7 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Previous #
         </span>
@@ -962,7 +929,7 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Current #
         </span>
@@ -983,7 +950,7 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Merkle #
         </span>
@@ -1004,10 +971,10 @@ exports[`in preview mode renders correctly 1`] = `
 exports[`in preview mode valid State Shows 'Add Block' button 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #b4ff9a;
+  background-color: #71F09D;
 }
 
-.c2 {
+.c1 {
   padding: 4px 0;
   margin-top: 8px;
   font-size: 2rem;
@@ -1021,13 +988,9 @@ exports[`in preview mode valid State Shows 'Add Block' button 1`] = `
   justify-content: center;
 }
 
-.c1.c1.c1 {
-  font-weight: bold;
-}
-
 <form
     aria-label="Block Form"
-    class="c0 col-12 col-lg-5 p-2 rounded"
+    class="c0 col-12 col-lg-5 p-2 mb-4 rounded"
   >
     <div
       class="mb-2 input-group"
@@ -1036,7 +999,7 @@ exports[`in preview mode valid State Shows 'Add Block' button 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Index
         </span>
@@ -1057,7 +1020,7 @@ exports[`in preview mode valid State Shows 'Add Block' button 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Timestamp
         </span>
@@ -1078,7 +1041,7 @@ exports[`in preview mode valid State Shows 'Add Block' button 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Previous #
         </span>
@@ -1099,7 +1062,7 @@ exports[`in preview mode valid State Shows 'Add Block' button 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Current #
         </span>
@@ -1120,7 +1083,7 @@ exports[`in preview mode valid State Shows 'Add Block' button 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Merkle #
         </span>
@@ -1136,7 +1099,7 @@ exports[`in preview mode valid State Shows 'Add Block' button 1`] = `
     </div>
     <button
       aria-label="Add Block"
-      class="c2 btn btn-success btn-block"
+      class="c1 btn btn-success btn-block"
       type="button"
     >
       <svg
@@ -1147,7 +1110,7 @@ exports[`in preview mode valid State Shows 'Add Block' button 1`] = `
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
         />
       </svg>
     </button>

@@ -2,18 +2,14 @@
 
 exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = `
 <DocumentFragment>
-  .c2 {
-  color: #f00;
+  .c1 {
+  color: #F0534A;
 }
 
 .c0 {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-}
-
-.c1.c1.c1 {
-  font-weight: bold;
 }
 
 <form
@@ -27,7 +23,7 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Nonce
         </span>
@@ -48,7 +44,7 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Header
         </span>
@@ -69,7 +65,7 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Target
         </span>
@@ -90,14 +86,14 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Sol'n
         </span>
       </div>
       <input
         aria-label="Block Solution Invalid"
-        class="c2 text-truncate form-control"
+        class="c1 text-truncate form-control"
         name="solution"
         readonly=""
         type="text"
@@ -115,7 +111,17 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
         <span
           class="col-10 pl-5"
         >
-          Mine
+          <svg
+            fill="#FEFEFE"
+            height="1em"
+            viewBox="0 0 16 16"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z"
+            />
+          </svg>
         </span>
         <div
           class="mr-3 invisible spinner-border"
@@ -135,18 +141,14 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
 
 exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
 <DocumentFragment>
-  .c2 {
-  color: #008000;
+  .c1 {
+  color: #2CA355;
 }
 
 .c0 {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-}
-
-.c1.c1.c1 {
-  font-weight: bold;
 }
 
 <form
@@ -160,7 +162,7 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Nonce
         </span>
@@ -181,7 +183,7 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Header
         </span>
@@ -202,7 +204,7 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Target
         </span>
@@ -223,14 +225,14 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Sol'n
         </span>
       </div>
       <input
         aria-label="Block Solution"
-        class="c2 text-truncate form-control"
+        class="c1 text-truncate form-control"
         name="solution"
         readonly=""
         type="text"
@@ -249,7 +251,17 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
         <span
           class="col-10 pl-5"
         >
-          Mine
+          <svg
+            fill="#FEFEFE"
+            height="1em"
+            viewBox="0 0 16 16"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z"
+            />
+          </svg>
         </span>
         <div
           class="mr-3 invisible spinner-border"
@@ -269,18 +281,14 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
 
 exports[`in preview mode renders correctly 1`] = `
 <DocumentFragment>
-  .c2 {
-  color: #f00;
+  .c1 {
+  color: #F0534A;
 }
 
 .c0 {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-}
-
-.c1.c1.c1 {
-  font-weight: bold;
 }
 
 <form
@@ -294,7 +302,7 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Nonce
         </span>
@@ -315,7 +323,7 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Header
         </span>
@@ -336,7 +344,7 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Target
         </span>
@@ -357,14 +365,14 @@ exports[`in preview mode renders correctly 1`] = `
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Sol'n
         </span>
       </div>
       <input
         aria-label="Block Solution Invalid"
-        class="c2 text-truncate form-control"
+        class="c1 text-truncate form-control"
         name="solution"
         readonly=""
         type="text"
@@ -382,7 +390,17 @@ exports[`in preview mode renders correctly 1`] = `
         <span
           class="col-10 pl-5"
         >
-          Mine
+          <svg
+            fill="#FEFEFE"
+            height="1em"
+            viewBox="0 0 16 16"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z"
+            />
+          </svg>
         </span>
         <div
           class="mr-3 invisible spinner-border"

@@ -2,30 +2,26 @@
 
 exports[`copies public key on focus, pages and fills out sign form, signs, sends 1`] = `
 <DocumentFragment>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
+  .c0 {
   margin: 0.25em 0.5em;
   word-wrap: break-word;
 }
 
-.c2:hover {
+.c1:hover {
   cursor: pointer;
 }
 
 <div
-    class="container-fluid d-flex justify-content-center mx-auto row my-5"
+    class="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2"
   >
     <div
-      class="c0 col-12 col-lg-8 input-group"
+      class="c0 mx-auto input-group"
     >
       <div
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Public Key (PK)
         </span>
@@ -45,13 +41,13 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </div>
     </div>
     <div
-      class="c0 col-12 col-lg-8 input-group"
+      class="c0 mx-auto input-group"
     >
       <div
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Private Key (SK)
         </span>
@@ -68,11 +64,11 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         class="input-group-append"
       >
         <span
-          class="c1 rounded-right input-group-text"
+          class="rounded-right input-group-text"
         >
           <span
             aria-label="Key Reveal Eye"
-            class="c2"
+            class="c1"
             role="img"
           >
             <svg
@@ -100,16 +96,11 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </div>
     </div>
   </div>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
+  .c0 {
   margin: 0 1rem;
   padding: 1em;
   border-radius: 6px;
-  border: 1px solid black;
-  background-color: #1f1f1f;
+  border: none;
 }
 
 <div
@@ -117,7 +108,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
   >
     <form
       aria-label="Sign Form"
-      class="c0 col-12 col-lg-5"
+      class="c0 col-12 col-lg-5 bg-dark"
       novalidate=""
     >
       <div
@@ -127,7 +118,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Sender Public Key
           </span>
@@ -153,7 +144,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Receiver Public Key
           </span>
@@ -184,7 +175,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-append"
         >
           <span
-            class="c1 rounded-right border-left-0 input-group-text"
+            class="rounded-right border-left-0 input-group-text"
           >
             LC
           </span>
@@ -197,7 +188,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Message
           </span>
@@ -217,7 +208,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Sender Private Key
           </span>
@@ -248,7 +239,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     </form>
     <form
       aria-label="Send Form"
-      class="c0 col-12 col-lg-5 my-2 my-lg-0"
+      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-dark"
       novalidate=""
     >
       <div
@@ -258,7 +249,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Receiver Public Key
           </span>
@@ -292,7 +283,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-append"
         >
           <span
-            class="c1 rounded-right border-left-0 input-group-text"
+            class="rounded-right border-left-0 input-group-text"
           >
             LC
           </span>
@@ -305,7 +296,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Message
           </span>
@@ -326,7 +317,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Transaction Signature
           </span>
@@ -357,22 +348,18 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </button>
     </form>
   </div>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
-  background-color: #fff;
+  .c0 {
+  background-color: #FEFEFE;
   margin: 1em 0.5em;
   padding: 1em;
-  width: 14rem;
+  max-width: 14rem;
 }
 
 <div
-    class="container-fluid mb-2"
+    class="col-12 pb-4"
   >
     <h3
-      class="font-weight-bold"
+      class="font-weight-bold text-light"
     >
       Users
     </h3>
@@ -389,7 +376,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -421,7 +408,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -438,7 +425,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -470,7 +457,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -487,7 +474,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -519,7 +506,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -533,30 +520,26 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
 
 exports[`copies public key on focus, pages and fills out sign form, signs, sends 2`] = `
 <DocumentFragment>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
+  .c0 {
   margin: 0.25em 0.5em;
   word-wrap: break-word;
 }
 
-.c2:hover {
+.c1:hover {
   cursor: pointer;
 }
 
 <div
-    class="container-fluid d-flex justify-content-center mx-auto row my-5"
+    class="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2"
   >
     <div
-      class="c0 col-12 col-lg-8 input-group"
+      class="c0 mx-auto input-group"
     >
       <div
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Public Key (PK)
         </span>
@@ -576,13 +559,13 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </div>
     </div>
     <div
-      class="c0 col-12 col-lg-8 input-group"
+      class="c0 mx-auto input-group"
     >
       <div
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Private Key (SK)
         </span>
@@ -599,11 +582,11 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         class="input-group-append"
       >
         <span
-          class="c1 rounded-right input-group-text"
+          class="rounded-right input-group-text"
         >
           <span
             aria-label="Key Reveal Eye"
-            class="c2"
+            class="c1"
             role="img"
           >
             <svg
@@ -631,16 +614,11 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </div>
     </div>
   </div>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
+  .c0 {
   margin: 0 1rem;
   padding: 1em;
   border-radius: 6px;
-  border: 1px solid black;
-  background-color: #1f1f1f;
+  border: none;
 }
 
 <div
@@ -648,7 +626,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
   >
     <form
       aria-label="Sign Form"
-      class="c0 col-12 col-lg-5"
+      class="c0 col-12 col-lg-5 bg-dark"
       novalidate=""
     >
       <div
@@ -658,7 +636,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Sender Public Key
           </span>
@@ -684,7 +662,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Receiver Public Key
           </span>
@@ -715,7 +693,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-append"
         >
           <span
-            class="c1 rounded-right border-left-0 input-group-text"
+            class="rounded-right border-left-0 input-group-text"
           >
             LC
           </span>
@@ -728,7 +706,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Message
           </span>
@@ -750,7 +728,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Sender Private Key
           </span>
@@ -781,7 +759,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     </form>
     <form
       aria-label="Send Form"
-      class="c0 col-12 col-lg-5 my-2 my-lg-0"
+      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-dark"
       novalidate=""
     >
       <div
@@ -791,7 +769,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Receiver Public Key
           </span>
@@ -825,7 +803,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-append"
         >
           <span
-            class="c1 rounded-right border-left-0 input-group-text"
+            class="rounded-right border-left-0 input-group-text"
           >
             LC
           </span>
@@ -838,7 +816,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Message
           </span>
@@ -859,7 +837,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Transaction Signature
           </span>
@@ -890,22 +868,18 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </button>
     </form>
   </div>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
-  background-color: #fff;
+  .c0 {
+  background-color: #FEFEFE;
   margin: 1em 0.5em;
   padding: 1em;
-  width: 14rem;
+  max-width: 14rem;
 }
 
 <div
-    class="container-fluid mb-2"
+    class="col-12 pb-4"
   >
     <h3
-      class="font-weight-bold"
+      class="font-weight-bold text-light"
     >
       Users
     </h3>
@@ -922,7 +896,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -954,7 +928,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -971,7 +945,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -1003,7 +977,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -1020,7 +994,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -1052,7 +1026,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -1066,30 +1040,26 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
 
 exports[`copies public key on focus, pages and fills out sign form, signs, sends 3`] = `
 <DocumentFragment>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
+  .c0 {
   margin: 0.25em 0.5em;
   word-wrap: break-word;
 }
 
-.c2:hover {
+.c1:hover {
   cursor: pointer;
 }
 
 <div
-    class="container-fluid d-flex justify-content-center mx-auto row my-5"
+    class="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2"
   >
     <div
-      class="c0 col-12 col-lg-8 input-group"
+      class="c0 mx-auto input-group"
     >
       <div
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Public Key (PK)
         </span>
@@ -1109,13 +1079,13 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </div>
     </div>
     <div
-      class="c0 col-12 col-lg-8 input-group"
+      class="c0 mx-auto input-group"
     >
       <div
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Private Key (SK)
         </span>
@@ -1132,11 +1102,11 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         class="input-group-append"
       >
         <span
-          class="c1 rounded-right input-group-text"
+          class="rounded-right input-group-text"
         >
           <span
             aria-label="Key Reveal Eye"
-            class="c2"
+            class="c1"
             role="img"
           >
             <svg
@@ -1164,16 +1134,11 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </div>
     </div>
   </div>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
+  .c0 {
   margin: 0 1rem;
   padding: 1em;
   border-radius: 6px;
-  border: 1px solid black;
-  background-color: #1f1f1f;
+  border: none;
 }
 
 <div
@@ -1181,7 +1146,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
   >
     <form
       aria-label="Sign Form"
-      class="c0 col-12 col-lg-5"
+      class="c0 col-12 col-lg-5 bg-dark"
       novalidate=""
     >
       <div
@@ -1191,7 +1156,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Sender Public Key
           </span>
@@ -1217,7 +1182,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Receiver Public Key
           </span>
@@ -1250,7 +1215,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-append"
         >
           <span
-            class="c1 rounded-right border-left-0 input-group-text"
+            class="rounded-right border-left-0 input-group-text"
           >
             LC
           </span>
@@ -1263,7 +1228,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Message
           </span>
@@ -1286,7 +1251,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Sender Private Key
           </span>
@@ -1318,7 +1283,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     </form>
     <form
       aria-label="Send Form"
-      class="c0 col-12 col-lg-5 my-2 my-lg-0"
+      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-dark"
       novalidate=""
     >
       <div
@@ -1328,7 +1293,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Receiver Public Key
           </span>
@@ -1362,7 +1327,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-append"
         >
           <span
-            class="c1 rounded-right border-left-0 input-group-text"
+            class="rounded-right border-left-0 input-group-text"
           >
             LC
           </span>
@@ -1375,7 +1340,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Message
           </span>
@@ -1398,7 +1363,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Transaction Signature
           </span>
@@ -1428,22 +1393,18 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </button>
     </form>
   </div>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
-  background-color: #fff;
+  .c0 {
+  background-color: #FEFEFE;
   margin: 1em 0.5em;
   padding: 1em;
-  width: 14rem;
+  max-width: 14rem;
 }
 
 <div
-    class="container-fluid mb-2"
+    class="col-12 pb-4"
   >
     <h3
-      class="font-weight-bold"
+      class="font-weight-bold text-light"
     >
       Users
     </h3>
@@ -1460,7 +1421,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -1492,7 +1453,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -1509,7 +1470,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -1541,7 +1502,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -1558,7 +1519,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -1590,7 +1551,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -1604,30 +1565,26 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
 
 exports[`copies public key on focus, pages and fills out sign form, signs, sends 4`] = `
 <DocumentFragment>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
+  .c0 {
   margin: 0.25em 0.5em;
   word-wrap: break-word;
 }
 
-.c2:hover {
+.c1:hover {
   cursor: pointer;
 }
 
 <div
-    class="container-fluid d-flex justify-content-center mx-auto row my-5"
+    class="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2"
   >
     <div
-      class="c0 col-12 col-lg-8 input-group"
+      class="c0 mx-auto input-group"
     >
       <div
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Public Key (PK)
         </span>
@@ -1647,13 +1604,13 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </div>
     </div>
     <div
-      class="c0 col-12 col-lg-8 input-group"
+      class="c0 mx-auto input-group"
     >
       <div
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Private Key (SK)
         </span>
@@ -1670,11 +1627,11 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         class="input-group-append"
       >
         <span
-          class="c1 rounded-right input-group-text"
+          class="rounded-right input-group-text"
         >
           <span
             aria-label="Key Reveal Eye"
-            class="c2"
+            class="c1"
             role="img"
           >
             <svg
@@ -1702,16 +1659,11 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </div>
     </div>
   </div>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
+  .c0 {
   margin: 0 1rem;
   padding: 1em;
   border-radius: 6px;
-  border: 1px solid black;
-  background-color: #1f1f1f;
+  border: none;
 }
 
 <div
@@ -1719,7 +1671,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
   >
     <form
       aria-label="Sign Form"
-      class="c0 col-12 col-lg-5"
+      class="c0 col-12 col-lg-5 bg-dark"
       novalidate=""
     >
       <div
@@ -1729,7 +1681,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Sender Public Key
           </span>
@@ -1755,7 +1707,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Receiver Public Key
           </span>
@@ -1786,7 +1738,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-append"
         >
           <span
-            class="c1 rounded-right border-left-0 input-group-text"
+            class="rounded-right border-left-0 input-group-text"
           >
             LC
           </span>
@@ -1799,7 +1751,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Message
           </span>
@@ -1821,7 +1773,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Sender Private Key
           </span>
@@ -1852,7 +1804,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     </form>
     <form
       aria-label="Send Form"
-      class="c0 col-12 col-lg-5 my-2 my-lg-0"
+      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-dark"
       novalidate=""
     >
       <div
@@ -1862,7 +1814,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Receiver Public Key
           </span>
@@ -1896,7 +1848,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-append"
         >
           <span
-            class="c1 rounded-right border-left-0 input-group-text"
+            class="rounded-right border-left-0 input-group-text"
           >
             LC
           </span>
@@ -1909,7 +1861,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Message
           </span>
@@ -1930,7 +1882,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Transaction Signature
           </span>
@@ -1961,22 +1913,18 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
       </button>
     </form>
   </div>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
-  background-color: #fff;
+  .c0 {
+  background-color: #FEFEFE;
   margin: 1em 0.5em;
   padding: 1em;
-  width: 14rem;
+  max-width: 14rem;
 }
 
 <div
-    class="container-fluid mb-2"
+    class="col-12 pb-4"
   >
     <h3
-      class="font-weight-bold"
+      class="font-weight-bold text-light"
     >
       Users
     </h3>
@@ -1993,7 +1941,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -2025,7 +1973,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -2042,7 +1990,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -2074,7 +2022,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -2091,7 +2039,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -2123,7 +2071,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -2137,30 +2085,26 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
 
 exports[`renders correctly 1`] = `
 <DocumentFragment>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
+  .c0 {
   margin: 0.25em 0.5em;
   word-wrap: break-word;
 }
 
-.c2:hover {
+.c1:hover {
   cursor: pointer;
 }
 
 <div
-    class="container-fluid d-flex justify-content-center mx-auto row my-5"
+    class="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2"
   >
     <div
-      class="c0 col-12 col-lg-8 input-group"
+      class="c0 mx-auto input-group"
     >
       <div
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Public Key (PK)
         </span>
@@ -2180,13 +2124,13 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
     <div
-      class="c0 col-12 col-lg-8 input-group"
+      class="c0 mx-auto input-group"
     >
       <div
         class="input-group-prepend"
       >
         <span
-          class="c1 input-group-text"
+          class="input-group-text"
         >
           Private Key (SK)
         </span>
@@ -2203,11 +2147,11 @@ exports[`renders correctly 1`] = `
         class="input-group-append"
       >
         <span
-          class="c1 rounded-right input-group-text"
+          class="rounded-right input-group-text"
         >
           <span
             aria-label="Key Reveal Eye"
-            class="c2"
+            class="c1"
             role="img"
           >
             <svg
@@ -2235,16 +2179,11 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
   </div>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
+  .c0 {
   margin: 0 1rem;
   padding: 1em;
   border-radius: 6px;
-  border: 1px solid black;
-  background-color: #1f1f1f;
+  border: none;
 }
 
 <div
@@ -2252,7 +2191,7 @@ exports[`renders correctly 1`] = `
   >
     <form
       aria-label="Sign Form"
-      class="c0 col-12 col-lg-5"
+      class="c0 col-12 col-lg-5 bg-dark"
       novalidate=""
     >
       <div
@@ -2262,7 +2201,7 @@ exports[`renders correctly 1`] = `
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Sender Public Key
           </span>
@@ -2288,7 +2227,7 @@ exports[`renders correctly 1`] = `
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Receiver Public Key
           </span>
@@ -2319,7 +2258,7 @@ exports[`renders correctly 1`] = `
           class="input-group-append"
         >
           <span
-            class="c1 rounded-right border-left-0 input-group-text"
+            class="rounded-right border-left-0 input-group-text"
           >
             LC
           </span>
@@ -2332,7 +2271,7 @@ exports[`renders correctly 1`] = `
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Message
           </span>
@@ -2352,7 +2291,7 @@ exports[`renders correctly 1`] = `
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Sender Private Key
           </span>
@@ -2383,7 +2322,7 @@ exports[`renders correctly 1`] = `
     </form>
     <form
       aria-label="Send Form"
-      class="c0 col-12 col-lg-5 my-2 my-lg-0"
+      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-dark"
       novalidate=""
     >
       <div
@@ -2393,7 +2332,7 @@ exports[`renders correctly 1`] = `
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Receiver Public Key
           </span>
@@ -2427,7 +2366,7 @@ exports[`renders correctly 1`] = `
           class="input-group-append"
         >
           <span
-            class="c1 rounded-right border-left-0 input-group-text"
+            class="rounded-right border-left-0 input-group-text"
           >
             LC
           </span>
@@ -2440,7 +2379,7 @@ exports[`renders correctly 1`] = `
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Message
           </span>
@@ -2461,7 +2400,7 @@ exports[`renders correctly 1`] = `
           class="input-group-prepend"
         >
           <span
-            class="c1 input-group-text"
+            class="input-group-text"
           >
             Transaction Signature
           </span>
@@ -2492,22 +2431,18 @@ exports[`renders correctly 1`] = `
       </button>
     </form>
   </div>
-  .c1.c1.c1 {
-  font-weight: bold;
-}
-
-.c0 {
-  background-color: #fff;
+  .c0 {
+  background-color: #FEFEFE;
   margin: 1em 0.5em;
   padding: 1em;
-  width: 14rem;
+  max-width: 14rem;
 }
 
 <div
-    class="container-fluid mb-2"
+    class="col-12 pb-4"
   >
     <h3
-      class="font-weight-bold"
+      class="font-weight-bold text-light"
     >
       Users
     </h3>
@@ -2524,7 +2459,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -2556,7 +2491,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -2573,7 +2508,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -2605,7 +2540,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>
@@ -2622,7 +2557,7 @@ exports[`renders correctly 1`] = `
             class="input-group-prepend"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               🔑
             </span>
@@ -2654,7 +2589,7 @@ exports[`renders correctly 1`] = `
             class="input-group-append"
           >
             <span
-              class="c1 input-group-text"
+              class="input-group-text"
             >
               LC
             </span>

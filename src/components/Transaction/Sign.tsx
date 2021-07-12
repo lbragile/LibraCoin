@@ -9,7 +9,6 @@ import { ACTIONS } from "../../enums/AppDispatchActions";
 import { SignSchema } from "../../schema/SignSchema";
 import { digestMessage } from "../../utils/conversion";
 import { TransForm } from "../../styles/TransactionStyles";
-import { StyledInputGroupText } from "../../styles/GlobalStyles";
 
 export default function Sign(): JSX.Element {
   const { state, dispatch } = useAppContext();
@@ -35,10 +34,10 @@ export default function Sign(): JSX.Element {
       initialValues={{ to: "", amount: "", msg: "" }}
     >
       {({ handleSubmit, isSubmitting, touched, errors }) => (
-        <TransForm aria-label="Sign Form" noValidate className="col-12 col-lg-5" onSubmit={handleSubmit}>
+        <TransForm aria-label="Sign Form" noValidate className="col-12 col-lg-5 bg-dark" onSubmit={handleSubmit}>
           <InputGroup>
             <InputGroup.Prepend>
-              <StyledInputGroupText>Sender Public Key</StyledInputGroupText>
+              <InputGroup.Text>Sender Public Key</InputGroup.Text>
             </InputGroup.Prepend>
             <Form.Control
               aria-label="Sender Public Key"
@@ -54,7 +53,7 @@ export default function Sign(): JSX.Element {
 
           <InputGroup className="my-2">
             <InputGroup.Prepend>
-              <StyledInputGroupText>Receiver Public Key</StyledInputGroupText>
+              <InputGroup.Text>Receiver Public Key</InputGroup.Text>
             </InputGroup.Prepend>
             <Field
               as={Form.Control}
@@ -98,7 +97,7 @@ export default function Sign(): JSX.Element {
             />
 
             <InputGroup.Append>
-              <StyledInputGroupText className="rounded-right border-left-0">LC</StyledInputGroupText>
+              <InputGroup.Text className="rounded-right border-left-0">LC</InputGroup.Text>
             </InputGroup.Append>
 
             <ErrorMessage
@@ -118,7 +117,7 @@ export default function Sign(): JSX.Element {
 
           <InputGroup className="mb-2">
             <InputGroup.Prepend>
-              <StyledInputGroupText>Message</StyledInputGroupText>
+              <InputGroup.Text>Message</InputGroup.Text>
             </InputGroup.Prepend>
             <Field
               as={TextAreaFormControl}
@@ -133,7 +132,7 @@ export default function Sign(): JSX.Element {
 
           <InputGroup>
             <InputGroup.Prepend>
-              <StyledInputGroupText>Sender Private Key</StyledInputGroupText>
+              <InputGroup.Text>Sender Private Key</InputGroup.Text>
             </InputGroup.Prepend>
             <Form.Control
               aria-label="Sender Private Key"
