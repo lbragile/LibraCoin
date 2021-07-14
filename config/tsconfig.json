@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ES2017"],
+    "target": "ES2018",
+    "module": "CommonJS",
+    "lib": ["DOM", "DOM.Iterable", "ES2018", "ESNext.AsyncIterable"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -14,7 +14,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "emitDecoratorMetadata": true, // TypeGraphQL
+    "experimentalDecorators": true // TypeGraphQL
   },
   "include": ["../src", "../tests"],
   "exclude": ["../node_modules", "../build"]

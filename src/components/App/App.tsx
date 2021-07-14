@@ -1,5 +1,6 @@
 import React, { useMemo, useReducer, Suspense, lazy, useEffect } from "react";
 import { Route, BrowserRouter as Router, Redirect, Switch } from "react-router-dom";
+import { gql, useQuery } from "@apollo/client";
 import logger from "use-reducer-logger";
 
 import { AppReducer } from "../../reducers/AppReducer";
@@ -62,6 +63,17 @@ export default function App(): JSX.Element {
   // prevent re-rendering children when App re-renders
   const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
 
+  const { loading, error, data } = useQuery<{ getName: { id: string; name?: string }[] }>(
+    gql`
+      query {
+        getName {
+          name
+          id
+        }
+      }
+    `
+  );
+
   return (
     <React.Fragment>
       <GlobalStyle />
@@ -69,6 +81,16 @@ export default function App(): JSX.Element {
       <Suspense fallback={<Loading />}>
         <NavMenu />
       </Suspense>
+
+      {loading ? (
+        <p>Loading ...</p>
+      ) : error ? (
+        <p>{JSON.stringify(error)}</p>
+      ) : (
+        data?.getName.map((item) => {
+          return <div key={item.name}>{JSON.stringify(item)}</div>;
+        })
+      )}
 
       <AppContext.Provider value={value}>
         <Router>
