@@ -1,6 +1,5 @@
 import React, { useMemo, useReducer, Suspense, lazy, useEffect } from "react";
 import { Route, BrowserRouter as Router, Redirect, Switch } from "react-router-dom";
-import { gql, useQuery } from "@apollo/client";
 import logger from "use-reducer-logger";
 
 import { AppReducer } from "../../reducers/AppReducer";
@@ -9,6 +8,7 @@ import { IState } from "../../typings/AppTypes";
 
 import { GlobalStyle } from "../../styles/GlobalStyles";
 import Loading from "./Loading";
+import { useGetNameQuery } from "../../api/generated/graphql";
 
 // Code Splitting & Lazy Loading
 const NavMenu = lazy(() => import("../NavMenu/NavMenu"));
@@ -63,16 +63,7 @@ export default function App(): JSX.Element {
   // prevent re-rendering children when App re-renders
   const value = useMemo(() => ({ state, dispatch }), [state, dispatch]);
 
-  const { loading, error, data } = useQuery<{ getName: { id: string; name?: string }[] }>(
-    gql`
-      query {
-        getName {
-          name
-          id
-        }
-      }
-    `
-  );
+  const { loading, error, data } = useGetNameQuery();
 
   return (
     <React.Fragment>

@@ -7,6 +7,9 @@
 # production
 /build
 
+# graphQL
+/src/api/generated
+
 # misc
 .env.local
 .env.development.local

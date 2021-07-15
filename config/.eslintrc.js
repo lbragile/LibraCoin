@@ -15,6 +15,5 @@ module.exports = {
   rules: {
     "default-case": "warn"
   },
-  settings: { react: { version: "detect" } },
-  ignorePatterns: ["dist/*.js"]
+  settings: { react: { version: "detect" } }
 };

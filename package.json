@@ -26,6 +26,11 @@
     "@babel/core": "^7.13.14",
     "@babel/preset-env": "^7.13.12",
     "@babel/preset-react": "^7.13.13",
+    "@graphql-codegen/cli": "1.21.7",
+    "@graphql-codegen/fragment-matcher": "2.0.1",
+    "@graphql-codegen/typescript": "1.23.0",
+    "@graphql-codegen/typescript-operations": "1.18.4",
+    "@graphql-codegen/typescript-react-apollo": "2.3.1",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.9",
@@ -72,12 +77,13 @@
     "test:integration": "npm test -- --group=integration --group=utils --group=reducers",
     "lint": "npx eslint src tests -c config/.eslintrc.js && npx stylelint src --config config/.stylelintrc.json",
     "start": "react-scripts start",
-    "start:back": "nodemon --project config/tsconfig.json --watch src/**/* --ext ts,tsx --ignore tests/**/*.spec.{ts,tsx} --exec ts-node src/api/graphql.ts",
+    "start:back": "nodemon --project config/tsconfig.json --watch src/api/graphql.ts --exec ts-node src/api/graphql.ts",
     "build": "workbox generateSW ./config/workbox-config.js && react-scripts build",
     "deploy:github": "gh-pages -d build",
     "deploy:local": "serve -s build -l 5000",
     "build:deploy:github": "npm run build && npm run deploy:github",
-    "build:deploy:local": "npm run build && npm run deploy:local"
+    "build:deploy:local": "npm run build && npm run deploy:local",
+    "codegen": "graphql-codegen --watch src/api/graphql/**/*.qgl --config ./config/codegen.yml"
   },
   "babel": {
     "extends": "./config/.babelrc.json"

@@ -40,7 +40,7 @@ async function main() {
   const schema = await buildSchema({
     resolvers: [TestGraphQLResolver],
     emitSchemaFile: {
-      path: __dirname + "/graphQL/schema.gql",
+      path: __dirname + "/generated/schema.gql",
       commentDescriptions: true,
       sortedSchema: false // by default the printed schema is sorted alphabetically
     }
@@ -51,7 +51,7 @@ async function main() {
 
   // Start the server
   const { url } = await server.listen(4000);
-  console.log(`Server is running, GraphQL Playground available at ${url}`);
+  console.log(`Server started at ${url}graphql`);
 }
 
 main();
