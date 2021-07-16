@@ -11,6 +11,7 @@
     "formik": "^2.2.9",
     "graphql": "^15.5.1",
     "node-sass": "^6.0.1",
+    "pg": "^8.6.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
     "react-bootstrap-icons": "^1.5.0",
@@ -20,6 +21,7 @@
     "reflect-metadata": "^0.1.13",
     "styled-components": "^5.3.0",
     "type-graphql": "^1.1.1",
+    "typeorm": "^0.2.34",
     "yup": "^0.32.9"
   },
   "devDependencies": {
@@ -46,6 +48,8 @@
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
     "babel-plugin-styled-components": "^1.13.1",
+    "dotenv": "^10.0.0",
+    "dotenv-expand": "^5.1.0",
     "eslint": "^7.23.0",
     "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-jest-dom": "^3.9.0",

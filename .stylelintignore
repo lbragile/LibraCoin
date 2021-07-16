@@ -1,1 +1,2 @@
-/src/api/
+/src/graphql
+/src/api/**/*

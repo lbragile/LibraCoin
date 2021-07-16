@@ -8,7 +8,7 @@ import { IState } from "../../typings/AppTypes";
 
 import { GlobalStyle } from "../../styles/GlobalStyles";
 import Loading from "./Loading";
-import { useGetNameQuery } from "../../api/generated/graphql";
+import { useGetNameQuery } from "../../graphql/generated/graphql";
 
 // Code Splitting & Lazy Loading
 const NavMenu = lazy(() => import("../NavMenu/NavMenu"));
