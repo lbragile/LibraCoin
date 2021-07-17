@@ -1,0 +1,7 @@
+mutation createUser($publicKey: String!, $privateKey: String!) {
+  createUser(publicKey: $publicKey, privateKey: $privateKey) {
+    balance
+    publicKey
+    privateKey
+  }
+}

@@ -81,7 +81,7 @@
     "test:integration": "npm test -- --group=integration --group=utils --group=reducers",
     "lint": "npx eslint src tests -c config/.eslintrc.js && npx stylelint src --config config/.stylelintrc.json",
     "start": "react-scripts start",
-    "start:back": "nodemon --project config/tsconfig.json --watch src/api/graphql.ts --exec ts-node src/api/graphql.ts",
+    "server": "nodemon --project config/tsconfig.json --watch src/api/**/* --ext ts --exec ts-node src/api/graphql.ts",
     "build": "workbox generateSW ./config/workbox-config.js && react-scripts build",
     "deploy:github": "gh-pages -d build",
     "deploy:local": "serve -s build -l 5000",

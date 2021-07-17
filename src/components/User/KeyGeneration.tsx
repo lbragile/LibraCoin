@@ -13,7 +13,7 @@ export default function KeyGeneration(): JSX.Element {
   const numRows = useRef(3);
   const [show, setShow] = useState<boolean>(false);
 
-  useAddUser(state.user.publicKey, state.users);
+  useAddUser(state.user.privateKey, state.users);
 
   return (
     <div className="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2">

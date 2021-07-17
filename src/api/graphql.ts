@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Arg, buildSchema, Field, ID, Mutation, ObjectType, Query, Resolver } from "type-graphql";
+import { buildSchema } from "type-graphql";
 import { ApolloServer } from "apollo-server";
 import { createConnection, getConnectionOptions } from "typeorm";
 import path from "path";
@@ -11,47 +11,12 @@ if (process.env.NODE_ENV !== "production") {
   dotEnvExpand(env);
 }
 
-const db = [
-  { id: "aaa", name: "bob" },
-  { id: "bbb", name: "bill" },
-  { id: "ccc", name: "barbra" },
-  { id: "ddd", name: "ben" },
-  { id: "eee", name: "bart" }
-];
-
-@ObjectType()
-class TestGraphQL {
-  @Field(() => ID, { description: "this is the id" })
-  id!: string;
-
-  @Field({ description: "name is important", nullable: true })
-  name?: string;
-}
-
-@Resolver(TestGraphQL)
-class TestGraphQLResolver {
-  @Query(() => [TestGraphQL])
-  async getName() {
-    return db;
-  }
-
-  @Mutation(() => [TestGraphQL])
-  async changeFirstName(@Arg("id") id: string) {
-    return db.map((item) => {
-      if (item.id === id) {
-        item.name = "NEW NAME";
-      }
-      return item;
-    });
-  }
-}
-
 async function main() {
   const connectionOptions = await getConnectionOptions();
   await createConnection(connectionOptions);
 
   const schema = await buildSchema({
-    resolvers: [TestGraphQLResolver],
+    resolvers: [path.join(__dirname, "/resolvers/*.ts")],
     emitSchemaFile: {
       path: path.resolve(__dirname, "../graphql/generated/schema.gql"),
       commentDescriptions: true,

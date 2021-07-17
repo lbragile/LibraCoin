@@ -1,0 +1,5 @@
+query userDetails($publicKey: String!) {
+  userDetails(publicKey: $publicKey) {
+    balance
+  }
+}
