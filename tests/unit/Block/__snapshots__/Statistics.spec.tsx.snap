@@ -3,7 +3,7 @@
 exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = `
 <DocumentFragment>
   .c1 {
-  color: #F0534A;
+  color: hsl(0,80%,65%);
 }
 
 .c0 {
@@ -112,7 +112,7 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
           class="col-10 pl-5"
         >
           <svg
-            fill="#FEFEFE"
+            fill="currentColor"
             height="1em"
             viewBox="0 0 16 16"
             width="1em"
@@ -142,7 +142,7 @@ exports[`in blockchain mode renders correctly block is invalid (index: 2) 1`] = 
 exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
 <DocumentFragment>
   .c1 {
-  color: #2CA355;
+  color: hsl(120,80%,65%);
 }
 
 .c0 {
@@ -252,7 +252,7 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
           class="col-10 pl-5"
         >
           <svg
-            fill="#FEFEFE"
+            fill="currentColor"
             height="1em"
             viewBox="0 0 16 16"
             width="1em"
@@ -282,7 +282,7 @@ exports[`in blockchain mode renders correctly block is valid (index: 0) 1`] = `
 exports[`in preview mode renders correctly 1`] = `
 <DocumentFragment>
   .c1 {
-  color: #F0534A;
+  color: hsl(0,80%,65%);
 }
 
 .c0 {
@@ -391,7 +391,7 @@ exports[`in preview mode renders correctly 1`] = `
           class="col-10 pl-5"
         >
           <svg
-            fill="#FEFEFE"
+            fill="currentColor"
             height="1em"
             viewBox="0 0 16 16"
             width="1em"

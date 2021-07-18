@@ -9,12 +9,16 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: radial-gradient(${COLORS.PRIMARY_COLOR} 70%, ${COLORS.SECONDARY_COLOR} 100%);
     width: 100vw;
     height: 100vh;
+    background-color: ${COLORS.PRIMARY_COLOR};
   }
 
   .input-group-text {
     font-weight: bold;
+  }
+
+  .bg-secondary {
+    background-color: ${COLORS.SECONDARY_COLOR} !important;
   }
 `;

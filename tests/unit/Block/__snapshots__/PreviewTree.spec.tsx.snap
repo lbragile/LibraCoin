@@ -6,12 +6,12 @@ exports[`0 selected transactions 1`] = `
     class="w-100 mb-2 text-center"
   >
     <h3
-      class="font-weight-bold w-25 mx-auto text-light"
+      class="font-weight-bold w-25 mx-auto"
     >
       Merkle Tree Visualization
     </h3>
     <p
-      class="my-3 w-75 mx-auto text-light"
+      class="my-3 w-75 mx-auto"
     >
       Please select a verified transaction from above...
     </p>
@@ -24,7 +24,7 @@ exports[`1 selected transactions 1`] = `
   .c0 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
+  color: white;
   background: transparent;
 }
 
@@ -35,8 +35,8 @@ exports[`1 selected transactions 1`] = `
 .c1 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: #2CA355;
+  color: white;
+  background: hsl(120,50%,50%);
 }
 
 .c1.c1.c1 {
@@ -47,7 +47,7 @@ exports[`1 selected transactions 1`] = `
     class="w-100 mb-2 text-center"
   >
     <h3
-      class="font-weight-bold w-25 mx-auto text-light"
+      class="font-weight-bold w-25 mx-auto"
     >
       Merkle Tree Visualization
     </h3>
@@ -123,7 +123,7 @@ exports[`2 selected transactions 1`] = `
   .c0 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
+  color: white;
   background: transparent;
 }
 
@@ -134,8 +134,8 @@ exports[`2 selected transactions 1`] = `
 .c1 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: #2CA355;
+  color: white;
+  background: hsl(120,50%,50%);
 }
 
 .c1.c1.c1 {
@@ -145,8 +145,8 @@ exports[`2 selected transactions 1`] = `
 .c2 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: linear-gradient(to top left,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+  color: white;
+  background: linear-gradient(to top left,transparent calc(50% - 1px),hsl(0,0%,50%),transparent calc(50% + 1px));
 }
 
 .c2.c2.c2 {
@@ -156,8 +156,8 @@ exports[`2 selected transactions 1`] = `
 .c3 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: linear-gradient(to top right,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+  color: white;
+  background: linear-gradient(to top right,transparent calc(50% - 1px),hsl(0,0%,50%),transparent calc(50% + 1px));
 }
 
 .c3.c3.c3 {
@@ -167,8 +167,8 @@ exports[`2 selected transactions 1`] = `
 .c4 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: #2641A3;
+  color: white;
+  background: hsl(200,50%,50%);
 }
 
 .c4.c4.c4 {
@@ -179,7 +179,7 @@ exports[`2 selected transactions 1`] = `
     class="w-100 mb-2 text-center"
   >
     <h3
-      class="font-weight-bold w-25 mx-auto text-light"
+      class="font-weight-bold w-25 mx-auto"
     >
       Merkle Tree Visualization
     </h3>
@@ -344,7 +344,7 @@ exports[`3 selected transactions 1`] = `
   .c0 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
+  color: white;
   background: transparent;
 }
 
@@ -355,8 +355,8 @@ exports[`3 selected transactions 1`] = `
 .c1 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: #2CA355;
+  color: white;
+  background: hsl(120,50%,50%);
 }
 
 .c1.c1.c1 {
@@ -366,8 +366,8 @@ exports[`3 selected transactions 1`] = `
 .c2 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: linear-gradient(to top left,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+  color: white;
+  background: linear-gradient(to top left,transparent calc(50% - 1px),hsl(0,0%,50%),transparent calc(50% + 1px));
 }
 
 .c2.c2.c2 {
@@ -377,8 +377,8 @@ exports[`3 selected transactions 1`] = `
 .c3 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: linear-gradient(to top right,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+  color: white;
+  background: linear-gradient(to top right,transparent calc(50% - 1px),hsl(0,0%,50%),transparent calc(50% + 1px));
 }
 
 .c3.c3.c3 {
@@ -388,8 +388,8 @@ exports[`3 selected transactions 1`] = `
 .c4 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: #EE964B;
+  color: white;
+  background: hsl(60,50%,50%);
 }
 
 .c4.c4.c4 {
@@ -399,8 +399,8 @@ exports[`3 selected transactions 1`] = `
 .c5 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: linear-gradient(to left,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+  color: white;
+  background: linear-gradient(to left,transparent calc(50% - 1px),hsl(0,0%,50%),transparent calc(50% + 1px));
 }
 
 .c5.c5.c5 {
@@ -410,8 +410,8 @@ exports[`3 selected transactions 1`] = `
 .c6 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: #2641A3;
+  color: white;
+  background: hsl(200,50%,50%);
 }
 
 .c6.c6.c6 {
@@ -422,7 +422,7 @@ exports[`3 selected transactions 1`] = `
     class="w-100 mb-2 text-center"
   >
     <h3
-      class="font-weight-bold w-25 mx-auto text-light"
+      class="font-weight-bold w-25 mx-auto"
     >
       Merkle Tree Visualization
     </h3>
@@ -677,7 +677,7 @@ exports[`4 selected transactions 1`] = `
   .c0 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
+  color: white;
   background: transparent;
 }
 
@@ -688,8 +688,8 @@ exports[`4 selected transactions 1`] = `
 .c1 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: #2CA355;
+  color: white;
+  background: hsl(120,50%,50%);
 }
 
 .c1.c1.c1 {
@@ -699,8 +699,8 @@ exports[`4 selected transactions 1`] = `
 .c2 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: linear-gradient(to top left,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+  color: white;
+  background: linear-gradient(to top left,transparent calc(50% - 1px),hsl(0,0%,50%),transparent calc(50% + 1px));
 }
 
 .c2.c2.c2 {
@@ -710,8 +710,8 @@ exports[`4 selected transactions 1`] = `
 .c3 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: linear-gradient(to top right,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+  color: white;
+  background: linear-gradient(to top right,transparent calc(50% - 1px),hsl(0,0%,50%),transparent calc(50% + 1px));
 }
 
 .c3.c3.c3 {
@@ -721,8 +721,8 @@ exports[`4 selected transactions 1`] = `
 .c4 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: #EE964B;
+  color: white;
+  background: hsl(60,50%,50%);
 }
 
 .c4.c4.c4 {
@@ -732,8 +732,8 @@ exports[`4 selected transactions 1`] = `
 .c5 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: linear-gradient(to left,transparent calc(50% - 1px),#777,transparent calc(50% + 1px));
+  color: white;
+  background: linear-gradient(to left,transparent calc(50% - 1px),hsl(0,0%,50%),transparent calc(50% + 1px));
 }
 
 .c5.c5.c5 {
@@ -743,8 +743,8 @@ exports[`4 selected transactions 1`] = `
 .c6 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: #2641A3;
+  color: white;
+  background: hsl(200,50%,50%);
 }
 
 .c6.c6.c6 {
@@ -755,7 +755,7 @@ exports[`4 selected transactions 1`] = `
     class="w-100 mb-2 text-center"
   >
     <h3
-      class="font-weight-bold w-25 mx-auto text-light"
+      class="font-weight-bold w-25 mx-auto"
     >
       Merkle Tree Visualization
     </h3>
@@ -1013,7 +1013,7 @@ exports[`renders correctly 1`] = `
   .c0 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
+  color: white;
   background: transparent;
 }
 
@@ -1024,8 +1024,8 @@ exports[`renders correctly 1`] = `
 .c1 {
   width: 11%;
   height: 35px;
-  color: #FEFEFE;
-  background: #2CA355;
+  color: white;
+  background: hsl(120,50%,50%);
 }
 
 .c1.c1.c1 {
@@ -1036,7 +1036,7 @@ exports[`renders correctly 1`] = `
     class="w-100 mb-2 text-center"
   >
     <h3
-      class="font-weight-bold w-25 mx-auto text-light"
+      class="font-weight-bold w-25 mx-auto"
     >
       Merkle Tree Visualization
     </h3>

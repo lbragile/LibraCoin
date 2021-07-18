@@ -3,20 +3,19 @@
     "target": "ES2018",
     "module": "CommonJS",
     "lib": ["DOM", "DOM.Iterable", "ES2018", "ESNext.AsyncIterable"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "jsx": "react-jsx",
+    "outDir": "./dist", // Ignored if noEmit is enabled
+    "moduleResolution": "node", // 'node' (Node.js) or 'classic' (TypeScript pre-1.6)
+    "declaration": false, //If Enabled, generates corresponding '.d.ts' file
+    "noEmit": true, // Do not emit outputs
+    "strict": true, // Enable all strict type-checking options
+    "strictPropertyInitialization": false, // Disable strict checking of property initialization in classes
+    "esModuleInterop": true, // Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'.
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "emitDecoratorMetadata": true, // TypeGraphQL
-    "experimentalDecorators": true // TypeGraphQL
+    "emitDecoratorMetadata": true, // TypeGraphQL  & TypeORM
+    "experimentalDecorators": true // TypeGraphQL  & TypeORM
   },
   "include": ["../src", "../tests"],
   "exclude": ["../node_modules", "../build"]

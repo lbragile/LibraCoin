@@ -12,10 +12,10 @@ exports[`renders correctly 1`] = `
 }
 
 <div
-    class="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2"
+    class="container col-11 col-lg-8 justify-content-center mb-5 bg-secondary rounded p-2"
   >
     <div
-      class="c0 mx-auto input-group"
+      class="c0 mx-auto mb-3 input-group"
     >
       <div
         class="input-group-prepend"

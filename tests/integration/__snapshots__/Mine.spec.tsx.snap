@@ -12,12 +12,12 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
   border-radius: 5px;
   border: 2px solid transparent;
   min-width: 14rem;
-  background-color: #FEFEFE;
+  background-color: hsl(0,0%,99%);
 }
 
 .c1:hover {
   cursor: pointer;
-  box-shadow: 0 0 3px 3px #6490D6;
+  box-shadow: 0 0 3px 3px hsl(200,100%,60%);
 }
 
 .c2 {
@@ -26,12 +26,12 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
   border-radius: 5px;
   border: 2px solid transparent;
   min-width: 14rem;
-  background-color: #90F0E3;
+  background-color: hsl(200,100%,80%);
 }
 
 .c2:hover {
   cursor: pointer;
-  box-shadow: 0 0 3px 3px #6490D6;
+  box-shadow: 0 0 3px 3px hsl(200,100%,60%);
 }
 
 <div
@@ -39,7 +39,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
   >
     <h3
       aria-label="Title"
-      class="font-weight-bold text-light"
+      class="font-weight-bold"
     >
       Verified Transactions
     </h3>
@@ -514,11 +514,11 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
     </div>
   </div>
   .c1 {
-  color: #F0534A;
+  color: hsl(0,80%,65%);
 }
 
 .c2 {
-  background-color: #F07571;
+  background-color: hsl(0,100%,80%);
 }
 
 .c0 {
@@ -534,12 +534,12 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
       class="w-100 mb-2 text-center"
     >
       <h3
-        class="font-weight-bold w-25 mx-auto text-light"
+        class="font-weight-bold w-25 mx-auto"
       >
         Merkle Tree Visualization
       </h3>
       <p
-        class="my-3 w-75 mx-auto text-light"
+        class="my-3 w-75 mx-auto"
       >
         Please select a verified transaction from above...
       </p>
@@ -644,7 +644,7 @@ exports[`starts off invalid, and after mining it stays invalid (cannot be added 
             class="col-10 pl-5"
           >
             <svg
-              fill="#FEFEFE"
+              fill="currentColor"
               height="1em"
               viewBox="0 0 16 16"
               width="1em"
@@ -794,12 +794,12 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
   border-radius: 5px;
   border: 2px solid transparent;
   min-width: 14rem;
-  background-color: #FEFEFE;
+  background-color: hsl(0,0%,99%);
 }
 
 .c1:hover {
   cursor: pointer;
-  box-shadow: 0 0 3px 3px #6490D6;
+  box-shadow: 0 0 3px 3px hsl(200,100%,60%);
 }
 
 .c2 {
@@ -808,12 +808,12 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
   border-radius: 5px;
   border: 2px solid transparent;
   min-width: 14rem;
-  background-color: #90F0E3;
+  background-color: hsl(200,100%,80%);
 }
 
 .c2:hover {
   cursor: pointer;
-  box-shadow: 0 0 3px 3px #6490D6;
+  box-shadow: 0 0 3px 3px hsl(200,100%,60%);
 }
 
 <div
@@ -821,7 +821,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
   >
     <h3
       aria-label="Title"
-      class="font-weight-bold text-light"
+      class="font-weight-bold"
     >
       Verified Transactions
     </h3>
@@ -1296,11 +1296,11 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
     </div>
   </div>
   .c1 {
-  color: #F0534A;
+  color: hsl(0,80%,65%);
 }
 
 .c2 {
-  background-color: #F07571;
+  background-color: hsl(0,100%,80%);
 }
 
 .c0 {
@@ -1316,12 +1316,12 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
       class="w-100 mb-2 text-center"
     >
       <h3
-        class="font-weight-bold w-25 mx-auto text-light"
+        class="font-weight-bold w-25 mx-auto"
       >
         Merkle Tree Visualization
       </h3>
       <p
-        class="my-3 w-75 mx-auto text-light"
+        class="my-3 w-75 mx-auto"
       >
         Please select a verified transaction from above...
       </p>
@@ -1426,7 +1426,7 @@ exports[`starts off invalid, but after mining turns valid, and is added to block
             class="col-10 pl-5"
           >
             <svg
-              fill="#FEFEFE"
+              fill="currentColor"
               height="1em"
               viewBox="0 0 16 16"
               width="1em"

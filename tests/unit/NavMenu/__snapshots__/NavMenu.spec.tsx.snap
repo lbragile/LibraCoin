@@ -8,7 +8,6 @@ exports[`renders correctly 1`] = `
 
 .c1.c1.c1 {
   font-size: larger;
-  color: #FEFEFE;
   font-weight: bolder;
   text-align: right;
 }
@@ -16,14 +15,13 @@ exports[`renders correctly 1`] = `
 .c1.c1.c1:hover,
 .c1.c1.c1.active {
   font-weight: bolder;
-  color: #020202;
 }
 
 .c1.c1.c1:hover {
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  -webkit-text-decoration-color: #FFEE91;
-  text-decoration-color: #FFEE91;
+  -webkit-text-decoration-color: hsl(240,100%,50%);
+  text-decoration-color: hsl(240,100%,50%);
   text-underline-offset: 8px;
 }
 

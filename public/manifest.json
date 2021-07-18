@@ -22,7 +22,7 @@
   ],
   "start_url": "/LibraCoin/wallet",
   "display": "standalone",
-  "theme_color": "#CA74DA",
-  "background_color": "#9B91FF",
+  "theme_color": "hsl(200, 70%, 90%)",
+  "background_color": "hsl(240, 50%, 85%)",
   "prefer_related_applications": false
 }

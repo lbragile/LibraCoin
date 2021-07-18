@@ -9,7 +9,6 @@ import { digestMessage, randomHash } from "../../utils/conversion";
 import { ThemeProvider } from "styled-components";
 import { StyledInput, StyledStatisticsForm } from "../../styles/BlockStyles";
 import { Hammer } from "react-bootstrap-icons";
-import { COLORS } from "../../enums/ColorPallet";
 interface IStatisticsProps {
   chain: boolean;
   index: number;
@@ -153,7 +152,7 @@ export default function Statistics(props: IStatisticsProps): JSX.Element {
       >
         <h4 className="my-0 row justify-content-end align-items-center flex-nowrap">
           <span className="col-10 pl-5">
-            <Hammer color={COLORS.ASSOCIATIVE_COLOR} />
+            <Hammer />
           </span>
           <Spinner className={"mr-3 " + (disableMineBtn ? "visible" : "invisible")} animation="border" role="status">
             <span className="sr-only">Loading...</span>

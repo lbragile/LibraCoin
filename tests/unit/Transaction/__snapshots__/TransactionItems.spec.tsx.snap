@@ -12,12 +12,12 @@ exports[`renders correctly 1`] = `
   border-radius: 5px;
   border: 2px solid transparent;
   min-width: 14rem;
-  background-color: #FEFEFE;
+  background-color: hsl(0,0%,99%);
 }
 
 .c1:hover {
   cursor: pointer;
-  box-shadow: 0 0 3px 3px #6490D6;
+  box-shadow: 0 0 3px 3px hsl(200,100%,60%);
 }
 
 .c2 {
@@ -26,12 +26,12 @@ exports[`renders correctly 1`] = `
   border-radius: 5px;
   border: 2px solid transparent;
   min-width: 14rem;
-  background-color: #90F0E3;
+  background-color: hsl(200,100%,80%);
 }
 
 .c2:hover {
   cursor: pointer;
-  box-shadow: 0 0 3px 3px #6490D6;
+  box-shadow: 0 0 3px 3px hsl(200,100%,60%);
 }
 
 <div
@@ -39,7 +39,7 @@ exports[`renders correctly 1`] = `
   >
     <h3
       aria-label="Title"
-      class="font-weight-bold text-light"
+      class="font-weight-bold"
     >
       Verified Transactions
     </h3>

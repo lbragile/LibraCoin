@@ -9,7 +9,7 @@ export const UserKey = styled(InputGroup)`
 `;
 
 export const UserItem = styled(Form)`
-  background-color: ${COLORS.ASSOCIATIVE_COLOR};
+  background-color: ${COLORS.NEUTRAL_BACKGROUND};
   margin: 1em 0.5em;
   padding: 1em;
   max-width: 14rem;

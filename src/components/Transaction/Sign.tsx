@@ -34,7 +34,7 @@ export default function Sign(): JSX.Element {
       initialValues={{ to: "", amount: "", msg: "" }}
     >
       {({ handleSubmit, isSubmitting, touched, errors }) => (
-        <TransForm aria-label="Sign Form" noValidate className="col-12 col-lg-5 bg-dark" onSubmit={handleSubmit}>
+        <TransForm aria-label="Sign Form" noValidate className="col-12 col-lg-5 bg-secondary" onSubmit={handleSubmit}>
           <InputGroup>
             <InputGroup.Prepend>
               <InputGroup.Text>Sender Public Key</InputGroup.Text>
@@ -49,7 +49,7 @@ export default function Sign(): JSX.Element {
             />
           </InputGroup>
 
-          <Form.Text className="text-light">Used to verify transaction was signed using your private key</Form.Text>
+          <Form.Text>Used to verify transaction was signed using your private key</Form.Text>
 
           <InputGroup className="my-2">
             <InputGroup.Prepend>
@@ -144,7 +144,7 @@ export default function Sign(): JSX.Element {
             />
           </InputGroup>
 
-          <Form.Text className="text-light">Not shared with anyone, keep this secret!</Form.Text>
+          <Form.Text>Not shared with anyone, keep this secret!</Form.Text>
 
           <Button
             aria-label="Sign Button"

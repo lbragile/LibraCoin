@@ -12,10 +12,10 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
 }
 
 <div
-    class="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2"
+    class="container col-11 col-lg-8 justify-content-center mb-5 bg-secondary rounded p-2"
   >
     <div
-      class="c0 mx-auto input-group"
+      class="c0 mx-auto mb-3 input-group"
     >
       <div
         class="input-group-prepend"
@@ -108,7 +108,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
   >
     <form
       aria-label="Sign Form"
-      class="c0 col-12 col-lg-5 bg-dark"
+      class="c0 col-12 col-lg-5 bg-secondary"
       novalidate=""
     >
       <div
@@ -133,7 +133,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Used to verify transaction was signed using your private key
       </small>
@@ -223,7 +223,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Not shared with anyone, keep this secret!
       </small>
@@ -239,7 +239,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     </form>
     <form
       aria-label="Send Form"
-      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-dark"
+      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-secondary"
       novalidate=""
     >
       <div
@@ -264,7 +264,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Make sure this matches the value used when signing
       </small>
@@ -332,7 +332,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Receiver uses this along with your public key to verify transaction
       </small>
@@ -349,7 +349,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     </form>
   </div>
   .c0 {
-  background-color: #FEFEFE;
+  background-color: hsl(0,0%,99%);
   margin: 1em 0.5em;
   padding: 1em;
   max-width: 14rem;
@@ -359,7 +359,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     class="col-12 pb-4"
   >
     <h3
-      class="font-weight-bold text-light"
+      class="font-weight-bold"
     >
       Users
     </h3>
@@ -530,10 +530,10 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
 }
 
 <div
-    class="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2"
+    class="container col-11 col-lg-8 justify-content-center mb-5 bg-secondary rounded p-2"
   >
     <div
-      class="c0 mx-auto input-group"
+      class="c0 mx-auto mb-3 input-group"
     >
       <div
         class="input-group-prepend"
@@ -626,7 +626,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
   >
     <form
       aria-label="Sign Form"
-      class="c0 col-12 col-lg-5 bg-dark"
+      class="c0 col-12 col-lg-5 bg-secondary"
       novalidate=""
     >
       <div
@@ -651,7 +651,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Used to verify transaction was signed using your private key
       </small>
@@ -743,7 +743,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Not shared with anyone, keep this secret!
       </small>
@@ -759,7 +759,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     </form>
     <form
       aria-label="Send Form"
-      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-dark"
+      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-secondary"
       novalidate=""
     >
       <div
@@ -784,7 +784,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Make sure this matches the value used when signing
       </small>
@@ -852,7 +852,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Receiver uses this along with your public key to verify transaction
       </small>
@@ -869,7 +869,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     </form>
   </div>
   .c0 {
-  background-color: #FEFEFE;
+  background-color: hsl(0,0%,99%);
   margin: 1em 0.5em;
   padding: 1em;
   max-width: 14rem;
@@ -879,7 +879,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     class="col-12 pb-4"
   >
     <h3
-      class="font-weight-bold text-light"
+      class="font-weight-bold"
     >
       Users
     </h3>
@@ -1050,10 +1050,10 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
 }
 
 <div
-    class="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2"
+    class="container col-11 col-lg-8 justify-content-center mb-5 bg-secondary rounded p-2"
   >
     <div
-      class="c0 mx-auto input-group"
+      class="c0 mx-auto mb-3 input-group"
     >
       <div
         class="input-group-prepend"
@@ -1146,7 +1146,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
   >
     <form
       aria-label="Sign Form"
-      class="c0 col-12 col-lg-5 bg-dark"
+      class="c0 col-12 col-lg-5 bg-secondary"
       novalidate=""
     >
       <div
@@ -1171,7 +1171,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Used to verify transaction was signed using your private key
       </small>
@@ -1266,7 +1266,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Not shared with anyone, keep this secret!
       </small>
@@ -1283,7 +1283,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     </form>
     <form
       aria-label="Send Form"
-      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-dark"
+      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-secondary"
       novalidate=""
     >
       <div
@@ -1308,7 +1308,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Make sure this matches the value used when signing
       </small>
@@ -1378,7 +1378,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Receiver uses this along with your public key to verify transaction
       </small>
@@ -1394,7 +1394,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     </form>
   </div>
   .c0 {
-  background-color: #FEFEFE;
+  background-color: hsl(0,0%,99%);
   margin: 1em 0.5em;
   padding: 1em;
   max-width: 14rem;
@@ -1404,7 +1404,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     class="col-12 pb-4"
   >
     <h3
-      class="font-weight-bold text-light"
+      class="font-weight-bold"
     >
       Users
     </h3>
@@ -1575,10 +1575,10 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
 }
 
 <div
-    class="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2"
+    class="container col-11 col-lg-8 justify-content-center mb-5 bg-secondary rounded p-2"
   >
     <div
-      class="c0 mx-auto input-group"
+      class="c0 mx-auto mb-3 input-group"
     >
       <div
         class="input-group-prepend"
@@ -1671,7 +1671,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
   >
     <form
       aria-label="Sign Form"
-      class="c0 col-12 col-lg-5 bg-dark"
+      class="c0 col-12 col-lg-5 bg-secondary"
       novalidate=""
     >
       <div
@@ -1696,7 +1696,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Used to verify transaction was signed using your private key
       </small>
@@ -1788,7 +1788,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Not shared with anyone, keep this secret!
       </small>
@@ -1804,7 +1804,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     </form>
     <form
       aria-label="Send Form"
-      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-dark"
+      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-secondary"
       novalidate=""
     >
       <div
@@ -1829,7 +1829,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Make sure this matches the value used when signing
       </small>
@@ -1897,7 +1897,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Receiver uses this along with your public key to verify transaction
       </small>
@@ -1914,7 +1914,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     </form>
   </div>
   .c0 {
-  background-color: #FEFEFE;
+  background-color: hsl(0,0%,99%);
   margin: 1em 0.5em;
   padding: 1em;
   max-width: 14rem;
@@ -1924,7 +1924,7 @@ exports[`copies public key on focus, pages and fills out sign form, signs, sends
     class="col-12 pb-4"
   >
     <h3
-      class="font-weight-bold text-light"
+      class="font-weight-bold"
     >
       Users
     </h3>
@@ -2095,10 +2095,10 @@ exports[`renders correctly 1`] = `
 }
 
 <div
-    class="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2"
+    class="container col-11 col-lg-8 justify-content-center mb-5 bg-secondary rounded p-2"
   >
     <div
-      class="c0 mx-auto input-group"
+      class="c0 mx-auto mb-3 input-group"
     >
       <div
         class="input-group-prepend"
@@ -2191,7 +2191,7 @@ exports[`renders correctly 1`] = `
   >
     <form
       aria-label="Sign Form"
-      class="c0 col-12 col-lg-5 bg-dark"
+      class="c0 col-12 col-lg-5 bg-secondary"
       novalidate=""
     >
       <div
@@ -2216,7 +2216,7 @@ exports[`renders correctly 1`] = `
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Used to verify transaction was signed using your private key
       </small>
@@ -2306,7 +2306,7 @@ exports[`renders correctly 1`] = `
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Not shared with anyone, keep this secret!
       </small>
@@ -2322,7 +2322,7 @@ exports[`renders correctly 1`] = `
     </form>
     <form
       aria-label="Send Form"
-      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-dark"
+      class="c0 col-12 col-lg-5 my-2 my-lg-0 bg-secondary"
       novalidate=""
     >
       <div
@@ -2347,7 +2347,7 @@ exports[`renders correctly 1`] = `
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Make sure this matches the value used when signing
       </small>
@@ -2415,7 +2415,7 @@ exports[`renders correctly 1`] = `
         />
       </div>
       <small
-        class="text-light form-text"
+        class="form-text"
       >
         Receiver uses this along with your public key to verify transaction
       </small>
@@ -2432,7 +2432,7 @@ exports[`renders correctly 1`] = `
     </form>
   </div>
   .c0 {
-  background-color: #FEFEFE;
+  background-color: hsl(0,0%,99%);
   margin: 1em 0.5em;
   padding: 1em;
   max-width: 14rem;
@@ -2442,7 +2442,7 @@ exports[`renders correctly 1`] = `
     class="col-12 pb-4"
   >
     <h3
-      class="font-weight-bold text-light"
+      class="font-weight-bold"
     >
       Users
     </h3>

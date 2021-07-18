@@ -40,7 +40,7 @@ export default function TransactionItems(): JSX.Element {
 
   return (
     <div className="container-fluid">
-      <h3 aria-label="Title" className="font-weight-bold text-light">
+      <h3 aria-label="Title" className="font-weight-bold">
         Verified Transactions
       </h3>
       <TransList className="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">

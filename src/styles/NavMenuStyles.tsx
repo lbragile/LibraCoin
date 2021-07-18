@@ -10,7 +10,6 @@ export const StyledNav = styled(Navbar)`
 export const StyledNavLink = styled(Nav.Link)`
   &&& {
     font-size: larger;
-    color: ${COLORS.ASSOCIATIVE_COLOR};
     font-weight: bolder;
     text-align: right;
   }
@@ -18,7 +17,6 @@ export const StyledNavLink = styled(Nav.Link)`
   &&&:hover,
   &&&.active {
     font-weight: bolder;
-    color: ${COLORS.INVERTED_ASSOCIATIVE_COLOR};
   }
 
   &&&:hover {

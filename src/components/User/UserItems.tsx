@@ -10,7 +10,7 @@ export default function UserItems(): JSX.Element {
 
   return (
     <div className="col-12 pb-4">
-      <h3 className="font-weight-bold text-light">Users</h3>
+      <h3 className="font-weight-bold">Users</h3>
       <div className="row flex-nowrap overflow-auto bg-dark mx-1 px-2 rounded">
         {state.users.map((user: IUser, i: number) => {
           return (

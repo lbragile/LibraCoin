@@ -19,7 +19,7 @@ const GradientLine = (dir: string) => {
 export const StyledTableData = styled.td`
   width: 11%;
   height: 35px;
-  color: ${COLORS.ASSOCIATIVE_COLOR};
+  color: white;
 
   /* increase the specificity to avoid using !important */
   &&& {

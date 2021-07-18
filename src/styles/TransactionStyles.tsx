@@ -18,7 +18,7 @@ export const TransList = styled.div`
 export const TransItem = styled(Form)`
   ${Transaction("0.5rem", "0.5em", "5px", "2px solid transparent")}; /* stylelint-disable-line */
   min-width: 14rem;
-  background-color: ${(props) => (props.theme.selected ? COLORS.SELECTED_TRANS_BACKGROUND : COLORS.ASSOCIATIVE_COLOR)};
+  background-color: ${(props) => (props.theme.selected ? COLORS.SELECTED_TRANS_BACKGROUND : COLORS.NEUTRAL_BACKGROUND)};
 
   &:hover {
     cursor: pointer;

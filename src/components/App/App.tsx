@@ -65,8 +65,7 @@ export default function App(): JSX.Element {
 
   const { loading, error, data } = useUserDetailsQuery({
     variables: {
-      publicKey:
-        "4059301306072a8648ce3d020106082a8648ce3d03010703420004d1721b57ccb14b60db3729371cee21eb48c7da633582c026fbb2a80aade0a4b5990b3220d30458fdd2e467294ac88911759e3527fd939248148f4e0ff5df8c70"
+      publicKey: state.user.publicKey
     }
   });
 
@@ -83,7 +82,7 @@ export default function App(): JSX.Element {
       ) : error ? (
         <p>{JSON.stringify(error)}</p>
       ) : (
-        <p>{JSON.stringify(data?.userDetails)}</p>
+        console.log(JSON.stringify(data?.userDetails))
       )}
 
       <AppContext.Provider value={value}>

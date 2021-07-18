@@ -3,7 +3,7 @@
 exports[`in blockchain mode 'Add Block' button is not present when block is invalid 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #F07571;
+  background-color: hsl(0,100%,80%);
 }
 
 .c1:hover {
@@ -149,7 +149,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is inva
 exports[`in blockchain mode 'Add Block' button is not present when block is valid 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #71F09D;
+  background-color: hsl(120,100%,80%);
 }
 
 .c1:hover {
@@ -295,7 +295,7 @@ exports[`in blockchain mode 'Add Block' button is not present when block is vali
 exports[`in blockchain mode handleViewTransactions changes emoji when show transactions is clicked 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #71F09D;
+  background-color: hsl(120,100%,80%);
 }
 
 .c1:hover {
@@ -441,7 +441,7 @@ exports[`in blockchain mode handleViewTransactions changes emoji when show trans
 exports[`in blockchain mode renders correctly index === 0 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #71F09D;
+  background-color: hsl(120,100%,80%);
 }
 
 <form
@@ -557,10 +557,10 @@ exports[`in blockchain mode renders correctly index === 0 1`] = `
 </DocumentFragment>
 `;
 
-exports[`in blockchain mode renders correctly index > 0 index → 1, class → {"background": "#71F09D"} 1`] = `
+exports[`in blockchain mode renders correctly index > 0 index → 1, class → {"background": "hsl(120, 100%, 80%)"} 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #71F09D;
+  background-color: hsl(120,100%,80%);
 }
 
 .c1:hover {
@@ -703,10 +703,10 @@ exports[`in blockchain mode renders correctly index > 0 index → 1, class → {
 </DocumentFragment>
 `;
 
-exports[`in blockchain mode renders correctly index > 0 index → 2, class → {"background": "#F07571"} 1`] = `
+exports[`in blockchain mode renders correctly index > 0 index → 2, class → {"background": "hsl(0, 100%, 80%)"} 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #F07571;
+  background-color: hsl(0,100%,80%);
 }
 
 .c1:hover {
@@ -852,7 +852,7 @@ exports[`in blockchain mode renders correctly index > 0 index → 2, class → {
 exports[`in preview mode renders correctly 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #F07571;
+  background-color: hsl(0,100%,80%);
 }
 
 <form
@@ -971,7 +971,7 @@ exports[`in preview mode renders correctly 1`] = `
 exports[`in preview mode valid State Shows 'Add Block' button 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #71F09D;
+  background-color: hsl(120,100%,80%);
 }
 
 .c1 {

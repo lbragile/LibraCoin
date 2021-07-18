@@ -16,8 +16,8 @@ export default function KeyGeneration(): JSX.Element {
   useAddUser(state.user.privateKey, state.users);
 
   return (
-    <div className="container col-11 col-lg-8 justify-content-center my-5 bg-dark rounded p-2">
-      <UserKey className="mx-auto">
+    <div className="container col-11 col-lg-8 justify-content-center mb-5 bg-secondary rounded p-2">
+      <UserKey className="mx-auto mb-3">
         <InputGroup.Prepend>
           <InputGroup.Text>Public Key (PK)</InputGroup.Text>
         </InputGroup.Prepend>

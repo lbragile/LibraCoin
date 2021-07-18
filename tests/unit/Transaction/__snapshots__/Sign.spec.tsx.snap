@@ -11,7 +11,7 @@ exports[`renders correctly 1`] = `
 
 <form
     aria-label="Sign Form"
-    class="c0 col-12 col-lg-5 bg-dark"
+    class="c0 col-12 col-lg-5 bg-secondary"
     novalidate=""
   >
     <div
@@ -36,7 +36,7 @@ exports[`renders correctly 1`] = `
       />
     </div>
     <small
-      class="text-light form-text"
+      class="form-text"
     >
       Used to verify transaction was signed using your private key
     </small>
@@ -126,7 +126,7 @@ exports[`renders correctly 1`] = `
       />
     </div>
     <small
-      class="text-light form-text"
+      class="form-text"
     >
       Not shared with anyone, keep this secret!
     </small>

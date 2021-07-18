@@ -3,7 +3,7 @@
 exports[`renders correctly 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #FEFEFE;
+  background-color: hsl(0,0%,99%);
   margin: 1em 0.5em;
   padding: 1em;
   max-width: 14rem;
@@ -13,7 +13,7 @@ exports[`renders correctly 1`] = `
     class="col-12 pb-4"
   >
     <h3
-      class="font-weight-bold text-light"
+      class="font-weight-bold"
     >
       Users
     </h3>
